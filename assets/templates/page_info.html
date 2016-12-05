@@ -1,0 +1,33 @@
+<div class="col-md-12 portlet portlet_info">
+    <div class="row content">
+        <div class="col-md-12 portlet_title">
+            <i class="fa_title_icon fa fa-info-circle" aria-hidden="true"></i>
+            <%=data.title%>
+        </div>
+        <div class="col-md-12 portlet_content">
+            <div class="pc_top">
+                <%=data.data.contractor%>
+            </div>
+            <div class="row pc_bottom">
+                <div class="col-md-6">
+                    <span class="item_title">Station</span>
+                    <% if((Object.keys(data.data.station).length)>0){%>
+                    <%_.each(data.data.station, function(i) {%>
+                        <span class="item_value iv_station"><i class="fa fa-train" aria-hidden="true"></i><%=i%></span>
+                    <%})}%>
+                </div>
+                <div class="col-md-6">
+                    <% if((Object.keys(data.data.parking).length)>0){%>
+                     <span class="item_title">MSPR</span>
+                    <%_.each(data.data.parking, function(i) {%>
+                        <span class="item_value iv_mspr"><i class="fa fa-car" aria-hidden="true"></i><%=i%></span>
+                    <%})}%>
+                </div>
+                <div class="pier_chart">
+                    <a href="javascript:void(0)" onClick="loadPage('<%=data.data.piers_url%>')"><span class="item_value iv_pierchart"><i class="fa fa-map" aria-hidden="true"></i> Pier Chart</span></a>
+                </div>
+            </div>
+            <br>
+        </div>
+    </div>
+</div>

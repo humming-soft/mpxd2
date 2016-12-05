@@ -1,0 +1,149 @@
+<div class="portlet portlet_comparison">
+	<div class="row content">
+		<div class="col-md-12 portlet_title">
+			<i class="fa_title_icon fa fa-train" aria-hidden="true"></i>
+			<span id="v_title"></span>
+		</div>
+		<div class="col-md-12 plate_portlet">
+			<div class="row">
+				<div class="col-md-7">
+					<div class="row">
+
+						<div class="col-md-12 portlet portlet_keydates">
+							<div class="row content">
+								<div class="col-md-12 portlet_title">
+									<i class="fa_title_icon fa fa-calendar-check-o" aria-hidden="true"></i>
+									Key Dates
+									<!--<span class="plate_asof">(As of : 3rd July 2016)</span>-->
+								</div>
+								<div class="col-md-12 portlet_content portlet_content_kad">
+									<div class="">
+										<table class="table">
+											<thead>
+											<tr>
+												<th class="col_separation">KAD</th>
+												<th class="col_separation set_center">Contract</th>
+												<th class="col_separation set_center">Forecast</th>
+												<th class="col_separation set_center">Variance</th>
+											</tr>
+											</thead>
+											<tbody>
+											<% if((Object.keys(data.kad).length)>0){%>
+												<%_.each(data.kad, function(i) {
+												var variance;
+												if(i[1]!='' && i[2]!=''){
+												variance = Math.round(compareDates(i[1],i[2]));
+												}else{
+												variance = "";
+												}
+												%>
+												<tr>
+													<td><%=i[0]%></td>
+													<td class="set_center"><%=i[1]%></td>
+													<td class="set_center"><%=i[2]%></td>
+													<%if(variance.length!="0"){%>
+													<td class="set_center mrt_colorcode_1" style="<%=((variance <0) ? 'color: #ff3333' : '')%>"><%=variance%> W</td>
+													<%}else{%>
+													<td class="set_center mrt_colorcode_1" style="color:#39f">N/A</td>
+													<%}%>
+												</tr>
+											<%})}else{%>
+												<tr><td colspan="4" class="no-data">No Data Available.</td></tr>
+											<%}%>
+											</tbody>
+										</table>
+									</div>
+								</div>
+							</div>
+						</div>
+
+						<div class="col-md-12 portlet portlet_kpi">
+							<div class="row content">
+								<div class="col-md-12 portlet_title">
+									<i class="fa_title_icon fa fa-pie-chart" aria-hidden="true"></i>
+									KPI
+									<span class="plate_asof">(As of : 3rd July 2016)</span>
+								</div>
+								<div class="col-md-12 portlet_content portlet_content_kpi">
+									<a href="javascript:void(0)" onClick="loadPage('v201/kpiv201')">
+										<div class="col-md-3 halfdonut">
+											<div class="content">
+												<div id="chart_0" style="overflow: hidden;"></div>
+											</div>
+											<span class="title kpi" id="p0"></span>
+										</div>
+										<div class="col-md-3 halfdonut">
+											<div class="content">
+												<div id="chart_1" style="overflow: hidden;"></div>
+											</div>
+											<span class="title kpi" id="p1"></span>
+										</div>
+										<div class="col-md-3 halfdonut">
+											<div class="content">
+												<div id="chart_2" style="overflow: hidden;"></div>
+											</div>
+											<span class="title kpi" id="p2"></span>
+										</div>
+										<div class="col-md-3 halfdonut">
+											<div class="content">
+												<div id="chart_3" style="overflow: hidden;"></div>
+											</div>
+											<span class="title kpi" id="p3"></span>
+										</div>
+									</a>
+								</div>
+							</div>
+						</div>
+						
+					</div>
+				</div>
+				<div class="col-md-5">
+					<div class="row">
+
+						<div class="col-md-12 portlet portlet_scurve">
+							<div class="row content">
+								<div class="col-md-12 portlet_title">
+									<i class="fa_title_icon fa fa-area-chart" aria-hidden="true"></i>
+									S-Curve
+								</div>
+								<span class="scurve_arrow scurve_arrow_alt scurve_arrow_up"><i class="fa fa-arrow-<%=data.scurve.trend%>" aria-hidden="true"></i></span>
+								<div class="col-md-12 portlet_content portlet_content_scurve">
+									<div class="row">
+										<div class="col-md-12 portlet_scurve_graph">
+											<div class="chart chart-scurve" id="chart_88">
+											</div>
+										</div>
+									</div>
+								</div>
+								<div class="col-md-12">
+									<div class="row">
+										<div class="col-md-2 item psd_data_type1">
+											<span class="item_title">Early</span>
+											<span class="item_value iv_early"><%=data.scurve.early%></span>
+										</div>
+										<div class="col-md-2 item psd_data_type1">
+											<span class="item_title">Actual</span>
+											<span class="item_value iv_late"><%=data.scurve.actual%></span>
+										</div>
+										<div class="col-md-2 item psd_data_type1">
+											<span class="item_title">Late</span>
+											<span class="item_value iv_actual"><%=data.scurve.late%></span>
+										</div>
+										<div class="col-md-3 item psd_data_type1">
+											<span class="item_title_variance">Variance-Early</span>
+											<span class="item_value_variance iv_early"><%=data.scurve.variance_early%></span>
+										</div>
+										<div class="col-md-3 item psd_data_type1">
+											<span class="item_title_variance">Variance-Late</span>
+											<span class="item_value_variance iv_actual"><%=data.scurve.variance_late%></span>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

@@ -1,0 +1,62 @@
+<div class="col-md-12 portlet portlet_summary">
+    <div class="row content">
+        <div class="col-md-12 portlet_title">
+            <i class="fa_title_icon fa fa-circle-o-notch" aria-hidden="true"></i>
+            <%=data.title%>
+        </div>
+        <div class="col-md-12 portlet_content">
+            <div class="">
+                <div class="theader_button">
+                    <button type="button" id="vcmp_btn" disabled="disabled" class="btn btn-primary">Compare</button>
+                </div>
+                <table class="table">
+                    <thead>
+                    <tr>
+                        <th class="col_separation col-md-1">
+                            <!--<section title=".squaredThree">-->
+                                <!-- .squaredThree -->
+                                <!--<div class="squaredThree">-->
+                                    <!--<input type="checkbox" value="None" id="squaredThree" name="check" checked />-->
+                                    <!--<label for="squaredThree"></label>-->
+                                <!--</div>-->
+                                <!-- end .squaredThree -->
+                            <!--</section>-->
+                            <input type="checkbox" name="" value="11" id="checkAll">
+                            Select All
+                        </th>
+                        <th class="col_separation col-md-3">Viaduct Phase 1 and 2</th>
+                        <th class="col_separation col-md-4" colspan="3">Percentage (%)</th>
+                        <th class="col_separation col-md-3" colspan="2">Weeks</th>
+                        <th class="col_separation col-md-1">Status</th>
+                    </tr>
+                    <tr>
+                        <th class="col_separation"></th>
+                        <th class="col_separation"></th>
+                        <th class="mrt_colorcode_bbar_1">Early Plan</th>
+                        <th class="mrt_colorcode_bbar_2">Late Plan</th>
+                        <th class="col_separation mrt_colorcode_bbar_3">Actual Plan</th>
+                        <th class="mrt_colorcode_bbar_1">Variance Early</th>
+                        <th class="mrt_colorcode_bbar_2">Variance Late</th>
+                        <th class="col_separation"></th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <% if((Object.keys(data.data[0].data.systems.syspackage).length)>0){%>
+                    <%_.each(data.data[0].data.systems.syspackage, function(i) {%>
+                    <tr>
+                        <td class="val_checkbox"><input type="checkbox" class="checkbox" name="vs_compare" value="<%=i.id%>"></td>
+                        <td><%=i.item%></td>
+                        <td class="val_early"><%=i.early%>%</td>
+                        <td class="val_late"><%=i.late%>%</td>
+                        <td class="val_actual"><%=i.actual%>%</td>
+                        <td class="val_varearly"><%=i.varianceEarly%></td>
+                        <td class="val_varlate"><%=i.varianceLate%></td>
+                        <td class="ball_indicator mrt_colorcode_ball_1"><i class="fa fa-arrow-up" aria-hidden="true"></i></td>
+                    </tr>
+                    <%})}%>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
