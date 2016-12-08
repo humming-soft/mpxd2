@@ -32,7 +32,7 @@
 				<span class="hm_button active"><a href="<?php echo $this->config->base_url(); ?>dashboard"><i class="fa fa-home" aria-hidden="true"></i> Home</a></span>
 				<span class="hm_button"><a href="<?php echo $this->config->base_url(); ?>programme/scurve"><i class="fa fa-line-chart" aria-hidden="true"></i> Programme</a></span>
 <!--				<span class="hm_button disabled"><a disabled="disabled" class="disabled"><i class="fa fa-cube" aria-hidden="true"></i> Procurement</a></span>-->
-				<span class="hm_button"><a href="<?php echo $this->config->base_url(); ?>viaducts/summary"><i class="fa fa-cube" aria-hidden="true"></i> Summary</a></span>
+				<span class="hm_button"><a href="<?php echo $this->config->base_url(); ?>viaducts/summary"><i class="fa fa-cube" aria-hidden="true"></i> Procurement</a></span>
 				<a style="text-decoration: none; color: #fff;" href="<?php echo $this->config->base_url(); ?>logout"><span class="hm_button"><i class="fa fa-sign-in" aria-hidden="true"></i> Logout</span></a>
 				<span class="hm_user_profile dropdown">
 					<a class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">

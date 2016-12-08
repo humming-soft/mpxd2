@@ -15,7 +15,7 @@ h3 {font-size: 1.4em; font-style: italic;}
 h4 {font-size: 1.1em; font-weight: 500;}
 
 a {
-	font-style: normal;
+	font-style: normal !important;
 	text-decoration: none !important;
 }
 ul li {

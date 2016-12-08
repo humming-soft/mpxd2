@@ -46,8 +46,15 @@ float - plate_gis and stats
 
 /*z index*/
 #plate_vector_map {
-	z-index: 100;
+	z-index: 3000;
 }
+	#plate_vector_map .v_station:hover {
+		cursor: pointer;
+	}
+	#pl_station span a,
+	#pl_mspr span a {
+		color:#fff;
+	}
 #plate_overall_progress {
 	z-index: 1000;
 }

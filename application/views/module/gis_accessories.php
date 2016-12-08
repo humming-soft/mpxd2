@@ -87,61 +87,61 @@
 			<span class="set1">Serdang Depot</span>
 		</div>
 		<div id="pl_station">
-			<span class="set1">Sg. Buloh</span>
-			<span class="set2">D'sara Damai</span>
-			<span class="set3">Sri D'sara West</span>
-			<span class="set4">Sri D'sara East</span>
-			<span class="set5">Kepong Sentral</span>
-			<span class="set6">Metro Prima</span>
-			<span class="set7">Kepong Baru</span>
-			<span class="set8">Jinjang</span>
-			<span class="set9">Sri Delima</span>
-			<span class="set10">Kg. Batu</span>
-			<span class="set11">Kentonmen</span>
-			<span class="set12">Jln. Ipoh</span>
-			<span class="set13">Sentul West</span>
-			<span class="set14">Titiwangsa</span>
-			<span class="set15">HKL</span>
-			<span class="set16">Kg. Baru North</span>
-			<span class="set17">Ampang Park</span>
-			<span class="set18">KLCC East</span>
-			<span class="set19">Conlay</span>
-			<span class="set20">TRX</span>
-			<span class="set21">Chan Sow Lin</span>
-			<span class="set22">Bdr. Malaysia North</span>
-			<span class="set23">Bdr. Malaysia South</span>
-			<span class="set24">Kuchai Lama</span>
-			<span class="set25">Tmn. Naga Emas</span>
-			<span class="set26">Sg. Besi</span>
-			<span class="set27">Tech. Park</span>
-			<span class="set28">Serdang Raya North</span>
-			<span class="set29">Serdang Raya South</span>
-			<span class="set30">Sri Kembangan</span>
-			<span class="set31">UPM</span>
-			<span class="set32">Tmn. Universiti</span>
-			<span class="set33">Equine Park</span>
-			<span class="set34">Tmn. Putra Permai</span>
-			<span class="set35">16 Sierra</span>
-			<span class="set36">Cyberjaya North</span>
-			<span class="set37">Cyberjaya City Centre</span>
-			<span class="set38">Putrajaya Sentral</span>
+			<span class="set1"><a href="<?php echo $this->config->base_url(); ?>station01">Sg. Buloh</a></span>
+			<span class="set2"><a href="<?php echo $this->config->base_url(); ?>station02">D'sara Damai</a></span>
+			<span class="set3"><a href="<?php echo $this->config->base_url(); ?>station03">Sri D'sara West</a></span>
+			<span class="set4"><a href="<?php echo $this->config->base_url(); ?>station04">Sri D'sara East</a></span>
+			<span class="set5"><a href="<?php echo $this->config->base_url(); ?>station05">Kepong Sentral</a></span>
+			<span class="set6"><a href="<?php echo $this->config->base_url(); ?>station06">Metro Prima</a></span>
+			<span class="set7"><a href="<?php echo $this->config->base_url(); ?>station07">Kepong Baru</a></span>
+			<span class="set8"><a href="<?php echo $this->config->base_url(); ?>station08">Jinjang</a></span>
+			<span class="set9"><a href="<?php echo $this->config->base_url(); ?>station09">Sri Delima</a></span>
+			<span class="set10"><a href="<?php echo $this->config->base_url(); ?>station10">Kg. Batu</a></span>
+			<span class="set11"><a href="<?php echo $this->config->base_url(); ?>station11">Kentonmen</a></span>
+			<span class="set12"><a href="<?php echo $this->config->base_url(); ?>station12">Jln. Ipoh</a></span>
+			<span class="set13"><a href="<?php echo $this->config->base_url(); ?>station13">Sentul West</a></span>
+			<span class="set14"><a href="<?php echo $this->config->base_url(); ?>station14">Titiwangsa</a></span>
+			<span class="set15"><a href="<?php echo $this->config->base_url(); ?>station15">HKL</a></span>
+			<span class="set16"><a href="<?php echo $this->config->base_url(); ?>station16">Kg. Baru North</a></span>
+			<span class="set17"><a href="<?php echo $this->config->base_url(); ?>station17">Ampang Park</a></span>
+			<span class="set18"><a href="<?php echo $this->config->base_url(); ?>station18">KLCC East</a></span>
+			<span class="set19"><a href="<?php echo $this->config->base_url(); ?>station19">Conlay</a></span>
+			<span class="set20"><a href="<?php echo $this->config->base_url(); ?>station20">TRX</a></span>
+			<span class="set21"><a href="<?php echo $this->config->base_url(); ?>station21">Chan Sow Lin</a></span>
+			<span class="set22"><a href="<?php echo $this->config->base_url(); ?>station22">Bdr. Malaysia North</a></span>
+			<span class="set23"><a href="<?php echo $this->config->base_url(); ?>station23">Bdr. Malaysia South</a></span>
+			<span class="set24"><a href="<?php echo $this->config->base_url(); ?>station24">Kuchai Lama</a></span>
+			<span class="set25"><a href="<?php echo $this->config->base_url(); ?>station25">Tmn. Naga Emas</a></span>
+			<span class="set26"><a href="<?php echo $this->config->base_url(); ?>station26">Sg. Besi</a></span>
+			<span class="set27"><a href="<?php echo $this->config->base_url(); ?>station27">Tech. Park</a></span>
+			<span class="set28"><a href="<?php echo $this->config->base_url(); ?>station28">Serdang Raya North</a></span>
+			<span class="set29"><a href="<?php echo $this->config->base_url(); ?>station29">Serdang Raya South</a></span>
+			<span class="set30"><a href="<?php echo $this->config->base_url(); ?>station30">Sri Kembangan</a></span>
+			<span class="set31"><a href="<?php echo $this->config->base_url(); ?>station31">UPM</a></span>
+			<span class="set32"><a href="<?php echo $this->config->base_url(); ?>station32">Tmn. Universiti</a></span>
+			<span class="set33"><a href="<?php echo $this->config->base_url(); ?>station33">Equine Park</a></span>
+			<span class="set34"><a href="<?php echo $this->config->base_url(); ?>station34">Tmn. Putra Permai</a></span>
+			<span class="set35"><a href="<?php echo $this->config->base_url(); ?>station35">16 Sierra</a></span>
+			<span class="set36"><a href="<?php echo $this->config->base_url(); ?>station36">Cyberjaya North</a></span>
+			<span class="set37"><a href="<?php echo $this->config->base_url(); ?>station37">Cyberjaya City Centre</a></span>
+			<span class="set38"><a href="<?php echo $this->config->base_url(); ?>station38">Putrajaya Sentral</a></span>
 		</div>
 		<div id="pl_mspr">
-			<span class="set1">P</span>
-			<span class="set2">P</span>
-			<span class="set3">P</span>
-			<span class="set4">P</span>
-			<span class="set5">P</span>
-			<span class="set6">P</span>
-			<span class="set7">P</span>
-			<span class="set8">P</span>
-			<span class="set9">P</span>
-			<span class="set10">P</span>
-			<span class="set11">P</span>
-			<span class="set12">P</span>
-			<span class="set13">P</span>
-			<span class="set14">P</span>
-			<span class="set15">P</span>
+			<span class="set1"><a href="<?php echo $this->config->base_url(); ?>mspr1">P</a></span>
+			<span class="set2"><a href="<?php echo $this->config->base_url(); ?>mspr2">P</a></span>
+			<span class="set3"><a href="<?php echo $this->config->base_url(); ?>mspr3">P</a></span>
+			<span class="set4"><a href="<?php echo $this->config->base_url(); ?>mspr4">P</a></span>
+			<span class="set5"><a href="<?php echo $this->config->base_url(); ?>mspr5">P</a></span>
+			<span class="set6"><a href="<?php echo $this->config->base_url(); ?>mspr6">P</a></span>
+			<span class="set7"><a href="<?php echo $this->config->base_url(); ?>mspr7">P</a></span>
+			<span class="set8"><a href="<?php echo $this->config->base_url(); ?>mspr8">P</a></span>
+			<span class="set9"><a href="<?php echo $this->config->base_url(); ?>mspr9">P</a></span>
+			<span class="set10"><a href="<?php echo $this->config->base_url(); ?>mspr10">P</a></span>
+			<span class="set11"><a href="<?php echo $this->config->base_url(); ?>mspr11">P</a></span>
+			<span class="set12"><a href="<?php echo $this->config->base_url(); ?>mspr12">P</a></span>
+			<span class="set13"><a href="<?php echo $this->config->base_url(); ?>mspr13">P</a></span>
+			<span class="set14"><a href="<?php echo $this->config->base_url(); ?>mspr14">P</a></span>
+			<span class="set15"><a href="<?php echo $this->config->base_url(); ?>mspr15">P</a></span>
 		</div>
 <!--		Commented by Sebin-->
 <!--		<div id="pl_package">-->

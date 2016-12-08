@@ -12,11 +12,11 @@ $(document).ready(function(){
 		window.location.href = "pier.php";
 	})
 	
-	
-	
-	
-	
-	
+
+
+
+
+
 	
 	
 	
@@ -44,7 +44,9 @@ $(document).ready(function(){
 	
 	
 	$('#plate_vector_map').load('assets/mmc/svg/plate_vector_map.svg',function(){
+
 		
+
 		// vector_track
 		var json = [ 
 			{"vector_track":"legend_v_track_1","vector_status":"0","url":""},
