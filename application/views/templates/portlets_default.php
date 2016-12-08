@@ -63,37 +63,13 @@
         return str.format(date.getDate(), monthNames[date.getMonth()], date.getFullYear());
     }
     $(function() {
-
-        /* 0 = widescreen, 1 = <1366 */
-
         screenWidth = $(document).width();
         screenType = 0;
         if (screenWidth <= 1500)
             screenType = 1;
         if (screenWidth <= 1280)
             screenType = 2;
-
-//        $('#sidebar-toggle').on('click', function() {
-//            toggleSidebar();
-//        });
-//        setTimeout(function() {
-//            $(window).trigger('resize');
-//        }, 5000);
-
-//        generateSideMenu(pages);
-        //sideMenu();
-        $.mCustomScrollbar.defaults.scrollButtons.enable=true;
+        $.mCustomScrollbar.defaults.scrollButtons.enable = true;
         loadPage(getRoute(), true);
-        //new mlPushMenu(document.getElementById('mp-menu'), document.getElementById('trigger'));
-       
-
-//        $('#date_placeholder').html("Today: <b>" + prettyDate() + "</b>");
     });
-
-//    function resizeListener() {
-        //var $g = $('.gridster ul');
-        //$g.animate({'width':$g.parent('.gridster').width()})
-//    }
-
-//    $(window).resize(resizeListener);
 </script>

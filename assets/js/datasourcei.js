@@ -629,7 +629,7 @@ mpxd.constructors.piechart_workpackage = function (items) {
 
 
 /**********************************/
-/*	
+/*
  /*	Procurement barchart
  /*
  /**********************************/
@@ -674,7 +674,7 @@ mpxd.modules.barchart_workpackage.View = Backbone.View.extend({
                     'Underground Work', //2
                     'Multistorey Carparks', //7
                     'System', //6
-                    'Elevated Stations', //5                    
+                    'Elevated Stations', //5
                     'Civil & Structural and Other Works' //8
                 ]
             },
@@ -979,7 +979,7 @@ function loadPage(p, dontsavestate) {
         //Draw the portlets
         drawPortlets(data);
         var j = p.split("/");
-        mpxd.getData(data, j[1], function (result) {
+        mpxd.getData(data,function (result) {
             mpxd.resetDatasource();
             for (var i in result.data) {
                 //var json = jQuery.parseJSON(result.data[i].value);

@@ -262,8 +262,8 @@ class Dashboard extends CI_Controller {
                     $item_meta = $this->dashboard_model->get_meta($query);
 
                 $data_source = $this->dashboard_model->get_source_archivable($item_meta[0]['item_id'], $date);
-				$data_source_static = $this->dashboard_model->get_static_source($itemID);
-
+//				$data_source_static = $this->dashboard_model->get_static_source($itemID);
+                $data_source_static =array();
                 //var_dump($this->session->all_userdata());
                 $data['title'] = 'api';
                 $data['item'] = array('item' => $item_meta, 'data' => $data_source, 'static_data' => $data_source_static);

@@ -17,29 +17,7 @@
                     </tr>
                     </thead>
                     <tbody>
-                    <% if((Object.keys(data.data).length)>0){%>
-                        <%_.each(data.data, function(i) {
-                        var variance;
-                        if(i[1]!='' && i[2]!=''){
-                            variance = Math.round(compareDates(i[1],i[2]));
-                        }else{
-                            variance = "";
-                        }
-                        %>
-                        <tr>
-                            <td><%=i[0]%></td>
-                            <td class="set_center"><%=i[1]%></td>
-                            <td class="set_center"><%=i[2]%></td>
-                            <%if(variance.length!="0"){%>
-                                <td class="set_center mrt_colorcode_1" style="<%=((variance <0) ? 'color: #ff3333' : '')%>"><%=variance%> W</td>
-                           <%}else{%>
-                                <td class="set_center mrt_colorcode_1" style="color:#39f">N/A</td>
-                            <%}%>
-                        </tr>
-                    <%})}else{%>
-                        <tr><td colspan="4" class="no-data">No Data Available.</td></tr>
-                    <%}%>
-                    <!--<tr>
+                    <tr>
                         <td>Track Access Date Damansara Damai</td>
                         <td class="set_center">30 Sep 2015</td>
                         <td class="set_center">19 Oct  2015</td>
@@ -56,7 +34,7 @@
                         <td class="set_center">30 Sep 2015</td>
                         <td class="set_center">19 Oct 2015</td>
                         <td class="set_center mrt_colorcode_1">-3 W</td>
-                    </tr>-->
+                    </tr>
                     </tbody>
                 </table>
             </div>
