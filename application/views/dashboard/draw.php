@@ -111,8 +111,8 @@ body {
         <!--<script type=text/javascript src=highcharts/js/modules/exporting.js></script>-->
         <script type=text/javascript src=<?php echo $this->config->base_url(); ?>assets/highcharts/js/dark-highcharts.js></script>
         <script type=text/javascript src=<?php echo $this->config->base_url(); ?>assets/js/mpxd.js></script>
-        <script type=text/javascript src=<?php echo $this->config->base_url(); ?>assets/js/ilyas.js></script>
-        <script type=text/javascript src=<?php echo $this->config->base_url(); ?>assets/js/zul.js></script>
+        <script type=text/javascript src=<?php echo $this->config->base_url(); ?>assets/js/datasourcei.js></script>
+        <script type=text/javascript src=<?php echo $this->config->base_url(); ?>assets/js/datasourcez.js></script>
 
 		<script>
 		baseURL = <?php echo json_encode($this->config->base_url()); ?>;

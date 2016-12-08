@@ -198,7 +198,7 @@ mpxd.getportlet = function(slug, page, callback) {
     });
 }
 //Commented by Sebin : Alternate function added immediate below.
-/*mpxd.getData = function(data, callback) {
+mpxd.getData = function(data, callback) {
 	if ((typeof data == "undefined") || (data == [])) { console.log("No data at getData!"); return;}
     var query = "get?";
     var temp = [];
@@ -218,41 +218,41 @@ mpxd.getportlet = function(slug, page, callback) {
 	mpxd.getJSON('api/', query, function(result) {
 		callback(result);
     });
-}*/
-//Modified getData function : Modified by Sebin
-mpxd.getData = function(data, j, callback) {
-	if ((typeof data == "undefined") || (data == [])) { console.log("No data at getData!"); return;}
-	var query = "get?";
-	var temp = [];
-	for (var i = 0; i < data.length; i++) {
-		temp.push(data[i].id);// + "=" + data[i].slug + ":" + data[i].type + ":" + data[i].key);
-	}
-
-	query += temp.join("&");
-	query += "&p=" + j;
-	var itemID = data[0].item_id;
-	query += "&item_id=" + itemID;
-
-	var date = getParameterByName('date');
-	if(date.length>0)
-		query += "&date=" + date;
-	//console.log(query);
-	mpxd.getJSON('api/', query, function(result) {
-		callback(result);
-	});
 }
+//Modified getData function : Modified by Sebin
+// mpxd.getData = function(data, j, callback) {
+// 	if ((typeof data == "undefined") || (data == [])) { console.log("No data at getData!"); return;}
+// 	var query = "get?";
+// 	var temp = [];
+// 	for (var i = 0; i < data.length; i++) {
+// 		temp.push(data[i].id);// + "=" + data[i].slug + ":" + data[i].type + ":" + data[i].key);
+// 	}
+//
+// 	query += temp.join("&");
+// 	query += "&p=" + j;
+// 	var itemID = data[0].item_id;
+// 	query += "&item_id=" + itemID;
+//
+// 	var date = getParameterByName('date');
+// 	if(date.length>0)
+// 		query += "&date=" + date;
+// 	//console.log(query);
+// 	mpxd.getJSON('api/', query, function(result) {
+// 		callback(result);
+// 	});
+// }
 
 mpxd.getDateList = function(data, callback){
 	$.getJSON(baseURL + data, function(result) {
         callback(result);
     })
 }
-//Created By Sebin
-mpxd.getJSONData = function(data, callback){
-    $.getJSON(baseURL + data, function(result) {
-        callback(result);
-    })
-}
+// //Created By Sebin
+// mpxd.getJSONData = function(data, callback){
+//     $.getJSON(baseURL + data, function(result) {
+//         callback(result);
+//     })
+// }
 
 mpxd.generatePortletContent = function (data) {
 	/*var lookup = {};

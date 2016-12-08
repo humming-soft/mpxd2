@@ -31,8 +31,8 @@
 <script type=text/javascript src=<?php echo $this->config->base_url(); ?>assets/plugin/wb-popover/jquery.webui-popover.min.js></script>
 <script type=text/javascript src=<?php echo $this->config->base_url(); ?>assets/js/mpxd.js></script>
 
-<script type=text/javascript src=<?php echo $this->config->base_url(); ?>assets/js/ilyas.js></script>
-<script type=text/javascript src=<?php echo $this->config->base_url(); ?>assets/js/zul.js></script>
+<script type=text/javascript src=<?php echo $this->config->base_url(); ?>assets/js/datasourcei.js></script>
+<script type=text/javascript src=<?php echo $this->config->base_url(); ?>assets/js/datasourcez.js></script>
 <script type=text/javascript src=<?php echo $this->config->base_url(); ?>assets/js/_sn.js></script>
 
 <script type=text/javascript src=<?php echo $this->config->base_url(); ?>assets/js/tinybox.js></script>
