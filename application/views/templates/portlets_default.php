@@ -33,7 +33,7 @@
 
 <script type=text/javascript src=<?php echo $this->config->base_url(); ?>assets/js/datasourcei.js></script>
 <script type=text/javascript src=<?php echo $this->config->base_url(); ?>assets/js/datasourcez.js></script>
-<script type=text/javascript src=<?php echo $this->config->base_url(); ?>assets/js/_sn.js></script>
+<script type=text/javascript src=<?php echo $this->config->base_url(); ?>assets/js/datasources.js></script>
 
 <script type=text/javascript src=<?php echo $this->config->base_url(); ?>assets/js/tinybox.js></script>
 
