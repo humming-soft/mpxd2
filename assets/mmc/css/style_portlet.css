@@ -144,7 +144,6 @@ info
 */
 div.portlet_info div.content {
 	background: #252237;
-	border-radius: 5px;
 }
 div.portlet_info div.portlet_content {
 }
@@ -222,7 +221,6 @@ progress
 */
 div.portlet_progress div.content {
 	background: #252237;
-	border-radius: 5px;
 }
 div.portlet_progress div.portlet_content {
 }
@@ -237,7 +235,6 @@ keydates
 */
 div.portlet_keydates div.content {
 	background: #252237;
-	border-radius: 5px;
 }
 div.portlet_keydates div.portlet_content {
 	padding-top: 10px;
@@ -282,7 +279,6 @@ kpi
 */
 div.portlet_kpi div.content {
 	background: #252237;
-	border-radius: 5px;
 }
 div.portlet_kpi div.portlet_content {
 	padding-top: 10px;
@@ -305,7 +301,6 @@ images
 */
 div.portlet_images div.content {
 	background: #252237;
-	border-radius: 5px;
 }
 div.portlet_images div.portlet_content {
 	padding-top: 10px;
@@ -331,7 +326,6 @@ scurve
 
 div.portlet_scurve div.content {
 	background: #252237;
-	border-radius: 5px;
 }
 
 div.portlet_scurve_data div.row div.item {
@@ -430,7 +424,6 @@ summary
 */
 div.portlet_summary div.content {
 	background: #252237;
-	border-radius: 5px;
 }
 div.portlet_summary div.portlet_content {
 	padding-top: 10px;
