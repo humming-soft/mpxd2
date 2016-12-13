@@ -8,7 +8,6 @@ include "./config.php";
  **/
 
 //Test
-function
 /**
  * GALLERY
  * @param $slug
@@ -38,7 +37,7 @@ function gallery($slug){
 			$temp["kind"] = "image";
 			$temp["id"] = $itr;
 			array_push($t, $temp);
-		}else {
+		}else{
 			$temp["path"] = $v["uploaded_path"];
 			$temp["title"] = $v["image_description"];
 			$temp["kind"] = "image";
@@ -149,7 +148,11 @@ function kad($slug){
  * @Desc
  */
 function safety_incident($slug){
-	return [];
+	$query = db()->hsse()
+		->select('incident_date','incident')
+		->where("slug", $slug);
+	$result = array_map('iterator_to_array', iterator_to_array($query));
+	return $result;
 }
 
 /**
@@ -188,7 +191,7 @@ function build_viaducts($slug){
 	$superFinal = array($slug => array_merge($finalQRM, $finalKAD, $finalINFO, $finalHSSE, $finalGALLERY, $finalSCURVE));
 
 	echo json_encode($superFinal);
-//	updateDB($slug, json_encode($gallery), $date);
+//	updateDB($slug, json_encode($superFinal), $date);
 }
 /**
  * SYSTEMS
@@ -237,8 +240,7 @@ function updateDB($slug, $value, $date){
 		if($datax){ // exist
 			$d = array("value" => $value);
 			$data->update($d);
-		}
-		else{ //new row
+		}else{ //new row
 			$d = array("item_id" => $id , "value" => $value, "date" => $date, "name" => $name);
 			$ds = mpxd()->data_sources(); //echo $ds->count();
 			$ds->insert($d);

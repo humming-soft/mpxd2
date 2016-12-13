@@ -51,8 +51,12 @@ float - plate_gis and stats
 	#plate_vector_map .v_station:hover {
 		cursor: pointer;
 	}
+	#plate_vector_map .v_depot:hover {
+		cursor: pointer;
+	}
 	#pl_station span a,
-	#pl_mspr span a {
+	#pl_mspr span a,
+	#pl_depot span a{
 		color:#fff;
 	}
 #plate_overall_progress {
@@ -84,6 +88,9 @@ float - plate_gis and stats
 	z-index: 3000;
 }
 #pl_phase > div {
+	z-index: 3000;
+}
+#donut_plate {
 	z-index: 3000;
 }
 
@@ -551,13 +558,6 @@ float - system donut - chocolate nuts donuts
 	position: absolute;
 	width: 100%;
 	height: 100%;
-}
-
-#plate_system {
-	z-index: 1000;
-}
-#plate_system a.url_donut_system{
-	z-index: 3000;
 }
 
 #donut_plate {

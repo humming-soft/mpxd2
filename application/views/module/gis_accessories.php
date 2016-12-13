@@ -84,7 +84,7 @@
 	</div>
 	<div id="plate_label">
 		<div id="pl_depot">
-			<span class="set1">Serdang Depot</span>
+			<span class="set1"><a href="<?php echo $this->config->base_url(); ?>depot01">Serdang Depot</a></span>
 		</div>
 		<div id="pl_station">
 			<span class="set1"><a href="<?php echo $this->config->base_url(); ?>station01">Sg. Buloh</a></span>
