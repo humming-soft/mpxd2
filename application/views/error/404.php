@@ -1,12 +1,3 @@
-<?php
-/**
- * Created by PhpStorm.
- * User: HMS-SEBIN
- * Date: 23-10-2016
- * Time: 10:27 PM
- */
-?>
-
 <html>
 <head>
 
