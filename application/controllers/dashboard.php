@@ -427,4 +427,8 @@ class Dashboard extends CI_Controller {
         return $op;
     }
 
+    public function error_404(){
+        $this->load->view('error/404');
+    }
+
 }

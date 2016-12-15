@@ -57,7 +57,9 @@ $route['viaducts/compare'] = 'dashboard/compare';
 $route['setapi/(:any)'] = 'dashboard/setapi/$1';
 $route['draw'] = 'dashboard/draw';
 $route['save'] = 'dashboard/save';
+$route['404'] = 'dashboard/error_404';
 $route['dashboard'] = 'dashboard/dashboard';
+
 
 $route['login'] = 'dashboard/login';
 $route['logout'] = 'dashboard/logout';

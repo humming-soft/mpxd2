@@ -58,6 +58,8 @@ float - plate_gis and stats
 	#pl_mspr span a,
 	#pl_depot span a{
 		color:#fff;
+		/*Added By Sebin*/
+		outline: 0;
 	}
 #plate_overall_progress {
 	z-index: 1000;

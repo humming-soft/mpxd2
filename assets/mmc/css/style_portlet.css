@@ -551,16 +551,17 @@ div.portlet_comparison div.halfdonut span {
 	text-align: center;
 }
 
-
 /*
+
+
 pierchart
+
 
 */
 
 /*general*/
 div.portlet_pierchart div.content {
 	background: #252237;
-	border-radius: 5px;
 }
 div.portlet_pierchart div.portlet_content {
 	padding-top: 10px;
@@ -579,6 +580,8 @@ div.portlet_pierchart div.halfdonut span {
 div.portlet_pierchart div.chart_pierchart {
 	margin-top: 10px;
 	margin-bottom: 5px;
+	/*Added by Sebin*/
+	margin-left: 54px;
 }
 
 div.portlet_pierchart div.legend_pierchart span {
@@ -610,7 +613,7 @@ div.legend_pierchart .legend_station {
 	display: block;
 	width: 55px !important;
 	height: 5px;
-	border-bottom: 6px solid #0ff;
+	border-bottom: 10px solid #0af;
 }
 div.legend_pierchart .legend_special_span {
 	display: block;
@@ -620,6 +623,38 @@ div.legend_pierchart .legend_special_span {
 }
 
 
+
+/*pier block setup*/
+
+div.portlet_pierchart div.pier_block {
+	display: inline-block;
+	font-size: .8em;
+	height: 220px;
+	border-bottom: 2px solid #333;
+}
+
+
+/*pier block = type a*/
+
+div.portlet_pierchart div.pier_block_type_a {
+	width: 115px;
+	margin-top: 5px;
+}
+
+
+/*pier block = type b*/
+
+div.pier_block_type_b {
+	margin-top: 5px;
+}
+
+
+/*pier block = type a*/
+
+div.portlet_pierchart div.pier_block_type_C {
+	width: 70px;
+	margin-top: 5px;
+}
 /*marker a*/
 div.pier_block div.marker_a {
 	/*display: none;*/
@@ -630,23 +665,7 @@ div.pier_block div.marker_a {
 
 /*marker b*/
 div.pier_block div.marker_b {
-	/*display: none;*/
 	height: 13px;
-}
-
-
-/*pier block*/
-
-div.portlet_pierchart div.pier_block {
-	display: inline-block;
-	/*background: rgba(255,255,255,.05);*/
-	font-size: .8em;
-	height: 250px;
-}
-
-div.portlet_pierchart div.pier_block_type_a {
-	width: 115px;
-	margin-top: 5px;
 }
 
 
@@ -728,9 +747,25 @@ path.x_span {
 	fill-opacity:1;
 }
 
+/*span_station*/
+span.span_station {
+	display: block;
+	background: #0af;
+	height: 39px;
+	margin-bottom: 4px;
+}
+
+/*pier*/
+div.pier svg.narrowbody {
+	margin-left: -9px;
+}
+div.pier svg.widebody {
+	margin-left: -20px;
+}
+
 /*pier id name single*/
 div.pier_id span.content.single {
-	margin-left: 70px;
+	margin-left: -20px;
 	margin-top: -10px;
 	width: 100px;
 	display: block;
@@ -741,7 +776,7 @@ div.pier_id span.content.single > span {
 	padding: 3px 0;
 }
 div.pier_id span.content.single > span.name1 {
-	text-align: center;
+	text-align: left;
 }
 div.pier_id span.content.single > span > span.id_plate {
 	background: #205;
@@ -750,9 +785,9 @@ div.pier_id span.content.single > span > span.id_plate {
 
 /*pier id name twin*/
 div.pier_id span.content.twin {
-	margin-left: 68px;
+	margin-left: -25px;
 	margin-top: -10px;
-	width: 105px;
+	width: 70px;
 	display: block;
 	position: absolute;
 }
@@ -771,6 +806,37 @@ div.pier_id span.content.twin > span.name2 {
 div.pier_id span.content.twin > span > span.id_plate {
 	background: #205;
 	padding: 2px 5px;
+}
+
+
+/*sbg*/
+
+div.span span.sbg:first-child {
+	border-left: 1px solid #fff;
+}
+div.span span.sbg:last-child {
+	border-right: 1px solid #fff;
+}
+
+div.span span.sbg {
+	display: inline-block;
+	height: 13px;
+	margin-top: 26px;
+	/*margin: 29px 1px 0px 1px;*/
+	border: 1px solid rgba(0,0,0,.7);
+}
+
+div.span span.sbg.sbg_left_separation,
+div.span span.sbg.sbg_right_separation {
+	vertical-align: top;
+	font-weight: bolder;
+	color: #f0f;
+}
+div.span span.sbg.sbg_left_separation {
+	text-align: right;
+}
+div.span span.sbg.sbg_right_separation {
+	text-align: left;
 }
 
 
@@ -797,7 +863,7 @@ div.marker_d span.content button {
 .highlight_critical,
 .highlight_null {
 	/*display: none;*/
-	margin-top: -25px;
+	margin-top: -48px;
 	margin-left: 64px;
 	position: absolute;
 	width: 113px;
@@ -838,14 +904,14 @@ span.content.station {
 	margin-left: 55px;
 	width: 120px;
 	height: 5px;
-	border-top: 6px solid #0ff !important;
+	border-top: 6px solid #0ff;
 }
 span.content.special_span {
 	position: absolute;
 	display: block;
 	width: 115px;
 	height: 5px;
-	border-top: 6px dotted #a0f !important;
+	border-top: 6px dotted #a0f;
 }
 
 span.content.station_title,
@@ -857,14 +923,13 @@ span.content.special_span_title {
 	padding: 2px 10px;
 	vertical-align: text-bottom;
 }
-	span.content.station_title {
-		background: rgba(0,255,2565,.2);
-	}
-	span.content.special_span_title {
-		background: rgba(255,0,2565,.2);
-	}
-/*Added by Sebin*/
-/*On : 07-10-2016*/
+span.content.station_title {
+	background: rgba(0,255,2565,.2);
+}
+span.content.special_span_title {
+	background: rgba(255,0,2565,.2);
+}
+
 
 
 

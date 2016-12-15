@@ -11,38 +11,6 @@ $(document).ready(function(){
 	$('span.iv_pierchart').click(function(){
 		window.location.href = "pier.php";
 	})
-	
-
-
-
-
-
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
 	$('#plate_vector_map').load('assets/mmc/svg/plate_vector_map.svg',function(){
 
 		

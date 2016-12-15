@@ -36,7 +36,7 @@ mpxd.templateURLs = {
     "slider": {"templateURL": "assets/templates/slider.html"},
     "piechartworkpackage": {"templateURL": "assets/templates/piechartworkpackage.html"},
     "barchartworkpackage": {"templateURL": "assets/templates/barchartworkpackage.html"},
-    "page_info_station": {"templateURL": "assets/templates/page_info_station.html"},
+    "page_station_info": {"templateURL": "assets/templates/page_info_station.html"},
     "gallery": {"templateURL": "assets/templates/gallery.html"},
     "schematic": {"templateURL": "assets/templates/slider.html"},
     "single_pier": {"templateURL": "assets/templates/single_pier.html"},
