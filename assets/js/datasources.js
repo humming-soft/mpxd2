@@ -1,9 +1,12 @@
 /*Created : Sebin Thomas
 For     : Backbone Constructors, Views and the associated functions
 Date    : 14/07/2016*/
+
+//Page Info for Stations
 mpxd.constructors.page_station_info = function(data) {
     mpxd.modules.general.GenerateGeneralview(data);
 }
+//KPI
 mpxd.constructors.kpi = function(data) {
     var el = "#portlet_" + data.id;
     return new mpxd.modules.viaducts.kpi({data: data, el: el});
@@ -20,8 +23,31 @@ mpxd.constructors.viaducts_compare = function(data) {
     var el = "#portlet_" + data.id;
     return new mpxd.modules.viaducts.compare({data: data, el: el});
 }
+//KD
+mpxd.constructors.kd = function(data) {
+    var el = "#portlet_" + data.id;
+    return new mpxd.modules.viaducts.kd({data: data, el: el});
+}
+
+// Issue
+mpxd.constructors.issue = function(data) {
+    mpxd.modules.general.GenerateGeneralview(data);
+}
+//Mitigation
+mpxd.constructors.mitigation = function(data) {
+    mpxd.modules.general.GenerateGeneralview(data);
+}
+
 mpxd.modules.piers = {}
 mpxd.modules.viaducts = {}
+mpxd.modules.stations = {}
+mpxd.modules.mspr = {}
+mpxd.modules.ug = {}
+mpxd.modules.ug_stations = {}
+mpxd.modules.north_south = {}
+mpxd.modules.procurement = {}
+mpxd.modules.scurves = {}
+
 mpxd.modules.piers.viaduct_pier_view = Backbone.View.extend({
     initialize: function (options) {
         this.data = options.data;
@@ -752,100 +778,6 @@ mpxd.modules.viaducts.kpi = Backbone.View.extend({
         that.$el.html(template);
         that.$el.find('.portlet_content').css({"height":(that.$el.find('.content').parent().parent().parent().height())-40});
         that.$el.find('.portlet_content').mCustomScrollbar({theme:"dark-3"});
-       for(var i=0;i<4;i++) {
-
-           if(typeof this.data.data[i]==="undefined"){
-               var actual=0; var target=0;
-           }else {
-               var actual = parseInt(parseInt((typeof this.data.data[i]['actual'] == "undefined") ? 0 : this.data.data[i]['actual']) / parseInt((typeof this.data.data[i]['baseline'] == "undefined") ? 1 : this.data.data[i]['baseline']) * 100);
-               var target = parseInt(parseInt((typeof this.data.data[i]['target'] == "undefined") ? 0 : this.data.data[i]['target']) / parseInt((typeof this.data.data[i]['baseline'] == "undefined") ? 1 : this.data.data[i]['baseline']) * 100);
-           }
-           that.$el.find('#chart_'+i).highcharts({
-               chart: {
-                   plotBackgroundColor: null,
-                   plotBorderWidth: 0,
-                   plotShadow: false,
-                   margin: [0, 0, 0, 0],
-                   spacingTop: 0,
-                   spacingBottom: 0,
-                   spacingLeft: 0,
-                   spacingRight: 0,
-                   height: 200
-               },
-               title: {
-                   text: actual + '%',
-                   style: {
-                       color: '#9EDD2E',
-                       fontSize: '150%',
-                       fontWeight: 'bold'
-                   },
-                   align: 'center',
-                   verticalAlign: 'middle',
-                   y: 10
-               },
-               tooltip: {
-                   pointFormat: '{point.percentage:.1f}%</b>'
-               },
-               plotOptions: {
-                   pie: {
-                       dataLabels: {
-                           enabled: false,
-                           distance: -50,
-
-                           style: {
-                               fontWeight: 'bold',
-                               color: 'white',
-                               textShadow: '0px 1px 2px black'
-                           }
-                       },
-                       startAngle: 0,
-                       endAngle: 360,
-                       center: ['50%', '50%'],
-                       size: '100%'
-                   }
-               },
-               series: [{
-                   type: 'pie',
-                   size: '60%',
-                   innerSize: '85%',
-                   style: {
-                       color: 'white'
-                   },
-                   data: [
-                       {
-                           name: 'Completed',
-                           y: actual,//Inner
-                           color: '#fc0'
-                       },
-                       {
-                           name: 'Remaining',
-                           y: (100-actual),//inner
-                           color: 'rgba(0,0,0,0.2)'
-                       },
-                   ]
-               },{
-                   type: 'pie',
-                   size: '80%',
-                   innerSize:  '85%',
-                   data: [
-                       {
-                           name: 'Completed',
-                           y: target,//outer
-                           color: '#0d6ee2'
-                       },
-                       {
-                           name: 'Remaining',
-                           y: (100-target),//outer
-                           color: 'rgba(0,0,0,0.2)'
-                       },
-                   ]
-               }],
-               credits: {
-                   enabled: false
-               },
-           });
-           that.$el.find('#p'+i).text((typeof this.data.data[i]=="undefined")?"-":this.data.data[i]['type']);
-       }
     }
 });
 mpxd.modules.viaducts.kpi_viaducts = Backbone.View.extend({
@@ -988,6 +920,20 @@ mpxd.modules.viaducts.kpi_viaducts = Backbone.View.extend({
                 enabled: false
             }
         });
+    }
+});
+
+mpxd.modules.viaducts.kd = Backbone.View.extend({
+    initialize: function (options) {
+        this.data = options.data;
+        this.render();
+    }, render: function () {
+        var that = this;
+        var html = mpxd.getTemplate(that.data.type);
+        template = _.template(html, {data: that.data});
+        that.$el.html(template);
+        that.$el.find('.portlet_content').css({"height":(that.$el.find('.content').parent().parent().parent().height())-40});
+        that.$el.find('.portlet_content').mCustomScrollbar({theme:"dark-3"});
     }
 });
 mpxd.modules.viaducts.compare = Backbone.View.extend({

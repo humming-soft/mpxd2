@@ -125,7 +125,7 @@ issue
 */
 div.portlet_issue div.content {
 	background: #125;
-	border: 3px solid #09f;
+	border: 3px solid #09f !important;
 }
 div.portlet_issue div.portlet_content {
 	padding: 5px 20px;
@@ -274,7 +274,10 @@ div.portlet_keydates table tbody td {
 
 
 /*
+
+
 kpi
+
 
 */
 div.portlet_kpi div.content {
@@ -282,16 +285,49 @@ div.portlet_kpi div.content {
 }
 div.portlet_kpi div.portlet_content {
 	padding-top: 10px;
-	padding-bottom: 10px;
 }
 div.portlet_kpi div.portlet_title {
 	color: #fff;
 }
 
-div.portlet_kpi div.halfdonut span {
-	display: block;
-	border-top: 1px solid #669;
+div.portlet_kpi thead {
+	background: #111;
+}
+
+div.portlet_kpi table {
+	font-size: .9em;
+}
+
+div.portlet_kpi table .set_center {
 	text-align: center;
+}
+
+div.portlet_kpi table td.baseline {
+	color: #0ff;
+}
+div.portlet_kpi table td.target {
+	color: #b7f;
+}
+div.portlet_kpi table td.actual{
+	color: #f05;
+	background: rgba(0,0,0,.2);
+}
+div.portlet_kpi table td.shortfall {
+	color: #ff0;
+}
+
+/*theader border*/
+div.portlet_kpi table th {
+	border-bottom: 1px solid #000 !important;
+	font-weight: normal;
+}
+div.portlet_kpi table .col_separation {
+	border-right: 2px solid #223;
+}
+
+/*tbody border*/
+div.portlet_kpi table tbody td {
+	border-bottom: 1px solid #669 !important;
 }
 
 

@@ -173,8 +173,8 @@
 			<a class="set11" href="<?php echo $this->config->base_url(); ?>v210/index">V210</a>
 		</div>
 		<div id="pl_phase">
-			<span class="set1">NORTH</span>
-			<span class="set2">SOUTH</span>
+			<a class="set1" href="<?php echo $this->config->base_url(); ?>north/index">NORTH</a>
+			<a class="set2" href="<?php echo $this->config->base_url(); ?>south/index">SOUTH</a>
 		</div>
 	</div>
 </div>

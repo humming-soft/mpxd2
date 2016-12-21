@@ -89,7 +89,7 @@ float - plate_gis and stats
 #pl_package > a {
 	z-index: 3000;
 }
-#pl_phase > div {
+#pl_phase > a {
 	z-index: 3000;
 }
 #donut_plate {
@@ -277,15 +277,24 @@ float - plate_gis and stats
 
 /*	pl_phase
 */
-#pl_phase span {
-	/*display: none;*/
+/*#pl_phase span {
+	!*display: none;*!
 	position: absolute;
 	font-size: 2em;
 	color: rgba(255,255,255,.5);
 }
 #pl_phase span.set1 {top: 16.5%; left: 2.5%;}
-#pl_phase span.set2 {top: 27%; left: 65%;}
+#pl_phase span.set2 {top: 27%; left: 65%;}*/
 
+#pl_phase a {
+	/*display: none;*/
+	position: absolute;
+	font-size: 2em;
+	color: rgba(255,255,255,.5);
+	outline: 0;
+}
+#pl_phase a.set1 {top: 16.5%; left: 2.5%;}
+#pl_phase a.set2 {top: 27%; left: 65%;}
 /*	pl_package
 */
 

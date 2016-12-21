@@ -23,15 +23,16 @@ $(function(){
 });
 mpxd.templateURLs = {
     "NONE": {"templateURL": "assets/templates/none.html"},
-    "scurve-1": {"templateURL": "assets/templates/scurve-1.html"},
-    "scurve-2": {"templateURL": "assets/templates/scurve-2.html"},
+    "scurve-1": {"templateURL": "assets/templates/scurve-1.html"}, //checked
+    "scurve-2": {"templateURL": "assets/templates/scurve-2.html"}, //checked
     "scorecard": {"templateURL": "assets/templates/scorecard.html"},
-    "page_info": {"templateURL": "assets/templates/page_info.html"},
-	"hsse": {"templateURL": "assets/templates/hsse.html"},
-    "progress": {"templateURL": "assets/templates/progress.html"},
-    "kpi": {"templateURL": "assets/templates/kpi.html"},
+    "page_info": {"templateURL": "assets/templates/page_info.html"}, //checked
+	"hsse": {"templateURL": "assets/templates/hsse.html"}, //checked
+    "progress": {"templateURL": "assets/templates/progress.html"}, //checked
+    "kpi": {"templateURL": "assets/templates/kpi.html"}, //checked
     "station_tracklist": {"templateURL": "assets/templates/station_tracklist.html"},
-    "kad": {"templateURL": "assets/templates/kad.html"},
+    "kad": {"templateURL": "assets/templates/kad.html"}, //checked
+	"kd": {"templateURL": "assets/templates/kd.html"}, //checked
     "kad2": {"templateURL": "assets/templates/kad2.html"},
     "slider": {"templateURL": "assets/templates/slider.html"},
     "piechartworkpackage": {"templateURL": "assets/templates/piechartworkpackage.html"},
@@ -42,7 +43,10 @@ mpxd.templateURLs = {
     "single_pier": {"templateURL": "assets/templates/single_pier.html"},
     "viaduct_pier_view": {"templateURL": "assets/templates/viaduct_pier_view.html"},
 	"viaducts_compare":{"templateURL": "assets/templates/viaducts_comparison.html"},
-	"kpi_viaducts":{"templateURL": "assets/templates/kpi_viaducts.html"}
+	"kpi_viaducts":{"templateURL": "assets/templates/kpi_viaducts.html"},
+
+	"issue" :{"templateURL": "assets/templates/issue.html"},
+	"mitigation" :{"templateURL": "assets/templates/mitigation.html"}
 }
 
 mpxd.templateData = {};

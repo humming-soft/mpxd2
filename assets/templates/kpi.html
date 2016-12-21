@@ -1,9 +1,9 @@
-<div class="col-md-12 portlet portlet_kpi">
+<!--<div class="col-md-12 portlet portlet_kpi">
     <div class="row content">
         <div class="col-md-12 portlet_title">
             <i class="fa_title_icon fa fa-pie-chart" aria-hidden="true"></i>
             <%=data.title%>
-            <!--<span class="plate_asof">(As of : 3rd July 2016)</span>-->
+            &lt;!&ndash;<span class="plate_asof">(As of : 3rd July 2016)</span>&ndash;&gt;
         </div>
         <div class="col-md-12 portlet_content">
             <a href="javascript:void(0)" onClick="loadPage('<%=data.data.url%>')">
@@ -34,4 +34,48 @@
             </a>
         </div>
     </div>
+</div>-->
+
+<div class="col-md-12 portlet portlet_kpi">
+    <div class="row content">
+        <div class="col-md-12 portlet_title">
+            <i class="fa_title_icon fa fa-pie-chart" aria-hidden="true"></i>
+            KPI
+            <span class="plate_asof">(As of : 3rd July 2016)</span>
+        </div>
+        <div class="col-md-12 portlet_content">
+            <div class="">
+                <table class="table">
+                    <thead>
+                    <tr>
+                        <th class="col_separation">Title</th>
+                        <th class="col_separation set_center">Baseline</th>
+                        <th class="col_separation set_center">KPI Target</th>
+                        <th class="col_separation set_center">Actual</th>
+                        <th class="col_separation set_center">Shortfall</th>
+                        <th class="col_separation set_center">Actual Progress</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td class="">Parapet</td>
+                        <td class="set_center baseline">290</td>
+                        <td class="set_center target">282</td>
+                        <td class="set_center actual">290</td>
+                        <td class="set_center shortfall">8</td>
+                        <td class="set_center actual">100.0%</td>
+                    </tr>
+                    <td class="">Bearings</td>
+                    <td class="set_center baseline">290</td>
+                    <td class="set_center target">278</td>
+                    <td class="set_center actual">290</td>
+                    <td class="set_center shortfall">12</td>
+                    <td class="set_center actual">100.0%</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
 </div>
+
