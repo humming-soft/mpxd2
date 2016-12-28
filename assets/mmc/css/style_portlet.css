@@ -1,4 +1,38 @@
 
+/*
+
+
+dimension
+
+
+*/
+
+
+div.plate_issue div.row.height_x1,
+div.plate_portlet div.row.height_x1 {
+	min-height: 250px;
+	overflow: hidden;
+}
+div.plate_issue div.row.height_x2,
+div.plate_portlet div.row.height_x2 {
+	min-height: 407px;
+	overflow: hidden;
+}
+div.plate_issue div.row.height_x3,
+div.plate_portlet div.row.height_x3 {
+	min-height: 554px;
+	overflow: hidden;
+}
+div.plate_issue div.row.height_xx,
+div.plate_portlet div.row.height_xx {
+	min-height: 100%;
+}
+
+/*temp*/
+div.height_x2a {
+	height: 240px;
+	overflow: hidden;
+}
 
 
 

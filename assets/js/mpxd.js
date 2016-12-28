@@ -46,7 +46,8 @@ mpxd.templateURLs = {
 	"kpi_viaducts":{"templateURL": "assets/templates/kpi_viaducts.html"},
 
 	"issue" :{"templateURL": "assets/templates/issue.html"},
-	"mitigation" :{"templateURL": "assets/templates/mitigation.html"}
+	"mitigation" :{"templateURL": "assets/templates/mitigation.html"},
+	"page_mspr_info": {"templateURL": "assets/templates/page_info_mspr.html"},
 }
 
 mpxd.templateData = {};

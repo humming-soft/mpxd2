@@ -6,6 +6,10 @@ Date    : 14/07/2016*/
 mpxd.constructors.page_station_info = function(data) {
     mpxd.modules.general.GenerateGeneralview(data);
 }
+//Page Info for MSPR
+mpxd.constructors.page_mspr_info = function(data) {
+    mpxd.modules.general.GenerateGeneralview(data);
+}
 //KPI
 mpxd.constructors.kpi = function(data) {
     var el = "#portlet_" + data.id;
