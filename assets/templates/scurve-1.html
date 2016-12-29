@@ -3,7 +3,7 @@
         <div class="col-md-12 portlet_title">
             <i class="fa_title_icon fa fa-area-chart" aria-hidden="true"></i>
             <% if (typeof(data.date) !== "undefined") { %>
-            <%=data.title%> <h2 class="asof">(As of <%=data.date%>)</h2>
+            <%=data.title%> <span class="plate_asof">(As of <%=data.date%>)</span>
             <% } else {%>
             <%=data.title%>
             <% } %>

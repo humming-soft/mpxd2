@@ -143,27 +143,11 @@
 			<span class="set14"><a href="<?php echo $this->config->base_url(); ?>mspr14/index">P</a></span>
 			<span class="set15"><a href="<?php echo $this->config->base_url(); ?>mspr15/index">P</a></span>
 		</div>
-<!--		Commented by Sebin-->
-<!--		<div id="pl_package">-->
-<!--			<span id="pl_package_V201" class="set1" style="cursor:pointer">V201</span>-->
-<!--			<span class="set2" onclick="location.href='/mpxd2/v2/index'" style="cursor:pointer">V202</span>-->
-<!--			<span class="set3" onclick="location.href='/mpxd2/v3/index'" style="cursor:pointer">V203</span>-->
-<!--			<span class="set4">UG</span>-->
-<!--			<span class="set5">V204</span>-->
-<!--			<span class="set6">V205</span>-->
-<!--			<span class="set7">V206</span>-->
-<!--			<span class="set8">V207</span>-->
-<!--			<span class="set9">V208</span>-->
-<!--			<span class="set10">V209</span>-->
-<!--			<span class="set11" onclick="location.href='/mpxd2/v10/index'" style="cursor:pointer">V210</span>-->
-<!--		</div>-->
-
-<!--		Added by Sebin-->
 		<div id="pl_package">
 			<a class="set1" href="<?php echo $this->config->base_url(); ?>v201/index">V201</a>
 			<a class="set2" href="<?php echo $this->config->base_url(); ?>v202/index">V202</a>
 			<a class="set3" href="<?php echo $this->config->base_url(); ?>v203/index">V203</a>
-			<a class="set4">UG</a>
+			<a class="set4" href="<?php echo $this->config->base_url(); ?>ug/index">UG</a>
 			<a class="set5" href="<?php echo $this->config->base_url(); ?>v204/index">V204</a>
 			<a class="set6" href="<?php echo $this->config->base_url(); ?>v205/index">V205</a>
 			<a class="set7" href="<?php echo $this->config->base_url(); ?>v206/index">V206</a>

@@ -137,6 +137,7 @@ mpxd.modules.scurve.ScurveView1 = Backbone.View.extend({
 
         template = _.template(html, {data: that.data});
         that.$el.html(template);
+        that.$el.find('.portlet_content').css({"height":(that.$el.find('.content').parent().parent().parent().height())-40});
         that.$el.find('.portlet_content').mCustomScrollbar({theme:"dark-3"});
         //that.$el.find('#chart_'+that.data.id).highcharts({
         var chart = new Highcharts.Chart({
@@ -276,6 +277,7 @@ mpxd.modules.scurve.ScurveView2 = Backbone.View.extend({
             that.$el.find(componentSelector).html(contents);
         } else {
             that.$el.html(template);
+            that.$el.find('.portlet_content').css({"height":(that.$el.find('.content').parent().parent().parent().height())-40});
             that.$el.find('.portlet_content').mCustomScrollbar({theme:"dark-3"});
         }
         var chart = new Highcharts.Chart({

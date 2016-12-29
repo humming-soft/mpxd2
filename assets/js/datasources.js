@@ -41,6 +41,16 @@ mpxd.constructors.issue = function(data) {
 mpxd.constructors.mitigation = function(data) {
     mpxd.modules.general.GenerateGeneralview(data);
 }
+//Tunnel Progress
+mpxd.constructors.tunnel_progress = function(data) {
+    var el = "#portlet_" + data.id;
+    return new mpxd.modules.ug.tunnel_progress({data: data, el: el});
+}
+//Underground Summary
+mpxd.constructors.ug_summary = function(data) {
+    var el = "#portlet_" + data.id;
+    return new mpxd.modules.ug.ug_summary({data: data, el: el});
+}
 
 mpxd.modules.piers = {}
 mpxd.modules.viaducts = {}
@@ -784,148 +794,7 @@ mpxd.modules.viaducts.kpi = Backbone.View.extend({
         that.$el.find('.portlet_content').mCustomScrollbar({theme:"dark-3"});
     }
 });
-mpxd.modules.viaducts.kpi_viaducts = Backbone.View.extend({
-    initialize: function (options) {
-        this.data = options.data;
-        this.render();
-    }, render: function () {
-        var that = this;
-        var html = mpxd.getTemplate(that.data.type);
-        template = _.template(html, {data: that.data});
-        that.$el.html(template);
-        $('#header_datetime:visible').hide();
-        console.log(that.data.data);
-        that.$el.find('#bar-line-chart').highcharts({
-            chart: {
-                zoomType: 'xy',
-                backgroundColor: '#222'
-            },
-            colors: ['#91e8e1', '#90ed7d'],
 
-            title: {
-                text: '',
-                x: -20 //center
-            },
-            xAxis: [{
-                categories: that.data.data.categories,
-                labels: {
-                    // rotation: 270,
-                    //step: 3,
-                    style: {
-                        color: '#ffd461',
-                        font: '11px Trebuchet MS, Verdana, sans-serif'
-                    }
-                }
-            }],
-            yAxis: [{ // Primary yAxis
-                labels: {
-                    style: {
-                        color: '#ffd461',
-                        font: '11px Trebuchet MS, Verdana, sans-serif'
-                    }
-                },
-                title: {
-                    text: '%',
-                    style: {
-                        color: '#ffd461',
-                        font: '11px Trebuchet MS, Verdana, sans-serif'
-                    }
-                },
-                plotLines: [{
-                    value: 0,
-                    width: 1,
-                    color: '#333'
-                }],
-                gridLineColor: '#333',
-                min: 0
-            },{ // Secondary yAxis
-                title: {
-                    text: '',
-                    style: {
-                        color: '#ffd461',
-                        font: '11px Trebuchet MS, Verdana, sans-serif'
-                    }
-                },
-                min: 0,
-                labels: {
-                    format: '{value} %',
-                    style: {
-                        color: '#ffd461',
-                        font: '11px Trebuchet MS, Verdana, sans-serif',
-                        display: 'none'
-                    }
-                },
-                opposite: true
-            }],
-            tooltip: {
-                shared: true
-            },
-            // plotOptions: {
-            //     bar: {
-            //         dataLabels: {
-            //             enabled: true
-            //         }
-            //     }
-            // },
-            series: [
-                {
-                    name: 'suff1',
-                    type: 'column',
-                    yAxis: 1,
-                    data: that.data.data.baseData,
-                    tooltip: {
-                        valueSuffix: '%'
-                    }
-                },
-                {
-                    name: 'NS',
-                    type: 'line',
-                    data: that.data.data.actualData,
-                    color: '#fb2b20',
-                    tooltip: {
-                        valueSuffix: '%'
-                    }
-                },
-                {
-                    name: 'NS2',
-                    type: 'line',
-                    data: that.data.data.targetData,
-                    color: '#20d1fb',
-                    tooltip: {
-                        valueSuffix: '%'
-                    }
-                },
-                {
-                    name: 'NS3',
-                    type: 'line',
-                    data: that.data.data.baseData,
-                    tooltip: {
-                        valueSuffix: '%'
-                    }
-                }],
-            lang: {
-                noData: "Data not available."
-            },
-            noData: {
-                style: {
-                    fontWeight: 'bold',
-                    fontSize: '15px',
-                    color: '#303030'
-                }
-            },
-            legend: {
-                enabled: false,
-                layout: 'vertical',
-                align: 'right',
-                verticalAlign: 'middle',
-                borderWidth: 0
-            },
-            credits: {
-                enabled: false
-            }
-        });
-    }
-});
 
 mpxd.modules.viaducts.kd = Backbone.View.extend({
     initialize: function (options) {
@@ -940,284 +809,29 @@ mpxd.modules.viaducts.kd = Backbone.View.extend({
         that.$el.find('.portlet_content').mCustomScrollbar({theme:"dark-3"});
     }
 });
-mpxd.modules.viaducts.compare = Backbone.View.extend({
+mpxd.modules.ug.tunnel_progress = Backbone.View.extend({
     initialize: function (options) {
         this.data = options.data;
         this.render();
     }, render: function () {
         var that = this;
         var html = mpxd.getTemplate(that.data.type);
-
-        var ref = that.data.data[0].data.REF;
-        // console.log(ref);
-        // console.log(that.data.id);
-        // console.log(that.data);
-        // console.log(demo[that.data.id]);
-        // console.log(that.data.data[0].data.CMP[demo[that.data.id]]);
-        var qrm = that.data.data[0].data.CMP[ref[that.data.id]].QRM;
-        var kad = that.data.data[0].data.CMP[ref[that.data.id]].KAD;
-        var scurve = that.data.data[0].data.CMP[ref[that.data.id]].scurve;
-        var h_data={
-            "kad":(typeof kad == "undefined")?'[]':kad,
-            "scurve":{
-                "actual":(typeof scurve.currentActual == "undefined")?"N/A":scurve.currentActual,
-                "early":(typeof scurve.currentEarly == "undefined")?"N/A":scurve.currentEarly,
-                "late":(typeof scurve.currentLate == "undefined")?"N/A":scurve.currentLate,
-                "variance_early":(typeof scurve.varEarly == "undefined")?"N/A":scurve.varEarly,
-                "variance_late":(typeof scurve.varLate == "undefined")?"N/A":scurve.varLate,
-                "trend":(typeof scurve.trend == "undefined")?"N/A":scurve.trend
-            }
-        };
-        template = _.template(html, {data: h_data});
+        template = _.template(html, {data: that.data});
         that.$el.html(template);
-
-        that.$el.find('.portlet_content_kad').css({"height":"280"});
-        that.$el.find('.portlet_content_kpi').css({"height":"215"});
-        that.$el.find('.portlet_content_scurve').css({"height":"240"});
+        that.$el.find('.portlet_content').css({"height":(that.$el.find('.content').parent().parent().parent().height())-40});
         that.$el.find('.portlet_content').mCustomScrollbar({theme:"dark-3"});
-
-        that.$el.find('#v_title').text(ref[that.data.id]);
-
-        for(var i=0;i<4;i++) {
-            if(typeof qrm[i]==="undefined"){
-                var actual=0; var target=0;
-            }else {
-                var actual = parseInt(parseInt((typeof qrm[i]['actual'] == "undefined") ? 0 : qrm[i]['actual']) / parseInt((typeof qrm[i]['baseline'] == "undefined") ? 1 : qrm[i]['baseline']) * 100);
-                var target = parseInt(parseInt((typeof qrm[i]['target'] == "undefined") ? 0 : qrm[i]['target']) / parseInt((typeof qrm[i]['baseline'] == "undefined") ? 1 : qrm[i]['baseline']) * 100);
-            }
-            that.$el.find('#chart_'+i).highcharts({
-                chart: {
-                    plotBackgroundColor: null,
-                    plotBorderWidth: 0,
-                    plotShadow: false,
-                    margin: [0, 0, 0, 0],
-                    spacingTop: 0,
-                    spacingBottom: 0,
-                    spacingLeft: 0,
-                    spacingRight: 0,
-                    height: 150
-                },
-                title: {
-                    text: actual + '%',
-                    style: {
-                        color: '#9EDD2E',
-                        fontSize: '150%',
-                        fontWeight: 'bold'
-                    },
-                    align: 'center',
-                    verticalAlign: 'middle',
-                    y: 10
-                },
-                tooltip: {
-                    pointFormat: '{point.percentage:.1f}%</b>'
-                },
-                plotOptions: {
-                    pie: {
-                        dataLabels: {
-                            enabled: false,
-                            distance: -50,
-
-                            style: {
-                                fontWeight: 'bold',
-                                color: 'white',
-                                textShadow: '0px 1px 2px black'
-                            }
-                        },
-                        startAngle: 0,
-                        endAngle: 360,
-                        center: ['50%', '50%'],
-                        size: '100%'
-                    }
-                },
-                series: [{
-                    type: 'pie',
-                    size: '60%',
-                    innerSize: '85%',
-                    style: {
-                        color: 'white'
-                    },
-                    data: [
-                        {
-                            name: 'Completed',
-                            y: actual,
-                            color: '#fc0'
-                        },
-                        {
-                            name: 'Remaining',
-                            y: (100-actual),
-                            color: 'rgba(0,0,0,0.2)'
-                        },
-                    ]
-                },{
-                    type: 'pie',
-                    size: '80%',
-                    innerSize:  '85%',
-                    data: [
-                        {
-                            name: 'Completed',
-                            y: target,
-                            color: '#0d6ee2'
-                        },
-                        {
-                            name: 'Remaining',
-                            y: (100-target),
-                            color: 'rgba(0,0,0,0.2)'
-                        },
-                    ]
-                }],
-                credits: {
-                    enabled: false
-                },
-            });
-            that.$el.find('#p'+i).text((typeof qrm[i]=="undefined")?"-":qrm[i]['type']);
-        }
-        var chart = new Highcharts.Chart({
-            title: {
-                text: '',
-                x: -20 //center
-            },
-            xAxis: {
-                categories: scurve.categories,
-                tickInterval: scurve.tickInterval,
-                labels: {
-                    rotation: 270,
-                    //step: 3,
-                    style: {
-                        color: '#ffd461',
-                        font: '11px Trebuchet MS, Verdana, sans-serif'
-                    }
-                }
-            },
-            yAxis: {
-                min: 0,
-                max: 100,
-                tickInterval: 10,
-                labels: {
-                    style: {
-                        color: '#ffd461',
-                        font: '11px Trebuchet MS, Verdana, sans-serif'
-                    }
-                },
-                title: {
-                    text: '%',
-                    style: {
-                        color: '#ffd461',
-                        font: '11px Trebuchet MS, Verdana, sans-serif'
-                    },
-                    margin: 0
-                },
-                plotLines: [{
-                    value: 0,
-                    width: 1,
-                    color: '#333'
-                }],
-                gridLineColor: '#333'
-            },
-            tooltip: {
-                enabled: true,
-                //formatter: function() { return this.series.name; },
-                //valueSuffix: '%'
-                formatter: function (evt) {
-                    var current = this.series.data;
-                    //console.log(current[current.length - 1].category);
-                    var tooltip;
-                    if (current[current.length - 1].series.name === 'Actual' && current[current.length - 1].y === this.y) {
-                        tooltip = '<span style="color:#EBFF00">Current ' + this.series.name + ' (' + current[current.length - 1].category + ')</span>: <b>' + current[current.length - 1].y + '%</b><br/>';
-                        return tooltip;
-                    }
-                    else {
-                        return false
-                    }
-                }
-            },
-            legend: {
-                enabled: false,
-                layout: 'vertical',
-                align: 'right',
-                verticalAlign: 'middle',
-                borderWidth: 0
-            },
-            series: [{
-                name: 'Early',
-                data: scurve.earlyData,
-                color: '#04B152',
-                enableMouseTracking: false
-            }, {
-                name: 'Late',
-                data: scurve.delayedData,
-                color: '#FF0000',
-                enableMouseTracking: false
-            }, {
-                name: 'Actual',
-                data: scurve.actualData,
-                color: '#0070C0'
-                //enableMouseTracking: false,
-                /*events : {
-                 mouseOver: function() {
-                 console.log(this.yData[this.yData.length - 1]);
-                 }
-                 },*/
-            }],
-            lang: {
-                noData: "Data not available."
-            },
-            noData: {
-                style: {
-                    fontWeight: 'bold',
-                    fontSize: '15px',
-                    color: '#303030'
-                }
-            },
-            plotOptions: {
-                series: {
-                    marker: {
-                        enabled: false
-                    }
-                }
-            },
-            credits: {
-                enabled: false
-            },
-            chart: {
-                type: 'spline',
-                backgroundColor: '#222',
-                // renderTo: 'chart_' + that.data.id
-                // renderTo: 'chart_88'
-                renderTo: that.$el.find('#chart_88')[0]
-            }
-
-
-        });
-
     }
 });
-/*
-*@ Sebin
-* Toggle the select all.
- */
-$(document).on("change", "#checkAll", function (){
-    $("input:checkbox"). prop('checked', $(this). prop("checked"));
-    if($(this). prop("checked")){$("#vcmp_btn").removeAttr("disabled");}else{ $("#vcmp_btn"). prop("disabled", "disabled");}
-});
-/*
- *@ Sebin
- * Toggle the select all if all the check box is checked and enable/disable compare button
- */
-$(document).on("change", ".checkbox", function (){
-    if($(".checkbox").filter(':checked').length>1){$("#vcmp_btn").removeAttr("disabled");}else{$("#vcmp_btn"). prop("disabled", "disabled");}
-    if($(".checkbox").filter(':checked').length==$(".checkbox").length){$("#checkAll"). prop('checked', "checked");}else{$("#checkAll"). removeAttr('checked');}
-});
-/*
- *@ Sebin
- * get all the selected checkbox values and process further.
- */
-$(document).on("click","#vcmp_btn",function(){
-    var formData = $("input[name='vs_compare']:checked").map(function(){return this.value;}).get();
-    $.post(baseURL+'viaducts/compare' ,{"data": formData}, function(data, textStatus, jqXHR){
-        if(data) {
-            loadPage('viaducts/comparison');
-        }
-    }).fail(function(jqXHR, textStatus, errorThrown){
-        alert("Unable to process your request please try later!.")
-    });
+mpxd.modules.ug.ug_summary = Backbone.View.extend({
+    initialize: function (options) {
+        this.data = options.data;
+        this.render();
+    }, render: function () {
+        var that = this;
+        var html = mpxd.getTemplate(that.data.type);
+        template = _.template(html, {data: that.data});
+        that.$el.html(template);
+        that.$el.find('.portlet_content').css({"height":(that.$el.find('.content').parent().parent().parent().height())-40});
+        that.$el.find('.portlet_content').mCustomScrollbar({theme:"dark-3"});
+    }
 });
