@@ -40,7 +40,9 @@ mpxd.templateURLs = {
 	"mitigation" :{"templateURL": "assets/templates/mitigation.html"},
 	"page_mspr_info": {"templateURL": "assets/templates/page_info_mspr.html"},
 	"tunnel_progress": {"templateURL": "assets/templates/tunnel_progress.html"},
-	"ug_summary": {"templateURL": "assets/templates/ug_summary.html"}
+	"ug_summary": {"templateURL": "assets/templates/ug_summary.html"},
+	"piechart_workpackage" : {"templateURL": "assets/templates/procurement_work_package.html"},
+	"barchart_workpackage" : {"templateURL": "assets/templates/procurement_contract_awarded.html"}
 }
 
 mpxd.templateData = {};
