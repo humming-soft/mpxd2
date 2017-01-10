@@ -62,7 +62,25 @@ mpxd.modules.north_south = {}
 mpxd.modules.procurement = {}
 mpxd.modules.scurves = {}
 mpxd.modules.none = {}
+mpxd.modules.report = {}
 
+/*
+ ********************************************
+ **********  REPORT   *********
+ * ******************************************
+ */
+mpxd.constructors.report = function(data) {
+    mpxd.modules.general.GenerateGeneralview(data);
+}
+
+/*
+ ********************************************
+ **********  NORTH / SOUTH   *********
+ * ******************************************
+ */
+mpxd.constructors.summary_list = function(data) {
+    mpxd.modules.general.GenerateGeneralview(data);
+}
 
 /*
  ********************************************

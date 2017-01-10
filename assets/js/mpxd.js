@@ -36,14 +36,16 @@ mpxd.templateURLs = {
     "gallery": {"templateURL": "assets/templates/gallery.html"},
     "schematic": {"templateURL": "assets/templates/slider.html"},
     "viaduct_pier_view": {"templateURL": "assets/templates/viaduct_pier_view.html"},
-	"issue" :{"templateURL": "assets/templates/issue.html"},
-	"mitigation" :{"templateURL": "assets/templates/mitigation.html"},
+	"issue" :	{"templateURL": "assets/templates/issue.html"},
+	"mitigation" :	{"templateURL": "assets/templates/mitigation.html"},
 	"page_mspr_info": {"templateURL": "assets/templates/page_info_mspr.html"},
 	"tunnel_progress": {"templateURL": "assets/templates/tunnel_progress.html"},
 	"ug_summary": {"templateURL": "assets/templates/ug_summary.html"},
 	"piechart_workpackage" : {"templateURL": "assets/templates/procurement_work_package.html"},
 	"barchart_workpackage" : {"templateURL": "assets/templates/procurement_contract_awarded.html"},
-	"ug_work_progress" : {"templateURL": "assets/templates/ug_work_progress.html"}
+	"ug_work_progress" : {"templateURL": "assets/templates/ug_work_progress.html"},
+	"summary_list" : {"templateURL": "assets/templates/summary_list.html"},
+	"report" : {"templateURL": "assets/templates/generate_report.html"}
 }
 
 mpxd.templateData = {};

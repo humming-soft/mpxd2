@@ -41,7 +41,7 @@
 					<i class="fa fa-cube" aria-hidden="true"></i>
 					Procurement
 				</a>
-				<a class="btn goto_generate_report" type="button">
+				<a class="btn goto_generate_report" type="button"  href="<?php echo $this->config->base_url(); ?>report/index">
 					<i class="fa fa-file-text" aria-hidden="true"></i>
 					 Report
 				</a>
