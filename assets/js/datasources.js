@@ -70,7 +70,8 @@ mpxd.modules.report = {}
  * ******************************************
  */
 mpxd.constructors.report = function(data) {
-    mpxd.modules.general.GenerateGeneralview(data);
+    var el = "#portlet_" + data.id;
+    return new mpxd.modules.report.generate({data: data, el: el});
 }
 
 /*
@@ -1173,6 +1174,31 @@ mpxd.modules.none.error404 = Backbone.View.extend({
         that.$el.html(template);
         that.$el.find('.portlet_content').css({"height":(that.$el.find('.content').parent().parent().parent().height())-40});
         that.$el.find('.portlet_content').mCustomScrollbar({theme:"dark-3"});
+    }
+});
+
+mpxd.modules.report.generate = Backbone.View.extend({
+    initialize: function (options) {
+        this.data = options.data;
+        this.render();
+    }, render: function () {
+        var that = this;
+        var html = mpxd.getTemplate(that.data.type);
+        template = _.template(html, {data: that.data});
+        that.$el.html(template);
+        that.$el.find('.portlet_content').css({"height":(that.$el.find('.content').parent().parent().parent().height())-40});
+        that.$el.find('.portlet_content').mCustomScrollbar({theme:"dark-3"});
+
+        that.$el.find('.portlet_generate_report i.fa-plus-square').click(function(){
+            $(this).parent().find('i.fa-plus-square').addClass('hidden');
+            $(this).parent().find('i.fa-minus-square').removeClass('hidden');
+            $(this).parent().parent().parent().parent().parent().parent().find('tbody').removeClass('hidden');
+        });
+        that.$el.find('.portlet_generate_report i.fa-minus-square').click(function(){
+            $(this).parent().find('i.fa-minus-square').addClass('hidden');
+            $(this).parent().find('i.fa-plus-square').removeClass('hidden');
+            $(this).parent().parent().parent().parent().parent().parent().find('tbody').addClass('hidden');
+        });
     }
 });
 
