@@ -1,9 +1,16 @@
-<div class="header bg-dot30">
-    <!--img src="/mpxd/assets/img/icons/line_chart-26.png" style="float: left;margin-right: 13px;"-->
-    <h2><%=data.title%></h2>
-    <i class="header-icon fa fa-check-square-o"></i>
-</div>
-<div class="content" style="background: none;/*#1d2a34*/">
-	<!--h2>Header h2</h2-->
-	
+<div class="col-md-12 portlet portlet_keydates">
+    <div class="row content">
+        <div class="col-md-12 portlet_title">
+            <i class="fa_title_icon fa fa-calendar-check-o" aria-hidden="true"></i>
+            <%=data.title%>
+        </div>
+        <div class="col-md-12 portlet_content">
+            <div class="row">
+                <div class="error_404">
+                    <div class="title">Error 404 : Page Not Found</div>
+                    <div class="subtitle">Click <a href="javascript:;" onclick="history.go(-2);">here</a> to go back to previous page, or <a href="javascript:;" onClick="window.location = baseURL+'dashboard'">Home</a> to go to homepage of this CEODB</div>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>

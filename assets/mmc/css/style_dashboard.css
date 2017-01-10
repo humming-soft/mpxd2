@@ -34,7 +34,7 @@ float - plate_gis and stats
 #plate_commercial,
 #plate_legend,
 #pl_depot,
-#plate_label, 
+#plate_label,
 #pl_phase,
 #pl_station,
 #pl_mspr,
@@ -48,19 +48,21 @@ float - plate_gis and stats
 #plate_vector_map {
 	z-index: 3000;
 }
-	#plate_vector_map .v_station:hover {
-		cursor: pointer;
-	}
-	#plate_vector_map .v_depot:hover {
-		cursor: pointer;
-	}
-	#pl_station span a,
-	#pl_mspr span a,
-	#pl_depot span a{
-		color:#fff;
-		/*Added By Sebin*/
-		outline: 0;
-	}
+#plate_vector_map .v_station:hover {
+	cursor: pointer;
+}
+#plate_vector_map .v_depot:hover {
+	cursor: pointer;
+}
+#plate_vector_map .v_station a,
+#pl_station span a,
+#pl_mspr span a,
+#pl_depot span a{
+	color:#fff;
+	/*Added By Sebin*/
+	outline: 0;
+}
+
 #plate_overall_progress {
 	z-index: 1000;
 }
@@ -79,17 +81,16 @@ float - plate_gis and stats
 #pl_mspr > span {
 	z-index: 3000;
 }
-
 /*Commented By Sebin*/
 /*#pl_package > span {*/
-	/*z-index: 3000;*/
+/*z-index: 3000;*/
 /*}*/
 
 /*Added By Sebin*/
 #pl_package > a {
 	z-index: 3000;
 }
-#pl_phase > a {
+#pl_phase > div {
 	z-index: 3000;
 }
 #donut_plate {
@@ -131,10 +132,10 @@ float - plate_gis and stats
 	font-size: 3.3vw;
 	color: #fff;
 	text-shadow:
-	-1px -1px 0 rgba(0,0,0,1),  
-	1px -1px 0 rgba(0,0,0,1),
-	-1px 1px 0 rgba(0,0,0,1),
-	1px 1px 0 rgba(0,0,0,1);
+			-1px -1px 0 rgba(0,0,0,1),
+			1px -1px 0 rgba(0,0,0,1),
+			-1px 1px 0 rgba(0,0,0,1),
+			1px 1px 0 rgba(0,0,0,1);
 }
 #pop_value span.set1 {top: 11.0%; left: 61.9%;}
 #pop_value span.set2 {top: 11.0%; left: 71.5%;}
@@ -204,10 +205,10 @@ float - plate_gis and stats
 	background: #205;
 	text-align: center;
 	text-shadow:
-	-1px -1px 0 rgba(0,0,0,1),  
-	1px -1px 0 rgba(0,0,0,1),
-	-1px 1px 0 rgba(0,0,0,1),
-	1px 1px 0 rgba(0,0,0,1);
+			-1px -1px 0 rgba(0,0,0,1),
+			1px -1px 0 rgba(0,0,0,1),
+			-1px 1px 0 rgba(0,0,0,1),
+			1px 1px 0 rgba(0,0,0,1);
 }
 #pcom_value span.set1 {top: 32.0%; left: 78.8%;}
 #pcom_value span.set2 {top: 32.0%; left: 89.4%;}
@@ -250,10 +251,10 @@ float - plate_gis and stats
 	font-size: 1.3vw;
 	color: #fff;
 	text-shadow:
-	-1px -1px 0 rgba(255,0,70,.25),  
-	1px -1px 0 rgba(255,0,70,.25),
-	-1px 1px 0 rgba(255,0,70,.25),
-	1px 1px 0 rgba(255,0,70,.25);
+			-1px -1px 0 rgba(255,0,70,.25),
+			1px -1px 0 rgba(255,0,70,.25),
+			-1px 1px 0 rgba(255,0,70,.25),
+			1px 1px 0 rgba(255,0,70,.25);
 }
 #pi_title span.set1 {top: 6.7%; left: 2.2%;}
 #pi_title span.set2 {top: 6.0%; left: 3.8%;}
@@ -267,51 +268,39 @@ float - plate_gis and stats
 	font-size: .8vw;
 	color: #fff;
 	text-shadow:
-	-1px -1px 0 rgba(255,0,70,.25),  
-	1px -1px 0 rgba(255,0,70,.25),
-	-1px 1px 0 rgba(255,0,70,.25),
-	1px 1px 0 rgba(255,0,70,.25);
+			-1px -1px 0 rgba(255,0,70,.25),
+			1px -1px 0 rgba(255,0,70,.25),
+			-1px 1px 0 rgba(255,0,70,.25),
+			1px 1px 0 rgba(255,0,70,.25);
 }
 #pi_subtitle span.set1 {top: 9.0%; left: 3.8%;}
 
 
 /*	pl_phase
 */
-/*#pl_phase span {
-	!*display: none;*!
-	position: absolute;
-	font-size: 2em;
-	color: rgba(255,255,255,.5);
+/* #pl_phase span { */
+/*display: none;*/
+/* position: absolute;
+font-size: 2em;
+color: rgba(255,255,255,.5);
 }
 #pl_phase span.set1 {top: 16.5%; left: 2.5%;}
-#pl_phase span.set2 {top: 27%; left: 65%;}*/
+#pl_phase span.set2 {top: 27%; left: 65%;} */
 
-#pl_phase a {
-	/*display: none;*/
-	position: absolute;
-	font-size: 2em;
-	color: rgba(255,255,255,.5);
-	outline: 0;
-}
-#pl_phase a.set1 {top: 16.5%; left: 2.5%;}
-#pl_phase a.set2 {top: 27%; left: 65%;}
 /*	pl_package
 */
-
-/*Commented By sebin*/
-
-/*#pl_package span {*/
-	/*!*display: none;*!*/
-	/*position: absolute;*/
-	/*font-size: 1.3em;*/
-	/*font-weight: bold;*/
-	/*padding: 2px 5px;*/
-	/*border-radius: 3px;*/
-	/*!*background: rgba(0,0,0,.25);*!*/
-	/*!*border:1px solid rgba(0,0,0,.35);*!*/
-	/*color: #fff;*/
-/*}*/
-/*#pl_package span.set1 {top: 67.5%; left: 13.0%;}
+/* #pl_package span { */
+/*display: none;*/
+/* position: absolute;
+font-size: 1.3em;
+font-weight: bold;
+padding: 2px 5px;
+border-radius: 3px; */
+/*background: rgba(0,0,0,.25);*/
+/*border:1px solid rgba(0,0,0,.35);*/
+/* color: #fff; */
+/* } */
+/* #pl_package span.set1 {top: 67.5%; left: 13.0%;}
 #pl_package span.set2 {top: 52.0%; left: 15.8%;}
 #pl_package span.set3 {top: 42.5%; left: 20.0%;}
 #pl_package span.set4 {top: 28.0%; left: 31.5%;}
@@ -321,19 +310,25 @@ float - plate_gis and stats
 #pl_package span.set8 {top: 60.2%; left: 58.2%;}
 #pl_package span.set9 {top: 67.5%; left: 58.2%;}
 #pl_package span.set10 {top: 92.8%; left: 71.5%;}
-#pl_package span.set11 {top: 92.8%; left: 84.0%;}*/
+#pl_package span.set11 {top: 92.8%; left: 84.0%;} */
 
-/*Added By Sebin*/
+/* Added By Sebin */
+
+#pl_phase a {
+	position: absolute;
+	font-size: 2em;
+	color: rgba(255,255,255,.5);
+	outline: 0;
+}
+#pl_phase a.set1 {top: 16.5%; left: 2.5%;}
+#pl_phase a.set2 {top: 27%; left: 65%;}
 #pl_package a {
-	/*display: none;*/
 	position: absolute;
 	font-size: 1.3em;
 	font-weight: bold;
 	padding: 2px 5px;
 	border-radius: 3px;
 	outline: 0;
-	/*background: rgba(0,0,0,.25);*/
-	/*border:1px solid rgba(0,0,0,.35);*/
 	color: #fff;
 }
 #pl_package a.set1 {top: 67.5%; left: 13.0%;}
@@ -348,6 +343,7 @@ float - plate_gis and stats
 #pl_package a.set10 {top: 92.8%; left: 71.5%;}
 #pl_package a.set11 {top: 92.8%; left: 84.0%;}
 
+
 /*	pl_mspr
 */
 #pl_mspr span {
@@ -361,10 +357,10 @@ float - plate_gis and stats
 	background: #05f;
 	color: #fff;
 	text-shadow:
-	-1px -1px 0 rgba(0,0,0,1),  
-	1px -1px 0 rgba(0,0,0,1),
-	-1px 1px 0 rgba(0,0,0,1),
-	1px 1px 0 rgba(0,0,0,1);
+			-1px -1px 0 rgba(0,0,0,1),
+			1px -1px 0 rgba(0,0,0,1),
+			-1px 1px 0 rgba(0,0,0,1),
+			1px 1px 0 rgba(0,0,0,1);
 }
 #pl_mspr span.set1 {top: 73.0%; left: 5.7%;}
 #pl_mspr span.set2 {top: 65.1%; left: 7.2%;}
@@ -390,10 +386,10 @@ float - plate_gis and stats
 	font-size: 1em;
 	color: #eef;
 	text-shadow:
-	-1px -1px 0 rgba(0,0,255,.3),  
-	1px -1px 0 rgba(0,0,255,.3),
-	-1px 1px 0 rgba(0,0,255,.3),
-	1px 1px 0 rgba(0,0,255,.3);
+			-1px -1px 0 rgba(0,0,255,.3),
+			1px -1px 0 rgba(0,0,255,.3),
+			-1px 1px 0 rgba(0,0,255,.3),
+			1px 1px 0 rgba(0,0,255,.3);
 }
 #pl_station span.set1 {top: 78.6%; left: 6.0%;}
 #pl_station span.set2 {top: 74.3%; left: 8.2%;}
@@ -442,10 +438,10 @@ float - plate_gis and stats
 	font-size: 1em;
 	color: #eef;
 	text-shadow:
-	-1px -1px 0 rgba(0,0,255,.3),  
-	1px -1px 0 rgba(0,0,255,.3),
-	-1px 1px 0 rgba(0,0,255,.3),
-	1px 1px 0 rgba(0,0,255,.3);
+			-1px -1px 0 rgba(0,0,255,.3),
+			1px -1px 0 rgba(0,0,255,.3),
+			-1px 1px 0 rgba(0,0,255,.3),
+			1px 1px 0 rgba(0,0,255,.3);
 }
 #pl_depot span.set1 {top: 62.5%; left: 70.0%;}
 
@@ -544,7 +540,7 @@ div#donut_plate > div.dp_bottom {
 	width: 105px;
 	height: 90px;
 }
-	
+
 .donut_title1_name {
 	margin: 0 30px 3px 30px;
 	display: block;
@@ -604,7 +600,7 @@ div#donut_plate > div.dp_bottom {
 	width: 55px;
 	height: 90px;
 }
-	
+
 .donut_title1_name {
 	margin: 0 30px 3px 30px;
 	display: block;
@@ -617,8 +613,6 @@ div#donut_plate > div.dp_bottom {
 	text-align: center;
 	font-size: .8vw;
 }
-
-
 
 /*Added By Sebin*/
 
@@ -677,3 +671,4 @@ div#donut_plate > div.dp_bottom {
 	height: 100%;
 	background: #00101f !important;
 }
+

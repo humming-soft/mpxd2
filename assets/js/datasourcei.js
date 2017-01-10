@@ -663,9 +663,7 @@ function loadPage(p, dontsavestate) {
     var currentRoute = p;
     //Added by Sebin for invalid page handling.
     if(typeof pages_lookup_url[p] == "undefined"){
-        console.log("invalid Page redirecting to previous page");
-        // history.go(-1);
-        window.location = baseURL+"404";
+        loadPage("404/index");
     }else {
         currentPageID = pages_lookup_url[p].id;
     }

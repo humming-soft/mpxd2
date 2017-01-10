@@ -22,7 +22,7 @@ $(function(){
 
 });
 mpxd.templateURLs = {
-    "NONE": {"templateURL": "assets/templates/none.html"},
+    "none": {"templateURL": "assets/templates/none.html"},
     "scurve-1": {"templateURL": "assets/templates/scurve-1.html"},
     "scurve-2": {"templateURL": "assets/templates/scurve-2.html"},
     "page_info": {"templateURL": "assets/templates/page_info.html"},
@@ -42,7 +42,8 @@ mpxd.templateURLs = {
 	"tunnel_progress": {"templateURL": "assets/templates/tunnel_progress.html"},
 	"ug_summary": {"templateURL": "assets/templates/ug_summary.html"},
 	"piechart_workpackage" : {"templateURL": "assets/templates/procurement_work_package.html"},
-	"barchart_workpackage" : {"templateURL": "assets/templates/procurement_contract_awarded.html"}
+	"barchart_workpackage" : {"templateURL": "assets/templates/procurement_contract_awarded.html"},
+	"ug_work_progress" : {"templateURL": "assets/templates/ug_work_progress.html"}
 }
 
 mpxd.templateData = {};

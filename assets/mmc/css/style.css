@@ -19,9 +19,9 @@ a {
 	text-decoration: none !important;
 	color: #0ff;
 }
-	a:hover {
-		color: #0cf;
-	}
+a:hover {
+	color: #0cf;
+}
 ul li {
 	list-style: none;
 }
@@ -55,7 +55,7 @@ div#wrapper {
 	min-width: 1300px; /*laptop width*/
 }
 div#wrapper_dashboard {
-	
+
 }
 div#header {
 	background: #222234;
@@ -115,15 +115,15 @@ div#header_datetime {
 	border:1px solid rgba(255,255,255,.5);
 	color: #fff;
 }
-	#header_datetime span.hd_button:hover {
-		cursor: pointer;
-		border:1px solid #fff;
-	}
+#header_datetime span.hd_button:hover {
+	cursor: pointer;
+	border:1px solid #fff;
+}
 
 .hd_label_today {
 	margin: 0 15px 0 0;
 	color: #ccf;
-	
+
 }
 .hd_label_data {
 	color: #fca;
@@ -138,48 +138,28 @@ div#header_datetime {
 #header_menu a {
 	color: #fff;
 	text-decoration: none;
+	outline: 0;
 }
 
-#header_menu span.hm_button {
-	display: inline-block;
-	padding: 7px 13px;
-	font-size: .8em;
-	background: rgba(0,153,255,.25);
+#header_menu .btn {
+	background: rgba(0,153,255,.4);
 }
-	#header_menu span.hm_button i {
-		padding: 0 7px 0 0;
-	}
-	#header_menu span.hm_button:hover {
-		cursor: pointer;
-		background: rgba(0,153,255,.35);
-	}
-	#header_menu span.hm_button.active {
-		background: rgba(0,153,255,1);
-		color: #000;
-	}
-
-#header_menu span.hm_user_profile {
-	display: inline-block;
-	margin-top: 3px;
-	padding: 0 0 7px 10px;
-	font-size: .8em;
-	color: #ddf;
+#header_menu .btnn:hover,
+#header_menu .btn:active,
+#header_menu .btn:visited,
+#header_menu .btn:link {
+	color: #fff;
 }
-	#header_menu span.hm_user_profile i {
-		font-size: 1.4em;
-		padding: 0 7px 0 0;
-	}
-		#header_menu span.hm_user_profile i.fa-user {
-			border-radius: 30px;
-			padding: 4px 6px;
-			background: #77a;
-		}
-	#header_menu span.hm_user_profile:hover {
-		cursor: pointer;
-		color: #fff;
-	}
-
-
+#header_menu .btn.active {
+	background: rgba(0,153,255,.75);
+}
+#header_menu ul.dropdown-menu {
+	background: #124;
+	z-index: 999999;
+}
+#header_menu ul.dropdown-menu li a:hover {
+	background: #444;
+}
 
 /*____________________________________________
 Error 404
@@ -205,18 +185,86 @@ div.error_404 div.subtitle {
 }
 
 
+/*____________________________________________
+scurve_page
+--------------------------------------------*/
+
+div.scurve_page {
+	padding: 20px 0;
+	width: 1220px;
+	margin: 0 auto;
+	text-align: center;
+}
+
+div.scurve_page div.switchblock_sub_plate {
+	display: inline-block;
+	vertical-align: top;
+	width: 300px;
+}
+
+div.scurve_page div.switchblock {
+	height: 100px;
+	margin: 14px 5px;
+	border-radius: 2px;
+	color: #fff;
+}
+
+div.scurve_page div.switchblock_title {
+	font-size: 1.25em;
+	text-align: left;
+	padding: 0 20px;
+}
+
+div.scurve_page div.switchblock .image,
+div.scurve_page div.switchblock .title {
+	text-align: left;
+	display: inline-block;
+}
+
+div.scurve_page div.switchblock .image {
+	width: 110px;
+	text-align: center;
+}
+div.scurve_page div.switchblock .image img {
+	padding: 15px 0;
+}
+
+div.scurve_page div.switchblock div.title {
+	font-size: 1.25em;
+	vertical-align: middle;
+	width: 175px;
+	padding: 0 15px;
+}
 
 
+div.scurve_page > div.ssp_6scurve div.switchblock {
+	background: #096;
+}
+div.scurve_page > div.ssp_elevated div.switchblock {
+	background: #09c;
+}
+div.scurve_page > div.ssp_underground div.switchblock {
+	background: #960;
+}
+div.scurve_page > div.ssp_system div.switchblock {
+	background: #768;
+}
 
-/*Added By Sebin*/
-
-
-
-
-
-
-
-
-
+div.scurve_page > div.ssp_6scurve div.switchblock:hover {
+	background: #1a7;
+	cursor: pointer;
+}
+div.scurve_page > div.ssp_elevated div.switchblock:hover {
+	background: #1ad;
+	cursor: pointer;
+}
+div.scurve_page > div.ssp_underground div.switchblock:hover {
+	background: #a71;
+	cursor: pointer;
+}
+div.scurve_page > div.ssp_system div.switchblock:hover {
+	background: #879;
+	cursor: pointer;
+}
 
 

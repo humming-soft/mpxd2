@@ -61,6 +61,28 @@ mpxd.modules.ug_stations = {}
 mpxd.modules.north_south = {}
 mpxd.modules.procurement = {}
 mpxd.modules.scurves = {}
+mpxd.modules.none = {}
+
+
+/*
+ ********************************************
+ ******************  NONE   *****************
+ * ******************************************
+ */
+mpxd.constructors.none = function(data) {
+    var el = "#portlet_" + data.id;
+    return new mpxd.modules.none.error404({data: data, el: el});
+}
+
+/*
+ ********************************************
+ **********  UNDERGROUND STATIONS   *********
+ * ******************************************
+ */
+mpxd.constructors.ug_work_progress = function(data) {
+    var el = "#portlet_" + data.id;
+    return new mpxd.modules.ug_stations.work_progress({data: data, el: el});
+}
 
 /*
 ********************************************
@@ -860,6 +882,42 @@ mpxd.modules.ug.tunnel_progress = Backbone.View.extend({
         that.$el.html(template);
         that.$el.find('.portlet_content').css({"height":(that.$el.find('.content').parent().parent().parent().height())-40});
         that.$el.find('.portlet_content').mCustomScrollbar({theme:"dark-3"});
+
+        that.$el.find('div.portlet_tunnel_progress ul li.show_Rings').click(function(){
+            $('div.portlet_tunnel_progress ul li').removeClass('active');$(this).addClass('active');
+            $('div.portlet_tunnel_progress table').addClass('hidden');
+            $('div.portlet_tunnel_progress table.show_Rings').removeClass('hidden');
+        });
+        that.$el.find('div.portlet_tunnel_progress ul li.show_Trackbed').click(function(){
+            $('div.portlet_tunnel_progress ul li').removeClass('active');$(this).addClass('active');
+            $('div.portlet_tunnel_progress table').addClass('hidden');
+            $('div.portlet_tunnel_progress table.show_Trackbed').removeClass('hidden');
+        });
+        that.$el.find('div.portlet_tunnel_progress ul li.show_Bracket').click(function(){
+            $('div.portlet_tunnel_progress ul li').removeClass('active');$(this).addClass('active');
+            $('div.portlet_tunnel_progress table').addClass('hidden');
+            $('div.portlet_tunnel_progress table.show_Bracket').removeClass('hidden');
+        });
+        that.$el.find('div.portlet_tunnel_progress ul li.show_ES1').click(function(){
+            $('div.portlet_tunnel_progress ul li').removeClass('active');$(this).addClass('active');
+            $('div.portlet_tunnel_progress table').addClass('hidden');
+            $('div.portlet_tunnel_progress table.show_ES1').removeClass('hidden');
+        });
+        that.$el.find('div.portlet_tunnel_progress ul li.show_ES3').click(function(){
+            $('div.portlet_tunnel_progress ul li').removeClass('active');$(this).addClass('active');
+            $('div.portlet_tunnel_progress table').addClass('hidden');
+            $('div.portlet_tunnel_progress table.show_ES3').removeClass('hidden');
+        });
+        that.$el.find('div.portlet_tunnel_progress ul li.show_IVS1').click(function(){
+            $('div.portlet_tunnel_progress ul li').removeClass('active');$(this).addClass('active');
+            $('div.portlet_tunnel_progress table').addClass('hidden');
+            $('div.portlet_tunnel_progress table.show_IVS1').removeClass('hidden');
+        });
+        that.$el.find('div.portlet_tunnel_progress ul li.show_IVS2').click(function(){
+            $('div.portlet_tunnel_progress ul li').removeClass('active');$(this).addClass('active');
+            $('div.portlet_tunnel_progress table').addClass('hidden');
+            $('div.portlet_tunnel_progress table.show_IVS2').removeClass('hidden');
+        });
     }
 });
 mpxd.modules.ug.ug_summary = Backbone.View.extend({
@@ -1083,5 +1141,62 @@ mpxd.modules.procurement.barchart_workpackage = Backbone.View.extend({
             }
         });
 
+    }
+});
+
+mpxd.modules.none.error404 = Backbone.View.extend({
+    initialize: function (options) {
+        this.data = options.data;
+        this.render();
+    }, render: function () {
+        var that = this;
+        var html = mpxd.getTemplate(that.data.type);
+        template = _.template(html, {data: that.data});
+        that.$el.html(template);
+        that.$el.find('.portlet_content').css({"height":(that.$el.find('.content').parent().parent().parent().height())-40});
+        that.$el.find('.portlet_content').mCustomScrollbar({theme:"dark-3"});
+    }
+});
+
+mpxd.modules.ug_stations.work_progress = Backbone.View.extend({
+    initialize: function (options) {
+        this.data = options.data;
+        this.render();
+    }, render: function () {
+        var that = this;
+        var html = mpxd.getTemplate(that.data.type);
+        template = _.template(html, {data: that.data});
+        that.$el.html(template);
+        that.$el.find('.portlet_content').css({"height":(that.$el.find('.content').parent().parent().parent().height())-40});
+        that.$el.find('.portlet_content').mCustomScrollbar({theme:"dark-3"});
+
+        that.$el.find('div.portlet_work_progress ul li.show_Station_Box').click(function(){
+            $('div.portlet_work_progress ul li').removeClass('active');$(this).addClass('active');
+            $('div.portlet_work_progress div.show').addClass('hidden');
+            $('div.portlet_work_progress div.show.show_Station_Box').removeClass('hidden');
+        });
+
+        that.$el.find('div.portlet_work_progress ul li.show_Entrance').click(function(){
+            $('div.portlet_work_progress ul li').removeClass('active');$(this).addClass('active');
+            $('div.portlet_work_progress div.show').addClass('hidden');
+            $('div.portlet_work_progress div.show.show_Entrance').removeClass('hidden');
+        });
+
+        that.$el.find('div.portlet_work_progress ul li.show_Vent_Shaft').click(function(){
+            $('div.portlet_work_progress ul li').removeClass('active');$(this).addClass('active');
+            $('div.portlet_work_progress div.show').addClass('hidden');
+            $('div.portlet_work_progress div.show.show_Vent_Shaft').removeClass('hidden');
+        });
+
+        that.$el.find('.portlet_work_progress i.fa-plus-square').click(function(){
+            $(this).parent().find('i.fa-plus-square').addClass('hidden');
+            $(this).parent().find('i.fa-minus-square').removeClass('hidden');
+            $(this).parent().parent().parent().parent().parent().find('table').removeClass('hidden');
+        });
+        that.$el.find('.portlet_work_progress i.fa-minus-square').click(function(){
+            $(this).parent().find('i.fa-minus-square').addClass('hidden');
+            $(this).parent().find('i.fa-plus-square').removeClass('hidden');
+            $(this).parent().parent().parent().parent().parent().find('table').addClass('hidden');
+        });
     }
 });
