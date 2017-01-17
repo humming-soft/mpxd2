@@ -674,3 +674,6 @@ div#donut_plate > div.dp_bottom {
 	background: #00101f !important;
 }
 
+div#donut_plate > div.dp_bottom a{
+	outline: 0;
+}

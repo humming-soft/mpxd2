@@ -50,8 +50,8 @@
 					<span class="caret"></span>
 				</a>
 				<ul class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenu1">
-					<li><a href="temp_nav.php">Temp. Sitemap (will be remove)</a></li>
-					<li role="separator" class="divider"></li>
+<!--					<li><a href="temp_nav.php">Temp. Sitemap (will be remove)</a></li>-->
+<!--					<li role="separator" class="divider"></li>-->
 					<li><a href="<?php echo $this->config->base_url(); ?>logout">Logout</a></li>
 				</ul>
 			</div>
