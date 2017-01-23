@@ -829,9 +829,6 @@ mpxd.modules.gallery.GalleryView = Backbone.View.extend({
 				touchAutoOpenDelay: -1,
 			});
 		}
-		
-		
-        
     }
 });
 

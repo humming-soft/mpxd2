@@ -39,11 +39,13 @@ mpxd.constructors.kd = function(data) {
 
 // Issue
 mpxd.constructors.issue = function(data) {
-    mpxd.modules.general.GenerateGeneralview(data);
+    var el = "#portlet_" + data.id;
+    return new mpxd.modules.general.GenerateGeneralview2({data: data, el: el});
 }
 //Mitigation
 mpxd.constructors.mitigation = function(data) {
-    mpxd.modules.general.GenerateGeneralview(data);
+    var el = "#portlet_" + data.id;
+    return new mpxd.modules.general.GenerateGeneralview2({data: data, el: el});
 }
 //Tunnel Progress
 mpxd.constructors.tunnel_progress = function(data) {
@@ -1246,5 +1248,19 @@ mpxd.modules.ug_stations.work_progress = Backbone.View.extend({
             $(this).parent().find('i.fa-plus-square').removeClass('hidden');
             $(this).parent().parent().parent().parent().parent().find('table').addClass('hidden');
         });
+    }
+});
+
+mpxd.modules.general.GenerateGeneralview2 = Backbone.View.extend({
+    initialize: function (options) {
+        this.data = options.data;
+        this.render();
+    }, render: function () {
+        var that = this;
+        var html = mpxd.getTemplate(that.data.type);
+        template = _.template(html, {data: that.data});
+        that.$el.html(template);
+        that.$el.find('.portlet_content').css({"height":(that.$el.find('.content').parent().parent().parent().height())-53});
+        that.$el.find('.portlet_content').mCustomScrollbar({theme:"dark-3"});
     }
 });
