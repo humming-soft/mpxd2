@@ -290,3 +290,9 @@ html>body #loading_pad {
 .red{
     color:darkred;
 }
+.text-red{
+    color:#ff5248;
+}
+.fonts75p{
+    font-size: 75%;
+}
