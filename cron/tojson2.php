@@ -2,9 +2,10 @@
 include "./config.php";
 /**
  * Created on 			: 31-11-2016
- * Author 				: sebin
- * Last Modified on 	: 02-11-2016
- * Desc 				:
+ * Author 				: Sebin Thomas
+ * Last Modified on 	: 25-01-2017
+ * Desc 				: Formatted JSON Data Creation.
+ * 						  This file is called in Cron Job for the further processing.
  **/
 
 //Test
@@ -60,16 +61,22 @@ function gallery($slug){
 function kpi($slug){
 	$max_date = db()->kpi()
 		->select('MAX(date)')
-		->where("slug", $slug);
-	$m =$max_date->fetch();
+		->where("slug", $slug)
+		->or("slug", strtoupper($slug));
+	$m = $max_date->fetch();
 	if($m) {
 		$date = ($m['max']);
 		$query = db()->kpi()
 			->select('name', 'baseline', 'target', 'actual')
 			->where("slug", $slug)
+			->or("slug", strtoupper($slug))
 			->where("date", $date);
 		$result = array_map('iterator_to_array', iterator_to_array($query));
-		return $result;
+		$kpiarr = array();
+		foreach($result as $q){
+			$kpiarr[] = array($q['name'], (float)$q['baseline'], (float)$q['target'], (float)$q['actual']);
+		}
+		return $kpiarr;
 	}
 	return [];
 }
@@ -150,9 +157,14 @@ function kad($slug){
 function safety_incident($slug){
 	$query = db()->hsse()
 		->select('incident_date','incident')
-		->where("slug", $slug);
+		->where("slug", $slug)
+		->or("slug", strtoupper($slug));
 	$result = array_map('iterator_to_array', iterator_to_array($query));
-	return $result;
+	$hssearr = array();
+	foreach($result as $q){
+		$hssearr[] = array(date('d-F-Y', strtotime($q['incident_date'])), $q['incident']);
+	}
+	return $hssearr;
 }
 
 /**
@@ -229,7 +241,7 @@ function build_ug($slug){
  */
 function updateDB($slug, $value, $date){
 	$item = mpxd()->items()
-		->where("slug", $slug);
+			->where("slug", $slug);
 	$item = $item->fetch();
 	if($item){
 		$id = ($item['id']);

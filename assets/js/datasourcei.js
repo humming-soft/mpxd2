@@ -138,6 +138,7 @@ mpxd.modules.scurve.ScurveView1 = Backbone.View.extend({
         template = _.template(html, {data: that.data});
         that.$el.html(template);
         that.$el.find('.portlet_content').css({"height":(that.$el.find('.content').parent().parent().parent().height())-40});
+        that.$el.find('.psd_data_type2').css({"height":(that.$el.find('.portlet_content').height())-154});
         that.$el.find('.portlet_content').mCustomScrollbar({theme:"dark-3"});
         //that.$el.find('#chart_'+that.data.id).highcharts({
         var chart = new Highcharts.Chart({
