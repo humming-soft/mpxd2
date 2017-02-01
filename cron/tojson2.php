@@ -95,6 +95,18 @@ function info($slug){
 	return $result;
 }
 
+function getName($slug){
+	$slugInfo = db()->ref_slug()
+		->where("slug", $slug);
+	$slugInfo = $slugInfo->fetch();
+	if($slugInfo) {
+		$name = ($slugInfo['name']);
+	}else{
+		$name ="-";
+	}
+	return $name;
+}
+
 /**
  * Contractor info
  * @param $slug
@@ -115,24 +127,27 @@ function contractor($slug){
  * @return Array
  * @Desc
  */
-function packageInfo($slug){
-	$info = info($slug);
+function packageInfo($slug, $type = 1)
+{
 	$contractor = contractor($slug);
 	$i = array();
-	$i["name"] = strtoupper($slug);
-	foreach ($contractor as $value){
+	$i["name"] = getName($slug);
+	foreach ($contractor as $value) {
 		$i["contractor"] = $value['contractor'];
 	}
-	$i["station"] = array();
-	$i["mspr"] = array();
-	$i["depot"] = array();
-	foreach ($info as $value){
-		if($value["type"] == 1){
-			array_push($i["station"],$value["spd"]);
-		}elseif ($value["type"] == 2){
-			array_push($i["mspr"],$value["spd"]);
-		}else{
-			array_push($i["depot"],$value["spd"]);
+	if ($type == 1) {
+		$info = info($slug);
+		$i["station"] = array();
+		$i["mspr"] = array();
+		$i["depot"] = array();
+		foreach ($info as $value) {
+			if ($value["type"] == 1) {
+				array_push($i["station"], $value["spd"]);
+			} elseif ($value["type"] == 2) {
+				array_push($i["mspr"], $value["spd"]);
+			} else {
+				array_push($i["depot"], $value["spd"]);
+			}
 		}
 	}
 	return $i;
@@ -148,6 +163,15 @@ function kad($slug){
 	return [];
 }
 
+/**
+ * KD
+ * @param $slug
+ * @return Array
+ * @Desc
+ */
+function kd($slug){
+	return [];
+}
 /**
  * Safety Incidents (hsse)
  * @param $slug
@@ -178,16 +202,67 @@ function scurve($slug){
 }
 
 /**
+ * Tunnel Progress
+ * @param $slug
+ * @return Array
+ * @Desc
+ */
+function tunnel_progress($slug){
+	return [];
+}
+
+/**
+ * Underground Station Progress
+ * @param $slug
+ * @return Array
+ * @Desc
+ */
+function ug_station_progress($slug){
+	return [];
+}
+
+/**
+ * INFO TUNNEL
+ * @param $slug
+ * @return Array
+ * @Desc
+ */
+function info_tunnel($slug){
+	return [];
+}
+
+/**
+ * Underground Station Activity
+ * @param $slug
+ * @return Array
+ * @Desc
+ */
+function ug_station_activity($slug){
+	return [];
+}
+
+/**
+ * Viaduct Summary
+ * @param $slug
+ * @return Array
+ * @Desc
+ */
+function v_summary($slug){
+	return[];
+}
+/**
+ *69696969669696969696969696969696969696969696969696969696969696969696969696969696969699696969696996969696969696969696969696969696969696969696969696969
+ */
+
+/**
  * VIADUCTS
  * @param $slug
  * @return Array
  * @Desc Portlet specific info of viaducts
  */
 function build_viaducts($slug){
-	//Job date
-	$date = date("Y-m-d");
 
-	$info = packageInfo($slug);
+	$info = packageInfo($slug,1);
 	$gallery = gallery($slug);
 	$kpi = kpi($slug);
 	$kad = kad($slug);
@@ -202,7 +277,7 @@ function build_viaducts($slug){
 	$finalSCURVE = array("scurve" => $scurve);
 	$superFinal = array($slug => array_merge($finalQRM, $finalKAD, $finalINFO, $finalHSSE, $finalGALLERY, $finalSCURVE));
 
-	echo json_encode($superFinal);
+	return json_encode($superFinal);
 //	updateDB($slug, json_encode($superFinal), $date);
 }
 /**
@@ -212,7 +287,17 @@ function build_viaducts($slug){
  * @Desc  Portlet specific info of Systems
  */
 function build_systems($slug){
+	$info = packageInfo($slug,2);
+	$gallery = gallery($slug);
+	$kad = kad($slug);
+	$scurve = scurve($slug);
 
+	$finalKAD = array("KAD" => $kad);
+	$finalINFO = array("INFO" =>$info);
+	$finalGALLERY = array("gallery" => $gallery);
+	$finalSCURVE = array("scurve" => $scurve);
+	$superFinal = array($slug => array_merge($finalINFO,  $finalKAD, $finalGALLERY, $finalSCURVE));
+	return json_encode($superFinal);
 }
 
 /**
@@ -223,6 +308,19 @@ function build_systems($slug){
  */
 function build_stations($slug){
 
+	$info = packageInfo($slug,2);
+	$gallery = gallery($slug);
+	$kpi = kpi($slug);
+	$kad = kad($slug);
+	$scurve = scurve($slug);
+
+	$finalQRM = array("QRM" => $kpi);
+	$finalKAD = array("KAD" => $kad);
+	$finalINFO = array("INFO" =>$info);
+	$finalGALLERY = array("gallery" => $gallery);
+	$finalSCURVE = array("scurve" => $scurve);
+	$superFinal = array($slug => array_merge($finalQRM, $finalKAD, $finalINFO, $finalGALLERY, $finalSCURVE));
+	return json_encode($superFinal);
 }
 
 /**
@@ -232,8 +330,158 @@ function build_stations($slug){
  * @Desc  Portlet specific info of Under Ground (UG)
  */
 function build_ug($slug){
+	$tunnel_progress = tunnel_progress($slug);
+	$info = packageInfo($slug,2);
+	$info_tunnel = info_tunnel($slug);
+	$station_progress = ug_station_progress($slug);
+	$gallery = gallery($slug);
+	$gallery_tunnel = gallery($slug);
+	$kad = kad($slug);
+	$kad_tunnel = kad($slug);
+	$hsse = safety_incident($slug);
+	$hsse_tunnel = safety_incident($slug);
+	$scurve = scurve($slug);
+
+	$finalPROGRESS = array("overall_tunnel_progress" => $tunnel_progress);
+	$finalSP = array("station" => $station_progress);
+	$finalKAD = array("KAD" => $kad);
+	$finalKADTEL = array("KAD_TUNNEL" => $kad_tunnel);
+	$finalINFO = array("INFO" =>$info);
+	$finalINFOTEL = array("INFO_TUNNEL" =>$info_tunnel);
+	$finalHSSE = array("hsse" => $hsse);
+	$finalHSSETEL = array("hsse_tunnel" => $hsse_tunnel);
+	$finalGALLERY = array("gallery" => $gallery);
+	$finalGALLERYTEL = array("gallery_tunnel" => $gallery_tunnel);
+	$finalSCURVE = array("scurve" => $scurve);
+	$superFinal = array($slug => array_merge($finalPROGRESS, $finalINFO, $finalKAD, $finalSP, $finalHSSE, $finalGALLERY, $finalSCURVE, $finalINFOTEL, $finalKADTEL, $finalHSSETEL, $finalGALLERYTEL));
+	return json_encode($superFinal);
+}
+
+/**
+ * UNDER GROUND STATIONS
+ * @param $slug
+ * @return Array
+ * @Desc  Portlet specific info of Under Ground (UG)
+ */
+function build_ug_stations($slug){
+
+	$info = packageInfo($slug,2);
+	$gallery = gallery($slug);
+	$kad = kad($slug);
+	$hsse = safety_incident($slug);
+	$station_activity = ug_station_activity($slug);
+
+	$finalKAD = array("KAD" => $kad);
+	$finalINFO = array("INFO" =>$info);
+	$finalHSSE = array("hsse" => $hsse);
+	$finalSA = array("station_activity" => $station_activity);
+	$finalGALLERY = array("gallery" => $gallery);
+	$superFinal = array($slug => array_merge($finalINFO, $finalKAD, $finalHSSE, $finalSA, $finalGALLERY));
+	return json_encode($superFinal);
+}
+
+/**
+ *	DEPOT
+ * @param $slug
+ * @return Array
+ * @Desc  Portlet specific info of Under Ground (UG)
+ */
+function build_depot($slug){
+
+	$info = packageInfo($slug,2);
+	$gallery = gallery($slug);
+	$kpi = kpi($slug);
+	$kad = kad($slug);
+	$kd = kad($slug);
+	$hsse = safety_incident($slug);
+	$scurve = scurve($slug);
+
+	$finalQRM = array("QRM" => $kpi);
+	$finalKD = array("KD" => $kd);
+	$finalKAD = array("KAD" => $kad);
+	$finalINFO = array("INFO" =>$info);
+	$finalHSSE = array("hsse" => $hsse);
+	$finalGALLERY = array("gallery" => $gallery);
+	$finalSCURVE = array("scurve" => $scurve);
+	$superFinal = array($slug => array_merge($finalQRM, $finalINFO, $finalKAD, $finalKD, $finalHSSE, $finalGALLERY, $finalSCURVE));
+	return json_encode($superFinal);
+}
+
+/**
+ * S-CURVES (PROGRAMME)
+ * @param $slug
+ * @return Array
+ * @Desc  Portlet specific info of Under Ground (UG)
+ */
+function build_scurves($slug){
 
 }
+
+/**
+ * MSPR
+ * @param $slug
+ * @return Array
+ * @Desc  Portlet specific info of Under Ground (UG)
+ */
+function build_mspr($slug){
+
+	$info = packageInfo($slug,2);
+	$gallery = gallery($slug);
+	$kad = kad($slug);
+	$scurve = scurve($slug);
+
+	$finalKAD = array("KAD" => $kad);
+	$finalINFO = array("INFO" =>$info);
+	$finalGALLERY = array("gallery" => $gallery);
+	$finalSCURVE = array("scurve" => $scurve);
+	$superFinal = array($slug => array_merge($finalINFO,  $finalKAD, $finalGALLERY, $finalSCURVE));
+	return json_encode($superFinal);
+}
+
+/**
+ * PROCUREMENT
+ * @param $slug
+ * @return Array
+ * @Desc  Portlet specific info of Under Ground (UG)
+ */
+function build_procurement($slug){
+
+}
+
+/**
+ * DASHBOARD
+ * @param $slug
+ * @return Array
+ * @Desc  Portlet specific info of Under Ground (UG)
+ */
+function build_dashboard($slug){
+
+}
+
+/**
+ * Systems Summary
+ * @param $slug
+ * @return Array
+ * @Desc  Portlet specific info of Under Ground (UG)
+ */
+function build_systems_summary($slug){
+	$summary = v_summary($slug);
+	$finalSUMMARY = array("syspackage" => $summary);
+	$superFinal = array($slug => array_merge($finalSUMMARY));
+	return json_encode($superFinal);
+
+}
+
+/**
+ * Viaducts Summary
+ * @param $slug
+ * @return Array
+ * @Desc  Portlet specific info of Under Ground (UG)
+ */
+function build_viaducts_summary($slug){
+
+}
+
 /**
  * Update the Line2 DB
  * @param $slug, $value, $date
@@ -259,6 +507,66 @@ function updateDB($slug, $value, $date){
 		}
 	}
 }
-
-build_viaducts("v201");
+function run(){
+	$query = db()->ref_slug()
+		         ->select('slug','category');
+	$slug_ref = array_map('iterator_to_array', iterator_to_array($query));
+	//Job date
+	$date = date("Y-m-d");
+	foreach($slug_ref as $q) {
+		switch ($q['category']) {
+			case 1:
+				$viaduct = build_viaducts($q['slug']);
+				updateDB($q['slug'], $viaduct, $date);
+				break;
+			case 2:
+				$stations = build_stations($q['slug']);
+				updateDB($q['slug'], $stations, $date);
+				break;
+			case 3:
+				$depot = build_depot($q['slug']);
+				updateDB($q['slug'], $depot, $date);
+				break;
+			case 4:
+				$ug = build_ug($q['slug']);
+				updateDB($q['slug'], $ug, $date);
+				break;
+			case 5:
+				$ug_station = build_ug_stations($q['slug']);
+				updateDB($q['slug'], $ug_station, $date);
+				break;
+			case 6:
+				$systems = build_systems($q['slug']);
+				updateDB($q['slug'], $systems, $date);
+				break;
+			case 7:
+				$scurves = build_scurves($q['slug']);
+//				updateDB($q['slug'], $scurves, $date);
+				break;
+			case 8:
+				$mspr = build_mspr($q['slug']);
+				updateDB($q['slug'], $mspr, $date);
+				break;
+			case 9:
+				$procurement = build_procurement($q['slug']);
+//				updateDB($q['slug'], $procurement, $date);
+				break;
+			case 10:
+				$dashboard = build_dashboard($q['slug']);
+//				updateDB($q['slug'], $dashboard, $date);
+				break;
+			case 11:
+				$systems_summary = build_systems_summary($q['slug']);
+				updateDB($q['slug'], $systems_summary, $date);
+				break;
+			case 12:
+				$viaducts_summary = build_viaducts_summary($q['slug']);
+				updateDB($q['slug'], $viaducts_summary, $date);
+				break;
+			default:
+				echo "Nothing to run";
+		}
+	}
+}
+run();
 ?>
