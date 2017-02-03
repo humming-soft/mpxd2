@@ -127,8 +127,7 @@ function contractor($slug){
  * @return Array
  * @Desc
  */
-function packageInfo($slug, $type = 1)
-{
+function packageInfo($slug, $type = 1){
 	$contractor = contractor($slug);
 	$i = array();
 	$i["name"] = getName($slug);
