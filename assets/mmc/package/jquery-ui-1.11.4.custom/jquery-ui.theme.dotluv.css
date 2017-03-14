@@ -88,6 +88,29 @@ a:visited.ui-button,
 	font-weight: bold;
 	color: #ffffff;
 }
+/*Added By Sebin*/
+/*Starts Here*/
+.ui-datepicker .ui-datepicker-prev, .ui-datepicker .ui-datepicker-next {
+	border: 1px solid #222222;
+	background: #00498f url("images/ui-bg_dots-small_40_00498f_2x2.png") 50% 50% repeat;
+	font-weight: bold;
+	color: #ffffff;
+	cursor: pointer;
+}
+.ui-datepicker .ui-datepicker-prev .ui-icon, .ui-datepicker .ui-datepicker-next .ui-icon{
+	display: block;
+	background-image: url("images/ui-icons_ffffff_256x240.png");
+}
+.ui-datepicker .ui-datepicker-prev-hover {
+	top: 2px;
+	left: 2px;
+}
+.ui-datepicker .ui-datepicker-next-hover {
+	top: 2px;
+	right: 2px;
+}
+/*Ends Here*/
+
 .ui-state-hover a,
 .ui-state-hover a:hover,
 .ui-state-hover a:link,

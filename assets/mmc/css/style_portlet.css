@@ -465,6 +465,7 @@ div.portlet_images div.content {
 div.portlet_images div.portlet_content {
 	padding-top: 10px;
 	padding-bottom: 10px;
+	/*Commented By Sebin*/
 	height: 439px;
 }
 div.portlet_images div.portlet_title {

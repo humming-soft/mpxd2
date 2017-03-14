@@ -251,16 +251,21 @@ class Dashboard extends CI_Controller {
             if ($this->input->get("date_list")) {
                 $slug = $this->input->get("date_list");
                 $data['item'] = $this->dashboard_model->get_date_list($slug);
-            }
-            //Default api get portlet content and data.
-            else {
+            }else{
                 $date = $this->input->get("date");
 
                 if ($itemID) //Use item ID to retrieve items meta
                     $item_meta = $this->dashboard_model->get_meta($query, $itemID);
                 else
                     $item_meta = $this->dashboard_model->get_meta($query);
-
+//                if (!empty($date)) {
+//                    if (DateTime::createFromFormat('d-M-y', $date) !== FALSE) {
+//                        // it's a date
+//                        $data_source = $this->dashboard_model->get_source_archivable($item_meta[0]['item_id'], $date);
+//                    } else {
+//                        $data_source = [];
+//                    }
+//                }else{}
                 $data_source = $this->dashboard_model->get_source_archivable($item_meta[0]['item_id'], $date);
 //				$data_source_static = $this->dashboard_model->get_static_source($itemID);
                 $data_source_static =array();

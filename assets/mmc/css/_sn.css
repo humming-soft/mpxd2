@@ -302,3 +302,14 @@ div.portlet_info div.pier_chart a{
 div.portlet_issue div.content {
     border: 3px solid #00ccfe !important;
 }
+::selection {
+    background: #3cbdb4; /* WebKit/Blink Browsers */
+    color: #ffffff;
+}
+::-moz-selection {
+    background: #3cbdb4; /* Gecko Browsers */
+    color: #ffffff;
+}
+#nanoGallery2{
+    width: 100% !important;
+}

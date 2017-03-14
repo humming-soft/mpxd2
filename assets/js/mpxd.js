@@ -110,7 +110,6 @@ mpxd.loadTemplateAsync = function(t, callback) {
 			if (typeof callback == "function") callback();
 		}
 	}
-	
 	$.each(t, function(idx, t1){
 		jQuery.ajax({
         url: baseURL + mpxd.templateURLs[t1]["templateURL"],
@@ -126,7 +125,6 @@ mpxd.loadTemplateAsync = function(t, callback) {
         async: true
     });
 	})
-	
 	}
 }
 
@@ -316,7 +314,7 @@ mpxd.generatePortletContent = function (data) {
 
 /* misc. functions. Put in seperate file if need arises */
 var gridster;
-var editing = false;
+var editing = true;
 
 
 function selectPort(port) {
