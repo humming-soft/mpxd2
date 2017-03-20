@@ -805,7 +805,7 @@ mpxd.modules.gallery.GalleryView = Backbone.View.extend({
 				theme: 'default',
 				i18n: { breadcrumbHome: that.data.data.title },
 				dataSorting: 'standard',
-				touchAutoOpenDelay: -1,
+				touchAutoOpenDelay: -1
 			});
 		}
 		else { // Picasa repository
@@ -827,7 +827,7 @@ mpxd.modules.gallery.GalleryView = Backbone.View.extend({
 				theme: 'default',
 				i18n: { breadcrumbHome: that.data.data.title },
 				albumSorting: 'standard',
-				touchAutoOpenDelay: -1,
+				touchAutoOpenDelay: -1
 			});
 		}
     }
@@ -946,7 +946,7 @@ mpxd.modules.progress.ProgressView = Backbone.View.extend({
             ,
             credits: {
                 enabled: false
-            },
+            }
         });
     }
 });

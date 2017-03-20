@@ -20,25 +20,27 @@
                     </tr>
                     </thead>
                     <tbody>
-                    <% console.log(data.data)%>
-                    <tr>
-                        <td>Track Access Date Damansara Damai</td>
-                        <td class="set_center">30 Sep 2015</td>
-                        <td class="set_center">19 Oct  2015</td>
-                        <td class="set_center mrt_colorcode_2">-3 W</td>
-                    </tr>
-                    <tr>
-                        <td>Track Access Date Sri Damansara West</td>
-                        <td class="set_center">28 Nov 2015</td>
-                        <td class="set_center">4 Apr 2016</td>
-                        <td class="set_center mrt_colorcode_3">-21 W</td>
-                    </tr>
-                    <tr>
-                        <td>Track Access Date Sri Damansara East</td>
-                        <td class="set_center">30 Sep 2015</td>
-                        <td class="set_center">19 Oct 2015</td>
-                        <td class="set_center mrt_colorcode_1">-3 W</td>
-                    </tr>
+                    <% if(typeof(data.data) !== "undefined"){
+                        var k=0;
+                        if (typeof(data.data[0].date) !== "undefined"){k+=1;}
+                            for(var i=k; i<(data.data).length; i++){
+                                var variance = ((typeof(data.data[i][1]) !== "undefined" || typeof(data.data[i][2]) !== "undefined") || (data.data[i][1] != "" || data.data[i][2] != "" ) ) ? Math.round(compareDates(data.data[i][1],data.data[i][2])) : "N/A" %>
+                            <tr>
+                                <td><%=(typeof(data.data[i][0]) !=="undefined")? data.data[i][0] : "-"%></td>
+                                <td class="set_center"><%=(typeof(data.data[i][1]) !=="undefined")? data.data[i][1] : "-"%></td>
+                                <td class="set_center"><%=(typeof(data.data[i][2]) !=="undefined")? data.data[i][2] : "-"%></td>
+                                <%if(variance != "N/A"){%>
+                                    <td class="set_center <%=((variance<0) ? 'mrt_colorcode_2' :((variance>=0)? 'mrt_colorcode_1' : ''))%>"><%=variance%>W</td>
+                                <%}else{%>
+                                    <td class="set_center"><%=variance%></td>
+                                <%}%>
+                            </tr>
+                            <%}
+                    }else{%>
+                        <tr>
+                            <td colspan="4" class="text-center">Not Available</td>
+                        </tr>
+                    <%}%>
                     </tbody>
                 </table>
             </div>
