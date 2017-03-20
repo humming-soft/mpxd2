@@ -757,6 +757,7 @@ mpxd.modules.gallery.GalleryView = Backbone.View.extend({
 
         template = _.template(html, {data: that.data});
         that.$el.html(template);
+		that.$el.find('.portlet_content').css({"height":(that.$el.find('.content').parent().parent().parent().height())-40});
 		that.$el.find('.portlet_content').mCustomScrollbar({theme:"dark-3"});
 		
 		if(typeof that.data.data.items === 'object') // Local repository format
