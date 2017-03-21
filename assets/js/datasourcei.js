@@ -441,13 +441,13 @@ mpxd.modules.scurve.GenerateScurve = function (items, componentSelector) {
         data.currentLate = data.currentLate.split('%')[0];
         //console.log(data);
 
-        //commented by jane
-        /*if (type == "long") {
-            data.categories = ["Jan/12", "Feb/12", "Mar/12", "Apr/12", "May/12", "Jun/12", "Jul/12", "Aug/12", "Sep/12", "Oct/12", "Nov/12", "Dec/12", "Jan/13", "Feb/13", "Mar/13", "Apr/13", "May/13", "Jun/13", "Jul/13", "Aug/13", "Sep/13", "Oct/13", "Nov/13", "Dec/13", "Jan/14", "Feb/14", "Mar/14", "Apr/14", "May/14", "Jun/14", "Jul/14", "Aug/14", "Sep/14", "Oct/14", "Nov/14", "Dec/14", "Jan/15", "Feb/15", "Mar/15", "Apr/15", "May/15", "Jun/15", "Jul/15", "Aug/15", "Sep/15", "Oct/15", "Nov/15", "Dec/15", "Jan/16", "Feb/16", "Mar/16", "Apr/16", "May/16", "Jun/16", "Jul/16", "Aug/16", "Sep/16", "Oct/16", "Nov/16", "Dec/16", "Jan/17", "Feb/17", "Mar/17", "Apr/17", "May/17", "Jun/17", "Jul/17"];
+        if (type == "long") {
+            data.categories = ["Jan/12", "Feb/12", "Mar/12", "Apr/12", "May/12", "Jun/12", "Jul/12", "Aug/12", "Sep/12", "Oct/12", "Nov/12", "Dec/12", "Jan/13", "Feb/13", "Mar/13", "Apr/13", "May/13", "Jun/13", "Jul/13", "Aug/13", "Sep/13", "Oct/13", "Nov/13", "Dec/13", "Jan/14", "Feb/14", "Mar/14", "Apr/14", "May/14", "Jun/14", "Jul/14", "Aug/14", "Sep/14", "Oct/14", "Nov/14", "Dec/14", "Jan/15", "Feb/15", "Mar/15", "Apr/15", "May/15", "Jun/15", "Jul/15", "Aug/15", "Sep/15", "Oct/15", "Nov/15", "Dec/15", "Jan/16", "Feb/16", "Mar/16", "Apr/16", "May/16", "Jun/16", "Jul/16", "Aug/16", "Sep/16", "Oct/16", "Nov/16", "Dec/16", "Jan/17", "Feb/17", "Mar/17", "Apr/17", "May/17", "Jun/17", "Jul/17",
+                "Aug/17", "Sep/17", "Oct/17", "Nov/17", "Dec/17","Jan/18", "Feb/18", "Mar/18", "Apr/18", "May/18", "Jun/18", "Jul/18", "Aug/18", "Sep/18", "Oct/18", "Nov/18", "Dec/18", "Jan/19", "Feb/19", "Mar/19", "Apr/19", "May/19", "Jun/19", "Jul/19", "Aug/19", "Sep/19", "Oct/19", "Nov/19", "Dec/19"];
         } else if (type == "short") {
-            data.categories = ["Jan/12", "Apr/12", "Jul/12", "Oct/12", "Jan/13", "Apr/13", "Jul/13", "Oct/13", "Jan/14", "Apr/14", "Jul/14", "Oct/14", "Jan/15", "Apr/15", "Jul/15", "Oct/15", "Jan/16", "Apr/16", "Jul/16", "Oct/16", "Jan/17", "Apr/17", "Jul/17"];
+            data.categories = ["Jan/12", "Apr/12", "Jul/12", "Oct/12", "Jan/13", "Apr/13", "Jul/13", "Oct/13", "Jan/14", "Apr/14", "Jul/14", "Oct/14", "Jan/15", "Apr/15", "Jul/15", "Oct/15", "Jan/16", "Apr/16", "Jul/16", "Oct/16", "Jan/17", "Apr/17", "Jul/17", "Oct/17", "Jan/18", "Apr/18", "Jul/18", "Oct/18", "Jan/19", "Apr/19", "Jul/19", "Oct/19"];
             //data.categories = ["Jan-12", "Apr-12", "Jul-12", "Oct-12", "Jan-13", "Apr-13", "Jul-13", "Oct-13", "Jan-14", "Apr-14", "Jul-14", "Oct-14", "Jan-15", "Apr-15", "Jul-15", "Oct-15", "Jan-16", "Apr-16", "Jul-16", "Oct-16", "Jan-17", "Apr-17", "Jul-17"];
-        }*/
+        }
 
         if (typeof data.startAt != "undefined") {
             var dayms = 86400000;
@@ -826,7 +826,6 @@ function getTextWidth(text, font) {
     var metrics = context.measureText(text);
     return metrics.width;
 }
-;
 
 function getParameterByName(name) {
     name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");

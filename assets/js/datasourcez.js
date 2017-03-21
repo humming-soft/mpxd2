@@ -909,7 +909,7 @@ mpxd.modules.progress.ProgressView = Backbone.View.extend({
                 y: 10
             },
             tooltip: {
-                pointFormat: '{point.percentage:.1f}%</b>'
+                pointFormat: '<b>{point.percentage:.1f}%</b>'
             },
             plotOptions: {
                 pie: {

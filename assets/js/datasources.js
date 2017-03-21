@@ -2,6 +2,10 @@
 For     : Backbone Constructors, Views and the associated functions
 Date    : 14/07/2016*/
 
+//Redefined Console.log function
+//Please comment the below line when console.log requires.
+console.log = function() {}
+
 //Page Info for Stations
 mpxd.constructors.page_station_info = function(data) {
     mpxd.modules.general.GenerateGeneralview(data);
@@ -72,7 +76,7 @@ mpxd.modules.report = {}
 
 /*
  ********************************************
- **********  REPORT   *********
+ ***************    REPORT   ****************
  * ******************************************
  */
 mpxd.constructors.report = function(data) {
@@ -82,7 +86,7 @@ mpxd.constructors.report = function(data) {
 
 /*
  ********************************************
- **********  NORTH / SOUTH   *********
+ *************  NORTH / SOUTH   *************
  * ******************************************
  */
 mpxd.constructors.summary_list = function(data) {
@@ -292,7 +296,6 @@ mpxd.modules.piers.viaduct_pier_view = Backbone.View.extend({
             {"pier_v":"v201","pier_id":"SDE23","pier_north_id":"0","pier_south_id":"0","pier_marker_a":"0","pier_marker_b":"0","pier_layout":"1","pier_type":"p11","span_type":"s1","pier_pile_1":"0","pier_pile_2":"0","pier_pilecap_1":"0","pier_pilecap_2":"0","pier_pier_1":"0","pier_pier_2":"0","pier_pierhead_1":"0","pier_pierhead_2":"0","pier_pierhead_3":"0","span1":"0","span2":"0","span3":"0","sbg": {"sbg_id": [],"sbg_lr": [],"sbg_va": []},"parapet1":"0","parapet2":"0","parapet3":"0"},
             {"pier_v":"v201","pier_id":"SDE24","pier_north_id":"0","pier_south_id":"0","pier_marker_a":"0","pier_marker_b":"0","pier_layout":"1","pier_type":"p12","span_type":"s1","pier_pile_1":"0","pier_pile_2":"0","pier_pilecap_1":"0","pier_pilecap_2":"0","pier_pier_1":"0","pier_pier_2":"0","pier_pierhead_1":"0","pier_pierhead_2":"0","pier_pierhead_3":"0","span1":"0","span2":"0","span3":"0","sbg": {"sbg_id": [],"sbg_lr": [],"sbg_va": []},"parapet1":"0","parapet2":"0","parapet3":"0"},
             {"pier_v":"v201","pier_id":"SDE25","pier_north_id":"0","pier_south_id":"0","pier_marker_a":"0","pier_marker_b":"0","pier_layout":"1","pier_type":"p12","span_type":"s1","pier_pile_1":"0","pier_pile_2":"0","pier_pilecap_1":"0","pier_pilecap_2":"0","pier_pier_1":"0","pier_pier_2":"0","pier_pierhead_1":"0","pier_pierhead_2":"0","pier_pierhead_3":"0","span1":"0","span2":"0","span3":"0","sbg": {"sbg_id": [],"sbg_lr": [],"sbg_va": []},"parapet1":"0","parapet2":"0","parapet3":"0"},
-
             {"pier_v":"v202","pier_id":"SDE26","pier_north_id":"0","pier_south_id":"0","pier_marker_a":"0","pier_marker_b":"0","pier_layout":"1","pier_type":"p12","span_type":"s1","pier_pile_1":"0","pier_pile_2":"0","pier_pilecap_1":"0","pier_pilecap_2":"0","pier_pier_1":"0","pier_pier_2":"0","pier_pierhead_1":"0","pier_pierhead_2":"0","pier_pierhead_3":"0","span1":"0","span2":"0","span3":"0","sbg": {"sbg_id": [],"sbg_lr": [],"sbg_va": []},"parapet1":"0","parapet2":"0","parapet3":"0"},
             {"pier_v":"v202","pier_id":"SDE27","pier_north_id":"0","pier_south_id":"0","pier_marker_a":"0","pier_marker_b":"0","pier_layout":"1","pier_type":"p12","span_type":"s1","pier_pile_1":"0","pier_pile_2":"0","pier_pilecap_1":"0","pier_pilecap_2":"0","pier_pier_1":"0","pier_pier_2":"0","pier_pierhead_1":"0","pier_pierhead_2":"0","pier_pierhead_3":"0","span1":"0","span2":"0","span3":"0","sbg": {"sbg_id": [],"sbg_lr": [],"sbg_va": []},"parapet1":"0","parapet2":"0","parapet3":"0"},
             {"pier_v":"v202","pier_id":"SDE28","pier_north_id":"0","pier_south_id":"0","pier_marker_a":"0","pier_marker_b":"0","pier_layout":"1","pier_type":"p12","span_type":"s1","pier_pile_1":"0","pier_pile_2":"0","pier_pilecap_1":"0","pier_pilecap_2":"0","pier_pier_1":"0","pier_pier_2":"0","pier_pierhead_1":"0","pier_pierhead_2":"0","pier_pierhead_3":"0","span1":"0","span2":"0","span3":"0","sbg": {"sbg_id": [],"sbg_lr": [],"sbg_va": []},"parapet1":"0","parapet2":"0","parapet3":"0"},
@@ -882,7 +885,6 @@ mpxd.modules.viaducts.kpi = Backbone.View.extend({
     }
 });
 
-
 mpxd.modules.viaducts.kd = Backbone.View.extend({
     initialize: function (options) {
         this.data = options.data;
@@ -896,6 +898,7 @@ mpxd.modules.viaducts.kd = Backbone.View.extend({
         that.$el.find('.portlet_content').mCustomScrollbar({theme:"dark-3"});
     }
 });
+
 mpxd.modules.ug.tunnel_progress = Backbone.View.extend({
     initialize: function (options) {
         this.data = options.data;
@@ -945,6 +948,7 @@ mpxd.modules.ug.tunnel_progress = Backbone.View.extend({
         });
     }
 });
+
 mpxd.modules.ug.ug_summary = Backbone.View.extend({
     initialize: function (options) {
         this.data = options.data;
