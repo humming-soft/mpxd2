@@ -4,7 +4,7 @@ mpxd = {};
 isPDF = true;
 isUseCustomPortlet = (getUrlParameter("print") == "1");
 // mpxd.siteurl = 'https://mpxd.mymrt.com.my/';
-mpxd.siteurl = 'C:\/wamp\/www\/images\/';
+mpxd.siteurl = 'http://192.168.1.63:90/images/';
 $(function(){
 	/* Optimize page for print layout */
 
