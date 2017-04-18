@@ -198,7 +198,7 @@ $(document).ready(function(){
 	
 	
 	var json = [ 
-		{"chart_title":"System Overall","chart_name":"","chart_id":"db_donut_0","chart_value":"100","set_donut":"1","url":"systems/summary"},
+		{"chart_title":"System Overall","chart_name":"","chart_id":"db_donut_0","chart_value":"47","set_donut":"1","url":"systems/summary"},
 		{"chart_title":"S&TC /PSD /APG","chart_name":"Signalling & Train Control, Automatic Platform Gate / Platform Screen Door","chart_id":"db_donut_1","chart_value":"41","set_donut":"2","url":"stc-psd-apg/index"},
 		{"chart_title":"ICSS& CMMS","chart_name":"Integrated Control Supervisory System & Computerised Maintenance Management System","chart_id":"db_donut_2","chart_value":"75","set_donut":"2","url":"icss-cmms/index"},
 		{"chart_title":"ET&DE","chart_name":"Electric Train & Depot Equipment","chart_id":"db_donut_3","chart_value":"15","set_donut":"2","url":"etde/index"},
