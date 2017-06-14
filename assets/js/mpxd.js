@@ -4,8 +4,8 @@ mpxd = {};
 isPDF = true;
 isUseCustomPortlet = (getUrlParameter("print") == "1");
 var imageBase = window.location.origin;
-// mpxd.siteurl = 'https://mpxd.mymrt.com.my/';
-mpxd.siteurl = imageBase+'/images/';
+mpxd.siteurl = 'https://mpxd.mymrt.com.my/';
+//mpxd.siteurl = imageBase+'/images/';
 $(function(){
 	/* Optimize page for print layout */
 

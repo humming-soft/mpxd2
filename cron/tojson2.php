@@ -90,14 +90,16 @@ function kpi($slug){
 function info($slug){
 	$query = db()->package_info()
 		->select('spd','type','url')
-		->where("slug", $slug);
+		->where("slug", $slug)
+		->or("slug", strtoupper($slug));
 	$result = array_map('iterator_to_array', iterator_to_array($query));
 	return $result;
 }
 
 function getName($slug){
 	$slugInfo = db()->ref_slug()
-		->where("slug", $slug);
+		->where("slug", $slug)
+		->or("slug", strtoupper($slug));
 	$slugInfo = $slugInfo->fetch();
 	if($slugInfo) {
 		$name = ($slugInfo['name']);
@@ -116,7 +118,8 @@ function getName($slug){
 function contractor($slug){
 	$query = db()->contractors()
 		->select('contractor')
-		->where("slug", $slug);
+		->where("slug", $slug)
+		->or("slug", strtoupper($slug));
 	$result = array_map('iterator_to_array', iterator_to_array($query));
 	return $result;
 }
@@ -158,8 +161,24 @@ function packageInfo($slug, $type = 1){
  * @return Array
  * @Desc
  */
-function kad($slug){
-	return [];
+function kad($slug, $type = 1){
+	$query = db()->{'"key_dates'.$type.'"'}
+		->select('pagename','slug','name','forecast','contract','dps','date')
+		->where("slug", $slug)
+		->or("slug", strtoupper($slug));
+	$result = array_map('iterator_to_array', iterator_to_array($query));
+
+	if(sizeof($result)>0) {
+		$kadarr = array();
+		$kadobj = (object)array('date' => date('d-M-y', strtotime($result[0]['date'])));
+		$kadarr[] = $kadobj;
+		foreach ($result as $q) {
+			$kadarr[] = array($q['name'], date('d-M-y', strtotime($q['forecast'])), date('d-M-y', strtotime($q['contract'])), date('d-M-y', strtotime($q['dps'])));
+		}
+		return $kadarr;
+	}else{
+		return [];
+	}
 }
 
 /**
@@ -168,7 +187,7 @@ function kad($slug){
  * @return Array
  * @Desc
  */
-function kd($slug){
+function kd($slug, $type = 1){
 	return [];
 }
 /**
@@ -197,7 +216,21 @@ function safety_incident($slug){
  * @Desc
  */
 function scurve($slug){
-	return [];
+	$query = db()->{'"scurve_main"'}
+		->select('pagename','slug','early_data','delayed_data','actual_data','scurve_date','date')
+		->where("slug", $slug)
+	    ->or("slug", strtoupper($slug));
+	$query2 = db()->{'"scurve"'}
+		->select('pagename','slug','early_data','delayed_data','actual_data','var_early','var_late','trend','chart_type','view_type','scurve_date','date')
+		->where("slug", $slug)
+	    ->or("slug", strtoupper($slug));
+	$result = array_map('iterator_to_array', iterator_to_array($query));
+	$result2 = array_map('iterator_to_array', iterator_to_array($query2));
+
+	$output = array("scurve" => $result2, "scurve_main" => $result);
+
+	return $output;
+//	return [];
 }
 
 /**
@@ -207,7 +240,11 @@ function scurve($slug){
  * @Desc
  */
 function tunnel_progress($slug){
-	return [];
+	$query = db()->{'"tunnel_progress"'}
+		->select('pagename','slug','name','week1','week2','week3','week4','asof','date')
+		->where("slug", $slug);
+	$result = array_map('iterator_to_array', iterator_to_array($query));
+	return $result;
 }
 
 /**
@@ -217,7 +254,10 @@ function tunnel_progress($slug){
  * @Desc
  */
 function ug_station_progress($slug){
-	return [];
+	$query = db()->{'"ug_station_progress"'}
+			->select('pagename','slug','station_name','progress','date','asof');
+	$result = array_map('iterator_to_array', iterator_to_array($query));
+	return $result;
 }
 
 /**
@@ -247,7 +287,7 @@ function ug_station_activity($slug){
  * @Desc
  */
 function v_summary($slug){
-	return[];
+	return [];
 }
 /**
  *69696969669696969696969696969696969696969696969696969696969696969696969696969696969699696969696996969696969696969696969696969696969696969696969696969
@@ -264,17 +304,48 @@ function build_viaducts($slug){
 	$info = packageInfo($slug,1);
 	$gallery = gallery($slug);
 	$kpi = kpi($slug);
-	$kad = kad($slug);
+	$kad = kad($slug,1);
+	$kd = kd($slug,1);
 	$hsse = safety_incident($slug);
 	$scurve = scurve($slug);
 
+	//SCURVE
+	if(sizeof($scurve['scurve'])>0 ) {
+		$actual = array();
+		$late = array();
+		$early = array();
+		foreach ($scurve['scurve_main'] as $q) {
+			if ($q['actual_data'] != '-')
+				$actual[] = (float)$q['actual_data'];
+			if ($q['delayed_data'] != '-')
+				$late[] = (float)$q['delayed_data'];
+			if ($q['early_data'] != '-')
+				$early[] = (float)$q['early_data'];
+		}
+		$scurvearr = array(
+			'date' => date('d-M-y', strtotime($scurve['scurve'][0]['scurve_date'])),
+			'actualData' => $actual,
+			'earlyData' => $early,
+			'delayedData' => $late,
+			'currentEarly' => $scurve['scurve'][0]['early_data'] . '%',
+			'currentLate' => $scurve['scurve'][0]['delayed_data'] . '%',
+			'currentActual' => $scurve['scurve'][0]['actual_data'] . '%',
+			'varEarly' => $scurve['scurve'][0]['var_early'] . 'w',
+			'varLate' => $scurve['scurve'][0]['var_late'] . 'w',
+			'trend' => $scurve['scurve'][0]['trend'],
+			'chartType' => "long",
+			'viewType' => "2",
+		);
+	}
+
 	$finalQRM = array("QRM" => $kpi);
 	$finalKAD = array("KAD" => $kad);
+	$finalKD = array("KD" => $kd);
 	$finalINFO = array("INFO" =>$info);
 	$finalHSSE = array("hsse" => $hsse);
 	$finalGALLERY = array("gallery" => $gallery);
-	$finalSCURVE = array("scurve" => $scurve);
-	$superFinal = array($slug => array_merge($finalQRM, $finalKAD, $finalINFO, $finalHSSE, $finalGALLERY, $finalSCURVE));
+	$finalSCURVE = array("scurve" => (sizeof($scurve['scurve'])>0 ? $scurvearr : []));
+	$superFinal = array($slug => array_merge($finalQRM, $finalKAD, $finalKD, $finalINFO, $finalHSSE, $finalGALLERY, $finalSCURVE));
 
 	return json_encode($superFinal);
 //	updateDB($slug, json_encode($superFinal), $date);
@@ -286,6 +357,7 @@ function build_viaducts($slug){
  * @Desc  Portlet specific info of Systems
  */
 function build_systems($slug){
+
 	$info = packageInfo($slug,2);
 	$gallery = gallery($slug);
 	$kad = kad($slug);
@@ -310,7 +382,7 @@ function build_stations($slug){
 	$info = packageInfo($slug,2);
 	$gallery = gallery($slug);
 	$kpi = kpi($slug);
-	$kad = kad($slug);
+	$kad = kad($slug,1);
 	$scurve = scurve($slug);
 
 	$finalQRM = array("QRM" => $kpi);
@@ -390,10 +462,39 @@ function build_depot($slug){
 	$info = packageInfo($slug,2);
 	$gallery = gallery($slug);
 	$kpi = kpi($slug);
-	$kad = kad($slug);
-	$kd = kad($slug);
+	$kad = kad($slug,2);
+	$kd = kad($slug,2);
 	$hsse = safety_incident($slug);
 	$scurve = scurve($slug);
+
+	//SCURVE
+	if(sizeof($scurve['scurve'])>0 ) {
+		$actual = array();
+		$late = array();
+		$early = array();
+		foreach ($scurve['scurve_main'] as $q) {
+			if ($q['actual_data'] != '-')
+				$actual[] = (float)$q['actual_data'];
+			if ($q['delayed_data'] != '-')
+				$late[] = (float)$q['delayed_data'];
+			if ($q['early_data'] != '-')
+				$early[] = (float)$q['early_data'];
+		}
+		$scurvearr = array(
+			'date' => date('d-M-y', strtotime($scurve['scurve'][0]['scurve_date'])),
+			'actualData' => $actual,
+			'earlyData' => $early,
+			'delayedData' => $late,
+			'currentEarly' => $scurve['scurve'][0]['early_data'] . '%',
+			'currentLate' => $scurve['scurve'][0]['delayed_data'] . '%',
+			'currentActual' => $scurve['scurve'][0]['actual_data'] . '%',
+			'varEarly' => $scurve['scurve'][0]['var_early'] . 'w',
+			'varLate' => $scurve['scurve'][0]['var_late'] . 'w',
+			'trend' => $scurve['scurve'][0]['trend'],
+			'chartType' => "long",
+			'viewType' => "2",
+		);
+	}
 
 	$finalQRM = array("QRM" => $kpi);
 	$finalKD = array("KD" => $kd);
@@ -401,7 +502,7 @@ function build_depot($slug){
 	$finalINFO = array("INFO" =>$info);
 	$finalHSSE = array("hsse" => $hsse);
 	$finalGALLERY = array("gallery" => $gallery);
-	$finalSCURVE = array("scurve" => $scurve);
+	$finalSCURVE = array("scurve" => (sizeof($scurve['scurve'])>0 ? $scurvearr : []));
 	$superFinal = array($slug => array_merge($finalQRM, $finalINFO, $finalKAD, $finalKD, $finalHSSE, $finalGALLERY, $finalSCURVE));
 	return json_encode($superFinal);
 }
@@ -426,13 +527,43 @@ function build_mspr($slug){
 
 	$info = packageInfo($slug,2);
 	$gallery = gallery($slug);
-	$kad = kad($slug);
+	$kad = kad($slug,2);
 	$scurve = scurve($slug);
+
+
+	//SCURVE
+	if(sizeof($scurve['scurve'])>0 ) {
+		$actual = array();
+		$late = array();
+		$early = array();
+		foreach ($scurve['scurve_main'] as $q) {
+			if ($q['actual_data'] != '-')
+				$actual[] = (float)$q['actual_data'];
+			if ($q['delayed_data'] != '-')
+				$late[] = (float)$q['delayed_data'];
+			if ($q['early_data'] != '-')
+				$early[] = (float)$q['early_data'];
+		}
+		$scurvearr = array(
+			'date' => date('d-M-y', strtotime($scurve['scurve'][0]['scurve_date'])),
+			'actualData' => $actual,
+			'earlyData' => $early,
+			'delayedData' => $late,
+			'currentEarly' => $scurve['scurve'][0]['early_data'] . '%',
+			'currentLate' => $scurve['scurve'][0]['delayed_data'] . '%',
+			'currentActual' => $scurve['scurve'][0]['actual_data'] . '%',
+			'varEarly' => $scurve['scurve'][0]['var_early'] . 'w',
+			'varLate' => $scurve['scurve'][0]['var_late'] . 'w',
+			'trend' => $scurve['scurve'][0]['trend'],
+			'chartType' => "long",
+			'viewType' => "2",
+		);
+	}
 
 	$finalKAD = array("KAD" => $kad);
 	$finalINFO = array("INFO" =>$info);
 	$finalGALLERY = array("gallery" => $gallery);
-	$finalSCURVE = array("scurve" => $scurve);
+	$finalSCURVE = array("scurve" => (sizeof($scurve['scurve'])>0 ? $scurvearr : []));
 	$superFinal = array($slug => array_merge($finalINFO,  $finalKAD, $finalGALLERY, $finalSCURVE));
 	return json_encode($superFinal);
 }
@@ -468,7 +599,6 @@ function build_systems_summary($slug){
 	$finalSUMMARY = array("syspackage" => $summary);
 	$superFinal = array($slug => array_merge($finalSUMMARY));
 	return json_encode($superFinal);
-
 }
 
 /**
@@ -479,6 +609,74 @@ function build_systems_summary($slug){
  */
 function build_viaducts_summary($slug){
 
+}
+
+/**
+ * Utility Function (Copied from the "tojson(line1)")
+ * @param $data, $asofdate
+ * @return Array
+ * @Desc   Utility Function (Copied from the "tojson(line1)")
+ */
+function build_me_an_scurve_array($data,$asofdate = TRUE){
+	$actual = array();
+	$late = array();
+	$early = array();
+	foreach($data['scurve_main'] as $q){
+		if($q['actual_data'] != '-')
+			$actual[] = (float) $q['actual_data'];
+		if($q['delayed_data'] != '-')
+			$late[] = (float) $q['delayed_data'];
+		if($q['early_data'] != '-')
+			$early[] = (float) $q['early_data'];
+	}
+	$scurvearr = array(
+		'date' => date('d-M-y', strtotime($data['scurve'][0]['scurve_date'])),
+		'actualData' => $actual,
+		'earlyData' => $early,
+		'delayedData' => $late,
+		'currentEarly' => $data['scurve'][0]['early_data'].'%',
+		'currentLate' => $data['scurve'][0]['delayed_data'].'%',
+		'currentActual' => $data['scurve'][0]['actual_data'].'%',
+		'varEarly' => $data['scurve'][0]['var_early'].'w',
+		'varLate' => $data['scurve'][0]['var_late'].'w',
+		'trend' => $data['scurve'][0]['trend'],
+		'chartType' => "long",
+		'viewType' => "1",
+	);
+
+	if(!$asofdate)
+		unset($scurvearr['date']);
+
+	return $scurvearr;
+}
+
+/**
+ * Slugify
+ * @param $text
+ * @return String
+ * @Desc   Sort and Reduce (Copied from the "tojson(line1)")
+ */
+function slugify($text){
+	// replace non letter or digits by -
+	$text = preg_replace('~[^\\pL\d]+~u', '_', $text);
+
+	// trim
+	$text = trim($text, '_');
+
+	// transliterate
+	$text = iconv('utf-8', 'us-ascii//TRANSLIT', $text);
+
+	// lowercase
+	$text = strtolower($text);
+
+	// remove unwanted characters
+	$text = preg_replace('~[^-\w]+~', '', $text);
+
+	if (empty($text)) {
+		return 'n-a';
+	}
+
+	return $text;
 }
 
 /**
@@ -567,5 +765,7 @@ function run(){
 		}
 	}
 }
+//This run on call
+//-----------Build
 run();
 ?>

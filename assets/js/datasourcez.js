@@ -763,7 +763,6 @@ mpxd.modules.gallery.GalleryView = Backbone.View.extend({
 		if(typeof that.data.data.items === 'object') // Local repository format
 		{
 			images = that.data.data.items;
-		
 			var nano_items = [];
 			for(var i=0;i<images.length;i++){
 				image = images[i];
