@@ -3,7 +3,7 @@ include "./config.php";
 /**
  * Created on 			: 31-11-2016
  * Author 				: Sebin Thomas
- * Last Modified on 	: 25-01-2017
+ * Last Modified on 	: 14-06-2017
  * Desc 				: Formatted JSON Data Creation.
  * 						  This file is called in Cron Job for the further processing.
  **/
@@ -277,7 +277,11 @@ function info_tunnel($slug){
  * @Desc
  */
 function ug_station_activity($slug){
-	return [];
+	$query = db()->{'"ug_station_work_progress"'}
+		->select('pagename','slug','item','progress','date','asof')
+		->where("slug", $slug);
+	$result = array_map('iterator_to_array', iterator_to_array($query));
+	return $result;
 }
 
 /**
@@ -385,11 +389,40 @@ function build_stations($slug){
 	$kad = kad($slug,1);
 	$scurve = scurve($slug);
 
+	//SCURVE
+	if(sizeof($scurve['scurve'])>0 ) {
+		$actual = array();
+		$late = array();
+		$early = array();
+		foreach ($scurve['scurve_main'] as $q) {
+			if ($q['actual_data'] != '-')
+				$actual[] = (float)$q['actual_data'];
+			if ($q['delayed_data'] != '-')
+				$late[] = (float)$q['delayed_data'];
+			if ($q['early_data'] != '-')
+				$early[] = (float)$q['early_data'];
+		}
+		$scurvearr = array(
+			'date' => date('d-M-y', strtotime($scurve['scurve'][0]['scurve_date'])),
+			'actualData' => $actual,
+			'earlyData' => $early,
+			'delayedData' => $late,
+			'currentEarly' => $scurve['scurve'][0]['early_data'] . '%',
+			'currentLate' => $scurve['scurve'][0]['delayed_data'] . '%',
+			'currentActual' => $scurve['scurve'][0]['actual_data'] . '%',
+			'varEarly' => $scurve['scurve'][0]['var_early'] . 'w',
+			'varLate' => $scurve['scurve'][0]['var_late'] . 'w',
+			'trend' => $scurve['scurve'][0]['trend'],
+			'chartType' => "long",
+			'viewType' => "2",
+		);
+	}
+
 	$finalQRM = array("QRM" => $kpi);
 	$finalKAD = array("KAD" => $kad);
 	$finalINFO = array("INFO" =>$info);
 	$finalGALLERY = array("gallery" => $gallery);
-	$finalSCURVE = array("scurve" => $scurve);
+	$finalSCURVE = array("scurve" => (sizeof($scurve['scurve'])>0 ? $scurvearr : []));
 	$superFinal = array($slug => array_merge($finalQRM, $finalKAD, $finalINFO, $finalGALLERY, $finalSCURVE));
 	return json_encode($superFinal);
 }
@@ -405,7 +438,7 @@ function build_ug($slug){
 	$info = packageInfo($slug,2);
 	$info_tunnel = info_tunnel($slug);
 	$station_progress = ug_station_progress($slug);
-	$gallery = gallery($slug);
+	//$gallery = gallery($slug);
 	$gallery_tunnel = gallery($slug);
 	$kad = kad($slug);
 	$kad_tunnel = kad($slug);
@@ -421,10 +454,10 @@ function build_ug($slug){
 	$finalINFOTEL = array("INFO_TUNNEL" =>$info_tunnel);
 	$finalHSSE = array("hsse" => $hsse);
 	$finalHSSETEL = array("hsse_tunnel" => $hsse_tunnel);
-	$finalGALLERY = array("gallery" => $gallery);
+	//$finalGALLERY = array("gallery" => $gallery);
 	$finalGALLERYTEL = array("gallery_tunnel" => $gallery_tunnel);
 	$finalSCURVE = array("scurve" => $scurve);
-	$superFinal = array($slug => array_merge($finalPROGRESS, $finalINFO, $finalKAD, $finalSP, $finalHSSE, $finalGALLERY, $finalSCURVE, $finalINFOTEL, $finalKADTEL, $finalHSSETEL, $finalGALLERYTEL));
+	$superFinal = array($slug => array_merge($finalPROGRESS, $finalINFO, $finalKAD, $finalSP, $finalHSSE, $finalSCURVE, $finalINFOTEL, $finalKADTEL, $finalHSSETEL, $finalGALLERYTEL));
 	return json_encode($superFinal);
 }
 
@@ -511,17 +544,46 @@ function build_depot($slug){
  * S-CURVES (PROGRAMME)
  * @param $slug
  * @return Array
- * @Desc  Portlet specific info of Under Ground (UG)
+ * @Desc
  */
 function build_scurves($slug){
 
+	$overall_elevated = scurve('overall_elevated');
+
+	if(sizeof($overall_elevated['scurve'])>0 ) {
+		$asofdate = $overall_elevated['scurve'][0]['scurve_date'];
+	}
+	$overall_elevated = array("overall_elevated" => build_me_an_scurve_array($overall_elevated,FALSE));
+
+	$underground = scurve('underground');
+	$underground = array("underground" => build_me_an_scurve_array($underground,FALSE));
+
+	$elevated_north = scurve('elevated_north');
+	$elevated_north = array("elevated_north" => build_me_an_scurve_array($elevated_north,FALSE));
+
+	$overall_elevated_underground = scurve('overall_elevated_underground');
+	$overall_elevated_underground = array("overall_elevated_underground" => build_me_an_scurve_array($overall_elevated_underground,FALSE));
+
+	$elevated_south = scurve('elevated_south');
+	$elevated_south = array("elevated_south" => build_me_an_scurve_array($elevated_south,FALSE));
+
+	$elevated_south_underground = scurve('elevated_south_underground');
+	$elevated_south_underground = array("elevated_south_underground" => build_me_an_scurve_array($elevated_south_underground,FALSE));
+
+	$superFinal = array('programme' => array_merge($overall_elevated,$underground,$elevated_north,$overall_elevated_underground,$elevated_south,$elevated_south_underground));
+
+	if(isset($asofdate)) {
+		return array("asofdate" => $asofdate, "value" => json_encode($superFinal));
+	}else{
+		return array("value" => json_encode($superFinal));
+	}
 }
 
 /**
  * MSPR
  * @param $slug
  * @return Array
- * @Desc  Portlet specific info of Under Ground (UG)
+ * @Desc
  */
 function build_mspr($slug){
 
@@ -618,36 +680,41 @@ function build_viaducts_summary($slug){
  * @Desc   Utility Function (Copied from the "tojson(line1)")
  */
 function build_me_an_scurve_array($data,$asofdate = TRUE){
-	$actual = array();
-	$late = array();
-	$early = array();
-	foreach($data['scurve_main'] as $q){
-		if($q['actual_data'] != '-')
-			$actual[] = (float) $q['actual_data'];
-		if($q['delayed_data'] != '-')
-			$late[] = (float) $q['delayed_data'];
-		if($q['early_data'] != '-')
-			$early[] = (float) $q['early_data'];
+	if(sizeof($data['scurve'])>0) {
+		$actual = array();
+		$late = array();
+		$early = array();
+		foreach ($data['scurve_main'] as $q) {
+			if ($q['actual_data'] != '-')
+				$actual[] = (float)$q['actual_data'];
+			if ($q['delayed_data'] != '-')
+				$late[] = (float)$q['delayed_data'];
+			if ($q['early_data'] != '-')
+				$early[] = (float)$q['early_data'];
+		}
+		$scurvearr = array(
+			'date' => date('d-M-y', strtotime($data['scurve'][0]['scurve_date'])),
+			'actualData' => $actual,
+			'earlyData' => $early,
+			'delayedData' => $late,
+			'currentEarly' => $data['scurve'][0]['early_data'] . '%',
+			'currentLate' => $data['scurve'][0]['delayed_data'] . '%',
+			'currentActual' => $data['scurve'][0]['actual_data'] . '%',
+			'varEarly' => $data['scurve'][0]['var_early'] . 'w',
+			'varLate' => $data['scurve'][0]['var_late'] . 'w',
+			'trend' => $data['scurve'][0]['trend'],
+			'chartType' => "long",
+			'viewType' => "1",
+		);
+
+
+		if (!$asofdate)
+			unset($scurvearr['date']);
+
+		return $scurvearr;
+	}else{
+		return [];
 	}
-	$scurvearr = array(
-		'date' => date('d-M-y', strtotime($data['scurve'][0]['scurve_date'])),
-		'actualData' => $actual,
-		'earlyData' => $early,
-		'delayedData' => $late,
-		'currentEarly' => $data['scurve'][0]['early_data'].'%',
-		'currentLate' => $data['scurve'][0]['delayed_data'].'%',
-		'currentActual' => $data['scurve'][0]['actual_data'].'%',
-		'varEarly' => $data['scurve'][0]['var_early'].'w',
-		'varLate' => $data['scurve'][0]['var_late'].'w',
-		'trend' => $data['scurve'][0]['trend'],
-		'chartType' => "long",
-		'viewType' => "1",
-	);
-
-	if(!$asofdate)
-		unset($scurvearr['date']);
-
-	return $scurvearr;
 }
 
 /**
@@ -738,7 +805,7 @@ function run(){
 				break;
 			case 7:
 				$scurves = build_scurves($q['slug']);
-//				updateDB($q['slug'], $scurves, $date);
+				updateDB($q['slug'], $scurves, $date);
 				break;
 			case 8:
 				$mspr = build_mspr($q['slug']);

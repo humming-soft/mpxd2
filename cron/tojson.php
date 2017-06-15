@@ -493,8 +493,7 @@ function build_me_an_scurve_array($data = 'Give me the data or im not going to b
 	return $scurvearr;
 }
 
-function slugify($text)
-{ 
+function slugify($text){
   // replace non letter or digits by -
   $text = preg_replace('~[^\\pL\d]+~u', '_', $text);
 
