@@ -267,7 +267,12 @@ function ug_station_progress($slug){
  * @Desc
  */
 function info_tunnel($slug){
-	return [];
+	$contractor = contractor($slug);
+	$i["name"] = "Tunnel";
+	foreach ($contractor as $value) {
+		$i["contractor"] = $value['contractor'];
+	}
+	return $i;
 }
 
 /**
@@ -292,6 +297,34 @@ function ug_station_activity($slug){
  */
 function v_summary($slug){
 	return [];
+}
+
+/**
+ * Viaduct Summary
+ * @param $slug
+ * @return Array
+ * @Desc
+ */
+function dashboard(){
+	$query = db()->dash_commercial()
+		->select('pagename','slug','name','value','date','as_of');
+	$result = array_map('iterator_to_array', iterator_to_array($query));
+	return $result;
+}
+
+/**
+ * Viaduct Summary
+ * @param $slug
+ * @return Array
+ * @Desc
+ */
+function ns_summary($slugs){
+	$query = db()->{'"scurve"'}
+		->select('pagename','early_data','delayed_data','actual_data','var_early','var_late','trend')
+		->where("slug", $slugs)
+		->and("scurve_date", db()->scurve()->select('MAX(scurve_date)'));
+	$result= array_map('iterator_to_array', iterator_to_array($query));
+	return $result;
 }
 /**
  *69696969669696969696969696969696969696969696969696969696969696969696969696969696969699696969696996969696969696969696969696969696969696969696969696969
@@ -367,10 +400,39 @@ function build_systems($slug){
 	$kad = kad($slug);
 	$scurve = scurve($slug);
 
+	//SCURVE
+	if(sizeof($scurve['scurve'])>0 ) {
+		$actual = array();
+		$late = array();
+		$early = array();
+		foreach ($scurve['scurve_main'] as $q) {
+			if ($q['actual_data'] != '-')
+				$actual[] = (float)$q['actual_data'];
+			if ($q['delayed_data'] != '-')
+				$late[] = (float)$q['delayed_data'];
+			if ($q['early_data'] != '-')
+				$early[] = (float)$q['early_data'];
+		}
+		$scurvearr = array(
+			'date' => date('d-M-y', strtotime($scurve['scurve'][0]['scurve_date'])),
+			'actualData' => $actual,
+			'earlyData' => $early,
+			'delayedData' => $late,
+			'currentEarly' => $scurve['scurve'][0]['early_data'] . '%',
+			'currentLate' => $scurve['scurve'][0]['delayed_data'] . '%',
+			'currentActual' => $scurve['scurve'][0]['actual_data'] . '%',
+			'varEarly' => $scurve['scurve'][0]['var_early'] . 'w',
+			'varLate' => $scurve['scurve'][0]['var_late'] . 'w',
+			'trend' => $scurve['scurve'][0]['trend'],
+			'chartType' => "long",
+			'viewType' => "2",
+		);
+	}
+
 	$finalKAD = array("KAD" => $kad);
 	$finalINFO = array("INFO" =>$info);
 	$finalGALLERY = array("gallery" => $gallery);
-	$finalSCURVE = array("scurve" => $scurve);
+	$finalSCURVE = array("scurve" => (sizeof($scurve['scurve'])>0 ? $scurvearr : []));
 	$superFinal = array($slug => array_merge($finalINFO,  $finalKAD, $finalGALLERY, $finalSCURVE));
 	return json_encode($superFinal);
 }
@@ -436,7 +498,7 @@ function build_stations($slug){
 function build_ug($slug){
 	$tunnel_progress = tunnel_progress($slug);
 	$info = packageInfo($slug,2);
-	$info_tunnel = info_tunnel($slug);
+	$info_tunnel = info_tunnel("tunnel");
 	$station_progress = ug_station_progress($slug);
 	//$gallery = gallery($slug);
 	$gallery_tunnel = gallery($slug);
@@ -446,12 +508,20 @@ function build_ug($slug){
 	$hsse_tunnel = safety_incident($slug);
 	$scurve = scurve($slug);
 
+
+	//station progress
+	$station_progress_arr=new stdClass();
+	$station_progress_arr->date = date('d-M-y', strtotime($station_progress[0]['asof']));
+	foreach($station_progress as $q){
+		$station_progress_arr->$q['station_name'] = array("progress" => (float) $q['progress']);
+	}
+
 	$finalPROGRESS = array("overall_tunnel_progress" => $tunnel_progress);
-	$finalSP = array("station" => $station_progress);
+	$finalSP =  array("station" => $station_progress_arr);
 	$finalKAD = array("KAD" => $kad);
 	$finalKADTEL = array("KAD_TUNNEL" => $kad_tunnel);
 	$finalINFO = array("INFO" =>$info);
-	$finalINFOTEL = array("INFO_TUNNEL" =>$info_tunnel);
+	$finalINFOTEL = array("tunnel" =>$info_tunnel);
 	$finalHSSE = array("hsse" => $hsse);
 	$finalHSSETEL = array("hsse_tunnel" => $hsse_tunnel);
 	//$finalGALLERY = array("gallery" => $gallery);
@@ -592,7 +662,6 @@ function build_mspr($slug){
 	$kad = kad($slug,2);
 	$scurve = scurve($slug);
 
-
 	//SCURVE
 	if(sizeof($scurve['scurve'])>0 ) {
 		$actual = array();
@@ -646,8 +715,24 @@ function build_procurement($slug){
  * @return Array
  * @Desc  Portlet specific info of Under Ground (UG)
  */
-function build_dashboard($slug){
+function build_dashboard($get_asof = false){
 
+	$commercial = dashboard();
+	$commercial_arr = new stdClass();
+	foreach($commercial as $k => $q){
+		$as_of = $q['as_of'];
+		$name = slugify($q['name']);
+		$commercial_arr->$name = (float) $q['value'];
+		if($k==0 || $k==1 || $k==2)
+			$commercial_arr->$name /= 1000;
+
+	}
+	if($get_asof){
+		$as_of = DateTime::createFromFormat('d-M-Y', $as_of)->format('Y-m-d');
+		return $as_of;
+	}
+	else
+		return json_encode($commercial_arr);
 }
 
 /**
@@ -657,7 +742,9 @@ function build_dashboard($slug){
  * @Desc  Portlet specific info of Under Ground (UG)
  */
 function build_systems_summary($slug){
-	$summary = v_summary($slug);
+	$arr_slugs = array();
+	array_push($arr_slugs, "stc-psd-apg","icss-cmms","etde","twmv","psds","comms","afc");
+	$summary = ns_summary($arr_slugs);
 	$finalSUMMARY = array("syspackage" => $summary);
 	$superFinal = array($slug => array_merge($finalSUMMARY));
 	return json_encode($superFinal);
@@ -671,6 +758,16 @@ function build_systems_summary($slug){
  */
 function build_viaducts_summary($slug){
 
+	$arr_slugs = array();
+	if($slug==="north"){
+		array_push($arr_slugs, "v201","v202","v203","mspr1","mspr2","mspr3","mspr4","mspr5");
+	}else if($slug==="south"){
+		array_push($arr_slugs, "v204","v205","v206","v207", "v208", "v209", "v210","serdang-dpt","mspr6","mspr7","mspr8","mspr9","mspr10", "mspr11","mspr12","mspr13","mspr14","mspr15");
+	}
+	$summary = ns_summary($arr_slugs);
+	$finalSUMMARY = array("scorecard" => $summary);
+	$superFinal = array($slug => array_merge($finalSUMMARY));
+	return json_encode($superFinal);
 }
 
 /**
@@ -816,8 +913,8 @@ function run(){
 //				updateDB($q['slug'], $procurement, $date);
 				break;
 			case 10:
-				$dashboard = build_dashboard($q['slug']);
-//				updateDB($q['slug'], $dashboard, $date);
+				$dashboard = build_dashboard();
+				updateDB($q['slug'], $dashboard, build_dashboard(true));
 				break;
 			case 11:
 				$systems_summary = build_systems_summary($q['slug']);
