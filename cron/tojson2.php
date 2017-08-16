@@ -488,7 +488,6 @@ function build_stations($slug){
 	$superFinal = array($slug => array_merge($finalQRM, $finalKAD, $finalINFO, $finalGALLERY, $finalSCURVE));
 	return json_encode($superFinal);
 }
-
 /**
  * UNDER GROUND (UG)
  * @param $slug
@@ -706,7 +705,6 @@ function build_mspr($slug){
  * @Desc  Portlet specific info of Under Ground (UG)
  */
 function build_procurement($slug){
-
 }
 
 /**
