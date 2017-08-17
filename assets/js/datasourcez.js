@@ -997,7 +997,7 @@ mpxd.modules.general.GeneralView = Backbone.View.extend({
             if (that.data.type === 'slider') {
                 // modified by agaile to show image slider from local repository : 31/05/2016 : START
                 //console.log('slider_agaile');
-                //console.log(that.data);
+                //console.log(that.data.data);
                 var lg = that.data.data.items.length;
                 //console.log('inside loop');
                 for (var i = 0; i < lg; i++) {

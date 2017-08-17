@@ -2,8 +2,14 @@
     <div class="row content">
         <div class="col-md-12 portlet_title">
             <i class="fa_title_icon fa fa-calendar-check-o" aria-hidden="true"></i>
-            HSSE
-            <span class="plate_asof">(As of : 3rd July 2016)</span>
+            <% if (typeof(data.data[0]) !=="undefined"){%>
+            <% if (typeof(data.data[0].date) !== "undefined") { %>
+                <%=data.title%> <span class="plate_asof">(As of : <%=data.data[0].date%>) </span>
+            <% } else {%>
+                <%=data.title%>
+            <% }}else {%>
+                <%=data.title%>
+            <% }%>
         </div>
         <div class="col-md-12 portlet_content">
             <div class="">
@@ -15,42 +21,27 @@
                     </tr>
                     </thead>
                     <tbody>
+                    <%
+                    data.data.sort(function(a,b){
+                        var x = new Date(a[0])
+                        var z = new Date(b[0])
+                        return z-x
+                    })
+                    for (var i in data.data) {
+                        var row = data.data[i];
+                    %>
                     <tr>
-                        <td class="">31 Oct 2015</td>
-                        <td class="">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-                            tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-                            quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-                            consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-                            cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-                            proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</td>
+                        <td class=""><%=row[0]%></td>
+                        <td class=""><%=row[1]%></td>
                     </tr>
+                    <%}%>
+                    <%
+                        if (data.data.length == 0){
+                    %>
                     <tr>
-                        <td class="">19 Oct  2015</td>
-                        <td class="">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-                            tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-                            quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-                            consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-                            cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-                            proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</td>
+                        <td colspan="2" style="text-align: center">Nil</td>
                     </tr>
-                    <tr>
-                        <td class="">4 Apr 2016</td>
-                        <td class="">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-                            tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-                            quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-                            consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-                            cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-                            proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</td>
-                    </tr>
-                    <tr>
-                        <td class="">19 Oct 2015</td>
-                        <td class="">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-                            tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-                            quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-                            consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-                            cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-                            proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</td>
-                    </tr>
+                    <%}%>
                     </tbody>
                 </table>
             </div>

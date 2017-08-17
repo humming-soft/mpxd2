@@ -40,9 +40,16 @@
     <div class="row content">
         <div class="col-md-12 portlet_title">
             <i class="fa_title_icon fa fa-pie-chart" aria-hidden="true"></i>
-            KPI
-            <span class="plate_asof">(As of : 3rd July 2016)</span>
+            <% if (typeof(data.data[0]) !== "undefined") { %>
+            <% if (typeof(data.data[0].date) !== "undefined") { %>
+                <%=data.title%> <span class="plate_asof">(As of : <%=data.data[0].date%>) </span>
+            <% } else {%>
+                <%=data.title%>
+            <% }}else {%>
+                <%=data.title%>
+            <% }%>
         </div>
+        <%console.log(data.data)%>
         <div class="col-md-12 portlet_content">
             <div class="">
                 <table class="table">
@@ -57,21 +64,48 @@
                     </tr>
                     </thead>
                     <tbody>
-                    <tr>
-                        <td class="">Parapet</td>
-                        <td class="set_center baseline">290</td>
-                        <td class="set_center target">282</td>
-                        <td class="set_center actual">290</td>
-                        <td class="set_center shortfall">8</td>
-                        <td class="set_center actual">100.0%</td>
-                    </tr>
-                    <td class="">Bearings</td>
-                    <td class="set_center baseline">290</td>
-                    <td class="set_center target">278</td>
-                    <td class="set_center actual">290</td>
-                    <td class="set_center shortfall">12</td>
-                    <td class="set_center actual">100.0%</td>
-                    </tr>
+                    <%if (data.data.length == 0) {%>
+                        <tr><td colspan="6" style="text-align: center;">Nil</td></tr>
+                    <%}%>
+                    <%for (var i in data.data) { if(Object.prototype.toString.call(data.data[i]) == "[object Object]") { /*Do nothing*/} else {%>
+                    <%
+                    var actual = data.data[i][3];
+                    var target = data.data[i][2];
+                    var baseline = data.data[i][1];
+
+                    var checkdata3 = (data.data[i][3] == parseInt(data.data[i][3]));
+                    var checkdata2 = (data.data[i][2] == parseInt(data.data[i][2]));
+                    var checkdata1 = (data.data[i][1] == parseInt(data.data[i][1]));
+
+                    var progress = 'N/A';
+                    var overall = 'N/A';
+                    var shortfall = 'N/A';
+                    /*
+                    if(baseline != 0)
+                    overall = Math.round((actual/baseline)*100) + "%";
+                    if(target != 0){
+                    progress = ((actual/baseline)*100).toFixed(1) + "%";
+                    if(target != "-")
+                    shortfall = actual - target;
+                    }
+                    */
+                    if((baseline != 0) && (checkdata3 == true) && (checkdata1 == true)){
+                    overall = ((actual/baseline)*100).toFixed(1) + "%";
+                    console.log(checkdata3 == true) && (checkdata2 == true);
+                    }
+                    if((target > 0) && (checkdata3 == true) && (checkdata2 == true)){
+                    shortfall = actual - target;
+                    }
+                    %>
+                        <tr>
+                            <td class=""><%=data.data[i][0]%></td>
+                            <td class="set_center baseline"><%=String.prototype.numberWithCommas(data.data[i][1])%></td>
+                            <td class="set_center target"><%=String.prototype.numberWithCommas(data.data[i][2])%></td>
+                            <td class="set_center actual"><%=String.prototype.numberWithCommas(data.data[i][3])%></td>
+                            <td class="set_center shortfall"><%=String.prototype.numberWithCommas(shortfall)%></td>
+                            <td class="set_center actual"><%=overall%></td>
+                        </tr>
+                    <%}}%>
                     </tbody>
                 </table>
             </div>

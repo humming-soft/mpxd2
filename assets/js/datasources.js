@@ -4,7 +4,7 @@ Date    : 14/07/2016*/
 
 //Redefined Console.log function
 //Please comment the below line when console.log requires.
-console.log = function() {}
+//console.log = function() {}
 
 //Page Info for Stations
 mpxd.constructors.page_station_info = function(data) {
