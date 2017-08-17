@@ -375,12 +375,13 @@ function build_viaducts($slug){
 		);
 	}
 
+	$galleryFormatter = array("title"=> strtoupper($slug).' Image Gallery',"items" => $gallery);
 	$finalQRM = array("QRM" => $kpi);
 	$finalKAD = array("KAD" => $kad);
 	$finalKD = array("KD" => $kd);
 	$finalINFO = array("INFO" =>$info);
 	$finalHSSE = array("hsse" => $hsse);
-	$finalGALLERY = array("gallery" => $gallery);
+	$finalGALLERY = array("gallery" => $galleryFormatter);
 	$finalSCURVE = array("scurve" => (sizeof($scurve['scurve'])>0 ? $scurvearr : []));
 	$superFinal = array($slug => array_merge($finalQRM, $finalKAD, $finalKD, $finalINFO, $finalHSSE, $finalGALLERY, $finalSCURVE));
 
@@ -428,7 +429,7 @@ function build_systems($slug){
 			'viewType' => "2",
 		);
 	}
-
+	
 	$finalKAD = array("KAD" => $kad);
 	$finalINFO = array("INFO" =>$info);
 	$finalGALLERY = array("gallery" => $gallery);
