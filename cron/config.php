@@ -12,7 +12,7 @@ function db(){ //warehouse
 
 function mpxd(){ //dashboard
 	$host = '192.168.1.52';
-	$pdo = new PDO("pgsql:dbname=ceodb_line2_org;user=postgres;password=mrt@mpxd!@#123;host=$host;port=5432");
+	$pdo = new PDO("pgsql:dbname=mpxd2;user=postgres;password=mrt@mpxd!@#123;host=$host;port=5432");
 	$db = new NotORM($pdo);
 	return $db;
 }
