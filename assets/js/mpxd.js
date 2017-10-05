@@ -3,7 +3,8 @@ mpxd = {};
 
 isPDF = true;
 isUseCustomPortlet = (getUrlParameter("print") == "1");
-var imageBase = window.location.origin;
+//var imageBase = window.location.origin;
+var imageBase = 'http://192.168.1.63:90';
 //mpxd.siteurl = 'https://mpxd.mymrt.com.my/';
 mpxd.siteurl = imageBase+'/';
 $(function(){
