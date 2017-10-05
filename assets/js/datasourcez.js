@@ -759,7 +759,7 @@ mpxd.modules.gallery.GalleryView = Backbone.View.extend({
         that.$el.html(template);
 		that.$el.find('.portlet_content').css({"height":(that.$el.find('.content').parent().parent().parent().height())-40});
 		that.$el.find('.portlet_content').mCustomScrollbar({theme:"dark-3"});
-		
+
 		if(typeof that.data.data.items === 'object') // Local repository format
 		{
 			images = that.data.data.items;
@@ -772,7 +772,7 @@ mpxd.modules.gallery.GalleryView = Backbone.View.extend({
 						"srct":  mpxd.siteurl+image.path,
 						"title":  image.title,
 						"ID":  image.id,
-						"kind":  image.kind,
+						"kind":  image.kind
 					});
 				}
 				else if(image.kind == 'image'){
@@ -780,7 +780,7 @@ mpxd.modules.gallery.GalleryView = Backbone.View.extend({
 						"src":  mpxd.siteurl+image.path,
 						"srct":  mpxd.siteurl+image.path,
 						"title":  image.title,
-						"albumID":  image.id,
+						"albumID":  image.id
 					});
 				}
 			}
@@ -996,8 +996,8 @@ mpxd.modules.general.GeneralView = Backbone.View.extend({
 
             if (that.data.type === 'slider') {
                 // modified by agaile to show image slider from local repository : 31/05/2016 : START
+                //var lg = that.data.data.length;
                 var lg = that.data.data.items.length;
-                //console.log('inside loop');
 				if(lg > 0) {
 					for (var i = 0; i < lg; i++) {
 						if ((that.data.data.items[i].id == 1) && (that.data.data.items[i].kind == "image")) {
