@@ -42,19 +42,26 @@
 	baseURL = <?php echo json_encode($this->config->base_url()); ?>;
 	$(window).load(function(){
 		data = <?php echo json_encode($data); ?>;
-		$('#overall_actual').text(data['overall_actual']+'%');
-		$('#overall_variance').text(data['overall_variance']["early"]+'%');
-		$('#overall_early').text(data['overall_late']+'%');
-		$trend = $('#trend'); $css='';
-		$("#trend_text").text(data['trend'].toUpperCase());
-		if(data['trend']=="up"){
-			$css = "fa fa-arrow-up";
-		}else if(data['trend']=="down"){
-			$css = "fa fa-arrow-down red";
+		console.log(data);
+	/*	$('#pop_value .set1').text(typeof(data['overall_actual'])==="undefined"?'-':data['overall_actual']+'%');
+		$('#pop_value .set2').text(typeof(data['overall_late'])==="undefined"?'-':data['overall_late']+'%');
+		$('#pop_value .set3').text(typeof(data['overall_variance'])==="undefined"?'-':data['overall_variance']+'%');
+		$trend = $('#trend'); $css = '';
+		if(typeof(data['trend'])!="undefined") {
+			$("#trend_text").text(data['trend'].toUpperCase());
+			if (data['trend'] == "up") {
+				$css = "fa fa-arrow-up status_green";
+				$("#trend_text").addClass("status_green");
+			} else if (data['trend'] == "down") {
+				$css = "fa fa-arrow-down status_red";
+				$("#trend_text").addClass("status_red");
+			} else {
+				$css = "";
+			}
+			$trend.removeClass().addClass($css);
 		}else{
-			$css = "";
-		}
-		$trend.removeClass().addClass($css);
+			$trend.removeClass();
+		}*/
 	});
 </script>
 <script type="text/javascript" src="<?php echo $this->config->base_url(); ?>assets/mmc/js/db.js"></script>
