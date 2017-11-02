@@ -3,8 +3,7 @@ mpxd = {};
 
 isPDF = true;
 isUseCustomPortlet = (getUrlParameter("print") == "1");
-//var imageBase = window.location.origin;
-var imageBase = 'http://192.168.1.63:90';
+var imageBase = window.location.origin;
 //mpxd.siteurl = 'https://mpxd.mymrt.com.my/';
 mpxd.siteurl = imageBase+'/';
 $(function(){
@@ -49,7 +48,25 @@ mpxd.templateURLs = {
 	"barchart_workpackage" : {"templateURL": "assets/templates/procurement_contract_awarded.html"},
 	"ug_work_progress" : {"templateURL": "assets/templates/ug_work_progress.html"},
 	"summary_list" : {"templateURL": "assets/templates/summary_list.html"},
-	"report" : {"templateURL": "assets/templates/generate_report.html"}
+	"report" : {"templateURL": "assets/templates/generate_report.html"},
+	"gis_sbk_s_05" : {"templateURL": "assets/templates/page_gis_sbk_s_05.html"},
+	"temp_portlet" : {"templateURL": "assets/templates/temp_portlet.html"},
+	"et_progress" : {"templateURL": "assets/templates/et_progress.html"},
+	"et_overallOpenItemClosure" : {"templateURL": "assets/templates/et_overallOpenItemClosure.html"},
+	"et_testing" : {"templateURL": "assets/templates/et_testing.html"},
+	"et_manufacturing_progress" : {"templateURL": "assets/templates/et_manufacturing_progress.html"},
+	"et_project_timeline" : {"templateURL": "assets/templates/et_project_timeline.html"},
+	
+	"padu_progress" : {"templateURL": "assets/templates/padu_progress.html"},
+	"padu_projectcost" : {"templateURL": "assets/templates/padu_projectcost.html"},
+	"padu_scurve" : {"templateURL": "assets/templates/padu_scurve.html"},
+	"padu_upcomingtask" : {"templateURL": "assets/templates/padu_upcomingtask.html"},
+	"padu_latetask" : {"templateURL": "assets/templates/padu_latetask.html"},
+	"padu_issuemitigation" : {"templateURL": "assets/templates/padu_issuemitigation.html"}
+	
+	
+	
+	
 }
 
 mpxd.templateData = {};

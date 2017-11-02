@@ -11,14 +11,10 @@
 			<span class="set5">Trend</span>
 		</div>
 		<div id="pop_value">
-			<span class="set1"><?php echo $data['overall_actual']; ?>%</span>
-			<span class="set2"><?php echo $data['overall_early']; ?>%</span>
-			<span class="set3"><?php echo $data['overall_variance']; ?>%</span>
-			<?php if($data['trend'] === 'up'){ ?>
-				<span class="set4"><i class="fa fa-arrow-up" aria-hidden="true"></i> <?php echo strtoupper($data['trend']); ?></span>
-			<?php }else if($data['trend'] === 'down'){ ?>
-				<span class="set4"><i class="fa fa-arrow-down status_red" aria-hidden="true"></i> <?php echo strtoupper($data['trend']); ?></span>
-			<?php } ?>
+			<span class="set1">76%</span>
+			<span class="set2">78%</span>
+			<span class="set3">-2w</span>
+			<span class="set4"><i class="fa fa-arrow-up" aria-hidden="true"></i> UP</span>
 		</div>
 	</div>
 	<div id="plate_commercial">
@@ -33,13 +29,13 @@
 			<span class="set8">Contigency Sum</span>
 		</div>
 		<div id="pcom_value">
-			<span class="set1"><?php echo number_format($data['project_spend_to_date'], 2, '.', ','); ?> Bil</span>
-			<span class="set2"><?php echo number_format($data['pdp_reimbusables'], 2, '.', ',');?> Bil</span>
-			<span class="set3"><?php echo number_format($data['award_package'], 2, '.', ','); ?> Mil</span>
-			<span class="set4"><?php echo number_format($data['retention'], 2, '.', ','); ?> Bil</span>
-			<span class="set5"><?php echo number_format($data['wpcs_payment'], 2, '.', ','); ?> Mil</span>
+			<span class="set1">16.75 Bil</span>
+			<span class="set2">21.52 Bil</span>
+			<span class="set3">1.55 Mil</span>
+			<span class="set4">13.50 Bil</span>
+			<span class="set5">382.51 Mil</span>
 			<span class="set6">502.80 Mil</span>
-			<span class="set7"><?php echo number_format($data['variation_orders'], 2, '.', ','); ?> Mil</span>
+			<span class="set7">775.46 Mil</span>
 		</div>
 	</div>
 	<div id="plate_legend">
@@ -65,7 +61,7 @@
 			
 			
 			
-	<div id="plate_system">
+	<!-- <div id="plate_system">
 		<div id="donut_plate">
 			<div id="dp_db_donut_0" class="dp_top"></div>
 			<div id="dp_db_donut_1" class="dp_bottom"></div>
@@ -75,6 +71,38 @@
 			<div id="dp_db_donut_5" class="dp_bottom"></div>
 			<div id="dp_db_donut_6" class="dp_bottom"></div>
 			<div id="dp_db_donut_7" class="dp_bottom"></div>
+		</div>
+	</div> -->
+	
+	<div id="plate_system">
+		<div id="donut_plate">
+			<div class="donut_box_small">
+				<div class="the_donut dp_db_donut_1b"></div>
+			</div>
+			<div class="donut_box_small">
+				<div class="the_donut dp_db_donut_1a"></div>
+				<div class="the_donut dp_db_donut_1c"></div>
+			</div>
+			<div class="donut_box_small">
+				<div class="the_donut dp_db_donut_2a"></div>
+				<div class="the_donut dp_db_donut_2b"></div>
+			</div>
+			<div class="donut_box_small">
+				<div class="the_donut dp_db_donut_3a"></div>
+				<div class="the_donut dp_db_donut_3b"></div>
+			</div>
+			<div class="donut_box_small">
+				<div class="the_donut dp_db_donut_4a"></div>
+				<div class="the_donut dp_db_donut_4b"></div>
+			</div>
+			<div class="donut_box_small">
+				<div class="the_donut dp_db_donut_5a"></div>
+				<div class="the_donut dp_db_donut_5b"></div>
+			</div>
+			<div class="donut_box_small">
+				<div class="the_donut dp_db_donut_6a"></div>
+				<div class="the_donut dp_db_donut_7a"></div>
+			</div>
 		</div>
 	</div>
 	

@@ -571,109 +571,59 @@ float - system donut - chocolate nuts donuts
 
 #donut_plate {
 	position: absolute;
-	bottom: 1%;
-	left: 14.5%;
-	width: 485px;
-	/*background: rgba(220,220,255,.3);*/
-	/*height: 400px;*/
+	bottom: 5%;
+	left: 18%;
+	width: 40%;
+	height: 34%;
 }
 
-circle.svg_donut_system_circle {
-	fill: none;
-	stroke-width: 10;
-	stroke-dasharray: 0 150;
-}
-svg.svg_donut_system {
-	margin: 0 auto;
-	background: none;
-	-webkit-transform: rotate(-90deg);
-	transform: rotate(-90deg);
-	border-radius: 50%;
-	display: block;
-}
-
-div#donut_plate > div.dp_top {
-	width: 485px;
-	height: 200px;
-}
-div#donut_plate > div.dp_bottom {
+div#donut_plate div.donut_box_large,
+div#donut_plate div.donut_box_small {
+	/*padding: 5px;*/
 	display: inline-block;
-	margin: 0 5px;
+	vertical-align: bottom;
+}
+
+div#donut_plate div.donut_box_large {
+	width: 22%;
+}
+div#donut_plate div.donut_box_small {
+	width: 13.5%;
+}
+
+
+
+
+
+
+div.the_donut {
+	display: inline-block;
+	margin-left: 7%;
 	width: 55px;
 	height: 90px;
+	border-top: 1px solid rgba(255,255,255,.2);
 }
 
-.donut_title1_name {
-	margin: 0 30px 3px 30px;
-	display: block;
-	text-align: center;
-	font-size: .9vw;
+#plate_system div#donut_plate div.title {
+	margin-bottom: -5px;
+	font-size: 1em;
+	color: #fff;
 }
-.donut_title2_name {
-	margin-bottom: 3px;
-	display: block;
-	text-align: center;
-	font-size: .8vw;
+#plate_system div#donut_plate div.gauge1{
+	width: 70px;
+	height: 70px;
+	position: absolute;
 }
 
-/*Added By Sebin*/
-
-#data_date{
-	/*cursor: pointer;*/
-	width: 75px;
-	text-align: center;
-	height: 23px;
-	/*float: right;*/
-	background-color: transparent;
-	border: none;
-	color: #fca;
-	font-size: .8em;
-
-
-}
-#data_date:focus{
-	outline: none;
-	color: transparent;
-	text-shadow: 0 0 0 #fca;
-}
-
-.dropdown-menu {
-	right: 0;
-	left: initial;
-	z-index: 1001;
-	background: #a8acb2;
-}
-.dropdown-item {
-	display: block;
+#plate_system div#donut_plate svg.meter{
 	width: 100%;
-	padding: 3px 20px;
-	clear: both;
-	font-weight: 400;
-	color: #373a3c !important;
-	text-align: center;
-	white-space: nowrap;
-	background: 0 0;
-	border: 0;
-}
-/*.dropdown-item:focus, .dropdown-item:hover {*/
-/*color: #2b2d2f;*/
-/*text-decoration: none;*/
-/*background-color: #9b9da0;*/
-/*}*/
-.dropdown-divider {
-	height: 1px;
-	margin: .5rem 0;
+	height: 80px;
+	margin-top: -3px;
+	transform: rotate(145deg);
 	overflow: hidden;
-	background-color: #e5e5e5;
-}
-.fa-2xc{
-	font-size: 4em !important;
-	border-radius: 6px !important;
-	width: 100%;
-	height: 100%;
-	background: #00101f !important;
 }
 
-div#donut_plate > div.dp_bottom a{
-	outline: 0;
+#plate_system div#donut_plate svg.meter text {
+	font-size: 1.7em;
+	fill:#fff;
 }
