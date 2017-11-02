@@ -2,7 +2,16 @@
 	<div class="row content">
 		<div class="col-md-12 portlet_title">
 			<i class="fa_title_icon fa fa-circle-o-notch" aria-hidden="true"></i>
-			Summary
+			<% console.log(data.data);%>
+			<% if (typeof(data.data) !=="undefined"){%>
+			<% if (typeof(data.data.date) !== "undefined") { %>
+			<%=data.title%> <span class="plate_asof">(As of : <%=data.data.date%>) </span>
+			<% } else {%>
+			<%=data.title%>
+			<% }}else {%>
+			<%=data.title%>
+			<% }%>
+
 		</div>
 		<div class="col-md-12 portlet_content">
 			<div class="">
@@ -14,50 +23,27 @@
 						</tr>
 					</thead>
 					<tbody>
-						<tr>
-							<td>Sentul West</td>
-							<td class="val_actual">50%</td>
-						</tr>
-						<tr>
-							<td>Titiwangsa</td>
-							<td class="val_actual">55%</td>
-						</tr>
-						<tr>
-							<td>Hospital Kuala Lumpur</td>
-							<td class="val_actual">65%</td>
-						</tr>
-						<tr>
-							<td>Kampung Baru North</td>
-							<td class="val_actual">60%</td>
-						</tr>
-						<tr>
-							<td>Ampang Park</td>
-							<td class="val_actual">40%</td>
-						</tr>
-						<tr>
-							<td>KLCC East</td>
-							<td class="val_actual">28%</td>
-						</tr>
-						<tr>
-							<td>Conlay</td>
-							<td class="val_actual">34%</td>
-						</tr>
-						<tr>
-							<td>Tun Razak Exchange</td>
-							<td class="val_actual">56.60%</td>
-						</tr>
-						<tr>
-							<td>Chan Sow Lin</td>
-							<td class="val_actual">34%</td>
-						</tr>
-						<tr>
-							<td>Bandar Malaysia North</td>
-							<td class="val_actual">56%</td>
-						</tr>
-						<tr>
-							<td>Bandar Malaysia South</td>
-							<td class="val_actual">45%</td>
-						</tr>
+					<%
+					for (var p in data.data) {
+					%>
+					<tr>
+						<% if (p !== "date") { %>
+						<td class=""><%=p%></td>
+						<% if (typeof(data.data[p].progress) !== "undefined") { %>
+						<td  class="val_actual"><%=data.data[p].progress%>%</td>
+						<% } else {%>
+						<td  class="val_actual">0.00%</td>
+						<% } %>
+						<% }%>
+					</tr>
+					<%}%>
+					<%
+					if (data.data.length == 0){
+					%>
+					<tr>
+						<td colspan="2" style="text-align: center">Nil</td>
+					</tr>
+					<%}%>
 					</tbody>
 				</table>
 			</div>
