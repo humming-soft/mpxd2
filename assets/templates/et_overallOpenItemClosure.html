@@ -1,19 +1,17 @@
 <div class="col-md-12 portlet portlet_et_overallOpenItemClosure">
 	<div class="row content">
 		<div class="col-md-12 portlet_title">
-			<i class="fa_title_icon fa fa-hourglass" aria-hidden="true"></i>
+			<i class="fa_title_icon fa fa-bar-chart" aria-hidden="true"></i>
 			<%=data.title%>
 			<span class="plate_asof"><!--(As of : 3rd July 2016)--></span>
 		</div>
 		<div class="col-md-12 portlet_content pl0">
 			<div class="row">
 				<div class="col-md-12">
-					Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-					tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-					quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-					consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-					cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-					proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+					<div class="table_title">Overall Progress Per Train</div>
+					<div id="portlet_et_overallOpenItemClosure_chart_1"></div>
+					<div class="table_title">Outstanding Item Completion Progress</div>
+					<div id="portlet_et_overallOpenItemClosure_chart_2"></div>
 				</div>
 			</div>
 		</div>
@@ -26,3 +24,134 @@
 		<!--</div>-->
 	<!--</div>-->
 <!--</div>-->
+
+
+
+<style type="text/css">
+
+/*
+portlet_et_overallOpenItemClosure
+*/
+div.portlet_et_overallOpenItemClosure div.content {
+	background: #252237;
+}
+div.portlet_et_overallOpenItemClosure div.portlet_content {
+}
+div.portlet_et_overallOpenItemClosure div.portlet_title {
+	color: #fff;
+}
+
+
+div.portlet_et_overallOpenItemClosure div.table_title {
+	padding: 10px 20px;
+}
+
+
+
+
+</style>
+
+<script type="text/javascript">
+$(document).ready(function(){
+
+Highcharts.chart('portlet_et_overallOpenItemClosure_chart_1', {
+	chart: {
+		type: 'column'
+	},
+	title: {
+		text: ''
+	},
+	xAxis: {
+		categories: ['Train 1','Train 2','Train 3','Train 4','Train 5','Train 6','Train 7','Train 8','Train 9','Train 10','Train 11','Train 12','Train 13','Train 14','Train 15','Train 16','Train 17','Train 18','Train 19','Train 20','Train 21','Train 22','Train 23','Train 24','Train 25','Train 26','Train 27','Train 28','Train 29'],
+		title: {
+			text: 'Train'
+		}
+	},
+	yAxis: {
+		min: 0,
+		title: {
+			text: 'Number of Jobs (%)'
+		}
+	},
+	tooltip: {
+		pointFormat: '<span style="color:{series.color}">{series.name}</span>: <b>{point.y}</b> ({point.percentage:.0f}%)<br/>',
+		shared: true
+	},
+	plotOptions: {
+		column: {
+			stacking: 'percent'
+		}
+	},
+	series: [{
+		name: 'Open Job',
+		data: [0,0,76,75,66,91,103,60,63,55,79,44,44,67,65,65,74,65,76,57,54,78,45,54,53,52,52,65],
+		color: '#0af'
+	}, {
+		name: 'Closed Job',
+		data: [0,0,57,62,70,63,55,70,71,76,75,89,90,81,91,95,85,95,85,100,94,94,97,103,94,98,101,102],
+		color: '#0fa'
+	}]
+});
+
+Highcharts.chart('portlet_et_overallOpenItemClosure_chart_2', {
+	
+	xAxis: {
+		categories: ['31-Jan-2016','31-Mar-2016'],
+		title: {
+			text: 'Date'
+		}
+	},
+	title: {
+		text: ''
+	},
+	yAxis: {
+		title: {
+			text: 'Number of Jobs Done'
+		}
+	},
+	legend: {
+		layout: 'vertical',
+		align: 'right',
+		verticalAlign: 'middle'
+	},
+
+	plotOptions: {
+		series: {
+			label: {
+				connectorAllowed: false
+			}
+		}
+	},
+	tooltip: {
+		shared: true
+	},
+	series: [{
+		name: 'Jobs Done',
+		data: [2019,2193],
+		color:'#0fa'
+	}, {
+		name: 'Target',
+		data: [3459,3871],
+		color: '#0af'
+	}],
+
+	responsive: {
+		rules: [{
+			condition: {
+				maxWidth: 500
+			},
+			chartOptions: {
+				legend: {
+					layout: 'horizontal',
+					align: 'center',
+					verticalAlign: 'bottom'
+				}
+			}
+		}]
+	}
+
+});
+
+
+});
+</script>
