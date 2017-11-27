@@ -90,7 +90,10 @@ Highcharts.chart('portlet_et_overallOpenItemClosure_chart_1', {
 		name: 'Closed Job',
 		data: [0,0,57,62,70,63,55,70,71,76,75,89,90,81,91,95,85,95,85,100,94,94,97,103,94,98,101,102],
 		color: '#0fa'
-	}]
+	}],
+	credits: {
+		enabled: false
+	}
 });
 
 Highcharts.chart('portlet_et_overallOpenItemClosure_chart_2', {
@@ -109,12 +112,6 @@ Highcharts.chart('portlet_et_overallOpenItemClosure_chart_2', {
 			text: 'Number of Jobs Done'
 		}
 	},
-	legend: {
-		layout: 'vertical',
-		align: 'right',
-		verticalAlign: 'middle'
-	},
-
 	plotOptions: {
 		series: {
 			label: {
@@ -148,6 +145,9 @@ Highcharts.chart('portlet_et_overallOpenItemClosure_chart_2', {
 				}
 			}
 		}]
+	},
+	credits: {
+		enabled: false
 	}
 
 });

@@ -66,7 +66,8 @@ mpxd.templateURLs = {
 	
 	"comms_actual_progress" : {"templateURL": "assets/templates/comms_actual_progress.html"},
 	
-	"tw_kd_overall_progress" : {"templateURL": "assets/templates/tw_kd_overall_progress.html"}
+	"tw_kd_overall_progress" : {"templateURL": "assets/templates/tw_kd_overall_progress.html"},
+	"tw_kd_summary" : {"templateURL": "assets/templates/tw_kd_summary.html"}
 	
 	
 	
