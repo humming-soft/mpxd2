@@ -62,7 +62,9 @@ mpxd.templateURLs = {
 	"padu_scurve" : {"templateURL": "assets/templates/padu_scurve.html"},
 	"padu_upcomingtask" : {"templateURL": "assets/templates/padu_upcomingtask.html"},
 	"padu_latetask" : {"templateURL": "assets/templates/padu_latetask.html"},
-	"padu_issuemitigation" : {"templateURL": "assets/templates/padu_issuemitigation.html"}
+	"padu_issuemitigation" : {"templateURL": "assets/templates/padu_issuemitigation.html"},
+	
+	"comms_progress" : {"templateURL": "assets/templates/comms_progress.html"}
 	
 	
 	
