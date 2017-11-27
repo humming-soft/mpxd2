@@ -1224,7 +1224,6 @@ mpxd.modules.ug_stations.work_progress = Backbone.View.extend({
         that.$el.html(template);
         that.$el.find('.portlet_content').css({"height":(that.$el.find('.content').parent().parent().parent().height())-40});
         that.$el.find('.portlet_content').mCustomScrollbar({theme:"dark-3"});
-
         that.$el.find('div.portlet_work_progress ul li.show_Station_Box').click(function(){
             $('div.portlet_work_progress ul li').removeClass('active');$(this).addClass('active');
             $('div.portlet_work_progress div.show').addClass('hidden');

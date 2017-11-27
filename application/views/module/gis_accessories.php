@@ -105,7 +105,7 @@
 			</div>
 		</div>
 	</div>
-	
+
 	<div id="plate_physical">
 		<div id="pp_station">
 			<span class="set1"></span>
