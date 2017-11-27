@@ -76,11 +76,11 @@ mpxd.templateURLs = {
 	"sys_info" : {"templateURL": "assets/templates/sys_info.html"},
 	
 	/*SPECIFIC - ET*/
-	"et_progress" : {"templateURL": "assets/templates/et_progress.html"},
-	"et_overallOpenItemClosure" : {"templateURL": "assets/templates/et_overallOpenItemClosure.html"},
-	"et_testing" : {"templateURL": "assets/templates/et_testing.html"},
-	"et_manufacturing_progress" : {"templateURL": "assets/templates/et_manufacturing_progress.html"},
-	"et_project_timeline" : {"templateURL": "assets/templates/et_project_timeline.html"},
+	"sys_et_progress" : {"templateURL": "assets/templates/sys_et_progress.html"},
+	"sys_et_overallOpenItemClosure" : {"templateURL": "assets/templates/sys_et_overallOpenItemClosure.html"},
+	"sys_et_testing" : {"templateURL": "assets/templates/sys_et_testing.html"},
+	"sys_et_manufacturing_progress" : {"templateURL": "assets/templates/sys_et_manufacturing_progress.html"},
+	"sys_et_project_timeline" : {"templateURL": "assets/templates/sys_et_project_timeline.html"},
 	
 	/*SPECIFIC - DEMV*/
 	
@@ -95,11 +95,11 @@ mpxd.templateURLs = {
 	/*SPECIFIC - TW_M*/
 	
 	/*SPECIFIC - TW*/
-	"tw_kd_overall_progress" : {"templateURL": "assets/templates/tw_kd_overall_progress.html"},
-	"tw_kd_summary" : {"templateURL": "assets/templates/tw_kd_summary.html"},
+	"sys_tw_kd_overall_progress" : {"templateURL": "assets/templates/sys_tw_kd_overall_progress.html"},
+	"sys_tw_kd_summary" : {"templateURL": "assets/templates/sys_tw_kd_summary.html"},
 	
 	/*SPECIFIC - COMMS*/
-	"comms_actual_progress" : {"templateURL": "assets/templates/comms_actual_progress.html"}
+	"sys_comms_actual_progress" : {"templateURL": "assets/templates/sys_comms_actual_progress.html"}
 	
 	/*SPECIFIC - AFC*/
 	

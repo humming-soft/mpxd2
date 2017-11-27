@@ -14,25 +14,25 @@ mpxd.constructors.sys_info = function(data) {
 	var el = "#portlet_" + data.id;
 	return new mpxd.modules.sys_et.sys_info({data: data, el: el});
 }
-mpxd.constructors.et_progress = function(data) {
+mpxd.constructors.sys_et_progress = function(data) {
 	var el = "#portlet_" + data.id;
-	return new mpxd.modules.sys_et.et_progress({data: data, el: el});
+	return new mpxd.modules.sys_et.sys_et_progress({data: data, el: el});
 }
-mpxd.constructors.et_overallOpenItemClosure = function(data) {
+mpxd.constructors.sys_et_overallOpenItemClosure = function(data) {
 	var el = "#portlet_" + data.id;
-	return new mpxd.modules.sys_et.et_overallOpenItemClosure({data: data, el: el});
+	return new mpxd.modules.sys_et.sys_et_overallOpenItemClosure({data: data, el: el});
 }
-mpxd.constructors.et_testing = function(data) {
+mpxd.constructors.sys_et_testing = function(data) {
 	var el = "#portlet_" + data.id;
-	return new mpxd.modules.sys_et.et_testing({data: data, el: el});
+	return new mpxd.modules.sys_et.sys_et_testing({data: data, el: el});
 }
-mpxd.constructors.et_manufacturing_progress = function(data) {
+mpxd.constructors.sys_et_manufacturing_progress = function(data) {
 	var el = "#portlet_" + data.id;
-	return new mpxd.modules.sys_et.et_manufacturing_progress({data: data, el: el});
+	return new mpxd.modules.sys_et.sys_et_manufacturing_progress({data: data, el: el});
 }
-mpxd.constructors.et_project_timeline = function(data) {
+mpxd.constructors.sys_et_project_timeline = function(data) {
 	var el = "#portlet_" + data.id;
-	return new mpxd.modules.sys_et.et_project_timeline({data: data, el: el});
+	return new mpxd.modules.sys_et.sys_et_project_timeline({data: data, el: el});
 }
 
 
@@ -60,20 +60,20 @@ mpxd.constructors.gis_sbk_s_05 = function(data) {
 
 
 // TW
-mpxd.constructors.tw_kd_overall_progress = function(data) {
+mpxd.constructors.sys_tw_kd_overall_progress = function(data) {
 	var el = "#portlet_" + data.id;
-	return new mpxd.modules.sys_tw.tw_kd_overall_progress({data: data, el: el});
+	return new mpxd.modules.sys_tw.sys_tw_kd_overall_progress({data: data, el: el});
 }
-mpxd.constructors.tw_kd_summary = function(data) {
+mpxd.constructors.sys_tw_kd_summary = function(data) {
 	var el = "#portlet_" + data.id;
-	return new mpxd.modules.sys_tw.tw_kd_summary({data: data, el: el});
+	return new mpxd.modules.sys_tw.sys_tw_kd_summary({data: data, el: el});
 }
 
 
 // COMMS
-mpxd.constructors.comms_actual_progress = function(data) {
+mpxd.constructors.sys_comms_actual_progress = function(data) {
 	var el = "#portlet_" + data.id;
-	return new mpxd.modules.sys_comms.comms_actual_progress({data: data, el: el});
+	return new mpxd.modules.sys_comms.sys_comms_actual_progress({data: data, el: el});
 }
 
 
@@ -131,7 +131,7 @@ mpxd.modules.sys_et.sys_info = Backbone.View.extend({
 		that.$el.find('.portlet_content').mCustomScrollbar({theme:"dark-3"});
 	}
 })
-mpxd.modules.sys_et.et_progress = Backbone.View.extend({   
+mpxd.modules.sys_et.sys_et_progress = Backbone.View.extend({   
 	initialize: function (options) {
 		this.data = options.data;
 		this.render();
@@ -210,7 +210,7 @@ mpxd.modules.sys_et.et_progress = Backbone.View.extend({
 	}
 })
 
-mpxd.modules.sys_et.et_overallOpenItemClosure = Backbone.View.extend({   
+mpxd.modules.sys_et.sys_et_overallOpenItemClosure = Backbone.View.extend({   
 	initialize: function (options) {
 		this.data = options.data;
 		this.render();
@@ -224,7 +224,7 @@ mpxd.modules.sys_et.et_overallOpenItemClosure = Backbone.View.extend({
 	}
 })
 
-mpxd.modules.sys_et.et_testing = Backbone.View.extend({   
+mpxd.modules.sys_et.sys_et_testing = Backbone.View.extend({   
 	initialize: function (options) {
 		this.data = options.data;
 		this.render();
@@ -238,7 +238,7 @@ mpxd.modules.sys_et.et_testing = Backbone.View.extend({
 	}
 })
 
-mpxd.modules.sys_et.et_manufacturing_progress = Backbone.View.extend({   
+mpxd.modules.sys_et.sys_et_manufacturing_progress = Backbone.View.extend({   
 	initialize: function (options) {
 		this.data = options.data;
 		this.render();
@@ -252,7 +252,7 @@ mpxd.modules.sys_et.et_manufacturing_progress = Backbone.View.extend({
 	}
 })
 
-mpxd.modules.sys_et.et_project_timeline = Backbone.View.extend({   
+mpxd.modules.sys_et.sys_et_project_timeline = Backbone.View.extend({   
 	initialize: function (options) {
 		this.data = options.data;
 		this.render();
@@ -283,7 +283,7 @@ mpxd.modules.sys_et.et_project_timeline = Backbone.View.extend({
 
 // PSDS
 
-mpxd.modules.sys_psds.generateGIS = Backbone.View.extend({   
+mpxd.modules.sys_psds.sys_generateGIS = Backbone.View.extend({   
 	initialize: function (options) {
 		this.data = options.data;
 		this.render();
@@ -303,7 +303,7 @@ mpxd.modules.sys_psds.generateGIS = Backbone.View.extend({
 
 // TW
 
-mpxd.modules.sys_tw.tw_kd_overall_progress = Backbone.View.extend({   
+mpxd.modules.sys_tw.sys_tw_kd_overall_progress = Backbone.View.extend({   
 	initialize: function (options) {
 		this.data = options.data;
 		this.render();
@@ -317,7 +317,7 @@ mpxd.modules.sys_tw.tw_kd_overall_progress = Backbone.View.extend({
 	}
 })
 
-mpxd.modules.sys_tw.tw_kd_summary = Backbone.View.extend({   
+mpxd.modules.sys_tw.sys_tw_kd_summary = Backbone.View.extend({   
 	initialize: function (options) {
 		this.data = options.data;
 		this.render();
@@ -401,7 +401,7 @@ mpxd.modules.sys_tw.tw_kd_summary = Backbone.View.extend({
 
 // COMMS
 
-mpxd.modules.sys_comms.comms_actual_progress = Backbone.View.extend({   
+mpxd.modules.sys_comms.sys_comms_actual_progress = Backbone.View.extend({   
 	initialize: function (options) {
 		this.data = options.data;
 		this.render();
