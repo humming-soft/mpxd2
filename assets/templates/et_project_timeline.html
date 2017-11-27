@@ -1,0 +1,242 @@
+<div class="col-md-12 portlet portlet_et_project_timeline">
+	<div class="row content">
+		<div class="col-md-12 portlet_title">
+			<i class="fa_title_icon fa fa-calendar-check-o" aria-hidden="true"></i>
+			<%=data.title%>
+			<span class="plate_asof"><!--(As of : 3rd July 2016)--></span>
+		</div>
+		<div class="col-md-12 portlet_content pl0">
+			<div class="row">
+				<div class="col-md-12">
+					
+					<div class="table_title">Project Completion Countdown :</div>
+					<table class="table">
+						<thead>
+							<tr>
+								<th>Project Phase</th>
+								<th>SAT</th>
+								<th>SIT</th>
+								<th>Trial Run</th>
+							</tr>
+						</thead>
+						<tbody>
+							<!-- <tr>
+								<td>
+									Phase 1
+								</td>
+								<td>
+									<div class="col-md-12 upper_box">
+										<div class="row">
+											<div class="col-md-12 col1_data1_data"><span class="data_holder data_days">88</span></div>
+											<div class="col-md-12 col1_data1_label">Days Left</div>
+										</div>
+									</div>
+									<div class="col-md-12 lower_box">
+										<div class="row">
+											<div class="col-md-6">
+												<div class="row">
+													<div class="col-md-12 col1_data2_label">Start Date</div>
+													<div class="col-md-12 col1_data2_data"><span class="data_holder data_early">22-Mar-16</span></div>
+												</div>
+											</div>
+											<div class="col-md-6">
+												<div class="row">
+													<div class="col-md-12 col1_data3_label">Variance</div>
+													<div class="col-md-12 col1_data3_data"><span class="data_holder data_variance">-88w</span></div>
+												</div>
+											</div>
+										</div>
+									</div>
+								</td>
+								<td>
+									<div class="col-md-12 upper_box">
+										<div class="row">
+											<div class="col-md-12 col2_data1_data"><span class="data_holder data_days">88</span></div>
+											<div class="col-md-12 col2_data1_label">Days Left</div>
+										</div>
+									</div>
+									<div class="col-md-12 lower_box">
+										<div class="row">
+											<div class="col-md-6">
+												<div class="row">
+													<div class="col-md-12 col2_data2_label">Start Date</div>
+													<div class="col-md-12 col2_data2_data"><span class="data_holder data_early">22-Mar-16</span></div>
+												</div>
+											</div>
+											<div class="col-md-6">
+												<div class="row">
+													<div class="col-md-12 col2_data3_label">Variance</div>
+													<div class="col-md-12 col2_data3_data"><span class="data_holder data_variance">-88w</span></div>
+												</div>
+											</div>
+										</div>
+									</div>
+								</td>
+								<td>
+									<div class="col-md-12 upper_box">
+										<div class="row">
+											<div class="col-md-12 col3_data1_data"><span class="data_holder data_days">88</span></div>
+											<div class="col-md-12 col3_data1_label">Days Left</div>
+										</div>
+									</div>
+									<div class="col-md-12 lower_box">
+										<div class="row">
+											<div class="col-md-6">
+												<div class="row">
+													<div class="col-md-12 col3_data2_label">Start Date</div>
+													<div class="col-md-12 col3_data2_data"><span class="data_holder data_early">22-Mar-16</span></div>
+												</div>
+											</div>
+											<div class="col-md-6">
+												<div class="row">
+													<div class="col-md-12 col3_data3_label">Variance</div>
+													<div class="col-md-12 col3_data3_data"><span class="data_holder data_variance">-88w</span></div>
+												</div>
+											</div>
+										</div>
+									</div>
+								</td>
+							</tr> -->
+						</tbody>
+					</table>
+					
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+
+<style type="text/css">
+	
+/*
+
+portlet_et_project_timeline
+
+*/
+
+div.portlet_et_project_timeline div.content {
+	background: #252237;
+}
+div.portlet_et_project_timeline div.portlet_content {
+}
+div.portlet_et_project_timeline div.portlet_title {
+	color: #fff;
+}
+
+
+/*table setup*/
+.portlet_et_project_timeline {
+	padding: 10px 0 0 0;
+}
+.portlet_et_project_timeline thead {
+	background: #111;
+}
+.portlet_et_project_timeline table {
+	font-size: .9em;
+	margin-left: 15px;
+}
+	/*theader border*/
+	.portlet_et_project_timeline table th {
+		border-bottom: 1px solid #000 !important;
+		font-weight: normal;
+		text-align: center;
+	}
+	.portlet_et_project_timeline table .col_separation {
+		border-right: 2px solid #223;
+	}
+
+	/*tbody border*/
+	div.portlet_et_project_timeline table tbody td {
+		border-bottom: 1px solid #669 !important;
+	}
+
+div.portlet_et_project_timeline table thead th:first-child {
+	width: 150px;
+	text-align: left;
+}
+
+div.portlet_et_project_timeline div.upper_box {
+	padding: 10px 0;
+	text-align: center;
+	background: rgba(255,255,255,.15);
+	color: #ff0;
+}
+div.portlet_et_project_timeline div.lower_box {
+	padding: 10px 0;
+}
+
+div.portlet_et_project_timeline div.table_title {
+	padding: 10px 20px;
+}
+
+div.portlet_et_project_timeline span.data_holder.data_days {
+	font-size: 2em;
+}
+
+div.portlet_et_project_timeline span.data_holder.data_early {
+	color: #0fa;
+}
+div.portlet_et_project_timeline span.data_holder.data_variance {
+	color: #f5f;
+}
+	
+</style>
+
+
+
+<script type="text/javascript">
+	
+$(document).ready(function(){
+
+	var portlet_et_project_timeline_data = [
+		{
+			"project_phase":"Phase 1",
+			"sat_days_left":"0",
+			"sat_start_date":"22-Mar-16",
+			"sat_variance":"-88w",
+			"sit_days_left":"0",
+			"sit_start_date":"27-Jun-16",
+			"sit_variance":"-74w",
+			"trial_run_days_left":"0",
+			"trial_run_start_date":"25-Sep-16",
+			"trial_run_variance":"-61w",
+		},
+		{
+			"project_phase":"Phase 2",
+			"sat_days_left":"0",
+			"sat_start_date":"18-Oct-16",
+			"sat_variance":"-58w",
+			"sit_days_left":"0",
+			"sit_start_date":"30-Oct-16",
+			"sit_variance":"-56w",
+			"trial_run_days_left":"0",
+			"trial_run_start_date":"28-Apr-17",
+			"trial_run_variance":"-30w",
+		}
+	]
+	
+	for (var i = 0; i < portlet_et_project_timeline_data.length; i++) {
+		a = portlet_et_project_timeline_data[i]
+		
+		var td_data1 = a.project_phase;
+		var td_data2a = a.sat_days_left;
+		var td_data2b = a.sat_start_date;
+		var td_data2c = a.sat_variance;
+		var td_data3a = a.sit_days_left;
+		var td_data3b = a.sit_start_date;
+		var td_data3c = a.sit_variance;
+		var td_data4a = a.trial_run_days_left;
+		var td_data4b = a.trial_run_start_date;
+		var td_data4c = a.trial_run_variance;
+		
+		var append_this = '<tr><td>'+td_data1+'</td><td><div class="col-md-12 upper_box"><div class="row"><div class="col-md-12 col1_data1_data"><span class="data_holder data_days">'+td_data2a+'</span></div><div class="col-md-12 col1_data1_label">Days Left</div></div></div><div class="col-md-12 lower_box"><div class="row"><div class="col-md-6"><div class="row"><div class="col-md-12 col1_data2_label">Start Date:</div><div class="col-md-12 col1_data2_data"><span class="data_holder data_early">'+td_data2b+'</span></div></div></div><div class="col-md-6"><div class="row"><div class="col-md-12 col1_data3_label">Variance:</div><div class="col-md-12 col1_data3_data"><span class="data_holder data_variance">'+td_data2c+'</span></div></div></div></div></div></td><td><div class="col-md-12 upper_box"><div class="row"><div class="col-md-12 col2_data1_data"><span class="data_holder data_days">'+td_data3a+'</span></div><div class="col-md-12 col2_data1_label">Days Left</div></div></div><div class="col-md-12 lower_box"><div class="row"><div class="col-md-6"><div class="row"><div class="col-md-12 col2_data2_label">Start Date:</div><div class="col-md-12 col2_data2_data"><span class="data_holder data_early">'+td_data3b+'</span></div></div></div><div class="col-md-6"><div class="row"><div class="col-md-12 col2_data3_label">Variance:</div><div class="col-md-12 col2_data3_data"><span class="data_holder data_variance">'+td_data3c+'</span></div></div></div></div></div></td><td><div class="col-md-12 upper_box"><div class="row"><div class="col-md-12 col3_data1_data"><span class="data_holder data_days">'+td_data4a+'</span></div><div class="col-md-12 col3_data1_label">Days Left</div></div></div><div class="col-md-12 lower_box"><div class="row"><div class="col-md-6"><div class="row"><div class="col-md-12 col3_data2_label">Start Date:</div><div class="col-md-12 col3_data2_data"><span class="data_holder data_early">'+td_data4b+'</span></div></div></div><div class="col-md-6"><div class="row"><div class="col-md-12 col3_data3_label">Variance:</div><div class="col-md-12 col3_data3_data"><span class="data_holder data_variance">'+td_data4c+'</span></div></div></div></div></div></td></tr>'
+		
+		$('.portlet_et_project_timeline table tbody').append(append_this);
+		
+	}
+	
+
+});
+
+</script>

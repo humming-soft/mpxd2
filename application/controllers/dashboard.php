@@ -103,29 +103,6 @@ class Dashboard extends CI_Controller {
         if (!$this->session->userdata('uid'))
             return redirect('/');
 
-        $comdate = $this->dashboard_model->get_date_list('dashboard')[0]['date'];
-        $comdata = $this->dashboard_model->get_source_archivable(64);
-        $comdata = json_decode($comdata[0]['value'],true);
-        $date = $this->dashboard_model->get_date_list('programme')[0]['date'];
-        $data = Array('data' => Array(
-                'overall_actual' => 20,
-                'overall_early' => 23,
-                'overall_late' => 3,
-                'overall_variance' => 3,
-                'trend' => "down",
-                'progress_date' => $date,
-				'comdate' => $comdate
-
-        ));
-
-        foreach($comdata as $k => $v)
-                $data['data'][$k] = $v;
-/*        echo '<pre>';
-        print_r($data);
-        echo '</pre>';*/
-        $this->load->view('index', $data);
-
-
 //        $data = $this->dashboard_model->get_source_archivable(5);
 //        $data = json_decode($data[0]['value'], true);
 //        $data = $data['programme']['overall_elevated_underground'];
@@ -207,7 +184,7 @@ class Dashboard extends CI_Controller {
 //                $data['data'][$kk] = $dd;
 //        }
 //        $this->load->view('index', $data);
-//        $this->load->view('index');
+        $this->load->view('index');
     }
 
     public function view($item = FALSE, $query_type = FALSE, $query_key = FALSE) {

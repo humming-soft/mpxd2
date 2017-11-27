@@ -258,6 +258,26 @@ div.portlet_info span.iv_pierchart:hover {
 
 
 
+
+/*
+
+
+gis
+
+
+*/
+div.portlet_gis div.content {
+	background: #252237;
+}
+div.portlet_gis div.portlet_content {
+}
+
+div.portlet_gis div.portlet_title {
+	color: #fff;
+}
+
+
+
 /*
 
 
@@ -1420,23 +1440,330 @@ span.content.special_span_title {
 
 
 
+/*
+==============================================
+
+
+	SYSTEMS
+
+
+==============================================
+*/
+
+
+/*
+
+ET
+
+*/
+
+/*
+portlet_et_progress
+*/
+div.portlet_et_progress div.content {
+	background: #252237;
+}
+div.portlet_et_progress div.portlet_content {
+}
+div.portlet_et_progress div.portlet_title {
+	color: #fff;
+}
+
+div.portlet_et_progress div.portlet_content .content_chart {
+	text-align: center;
+}
+div.portlet_et_progress div.portlet_content span.chart_title {
+	font-size: 1em;
+	text-align: center;
+}
+div.portlet_et_progress #train_head path{
+	/*stroke-width: 5px !important;*/
+	stroke: #0ff !important;
+}
+div.portlet_et_progress .bar_chart_frame {
+	stroke-width: 10px !important;
+}
+div.portlet_et_progress .complete_train {
+	display: block;
+	font-size: 2.5em;
+	color: #0ff;
+}
+
+
+/*
+portlet_et_overallOpenItemClosure
+*/
+div.portlet_et_overallOpenItemClosure div.content {
+	background: #252237;
+}
+div.portlet_et_overallOpenItemClosure div.portlet_content {
+}
+div.portlet_et_overallOpenItemClosure div.portlet_title {
+	color: #fff;
+}
+
+
+/*
+portlet_et_testing
+*/
+div.portlet_et_testing div.content {
+	background: #252237;
+}
+div.portlet_et_testing div.portlet_content {
+	padding-top: 10px;
+	/*Added by Sebin*/
+	padding-bottom: 10px;
+	padding-right: 10px !important;
+}
+div.portlet_et_testing div.portlet_title {
+	color: #fff;
+}
+
+/*table*/
+div.portlet_et_testing thead {
+	background: #111;
+}
+
+div.portlet_et_testing table {
+	font-size: .9em;
+}
+
+/*theader border*/
+div.portlet_et_testing table th {
+	border-bottom: 1px solid #000 !important;
+	font-weight: normal;
+}
+div.portlet_et_testing table .col_separation {
+	border-right: 2px solid #223;
+}
+
+/*tbody border*/
+div.portlet_et_testing table tbody td {
+	border-bottom: 1px solid #669 !important;
+}
+
+
+/*
+portlet_et_manufacturing_progress
+*/
+div.portlet_et_manufacturing_progress div.content {
+	background: #252237;
+}
+div.portlet_et_manufacturing_progress div.portlet_content {
+}
+div.portlet_et_manufacturing_progress div.portlet_title {
+	color: #fff;
+}
+
+div.portlet_et_manufacturing_progress div.sub_portlet {
+}
+div.portlet_et_manufacturing_progress div.sub_portlet > div.title {
+	margin-top: 10px;
+	padding: 5px 10px;
+	background: rgba(0,255,255,.65);
+	color: #000;
+}
+div.portlet_et_manufacturing_progress div.sub_portlet > div.block_num {
+	height: 200px;
+	padding: 10px;
+	text-align: center;
+	background: rgba(0,255,255,.05);
+}
+div.portlet_et_manufacturing_progress div.sub_portlet > div.block_num .title {
+	padding: 5px 10px;
+	font-size: 1em;
+	background: rgba(0,255,255,.1);
+	border-top: 1px solid #0ff;
+}
+div.portlet_et_manufacturing_progress div.sub_portlet > div.block_num .number {
+	padding: 0 0 10px 0;
+	font-size: 2.2em;
+}
+div.portlet_et_manufacturing_progress div.sub_portlet > div.link {
+	padding: 5px 10px;
+	text-align: center;
+	background: rgba(0,0,0,.2);
+}
+
+/*train*/
+.modal_train {
+	padding: 30px !important;
+}
+
+.modal_train .modal-dialog {
+	width: 100%;
+}
+
+.modal_train .modal-content {
+	background: #222727;
+	border:5px solid rgba(0,255,255,.25);
+}
+
+.modal_train .modal-header {
+	border-bottom:1px solid #000;
+	background: rgba(0,255,255,.25);
+	color: #fff;
+	/*font-weight: bolder;*/
+}
+.modal_train .modal-footer {
+	border-top:1px solid #000;
+	background: rgba(0,0,0,.5);
+	color: #000;
+}
+.modal_train .modal-body div.train_block {
+}
+
+/*train modal*/
+.modal_train .modal-body .diagram {
+	padding: 20px;
+	background: rgba(0,0,0,.5);
+}
+	.modal_train svg .car_status_0 path,
+	.modal_train svg .car_status_0 ellipse {
+		stroke: #f0c !important;
+	}
+		.modal_train svg .car_status_0 path.body_frame {
+			fill: rgba(255,0,150,.35) !important;
+		}
+	.modal_train svg .car_status_1 path,
+	.modal_train svg .car_status_1 ellipse {
+		stroke: #fc0 !important;
+	}
+		.modal_train svg .car_status_1 path.body_frame {
+			fill: rgba(255,150,0,.35) !important;
+		}
+	.modal_train svg .car_status_2 path,
+	.modal_train svg .car_status_2 ellipse {
+		stroke: #0fc !important;
+	}
+		.modal_train svg .car_status_2 path.body_frame {
+			fill: rgba(0,255,150,.35) !important;
+		}
+
+
+/*train label*/
+.modal_train .train_plate {
+}
+
+.modal_train span.label_plate,
+.modal_train span.progress_plate {
+	position: absolute;
+	padding: 3px 5px;
+}
+	.modal_train span.label_plate > span,
+	.modal_train span.progress_plate > span {
+		margin-left: -50%;
+	}
+
+.modal_train .label_top {
+	height: 40px;
+}
+	.modal_train .label_top .label_1 {left: 50%;}
+	
+.modal_train .svg_inside {
+}
+.modal_train .label_bottom {
+	height: 60px;
+	border-bottom: 1px solid rgba(255,255,255,.1);
+}
+	.modal_train .label_bottom .car_name{
+		height: 25px;
+	}
+		.modal_train .label_bottom .label_1 {
+			left: 5%;
+			font-weight: bolder;
+		}
+		.modal_train .label_bottom .label_2 {left: 19%;}
+		.modal_train .label_bottom .label_3 {left: 41%;}
+		.modal_train .label_bottom .label_4 {left: 63%;}
+		.modal_train .label_bottom .label_5 {left: 85%;}
+	.modal_train .label_bottom .car_progress{
+		color: #ffa;
+	}
+		.modal_train .label_bottom .progress_1 {
+			left: 5%;
+			font-weight: bolder;
+		}
+		.modal_train .label_bottom .progress_2 {left: 19%;}
+		.modal_train .label_bottom .progress_3 {left: 41%;}
+		.modal_train .label_bottom .progress_4 {left: 63%;}
+		.modal_train .label_bottom .progress_5 {left: 85%;}
+		.modal_train .label_bottom .progress_6 {left: 50%;}
 
 
 
 
+/*train legend*/
+.modal_train .modal-body .legend {
+	padding: 20px;
+	background: rgba(0,0,0,.25);
+}
+.modal_train .modal-body .legend .legend1 {
+	padding: 0 15px;
+	margin: 3px 0;
+	border-left: 30px solid #f0c;
+}
+.modal_train .modal-body .legend .legend2 {
+	padding: 0 15px;
+	margin: 3px 0;
+	border-left: 30px solid #fc0;
+}
+.modal_train .modal-body .legend .legend3 {
+	padding: 0 15px;
+	margin: 3px 0;
+	border-left: 30px solid #0fc;
+}
+
+/*train table*/
+.modal_train .train_table {
+	padding: 10px 0 0 0;
+}
+.modal_train .train_table thead {
+	background: #111;
+}
+.modal_train .train_table table {
+	font-size: .9em;
+}
+	/*theader border*/
+	.modal_train .train_table table th {
+		border-bottom: 1px solid #000 !important;
+		font-weight: normal;
+	}
+	.modal_train .train_table table .col_separation {
+		border-right: 2px solid #223;
+	}
+
+	/*tbody border*/
+	div.portlet_et_testing table tbody td {
+		border-bottom: 1px solid #669 !important;
+	}
+
+.modal_train .train_table tr th:last-child,
+.modal_train .train_table tr td:last-child {
+	text-align: center;
+}
+.modal_train i.fa_status_1{
+	color: #f0c;
+}
+.modal_train i.fa_status_2{
+	color: #fc0;
+}
+.modal_train i.fa_status_3{
+	color: #0fc;
+}
 
 
-
-
-
-
-
-
-
-
-
-
-
+/*
+portlet_et_project_timeline
+*/
+div.portlet_et_project_timeline div.content {
+	background: #252237;
+}
+div.portlet_et_project_timeline div.portlet_content {
+}
+div.portlet_et_project_timeline div.portlet_title {
+	color: #fff;
+}
 
 
 
