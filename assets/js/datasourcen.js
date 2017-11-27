@@ -44,6 +44,19 @@ mpxd.constructors.et_project_timeline = function(data) {
 }
 
 
+// COMMS
+mpxd.constructors.comms_actual_progress = function(data) {
+	var el = "#portlet_" + data.id;
+	return new mpxd.modules.sys_comms.comms_actual_progress({data: data, el: el});
+}
+
+// TW
+mpxd.constructors.tw_kd_overall_progress = function(data) {
+	var el = "#portlet_" + data.id;
+	return new mpxd.modules.sys_tw.tw_kd_overall_progress({data: data, el: el});
+}
+
+
 
 // DECLARE
 //----------------------
@@ -174,9 +187,6 @@ mpxd.modules.sys_et.et_progress = Backbone.View.extend({
 	}
 })
 
-
-
-
 mpxd.modules.sys_et.et_overallOpenItemClosure = Backbone.View.extend({   
 	initialize: function (options) {
 		this.data = options.data;
@@ -190,6 +200,7 @@ mpxd.modules.sys_et.et_overallOpenItemClosure = Backbone.View.extend({
 		that.$el.find('.portlet_content').mCustomScrollbar({theme:"dark-3"});
 	}
 })
+
 mpxd.modules.sys_et.et_testing = Backbone.View.extend({   
 	initialize: function (options) {
 		this.data = options.data;
@@ -203,6 +214,7 @@ mpxd.modules.sys_et.et_testing = Backbone.View.extend({
 		that.$el.find('.portlet_content').mCustomScrollbar({theme:"dark-3"});
 	}
 })
+
 mpxd.modules.sys_et.et_manufacturing_progress = Backbone.View.extend({   
 	initialize: function (options) {
 		this.data = options.data;
@@ -214,13 +226,9 @@ mpxd.modules.sys_et.et_manufacturing_progress = Backbone.View.extend({
 		that.$el.html(template);
 		that.$el.find('.portlet_content').css({"height":(that.$el.find('.content').parent().parent().parent().height())-40});
 		that.$el.find('.portlet_content').mCustomScrollbar({theme:"dark-3"});
-		
-		// poi
-		// $('div#train_block_1 div.svg_inside').html('poi');
-		// poi
-		
 	}
 })
+
 mpxd.modules.sys_et.et_project_timeline = Backbone.View.extend({   
 	initialize: function (options) {
 		this.data = options.data;
@@ -239,6 +247,40 @@ mpxd.modules.sys_et.et_project_timeline = Backbone.View.extend({
 //	PSDS
 
 mpxd.modules.sys_psds.generateGIS = Backbone.View.extend({   
+	initialize: function (options) {
+		this.data = options.data;
+		this.render();
+	}, render: function () {
+		var that = this;
+		var html = mpxd.getTemplate(that.data.type);
+		template = _.template(html, {data: that.data});
+		that.$el.html(template);
+		that.$el.find('.portlet_content').css({"height":(that.$el.find('.content').parent().parent().parent().height())-40});
+		that.$el.find('.portlet_content').mCustomScrollbar({theme:"dark-3"});
+	}
+})
+
+
+// COMMS
+
+mpxd.modules.sys_comms.comms_actual_progress = Backbone.View.extend({   
+	initialize: function (options) {
+		this.data = options.data;
+		this.render();
+	}, render: function () {
+		var that = this;
+		var html = mpxd.getTemplate(that.data.type);
+		template = _.template(html, {data: that.data});
+		that.$el.html(template);
+		that.$el.find('.portlet_content').css({"height":(that.$el.find('.content').parent().parent().parent().height())-40});
+		that.$el.find('.portlet_content').mCustomScrollbar({theme:"dark-3"});
+	}
+})
+
+
+// TW
+
+mpxd.modules.sys_tw.tw_kd_overall_progress = Backbone.View.extend({   
 	initialize: function (options) {
 		this.data = options.data;
 		this.render();

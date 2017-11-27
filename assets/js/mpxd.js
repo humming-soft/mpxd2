@@ -64,8 +64,9 @@ mpxd.templateURLs = {
 	"padu_latetask" : {"templateURL": "assets/templates/padu_latetask.html"},
 	"padu_issuemitigation" : {"templateURL": "assets/templates/padu_issuemitigation.html"},
 	
-	"comms_progress" : {"templateURL": "assets/templates/comms_progress.html"}
+	"comms_actual_progress" : {"templateURL": "assets/templates/comms_actual_progress.html"},
 	
+	"tw_kd_overall_progress" : {"templateURL": "assets/templates/tw_kd_overall_progress.html"}
 	
 	
 	

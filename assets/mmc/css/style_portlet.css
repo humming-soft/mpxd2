@@ -21,6 +21,30 @@ green, red, red bold*/
 	font-weight: bold;
 }
 
+/*text category color*/
+.mrt_colorcode_baseline {
+	color: #0f9;
+}
+.mrt_colorcode_target {
+	color: #b7f;
+}
+.mrt_colorcode_early {
+	color: #9f3;
+}
+.mrt_colorcode_late {
+	color: #0cf;
+}
+.mrt_colorcode_actual{
+	color: #f59;
+}
+.mrt_colorcode_actual_heavy{
+	color: #f59;
+	font-weight: bold;
+}
+.mrt_colorcode_shortfall {
+	color: #ff0;
+}
+
 /*ball
 green, orange, red*/
 .mrt_colorcode_ball_1 {
@@ -1441,20 +1465,76 @@ span.content.special_span_title {
 
 
 /*
-==============================================
+##############################################
 
 
 	SYSTEMS
 
 
-==============================================
+##############################################
+*/
+
+/*
+----------------------------------------------
+	
+	COMMS
+
+----------------------------------------------
 */
 
 
 /*
 
-ET
+portlet_comms_actual_progress
 
+*/
+div.portlet_comms_actual_progress div.content {
+	background: #252237;
+}
+div.portlet_comms_actual_progress div.portlet_content {
+}
+div.portlet_comms_actual_progress div.portlet_title {
+	color: #fff;
+}
+
+
+div.portlet_comms_actual_progress div.table_title {
+	padding: 10px 20px;
+}
+
+
+/*table*/
+div.portlet_comms_actual_progress thead {
+	background: #111;
+}
+
+div.portlet_comms_actual_progress table {
+	margin-top: 10px;
+	font-size: .9em;
+}
+
+
+/*theader border*/
+div.portlet_comms_actual_progress table th {
+	border-bottom: 1px solid #000 !important;
+	font-weight: normal;
+}
+div.portlet_comms_actual_progress table .col_separation {
+	border-right: 2px solid #223;
+}
+
+/*tbody border*/
+div.portlet_comms_actual_progress table tbody td {
+	border-bottom: 1px solid #669 !important;
+}
+
+
+/*
+----------------------------------------------
+	
+	ET
+
+----------------------------------------------
 */
 
 /*
