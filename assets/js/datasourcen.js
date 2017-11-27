@@ -1,6 +1,6 @@
 
 
-//	TEMP
+// TEMP
 
 mpxd.constructors.temp_portlet = function(data) {
 	var el = "#portlet_" + data.id;
@@ -8,19 +8,11 @@ mpxd.constructors.temp_portlet = function(data) {
 }
 
 
-//	PSDS
+// ET
 
-mpxd.constructors.gis_sbk_s_05 = function(data) {
+mpxd.constructors.sys_info = function(data) {
 	var el = "#portlet_" + data.id;
-	return new mpxd.modules.psds.generateGIS({data: data, el: el});
-}
-
-
-//	ET
-
-mpxd.constructors.page_system_info = function(data) {
-	var el = "#portlet_" + data.id;
-	return new mpxd.modules.sys_et.page_system_info({data: data, el: el});
+	return new mpxd.modules.sys_et.sys_info({data: data, el: el});
 }
 mpxd.constructors.et_progress = function(data) {
 	var el = "#portlet_" + data.id;
@@ -44,11 +36,28 @@ mpxd.constructors.et_project_timeline = function(data) {
 }
 
 
-// COMMS
-mpxd.constructors.comms_actual_progress = function(data) {
+// DEMV
+
+
+// STC
+
+
+// PSD
+
+
+// PSDS_M
+
+
+// PSDS
+
+mpxd.constructors.gis_sbk_s_05 = function(data) {
 	var el = "#portlet_" + data.id;
-	return new mpxd.modules.sys_comms.comms_actual_progress({data: data, el: el});
+	return new mpxd.modules.psds.generateGIS({data: data, el: el});
 }
+
+
+// TW_M
+
 
 // TW
 mpxd.constructors.tw_kd_overall_progress = function(data) {
@@ -61,10 +70,20 @@ mpxd.constructors.tw_kd_summary = function(data) {
 }
 
 
+// COMMS
+mpxd.constructors.comms_actual_progress = function(data) {
+	var el = "#portlet_" + data.id;
+	return new mpxd.modules.sys_comms.comms_actual_progress({data: data, el: el});
+}
 
-// DECLARE
+
+// AFC
+
+
+
+// DECLARATION
 //----------------------
-mpxd.modules.temp_module ={};	// TEMPORARY
+mpxd.modules.temp_module ={};	// TEMPORARY (FOR TEST ONLY)
 mpxd.modules.sys_et ={};		// Electric Train
 mpxd.modules.sys_demv ={};		// Depot Equipment & Maintenance Vehicle / Works Train
 mpxd.modules.sys_stc ={};		// Signalling & Train Control
@@ -76,7 +95,7 @@ mpxd.modules.sys_tw ={};		// Trackworks Kxx
 mpxd.modules.sys_comms ={};		// Communications, GIRN & IDS
 mpxd.modules.sys_afc ={};		// Automatic Fare Collection
 //----------------------
-// DECLARE
+// DECLARATION
 
 
 
@@ -97,9 +116,9 @@ mpxd.modules.temp_module.temp_portlet_data = Backbone.View.extend({
 })
 
 
-//	ET
+// ET
 
-mpxd.modules.sys_et.page_system_info = Backbone.View.extend({   
+mpxd.modules.sys_et.sys_info = Backbone.View.extend({   
 	initialize: function (options) {
 		this.data = options.data;
 		this.render();
@@ -248,7 +267,21 @@ mpxd.modules.sys_et.et_project_timeline = Backbone.View.extend({
 })
 
 
-//	PSDS
+
+
+// DEMV
+
+
+// STC
+
+
+// PSD
+
+
+// PSDS_M
+
+
+// PSDS
 
 mpxd.modules.sys_psds.generateGIS = Backbone.View.extend({   
 	initialize: function (options) {
@@ -265,21 +298,7 @@ mpxd.modules.sys_psds.generateGIS = Backbone.View.extend({
 })
 
 
-// COMMS
-
-mpxd.modules.sys_comms.comms_actual_progress = Backbone.View.extend({   
-	initialize: function (options) {
-		this.data = options.data;
-		this.render();
-	}, render: function () {
-		var that = this;
-		var html = mpxd.getTemplate(that.data.type);
-		template = _.template(html, {data: that.data});
-		that.$el.html(template);
-		that.$el.find('.portlet_content').css({"height":(that.$el.find('.content').parent().parent().parent().height())-40});
-		that.$el.find('.portlet_content').mCustomScrollbar({theme:"dark-3"});
-	}
-})
+// TW_M
 
 
 // TW
@@ -378,3 +397,23 @@ mpxd.modules.sys_tw.tw_kd_summary = Backbone.View.extend({
 		});
 	}
 })
+
+
+// COMMS
+
+mpxd.modules.sys_comms.comms_actual_progress = Backbone.View.extend({   
+	initialize: function (options) {
+		this.data = options.data;
+		this.render();
+	}, render: function () {
+		var that = this;
+		var html = mpxd.getTemplate(that.data.type);
+		template = _.template(html, {data: that.data});
+		that.$el.html(template);
+		that.$el.find('.portlet_content').css({"height":(that.$el.find('.content').parent().parent().parent().height())-40});
+		that.$el.find('.portlet_content').mCustomScrollbar({theme:"dark-3"});
+	}
+})
+
+
+// AFC

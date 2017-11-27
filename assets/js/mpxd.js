@@ -24,6 +24,12 @@ $(function(){
 
 });
 mpxd.templateURLs = {
+	
+	/*
+		GENERIC
+	
+	*/
+	
     "none": {"templateURL": "assets/templates/none.html"},
     "scurve-1": {"templateURL": "assets/templates/scurve-1.html"},
     "scurve-2": {"templateURL": "assets/templates/scurve-2.html"},
@@ -50,13 +56,15 @@ mpxd.templateURLs = {
 	"summary_list" : {"templateURL": "assets/templates/summary_list.html"},
 	"report" : {"templateURL": "assets/templates/generate_report.html"},
 	"gis_sbk_s_05" : {"templateURL": "assets/templates/page_gis_sbk_s_05.html"},
-	"temp_portlet" : {"templateURL": "assets/templates/temp_portlet.html"},
-	"et_progress" : {"templateURL": "assets/templates/et_progress.html"},
-	"et_overallOpenItemClosure" : {"templateURL": "assets/templates/et_overallOpenItemClosure.html"},
-	"et_testing" : {"templateURL": "assets/templates/et_testing.html"},
-	"et_manufacturing_progress" : {"templateURL": "assets/templates/et_manufacturing_progress.html"},
-	"et_project_timeline" : {"templateURL": "assets/templates/et_project_timeline.html"},
 	
+	
+	/*
+		system
+	
+	*/
+	
+	/*TEMP*/
+	"temp_portlet" : {"templateURL": "assets/templates/temp_portlet.html"},
 	"padu_progress" : {"templateURL": "assets/templates/padu_progress.html"},
 	"padu_projectcost" : {"templateURL": "assets/templates/padu_projectcost.html"},
 	"padu_scurve" : {"templateURL": "assets/templates/padu_scurve.html"},
@@ -64,12 +72,36 @@ mpxd.templateURLs = {
 	"padu_latetask" : {"templateURL": "assets/templates/padu_latetask.html"},
 	"padu_issuemitigation" : {"templateURL": "assets/templates/padu_issuemitigation.html"},
 	
-	"comms_actual_progress" : {"templateURL": "assets/templates/comms_actual_progress.html"},
+	/*GENERIC*/
+	"sys_info" : {"templateURL": "assets/templates/sys_info.html"},
 	
+	/*SPECIFIC - ET*/
+	"et_progress" : {"templateURL": "assets/templates/et_progress.html"},
+	"et_overallOpenItemClosure" : {"templateURL": "assets/templates/et_overallOpenItemClosure.html"},
+	"et_testing" : {"templateURL": "assets/templates/et_testing.html"},
+	"et_manufacturing_progress" : {"templateURL": "assets/templates/et_manufacturing_progress.html"},
+	"et_project_timeline" : {"templateURL": "assets/templates/et_project_timeline.html"},
+	
+	/*SPECIFIC - DEMV*/
+	
+	/*SPECIFIC - STC*/
+	
+	/*SPECIFIC - PSD*/
+	
+	/*SPECIFIC - PSDS_M*/
+	
+	/*SPECIFIC - PSDS*/
+	
+	/*SPECIFIC - TW_M*/
+	
+	/*SPECIFIC - TW*/
 	"tw_kd_overall_progress" : {"templateURL": "assets/templates/tw_kd_overall_progress.html"},
-	"tw_kd_summary" : {"templateURL": "assets/templates/tw_kd_summary.html"}
+	"tw_kd_summary" : {"templateURL": "assets/templates/tw_kd_summary.html"},
 	
+	/*SPECIFIC - COMMS*/
+	"comms_actual_progress" : {"templateURL": "assets/templates/comms_actual_progress.html"}
 	
+	/*SPECIFIC - AFC*/
 	
 	
 }

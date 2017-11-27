@@ -178,6 +178,15 @@ rect.highcharts-background {
 }
 
 
+/*
+##############################################
+
+
+	PORTLET - GENERIC
+
+
+##############################################
+*/
 
 /*
 
@@ -1468,65 +1477,23 @@ span.content.special_span_title {
 ##############################################
 
 
-	SYSTEMS
+	PORTLET - SYSTEMS
 
 
 ##############################################
-*/
 
-/*
-----------------------------------------------
-	
-	COMMS
-
-----------------------------------------------
-*/
-
-
-/*
-
-portlet_comms_actual_progress
+	ET		:	Electric Train
+	DEMV	:	Depot Equipment & Maintenance Vehicle / Works Train
+	STC		:	Signalling & Train Control
+	PSD		:	Platform Screen Door
+	PSDS_M	:	Power Supply & Distribution System
+	PSDS	:	Power Supply & Distribution System - Rxx
+	TW_M	:	Trackworks
+	TW		:	Trackworks Kxx
+	COMMS	:	Communications, GIRN & IDS
+	AFC		:	Automatic Fare Collection
 
 */
-div.portlet_comms_actual_progress div.content {
-	background: #252237;
-}
-div.portlet_comms_actual_progress div.portlet_content {
-}
-div.portlet_comms_actual_progress div.portlet_title {
-	color: #fff;
-}
-
-
-div.portlet_comms_actual_progress div.table_title {
-	padding: 10px 20px;
-}
-
-
-/*table*/
-div.portlet_comms_actual_progress thead {
-	background: #111;
-}
-
-div.portlet_comms_actual_progress table {
-	margin-top: 10px;
-	font-size: .9em;
-}
-
-
-/*theader border*/
-div.portlet_comms_actual_progress table th {
-	border-bottom: 1px solid #000 !important;
-	font-weight: normal;
-}
-div.portlet_comms_actual_progress table .col_separation {
-	border-right: 2px solid #223;
-}
-
-/*tbody border*/
-div.portlet_comms_actual_progress table tbody td {
-	border-bottom: 1px solid #669 !important;
-}
 
 
 /*
@@ -1539,6 +1506,7 @@ div.portlet_comms_actual_progress table tbody td {
 
 /*
 portlet_et_progress
+
 */
 div.portlet_et_progress div.content {
 	background: #252237;
@@ -1572,6 +1540,7 @@ div.portlet_et_progress .complete_train {
 
 /*
 portlet_et_overallOpenItemClosure
+
 */
 div.portlet_et_overallOpenItemClosure div.content {
 	background: #252237;
@@ -1585,6 +1554,7 @@ div.portlet_et_overallOpenItemClosure div.portlet_title {
 
 /*
 portlet_et_testing
+
 */
 div.portlet_et_testing div.content {
 	background: #252237;
@@ -1625,6 +1595,7 @@ div.portlet_et_testing table tbody td {
 
 /*
 portlet_et_manufacturing_progress
+
 */
 div.portlet_et_manufacturing_progress div.content {
 	background: #252237;
@@ -1835,6 +1806,7 @@ div.portlet_et_manufacturing_progress div.sub_portlet > div.link {
 
 /*
 portlet_et_project_timeline
+
 */
 div.portlet_et_project_timeline div.content {
 	background: #252237;
@@ -1846,9 +1818,131 @@ div.portlet_et_project_timeline div.portlet_title {
 }
 
 
+/*
+----------------------------------------------
+	
+	DEMV
+
+----------------------------------------------
+*/
 
 
+/*
+----------------------------------------------
+	
+	STC
 
+----------------------------------------------
+*/
+
+
+/*
+----------------------------------------------
+	
+	PSD
+
+----------------------------------------------
+*/
+
+
+/*
+----------------------------------------------
+	
+	PSDS_M
+
+----------------------------------------------
+*/
+
+
+/*
+----------------------------------------------
+	
+	PSDS
+
+----------------------------------------------
+*/
+
+
+/*
+----------------------------------------------
+	
+	TW_M
+
+----------------------------------------------
+*/
+
+
+/*
+----------------------------------------------
+	
+	TW
+
+----------------------------------------------
+*/
+
+
+/*
+----------------------------------------------
+	
+	COMMS
+
+----------------------------------------------
+*/
+
+
+/*
+
+portlet_comms_actual_progress
+
+*/
+div.portlet_comms_actual_progress div.content {
+	background: #252237;
+}
+div.portlet_comms_actual_progress div.portlet_content {
+}
+div.portlet_comms_actual_progress div.portlet_title {
+	color: #fff;
+}
+
+
+div.portlet_comms_actual_progress div.table_title {
+	padding: 10px 20px;
+}
+
+
+/*table*/
+div.portlet_comms_actual_progress thead {
+	background: #111;
+}
+
+div.portlet_comms_actual_progress table {
+	margin-top: 10px;
+	font-size: .9em;
+}
+
+
+/*theader border*/
+div.portlet_comms_actual_progress table th {
+	border-bottom: 1px solid #000 !important;
+	font-weight: normal;
+}
+div.portlet_comms_actual_progress table .col_separation {
+	border-right: 2px solid #223;
+}
+
+/*tbody border*/
+div.portlet_comms_actual_progress table tbody td {
+	border-bottom: 1px solid #669 !important;
+}
+
+
+/*
+----------------------------------------------
+	
+	AFC
+
+----------------------------------------------
+*/
 
 
 
