@@ -1,0 +1,66 @@
+<div class="col-md-12 portlet portlet_afc_actual_progress">
+	<div class="row content">
+		<div class="col-md-12 portlet_title">
+			<i class="fa_title_icon fa fa-hourglass" aria-hidden="true"></i>
+			<% if (typeof(data.data[0]) !=="undefined"){%>
+			<% if (typeof(data.data[0].date) !== "undefined") { %>
+				<%=data.title%> <span class="plate_asof">(As of : <%=data.data[0].date%>) </span>
+			<% } else {%>
+				<%=data.title%>
+			<% }}else {%>
+				<%=data.title%>
+			<% }%>
+		</div>
+		<div class="col-md-12 portlet_content">
+			<div class="">
+				<table class="table">
+					<thead>
+						<tr>
+							<th class="col_separation">No.</th>
+							<th class="col_separation set_center">Baseline</th>
+							<th class="col_separation set_center">KPI Target</th>
+							<th class="col_separation set_center">Actual</th>
+							<th class="col_separation set_center">Shortfall</th>
+							<th class="col_separation set_center">Actual Progress</th>
+						</tr>
+					</thead>
+					<tbody>
+						<!-- <tr>
+							<td class="set_center">1</td>
+							<td class="set_center mrt_colorcode_baseline">88%</td>
+							<td class="set_center mrt_colorcode_target">88%</td>
+							<td class="set_center mrt_colorcode_actual">88%</td>
+							<td class="set_center mrt_colorcode_shortfall">88%</td>
+							<td class="set_center mrt_colorcode_actual_heavy">88%</td>
+						</tr> -->
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</div>
+</div>
+
+<script type="text/javascript">
+$(document).ready(function(){
+	var portlet_afc_actual_progress_data = [
+		{
+			"baseline":"88%",
+			"kpi_target":"88%",
+			"actual":"88%",
+			"shortfall":"88%",
+			"actual_progress":"88%",
+		}
+	]
+	for (var i = 0; i < portlet_afc_actual_progress_data.length; i++) {
+		a = portlet_afc_actual_progress_data[i]
+		var data_0 = i+1;
+		var data_1 = a.baseline
+		var data_2 = a.kpi_target
+		var data_3 = a.actual
+		var data_4 = a.shortfall
+		var data_5 = a.actual_progress
+		append_this = '<tr><td class="set_center">'+data_0+'</td><td class="set_center mrt_colorcode_baseline">'+data_1+'</td><td class="set_center mrt_colorcode_target">'+data_2+'</td><td class="set_center mrt_colorcode_actual">'+data_3+'</td><td class="set_center mrt_colorcode_shortfall">'+data_4+'</td><td class="set_center mrt_colorcode_actual_heavy">'+data_5+'</td></tr>';
+		$('.portlet_afc_actual_progress table tbody').append(append_this);
+	}
+});
+</script>

@@ -75,34 +75,34 @@ mpxd.templateURLs = {
 	/*GENERIC*/
 	"sys_info" : {"templateURL": "assets/templates/sys_info.html"},
 	
-	/*SPECIFIC - ET*/
-	"sys_et_progress" : {"templateURL": "assets/templates/sys_et_progress.html"},
-	"sys_et_overallOpenItemClosure" : {"templateURL": "assets/templates/sys_et_overallOpenItemClosure.html"},
-	"sys_et_testing" : {"templateURL": "assets/templates/sys_et_testing.html"},
-	"sys_et_manufacturing_progress" : {"templateURL": "assets/templates/sys_et_manufacturing_progress.html"},
-	"sys_et_project_timeline" : {"templateURL": "assets/templates/sys_et_project_timeline.html"},
+	/*SPECIFIC - S&TC & PSD/APG*/
+	"sys_stcpsd_actual_progress" : {"templateURL": "assets/templates/sys_stcpsd_actual_progress.html"},
 	
-	/*SPECIFIC - DEMV*/
+	/*SPECIFIC - ICSS&CMMS*/
 	
-	/*SPECIFIC - STC*/
 	
-	/*SPECIFIC - PSD*/
+	/*SPECIFIC - ET&DE*/
+	"sys_etde_actual_progress" : {"templateURL": "assets/templates/sys_etde_actual_progress.html"},
+	"sys_etde_progress" : {"templateURL": "assets/templates/sys_etde_progress.html"},
+	"sys_etde_overallOpenItemClosure" : {"templateURL": "assets/templates/sys_etde_overallOpenItemClosure.html"},
+	"sys_etde_testing" : {"templateURL": "assets/templates/sys_etde_testing.html"},
+	"sys_etde_manufacturing_progress" : {"templateURL": "assets/templates/sys_etde_manufacturing_progress.html"},
+	"sys_etde_project_timeline" : {"templateURL": "assets/templates/sys_etde_project_timeline.html"},
 	
-	/*SPECIFIC - PSDS_M*/
+	/*SPECIFIC - TW&MV*/
+	"sys_twmv_actual_progress" : {"templateURL": "assets/templates/sys_twmv_actual_progress.html"},
+	"sys_twmv_kd_overall_progress" : {"templateURL": "assets/templates/sys_twmv_kd_overall_progress.html"},
+	"sys_twmv_kd_summary" : {"templateURL": "assets/templates/sys_twmv_kd_summary.html"},
 	
 	/*SPECIFIC - PSDS*/
+	"sys_psds_trip_cable" : {"templateURL": "assets/templates/sys_psds_trip_cable.html"},
+	"sys_psds_installation" : {"templateURL": "assets/templates/sys_psds_installation.html"},
 	
-	/*SPECIFIC - TW_M*/
-	
-	/*SPECIFIC - TW*/
-	"sys_tw_kd_overall_progress" : {"templateURL": "assets/templates/sys_tw_kd_overall_progress.html"},
-	"sys_tw_kd_summary" : {"templateURL": "assets/templates/sys_tw_kd_summary.html"},
-	
-	/*SPECIFIC - COMMS*/
-	"sys_comms_actual_progress" : {"templateURL": "assets/templates/sys_comms_actual_progress.html"}
+	/*SPECIFIC - COMMS&ITS*/
+	"sys_commsits_actual_progress" : {"templateURL": "assets/templates/sys_commsits_actual_progress.html"},
 	
 	/*SPECIFIC - AFC*/
-	
+	"sys_afc_actual_progress" : {"templateURL": "assets/templates/sys_afc_actual_progress.html"}
 	
 }
 
