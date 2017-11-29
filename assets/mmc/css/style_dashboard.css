@@ -572,7 +572,7 @@ float - system donut - chocolate nuts donuts
 #donut_plate {
 	position: absolute;
 	bottom: 5%;
-	left: 18%;
+	left: 12%;
 	width: 40%;
 	height: 34%;
 }
@@ -588,35 +588,32 @@ div#donut_plate div.donut_box_large {
 	width: 22%;
 }
 div#donut_plate div.donut_box_small {
-	width: 13.5%;
+	width: 19%;
 }
-
-
-
-
-
 
 div.the_donut {
 	display: inline-block;
 	margin-left: 7%;
-	width: 55px;
-	height: 90px;
-	border-top: 1px solid rgba(255,255,255,.2);
+	/*width: 75px;*/
+	width: 100px;
+	height: 110px;
 }
 
 #plate_system div#donut_plate div.title {
-	margin-bottom: -5px;
 	font-size: 1em;
+	text-align: center;
+	height: 45px;
 	color: #fff;
 }
 #plate_system div#donut_plate div.gauge1{
-	width: 70px;
+	/*width: 70px;*/
+	width: 100px;
 	height: 70px;
 	position: absolute;
 }
 
 #plate_system div#donut_plate svg.meter{
-	width: 100%;
+	width: 120%;
 	height: 80px;
 	margin-top: -3px;
 	transform: rotate(145deg);

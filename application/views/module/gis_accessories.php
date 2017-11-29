@@ -77,11 +77,10 @@
 	<div id="plate_system">
 		<div id="donut_plate">
 			<div class="donut_box_small">
-				<div class="the_donut dp_db_donut_1b"></div>
 			</div>
 			<div class="donut_box_small">
 				<div class="the_donut dp_db_donut_1a"></div>
-				<div class="the_donut dp_db_donut_1c"></div>
+				<div class="the_donut dp_db_donut_1b"></div>
 			</div>
 			<div class="donut_box_small">
 				<div class="the_donut dp_db_donut_2a"></div>
@@ -93,15 +92,7 @@
 			</div>
 			<div class="donut_box_small">
 				<div class="the_donut dp_db_donut_4a"></div>
-				<div class="the_donut dp_db_donut_4b"></div>
-			</div>
-			<div class="donut_box_small">
-				<div class="the_donut dp_db_donut_5a"></div>
-				<div class="the_donut dp_db_donut_5b"></div>
-			</div>
-			<div class="donut_box_small">
-				<div class="the_donut dp_db_donut_6a"></div>
-				<div class="the_donut dp_db_donut_7a"></div>
+				<div class="the_donut "></div>
 			</div>
 		</div>
 	</div>
