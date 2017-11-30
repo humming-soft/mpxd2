@@ -1220,14 +1220,12 @@ $(function() {
 
 function GetDate(str)
 {
-	if(str != undefined){
 		var arr = str.split("-");
 		var months = ["jan", "feb", "mar", "apr", "may", "jun", "jul", "aug", "sep", "oct", "nov", "dec"];
 
 		var month = months.indexOf(arr[1].toLowerCase());
 
 		return new Date(parseInt("20" + arr[2]), month, parseInt(arr[0]));
-	}
 
 }
 
