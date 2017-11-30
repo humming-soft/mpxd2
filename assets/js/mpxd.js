@@ -90,11 +90,13 @@ mpxd.templateURLs = {
 	"sys_etde_project_timeline" : {"templateURL": "assets/templates/sys_etde_project_timeline.html"},
 	
 	/*SPECIFIC - TW&MV*/
+	"sys_twmv_gis" : {"templateURL": "assets/templates/sys_twmv_gis.html"},
 	"sys_twmv_actual_progress" : {"templateURL": "assets/templates/sys_twmv_actual_progress.html"},
 	"sys_twmv_kd_overall_progress" : {"templateURL": "assets/templates/sys_twmv_kd_overall_progress.html"},
 	"sys_twmv_kd_summary" : {"templateURL": "assets/templates/sys_twmv_kd_summary.html"},
 	
 	/*SPECIFIC - PSDS*/
+	"sys_psds_gis" : {"templateURL": "assets/templates/sys_psds_gis.html"},
 	"sys_psds_trip_cable" : {"templateURL": "assets/templates/sys_psds_trip_cable.html"},
 	"sys_psds_installation" : {"templateURL": "assets/templates/sys_psds_installation.html"},
 	

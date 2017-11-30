@@ -240,6 +240,15 @@ div.portlet_info div.content div.pc_bottom {
 	padding: 10px;
 }
 
+div.portlet_info div.content span.info_code {
+	display: block;
+	margin: 0 auto;
+	width: 200px;
+	font-size: 1em;
+	text-align: center;
+	background: #fff;
+	color: #000;
+}
 div.portlet_info div.content span.info_title {
 	display: block;
 	font-size: 1.5em;
@@ -1490,6 +1499,10 @@ span.content.special_span_title {
 	COMMS&ITS
 	AFC
 
+
+	note: for GIS portlet, please refer CSS inside GIS portlet
+	
+
 */
 
 
@@ -1501,6 +1514,51 @@ span.content.special_span_title {
 ----------------------------------------------
 */
 
+
+/*
+
+portlet_stcpsd_actual_progress
+
+*/
+div.portlet_stcpsd_actual_progress div.content {
+	background: #252237;
+}
+div.portlet_stcpsd_actual_progress div.portlet_content {
+}
+div.portlet_stcpsd_actual_progress div.portlet_title {
+	color: #fff;
+}
+
+
+div.portlet_stcpsd_actual_progress div.table_title {
+	padding: 10px 20px;
+}
+
+
+/*table*/
+div.portlet_stcpsd_actual_progress thead {
+	background: #111;
+}
+
+div.portlet_stcpsd_actual_progress table {
+	margin-top: 10px;
+	font-size: .9em;
+}
+
+
+/*theader border*/
+div.portlet_stcpsd_actual_progress table th {
+	border-bottom: 1px solid #000 !important;
+	font-weight: normal;
+}
+div.portlet_stcpsd_actual_progress table .col_separation {
+	border-right: 2px solid #223;
+}
+
+/*tbody border*/
+div.portlet_stcpsd_actual_progress table tbody td {
+	border-bottom: 1px solid #669 !important;
+}
 
 /*
 ----------------------------------------------

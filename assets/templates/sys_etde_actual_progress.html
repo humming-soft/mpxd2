@@ -16,9 +16,8 @@
 				<table class="table">
 					<thead>
 						<tr>
-							<th class="col_separation">No.</th>
-							<th class="col_separation set_center">Baseline</th>
-							<th class="col_separation set_center">KPI Target</th>
+							<th class="col_separation">Category</th>
+							<th class="col_separation set_center">Total</th>
 							<th class="col_separation set_center">Actual</th>
 							<th class="col_separation set_center">Shortfall</th>
 							<th class="col_separation set_center">Actual Progress</th>
@@ -44,8 +43,8 @@
 $(document).ready(function(){
 	var portlet_etde_actual_progress_data = [
 		{
-			"baseline":"88%",
-			"kpi_target":"88%",
+			"category":"Test",
+			"total":"88%",
 			"actual":"88%",
 			"shortfall":"88%",
 			"actual_progress":"88%",
@@ -53,13 +52,12 @@ $(document).ready(function(){
 	]
 	for (var i = 0; i < portlet_etde_actual_progress_data.length; i++) {
 		a = portlet_etde_actual_progress_data[i]
-		var data_0 = i+1;
-		var data_1 = a.baseline
-		var data_2 = a.kpi_target
-		var data_3 = a.actual
-		var data_4 = a.shortfall
-		var data_5 = a.actual_progress
-		append_this = '<tr><td class="set_center">'+data_0+'</td><td class="set_center mrt_colorcode_baseline">'+data_1+'</td><td class="set_center mrt_colorcode_target">'+data_2+'</td><td class="set_center mrt_colorcode_actual">'+data_3+'</td><td class="set_center mrt_colorcode_shortfall">'+data_4+'</td><td class="set_center mrt_colorcode_actual_heavy">'+data_5+'</td></tr>';
+		var data_0 = a.category;
+		var data_1 = a.total
+		var data_2 = a.actual
+		var data_3 = a.shortfall
+		var data_4 = a.actual_progress
+		append_this = '<tr><td class="set_center">'+data_0+'</td><td class="set_center mrt_colorcode_target">'+data_1+'</td><td class="set_center mrt_colorcode_actual">'+data_2+'</td><td class="set_center mrt_colorcode_shortfall">'+data_3+'</td><td class="set_center mrt_colorcode_actual_heavy">'+data_4+'</td></tr>';
 		$('.portlet_etde_actual_progress table tbody').append(append_this);
 	}
 });
