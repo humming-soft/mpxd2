@@ -1756,202 +1756,231 @@ div.portlet_etde_testing_detail table tbody td {
 }
 
 
-/*
-portlet_etde_manufacturing_progress
-
-*/
-div.portlet_etde_manufacturing_progress div.content {
-	background: #252237;
-}
-div.portlet_etde_manufacturing_progress div.portlet_content {
-}
-div.portlet_etde_manufacturing_progress div.portlet_title {
-	color: #fff;
-}
-
-div.portlet_etde_manufacturing_progress div.sub_portlet {
-}
-div.portlet_etde_manufacturing_progress div.sub_portlet > div.title {
-	margin-top: 10px;
-	padding: 5px 10px;
-	background: rgba(0,255,255,.65);
-	color: #000;
-}
-div.portlet_etde_manufacturing_progress div.sub_portlet > div.block_num {
-	height: 200px;
-	padding: 10px;
-	text-align: center;
-	background: rgba(0,255,255,.05);
-}
-div.portlet_etde_manufacturing_progress div.sub_portlet > div.block_num .title {
-	padding: 5px 10px;
-	font-size: 1em;
-	background: rgba(0,255,255,.1);
-	border-top: 1px solid #0ff;
-}
-div.portlet_etde_manufacturing_progress div.sub_portlet > div.block_num .number {
-	padding: 0 0 10px 0;
-	font-size: 2.2em;
-}
-div.portlet_etde_manufacturing_progress div.sub_portlet > div.link {
-	padding: 5px 10px;
-	text-align: center;
-	background: rgba(0,0,0,.2);
-}
-
-/*train*/
-.portlet_etde_manufacturing_progress .modal_train {
+.portlet_etde_testing_detail {
 	padding: 30px !important;
 }
 
-.portlet_etde_manufacturing_progress .modal_train .modal-dialog {
+.portlet_etde_testing_detail .modal-dialog {
 	width: 100%;
 }
 
-.portlet_etde_manufacturing_progress .modal_train .modal-content {
+.portlet_etde_testing_detail .modal-content {
 	background: #222727;
 	border:5px solid rgba(0,255,255,.25);
 }
 
-.portlet_etde_manufacturing_progress .modal_train .modal-header {
+.portlet_etde_testing_detail .modal-header {
 	border-bottom:1px solid #000;
 	background: rgba(0,255,255,.25);
 	color: #fff;
 	/*font-weight: bolder;*/
 }
-.portlet_etde_manufacturing_progress .modal_train .modal-footer {
+.portlet_etde_testing_detail .modal-footer {
 	border-top:1px solid #000;
 	background: rgba(0,0,0,.5);
 	color: #000;
 }
-.portlet_etde_manufacturing_progress .modal_train .modal-body div.train_block {
+.portlet_etde_testing_detail .modal-body div.train_block {
+}
+
+
+/*
+portlet_etde_manufacturing_progress
+
+*/
+.portlet_etde_manufacturing_progress div.content {
+	background: #252237;
+}
+.portlet_etde_manufacturing_progress div.portlet_content {
+}
+.portlet_etde_manufacturing_progress div.portlet_title {
+	color: #fff;
+}
+
+.portlet_etde_manufacturing_progress div.sub_portlet {
+}
+.portlet_etde_manufacturing_progress div.sub_portlet > div.title {
+	margin-top: 10px;
+	padding: 5px 10px;
+	background: rgba(0,255,255,.65);
+	color: #000;
+}
+.portlet_etde_manufacturing_progress div.sub_portlet > div.block_num {
+	height: 200px;
+	padding: 10px;
+	text-align: center;
+	background: rgba(0,255,255,.05);
+}
+.portlet_etde_manufacturing_progress div.sub_portlet > div.block_num .title {
+	padding: 5px 10px;
+	font-size: 1em;
+	background: rgba(0,255,255,.1);
+	border-top: 1px solid #0ff;
+}
+.portlet_etde_manufacturing_progress div.sub_portlet > div.block_num .number {
+	padding: 0 0 10px 0;
+	font-size: 2.2em;
+}
+.portlet_etde_manufacturing_progress div.sub_portlet > div.link {
+	padding: 5px 10px;
+	text-align: center;
+	background: rgba(0,0,0,.2);
+}
+
+/*modal*/
+
+.portlet_etde_manufacturing_progress_detail {
+	padding: 30px !important;
+}
+
+.portlet_etde_manufacturing_progress_detail .modal-dialog {
+	width: 100%;
+}
+
+.portlet_etde_manufacturing_progress_detail .modal-content {
+	background: #222727;
+	border:5px solid rgba(0,255,255,.25);
+}
+
+.portlet_etde_manufacturing_progress_detail .modal-header {
+	border-bottom:1px solid #000;
+	background: rgba(0,255,255,.25);
+	color: #fff;
+	/*font-weight: bolder;*/
+}
+.portlet_etde_manufacturing_progress_detail .modal-footer {
+	border-top:1px solid #000;
+	background: rgba(0,0,0,.5);
+	color: #000;
+}
+.portlet_etde_manufacturing_progress_detail .modal-body div.train_block {
 }
 
 /*train modal*/
-.portlet_etde_manufacturing_progress .modal_train .modal-body .diagram {
+.portlet_etde_manufacturing_progress_detail .modal-body .diagram {
 	padding: 20px;
 	background: rgba(0,0,0,.5);
 }
 	.modal_train svg .car_status_0 path,
-	.portlet_etde_manufacturing_progress .modal_train svg .car_status_0 ellipse {
+	.portlet_etde_manufacturing_progress_detail svg .car_status_0 ellipse {
 		stroke: #fff !important;
 	}
-		.portlet_etde_manufacturing_progress .modal_train svg .car_status_0 path.body_frame {
+		.portlet_etde_manufacturing_progress_detail svg .car_status_0 path.body_frame {
 			fill: rgba(255,255,255,.35) !important;
 		}
 	.modal_train svg .car_status_1 path,
-	.portlet_etde_manufacturing_progress .modal_train svg .car_status_1 ellipse {
+	.portlet_etde_manufacturing_progress_detail svg .car_status_1 ellipse {
 		stroke: #f0c !important;
 	}
-		.portlet_etde_manufacturing_progress .modal_train svg .car_status_1 path.body_frame {
+		.portlet_etde_manufacturing_progress_detail svg .car_status_1 path.body_frame {
 			fill: rgba(255,0,150,.35) !important;
 		}
 	.modal_train svg .car_status_2 path,
-	.portlet_etde_manufacturing_progress .modal_train svg .car_status_2 ellipse {
+	.portlet_etde_manufacturing_progress_detail svg .car_status_2 ellipse {
 		stroke: #fc0 !important;
 	}
-		.portlet_etde_manufacturing_progress .modal_train svg .car_status_2 path.body_frame {
+		.portlet_etde_manufacturing_progress_detail svg .car_status_2 path.body_frame {
 			fill: rgba(255,150,0,.35) !important;
 		}
 	.modal_train svg .car_status_3 path,
-	.portlet_etde_manufacturing_progress .modal_train svg .car_status_3 ellipse {
+	.portlet_etde_manufacturing_progress_detail svg .car_status_3 ellipse {
 		stroke: #0fc !important;
 	}
-		.portlet_etde_manufacturing_progress .modal_train svg .car_status_3 path.body_frame {
+		.portlet_etde_manufacturing_progress_detail svg .car_status_3 path.body_frame {
 			fill: rgba(0,255,150,.35) !important;
 		}
 	
 
 
 /*train label*/
-.portlet_etde_manufacturing_progress .modal_train .train_plate {
+.portlet_etde_manufacturing_progress_detail .train_plate {
 }
 
 .modal_train span.label_plate,
-.portlet_etde_manufacturing_progress .modal_train span.progress_plate {
+.portlet_etde_manufacturing_progress_detail span.progress_plate {
 	position: absolute;
 	padding: 3px 5px;
 }
 	.modal_train span.label_plate > span,
-	.portlet_etde_manufacturing_progress .modal_train span.progress_plate > span {
+	.portlet_etde_manufacturing_progress_detail span.progress_plate > span {
 		margin-left: -50%;
 	}
 
-.portlet_etde_manufacturing_progress .modal_train .label_top {
+.portlet_etde_manufacturing_progress_detail .label_top {
 	height: 40px;
 }
-	.portlet_etde_manufacturing_progress .modal_train .label_top .label_1 {left: 50%;}
+	.portlet_etde_manufacturing_progress_detail .label_top .label_1 {left: 50%;}
 	
-.portlet_etde_manufacturing_progress .modal_train .svg_inside {
+.portlet_etde_manufacturing_progress_detail .svg_inside {
 }
-.portlet_etde_manufacturing_progress .modal_train .label_bottom {
+.portlet_etde_manufacturing_progress_detail .label_bottom {
 	height: 60px;
 	border-bottom: 1px solid rgba(255,255,255,.1);
 }
-	.portlet_etde_manufacturing_progress .modal_train .label_bottom .car_name{
+	.portlet_etde_manufacturing_progress_detail .label_bottom .car_name{
 		height: 25px;
 	}
-		.portlet_etde_manufacturing_progress .modal_train .label_bottom .label_1 {
+		.portlet_etde_manufacturing_progress_detail .label_bottom .label_1 {
 			left: 5%;
 			font-weight: bolder;
 		}
-		.portlet_etde_manufacturing_progress .modal_train .label_bottom .label_2 {left: 19%;}
-		.portlet_etde_manufacturing_progress .modal_train .label_bottom .label_3 {left: 41%;}
-		.portlet_etde_manufacturing_progress .modal_train .label_bottom .label_4 {left: 63%;}
-		.portlet_etde_manufacturing_progress .modal_train .label_bottom .label_5 {left: 85%;}
-	.portlet_etde_manufacturing_progress .modal_train .label_bottom .car_progress{
+		.portlet_etde_manufacturing_progress_detail .label_bottom .label_2 {left: 19%;}
+		.portlet_etde_manufacturing_progress_detail .label_bottom .label_3 {left: 41%;}
+		.portlet_etde_manufacturing_progress_detail .label_bottom .label_4 {left: 63%;}
+		.portlet_etde_manufacturing_progress_detail .label_bottom .label_5 {left: 85%;}
+	.portlet_etde_manufacturing_progress_detail .label_bottom .car_progress{
 		color: #ffa;
 	}
-		.portlet_etde_manufacturing_progress .modal_train .label_bottom .progress_1 {
+		.portlet_etde_manufacturing_progress_detail .label_bottom .progress_1 {
 			left: 5%;
 			font-weight: bolder;
 		}
-		.portlet_etde_manufacturing_progress .modal_train .label_bottom .progress_2 {left: 19%;}
-		.portlet_etde_manufacturing_progress .modal_train .label_bottom .progress_3 {left: 41%;}
-		.portlet_etde_manufacturing_progress .modal_train .label_bottom .progress_4 {left: 63%;}
-		.portlet_etde_manufacturing_progress .modal_train .label_bottom .progress_5 {left: 85%;}
-		.portlet_etde_manufacturing_progress .modal_train .label_bottom .progress_6 {left: 50%;}
+		.portlet_etde_manufacturing_progress_detail .label_bottom .progress_2 {left: 19%;}
+		.portlet_etde_manufacturing_progress_detail .label_bottom .progress_3 {left: 41%;}
+		.portlet_etde_manufacturing_progress_detail .label_bottom .progress_4 {left: 63%;}
+		.portlet_etde_manufacturing_progress_detail .label_bottom .progress_5 {left: 85%;}
+		.portlet_etde_manufacturing_progress_detail .label_bottom .progress_6 {left: 50%;}
 
 
 
 
 /*train legend*/
-.portlet_etde_manufacturing_progress .modal_train .modal-body .legend {
+.portlet_etde_manufacturing_progress_detail .modal-body .legend {
 	padding: 20px;
 	background: rgba(0,0,0,.25);
 }
-.portlet_etde_manufacturing_progress .modal_train .modal-body .legend .legend1 {
+.portlet_etde_manufacturing_progress_detail .modal-body .legend .legend1 {
 	padding: 0 15px;
 	margin: 3px 0;
 	border-left: 30px solid #f0c;
 }
-.portlet_etde_manufacturing_progress .modal_train .modal-body .legend .legend2 {
+.portlet_etde_manufacturing_progress_detail .modal-body .legend .legend2 {
 	padding: 0 15px;
 	margin: 3px 0;
 	border-left: 30px solid #fc0;
 }
-.portlet_etde_manufacturing_progress .modal_train .modal-body .legend .legend3 {
+.portlet_etde_manufacturing_progress_detail .modal-body .legend .legend3 {
 	padding: 0 15px;
 	margin: 3px 0;
 	border-left: 30px solid #0fc;
 }
 
 /*train table*/
-.portlet_etde_manufacturing_progress .modal_train .train_table {
+.portlet_etde_manufacturing_progress_detail .train_table {
 	padding: 10px 0 0 0;
 }
-.portlet_etde_manufacturing_progress .modal_train .train_table thead {
+.portlet_etde_manufacturing_progress_detail .train_table thead {
 	background: #111;
 }
-.portlet_etde_manufacturing_progress .modal_train .train_table table {
+.portlet_etde_manufacturing_progress_detail .train_table table {
 	font-size: .9em;
 }
 	/*theader border*/
-	.portlet_etde_manufacturing_progress .modal_train .train_table table th {
+	.portlet_etde_manufacturing_progress_detail .train_table table th {
 		border-bottom: 1px solid #000 !important;
 		font-weight: normal;
 	}
-	.portlet_etde_manufacturing_progress .modal_train .train_table table .col_separation {
+	.portlet_etde_manufacturing_progress_detail .train_table table .col_separation {
 		border-right: 2px solid #223;
 	}
 
@@ -1961,19 +1990,19 @@ div.portlet_etde_manufacturing_progress div.sub_portlet > div.link {
 	}
 
 .modal_train .train_table tr th:last-child,
-.portlet_etde_manufacturing_progress .modal_train .train_table tr td:last-child {
+.portlet_etde_manufacturing_progress_detail .train_table tr td:last-child {
 	text-align: center;
 }
-.portlet_etde_manufacturing_progress .modal_train i.fa_status_0{
+.portlet_etde_manufacturing_progress_detail i.fa_status_0{
 	color: #fff;
 }
-.portlet_etde_manufacturing_progress .modal_train i.fa_status_1{
+.portlet_etde_manufacturing_progress_detail i.fa_status_1{
 	color: #f0c;
 }
-.portlet_etde_manufacturing_progress .modal_train i.fa_status_2{
+.portlet_etde_manufacturing_progress_detail i.fa_status_2{
 	color: #fc0;
 }
-.portlet_etde_manufacturing_progress .modal_train i.fa_status_3{
+.portlet_etde_manufacturing_progress_detail i.fa_status_3{
 	color: #0fc;
 }
 

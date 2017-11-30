@@ -46,40 +46,17 @@
 
 						</div>
 					</div>
-					<!-- <div id="plate_issue">
-						<div id="pi_title">
-							<span class="set1"><i class="fa fa-exclamation-triangle" aria-hidden="true"></i></span>
-							<span class="set2">Issues</span>
-						</div>
-						<div id="pi_subtitle">
-							<span class="set1">Click to view</span>
-						</div>
-					</div> -->
 							
 					
 					<div id="plate_system">
 						<div id="donut_plate">
 							<div id="dp_db_donut_0" class="dp_top"></div>
-							<!-- <div id="dp_db_donut_1" class="dp_bottom"></div>
-							<div id="dp_db_donut_2" class="dp_bottom"></div>
-							<div id="dp_db_donut_3" class="dp_bottom"></div>
-							<div id="dp_db_donut_4" class="dp_bottom"></div>
-							<div id="dp_db_donut_5" class="dp_bottom"></div>
-							<div id="dp_db_donut_6" class="dp_bottom"></div>
-							<div id="dp_db_donut_7" class="dp_bottom"></div> -->
 						</div>
 					</div>
 					
 					<div id="button_group">
 						<div class="menu">
-							<!-- a href="#"><img src="../assets/images/logo/button.png" height="120" width="120" align="right"></a>
-							<a href="#"><img src="../assets/images/logo/button.png" height="120" width="120" align="right"></a>
-							<a href="#"><img src="../assets/images/logo/button.png" height="120" width="120" align="right"></a>
-							<a href="#"><img src="../assets/images/logo/button.png" height="120" width="120" align="right"></a> -->
-
-							
-
-
+						
 							<div id="box1_modal-track" class="modal fade -modal-lg modal_table" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
 								<div class="modal-dialog modal-lg">
 									<div class="modal-content">
@@ -139,7 +116,7 @@
 							<div id="box3" class="box">
 
 								<div class="up"></div>
-								<div class="middle"><img src="../assets/mmc/images/button/cable.png"></div></a>
+								<div class="middle"><img src="../assets/mmc/images/button/cable.png"></div>
 								<div class="below">
 									<div class="number"></div>
 									<div class="trend"></div>
@@ -258,7 +235,6 @@
 </div>
 
 
-
 <style type="text/css">
 	
 	.portlet_twmv_gis .gis_system_track{
@@ -329,8 +305,8 @@
 		.portlet_twmv_gis #plate_vector_map .v_depot:hover {
 			cursor: pointer;
 		}
-		#plate_vector_map .v_station a,
-		#pl_station span a,
+		.portlet_psds_gis #plate_vector_map .v_station a,
+		.portlet_psds_gis #pl_station span a,
 		.portlet_twmv_gis #pl_mspr span a {
 			color: #fff;
 		}
@@ -951,26 +927,6 @@ $(document).ready(function(){
 	// directory
 	// 
 	
-	$('#pl_package_V201').click(function(){
-		window.location.href = "viaduct.php";
-	})
-	$('span.iv_pierchart').click(function(){
-		window.location.href = "pier.php";
-	})
-	
-
-	
-	$("#pl_package_V201").click(function() {
-
-		$.ajax({
-			type: "GET",
-			url: "grabdata.php",
-			dataType: "html",
-			success: function(response){   
-				$("#responsecontainer").html(response);
-			}
-		});
-	});
 	
 	
 	///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
