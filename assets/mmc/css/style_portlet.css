@@ -21,6 +21,30 @@ green, red, red bold*/
 	font-weight: bold;
 }
 
+/*text category color*/
+.mrt_colorcode_baseline {
+	color: #0f9;
+}
+.mrt_colorcode_target {
+	color: #b7f;
+}
+.mrt_colorcode_early {
+	color: #9f3;
+}
+.mrt_colorcode_late {
+	color: #0cf;
+}
+.mrt_colorcode_actual{
+	color: #f59;
+}
+.mrt_colorcode_actual_heavy{
+	color: #f59;
+	font-weight: bold;
+}
+.mrt_colorcode_shortfall {
+	color: #ff0;
+}
+
 /*ball
 green, orange, red*/
 .mrt_colorcode_ball_1 {
@@ -154,6 +178,15 @@ rect.highcharts-background {
 }
 
 
+/*
+##############################################
+
+
+	PORTLET - GENERIC
+
+
+##############################################
+*/
 
 /*
 
@@ -1441,334 +1474,851 @@ span.content.special_span_title {
 
 
 /*
-==============================================
+##############################################
 
 
-	SYSTEMS
+	PORTLET - SYSTEMS
 
 
-==============================================
+##############################################
+
+	S&TC & PSD/APG
+	ICSS&CMMS
+	ET&DE
+	TW&MV
+	PSDS
+	COMMS&ITS
+	AFC
+
 */
 
 
 /*
+----------------------------------------------
+	
+	S&TC & PSD/APG
 
-ET
+----------------------------------------------
+*/
 
+
+/*
+----------------------------------------------
+	
+	ICSS&CMMS
+
+----------------------------------------------
+*/
+
+
+/*
+----------------------------------------------
+	
+	ET&DE
+
+----------------------------------------------
 */
 
 /*
-portlet_et_progress
+
+portlet_etde_actual_progress
+
 */
-div.portlet_et_progress div.content {
+div.portlet_etde_actual_progress div.content {
 	background: #252237;
 }
-div.portlet_et_progress div.portlet_content {
+div.portlet_etde_actual_progress div.portlet_content {
 }
-div.portlet_et_progress div.portlet_title {
+div.portlet_etde_actual_progress div.portlet_title {
 	color: #fff;
 }
 
-div.portlet_et_progress div.portlet_content .content_chart {
+
+div.portlet_etde_actual_progress div.table_title {
+	padding: 10px 20px;
+}
+
+
+/*table*/
+div.portlet_etde_actual_progress thead {
+	background: #111;
+}
+
+div.portlet_etde_actual_progress table {
+	margin-top: 10px;
+	font-size: .9em;
+}
+
+
+/*theader border*/
+div.portlet_etde_actual_progress table th {
+	border-bottom: 1px solid #000 !important;
+	font-weight: normal;
+}
+div.portlet_etde_actual_progress table .col_separation {
+	border-right: 2px solid #223;
+}
+
+/*tbody border*/
+div.portlet_etde_actual_progress table tbody td {
+	border-bottom: 1px solid #669 !important;
+}
+
+/*
+portlet_etde_progress
+
+*/
+div.portlet_etde_progress div.content {
+	background: #252237;
+}
+div.portlet_etde_progress div.portlet_content {
+}
+div.portlet_etde_progress div.portlet_title {
+	color: #fff;
+}
+
+div.portlet_etde_progress div.portlet_content .content_chart {
 	text-align: center;
 }
-div.portlet_et_progress div.portlet_content span.chart_title {
+div.portlet_etde_progress div.portlet_content span.chart_title {
 	font-size: 1em;
 	text-align: center;
 }
-div.portlet_et_progress #train_head path{
+div.portlet_etde_progress #train_head path{
 	/*stroke-width: 5px !important;*/
 	stroke: #0ff !important;
 }
-div.portlet_et_progress .bar_chart_frame {
+div.portlet_etde_progress .bar_chart_frame {
 	stroke-width: 10px !important;
 }
-div.portlet_et_progress .complete_train {
+div.portlet_etde_progress .complete_train {
 	display: block;
 	font-size: 2.5em;
 	color: #0ff;
-}
+}	
 
 
 /*
-portlet_et_overallOpenItemClosure
+portlet_etde_overallOpenItemClosure
+
 */
-div.portlet_et_overallOpenItemClosure div.content {
+div.portlet_etde_overallOpenItemClosure div.content {
 	background: #252237;
 }
-div.portlet_et_overallOpenItemClosure div.portlet_content {
+div.portlet_etde_overallOpenItemClosure div.portlet_content {
 }
-div.portlet_et_overallOpenItemClosure div.portlet_title {
+div.portlet_etde_overallOpenItemClosure div.portlet_title {
 	color: #fff;
 }
 
 
+div.portlet_etde_overallOpenItemClosure div.table_title {
+	padding: 10px 20px;
+}
+
+
 /*
-portlet_et_testing
+portlet_etde_testing
+
 */
-div.portlet_et_testing div.content {
+
+div.portlet_etde_testing div.content {
 	background: #252237;
 }
-div.portlet_et_testing div.portlet_content {
+div.portlet_etde_testing div.portlet_content {
 	padding-top: 10px;
 	/*Added by Sebin*/
 	padding-bottom: 10px;
 	padding-right: 10px !important;
 }
-div.portlet_et_testing div.portlet_title {
+div.portlet_etde_testing div.portlet_title {
 	color: #fff;
 }
 
 /*table*/
-div.portlet_et_testing thead {
+div.portlet_etde_testing thead {
 	background: #111;
 }
 
-div.portlet_et_testing table {
+div.portlet_etde_testing table {
 	font-size: .9em;
 }
 
 /*theader border*/
-div.portlet_et_testing table th {
+div.portlet_etde_testing table th {
 	border-bottom: 1px solid #000 !important;
 	font-weight: normal;
 }
-div.portlet_et_testing table .col_separation {
+div.portlet_etde_testing table .col_separation {
 	border-right: 2px solid #223;
 }
 
 /*tbody border*/
-div.portlet_et_testing table tbody td {
+div.portlet_etde_testing table tbody td {
 	border-bottom: 1px solid #669 !important;
 }
 
 
+/*table detail*/
+div.portlet_etde_testing_detail thead {
+}
+
+div.portlet_etde_testing_detail table {
+	font-size: .8em;
+}
+
+/*theader border*/
+div.portlet_etde_testing_detail table th {
+	border-bottom: 1px solid #000 !important;
+	font-weight: normal;
+}
+
+div.portlet_etde_testing_detail table thead tr:first-child th {
+	/*border-bottom: 1px solid #000 !important;*/
+	font-weight: normal;
+	text-align: center;
+	border: 2px solid #fff;
+	background: #000;
+}
+div.portlet_etde_testing_detail table thead tr:last-child th {
+	border-bottom: 1px solid #000 !important;
+	font-weight: normal;
+	text-align: center;
+	border: 2px solid #fff;
+}
+
+div.portlet_etde_testing_detail table .col_separation {
+	border-right: 2px solid #223;
+}
+
+/*tbody border*/
+div.portlet_etde_testing_detail table tbody td {
+	border-bottom: 1px solid #669 !important;
+	text-align: center;
+}
+
+
 /*
-portlet_et_manufacturing_progress
+portlet_etde_manufacturing_progress
+
 */
-div.portlet_et_manufacturing_progress div.content {
+div.portlet_etde_manufacturing_progress div.content {
 	background: #252237;
 }
-div.portlet_et_manufacturing_progress div.portlet_content {
+div.portlet_etde_manufacturing_progress div.portlet_content {
 }
-div.portlet_et_manufacturing_progress div.portlet_title {
+div.portlet_etde_manufacturing_progress div.portlet_title {
 	color: #fff;
 }
 
-div.portlet_et_manufacturing_progress div.sub_portlet {
+div.portlet_etde_manufacturing_progress div.sub_portlet {
 }
-div.portlet_et_manufacturing_progress div.sub_portlet > div.title {
+div.portlet_etde_manufacturing_progress div.sub_portlet > div.title {
 	margin-top: 10px;
 	padding: 5px 10px;
 	background: rgba(0,255,255,.65);
 	color: #000;
 }
-div.portlet_et_manufacturing_progress div.sub_portlet > div.block_num {
+div.portlet_etde_manufacturing_progress div.sub_portlet > div.block_num {
 	height: 200px;
 	padding: 10px;
 	text-align: center;
 	background: rgba(0,255,255,.05);
 }
-div.portlet_et_manufacturing_progress div.sub_portlet > div.block_num .title {
+div.portlet_etde_manufacturing_progress div.sub_portlet > div.block_num .title {
 	padding: 5px 10px;
 	font-size: 1em;
 	background: rgba(0,255,255,.1);
 	border-top: 1px solid #0ff;
 }
-div.portlet_et_manufacturing_progress div.sub_portlet > div.block_num .number {
+div.portlet_etde_manufacturing_progress div.sub_portlet > div.block_num .number {
 	padding: 0 0 10px 0;
 	font-size: 2.2em;
 }
-div.portlet_et_manufacturing_progress div.sub_portlet > div.link {
+div.portlet_etde_manufacturing_progress div.sub_portlet > div.link {
 	padding: 5px 10px;
 	text-align: center;
 	background: rgba(0,0,0,.2);
 }
 
 /*train*/
-.modal_train {
+.portlet_etde_manufacturing_progress .modal_train {
 	padding: 30px !important;
 }
 
-.modal_train .modal-dialog {
+.portlet_etde_manufacturing_progress .modal_train .modal-dialog {
 	width: 100%;
 }
 
-.modal_train .modal-content {
+.portlet_etde_manufacturing_progress .modal_train .modal-content {
 	background: #222727;
 	border:5px solid rgba(0,255,255,.25);
 }
 
-.modal_train .modal-header {
+.portlet_etde_manufacturing_progress .modal_train .modal-header {
 	border-bottom:1px solid #000;
 	background: rgba(0,255,255,.25);
 	color: #fff;
 	/*font-weight: bolder;*/
 }
-.modal_train .modal-footer {
+.portlet_etde_manufacturing_progress .modal_train .modal-footer {
 	border-top:1px solid #000;
 	background: rgba(0,0,0,.5);
 	color: #000;
 }
-.modal_train .modal-body div.train_block {
+.portlet_etde_manufacturing_progress .modal_train .modal-body div.train_block {
 }
 
 /*train modal*/
-.modal_train .modal-body .diagram {
+.portlet_etde_manufacturing_progress .modal_train .modal-body .diagram {
 	padding: 20px;
 	background: rgba(0,0,0,.5);
 }
 	.modal_train svg .car_status_0 path,
-	.modal_train svg .car_status_0 ellipse {
-		stroke: #f0c !important;
+	.portlet_etde_manufacturing_progress .modal_train svg .car_status_0 ellipse {
+		stroke: #fff !important;
 	}
-		.modal_train svg .car_status_0 path.body_frame {
-			fill: rgba(255,0,150,.35) !important;
+		.portlet_etde_manufacturing_progress .modal_train svg .car_status_0 path.body_frame {
+			fill: rgba(255,255,255,.35) !important;
 		}
 	.modal_train svg .car_status_1 path,
-	.modal_train svg .car_status_1 ellipse {
-		stroke: #fc0 !important;
+	.portlet_etde_manufacturing_progress .modal_train svg .car_status_1 ellipse {
+		stroke: #f0c !important;
 	}
-		.modal_train svg .car_status_1 path.body_frame {
-			fill: rgba(255,150,0,.35) !important;
+		.portlet_etde_manufacturing_progress .modal_train svg .car_status_1 path.body_frame {
+			fill: rgba(255,0,150,.35) !important;
 		}
 	.modal_train svg .car_status_2 path,
-	.modal_train svg .car_status_2 ellipse {
+	.portlet_etde_manufacturing_progress .modal_train svg .car_status_2 ellipse {
+		stroke: #fc0 !important;
+	}
+		.portlet_etde_manufacturing_progress .modal_train svg .car_status_2 path.body_frame {
+			fill: rgba(255,150,0,.35) !important;
+		}
+	.modal_train svg .car_status_3 path,
+	.portlet_etde_manufacturing_progress .modal_train svg .car_status_3 ellipse {
 		stroke: #0fc !important;
 	}
-		.modal_train svg .car_status_2 path.body_frame {
+		.portlet_etde_manufacturing_progress .modal_train svg .car_status_3 path.body_frame {
 			fill: rgba(0,255,150,.35) !important;
 		}
+	
 
 
 /*train label*/
-.modal_train .train_plate {
+.portlet_etde_manufacturing_progress .modal_train .train_plate {
 }
 
 .modal_train span.label_plate,
-.modal_train span.progress_plate {
+.portlet_etde_manufacturing_progress .modal_train span.progress_plate {
 	position: absolute;
 	padding: 3px 5px;
 }
 	.modal_train span.label_plate > span,
-	.modal_train span.progress_plate > span {
+	.portlet_etde_manufacturing_progress .modal_train span.progress_plate > span {
 		margin-left: -50%;
 	}
 
-.modal_train .label_top {
+.portlet_etde_manufacturing_progress .modal_train .label_top {
 	height: 40px;
 }
-	.modal_train .label_top .label_1 {left: 50%;}
+	.portlet_etde_manufacturing_progress .modal_train .label_top .label_1 {left: 50%;}
 	
-.modal_train .svg_inside {
+.portlet_etde_manufacturing_progress .modal_train .svg_inside {
 }
-.modal_train .label_bottom {
+.portlet_etde_manufacturing_progress .modal_train .label_bottom {
 	height: 60px;
 	border-bottom: 1px solid rgba(255,255,255,.1);
 }
-	.modal_train .label_bottom .car_name{
+	.portlet_etde_manufacturing_progress .modal_train .label_bottom .car_name{
 		height: 25px;
 	}
-		.modal_train .label_bottom .label_1 {
+		.portlet_etde_manufacturing_progress .modal_train .label_bottom .label_1 {
 			left: 5%;
 			font-weight: bolder;
 		}
-		.modal_train .label_bottom .label_2 {left: 19%;}
-		.modal_train .label_bottom .label_3 {left: 41%;}
-		.modal_train .label_bottom .label_4 {left: 63%;}
-		.modal_train .label_bottom .label_5 {left: 85%;}
-	.modal_train .label_bottom .car_progress{
+		.portlet_etde_manufacturing_progress .modal_train .label_bottom .label_2 {left: 19%;}
+		.portlet_etde_manufacturing_progress .modal_train .label_bottom .label_3 {left: 41%;}
+		.portlet_etde_manufacturing_progress .modal_train .label_bottom .label_4 {left: 63%;}
+		.portlet_etde_manufacturing_progress .modal_train .label_bottom .label_5 {left: 85%;}
+	.portlet_etde_manufacturing_progress .modal_train .label_bottom .car_progress{
 		color: #ffa;
 	}
-		.modal_train .label_bottom .progress_1 {
+		.portlet_etde_manufacturing_progress .modal_train .label_bottom .progress_1 {
 			left: 5%;
 			font-weight: bolder;
 		}
-		.modal_train .label_bottom .progress_2 {left: 19%;}
-		.modal_train .label_bottom .progress_3 {left: 41%;}
-		.modal_train .label_bottom .progress_4 {left: 63%;}
-		.modal_train .label_bottom .progress_5 {left: 85%;}
-		.modal_train .label_bottom .progress_6 {left: 50%;}
+		.portlet_etde_manufacturing_progress .modal_train .label_bottom .progress_2 {left: 19%;}
+		.portlet_etde_manufacturing_progress .modal_train .label_bottom .progress_3 {left: 41%;}
+		.portlet_etde_manufacturing_progress .modal_train .label_bottom .progress_4 {left: 63%;}
+		.portlet_etde_manufacturing_progress .modal_train .label_bottom .progress_5 {left: 85%;}
+		.portlet_etde_manufacturing_progress .modal_train .label_bottom .progress_6 {left: 50%;}
 
 
 
 
 /*train legend*/
-.modal_train .modal-body .legend {
+.portlet_etde_manufacturing_progress .modal_train .modal-body .legend {
 	padding: 20px;
 	background: rgba(0,0,0,.25);
 }
-.modal_train .modal-body .legend .legend1 {
+.portlet_etde_manufacturing_progress .modal_train .modal-body .legend .legend1 {
 	padding: 0 15px;
 	margin: 3px 0;
 	border-left: 30px solid #f0c;
 }
-.modal_train .modal-body .legend .legend2 {
+.portlet_etde_manufacturing_progress .modal_train .modal-body .legend .legend2 {
 	padding: 0 15px;
 	margin: 3px 0;
 	border-left: 30px solid #fc0;
 }
-.modal_train .modal-body .legend .legend3 {
+.portlet_etde_manufacturing_progress .modal_train .modal-body .legend .legend3 {
 	padding: 0 15px;
 	margin: 3px 0;
 	border-left: 30px solid #0fc;
 }
 
 /*train table*/
-.modal_train .train_table {
+.portlet_etde_manufacturing_progress .modal_train .train_table {
 	padding: 10px 0 0 0;
 }
-.modal_train .train_table thead {
+.portlet_etde_manufacturing_progress .modal_train .train_table thead {
 	background: #111;
 }
-.modal_train .train_table table {
+.portlet_etde_manufacturing_progress .modal_train .train_table table {
 	font-size: .9em;
 }
 	/*theader border*/
-	.modal_train .train_table table th {
+	.portlet_etde_manufacturing_progress .modal_train .train_table table th {
 		border-bottom: 1px solid #000 !important;
 		font-weight: normal;
 	}
-	.modal_train .train_table table .col_separation {
+	.portlet_etde_manufacturing_progress .modal_train .train_table table .col_separation {
 		border-right: 2px solid #223;
 	}
 
 	/*tbody border*/
-	div.portlet_et_testing table tbody td {
+	.portlet_etde_manufacturing_progress div.portlet_et_testing table tbody td {
 		border-bottom: 1px solid #669 !important;
 	}
 
 .modal_train .train_table tr th:last-child,
-.modal_train .train_table tr td:last-child {
+.portlet_etde_manufacturing_progress .modal_train .train_table tr td:last-child {
 	text-align: center;
 }
-.modal_train i.fa_status_1{
+.portlet_etde_manufacturing_progress .modal_train i.fa_status_0{
+	color: #fff;
+}
+.portlet_etde_manufacturing_progress .modal_train i.fa_status_1{
 	color: #f0c;
 }
-.modal_train i.fa_status_2{
+.portlet_etde_manufacturing_progress .modal_train i.fa_status_2{
 	color: #fc0;
 }
-.modal_train i.fa_status_3{
+.portlet_etde_manufacturing_progress .modal_train i.fa_status_3{
 	color: #0fc;
 }
 
 
 /*
-portlet_et_project_timeline
+portlet_etde_project_timeline
+
 */
-div.portlet_et_project_timeline div.content {
+
+div.portlet_etde_project_timeline div.content {
 	background: #252237;
 }
-div.portlet_et_project_timeline div.portlet_content {
+div.portlet_etde_project_timeline div.portlet_content {
 }
-div.portlet_et_project_timeline div.portlet_title {
+div.portlet_etde_project_timeline div.portlet_title {
 	color: #fff;
 }
 
 
+/*table setup*/
+.portlet_etde_project_timeline {
+	padding: 10px 0 0 0;
+}
+.portlet_etde_project_timeline thead {
+	background: #111;
+}
+.portlet_etde_project_timeline table {
+	font-size: .9em;
+	margin-left: 15px;
+}
+	/*theader border*/
+	.portlet_etde_project_timeline table th {
+		border-bottom: 1px solid #000 !important;
+		font-weight: normal;
+		text-align: center;
+	}
+	.portlet_etde_project_timeline table .col_separation {
+		border-right: 2px solid #223;
+	}
+
+	/*tbody border*/
+	div.portlet_etde_project_timeline table tbody td {
+		border-bottom: 1px solid #669 !important;
+	}
+
+div.portlet_etde_project_timeline table thead th:first-child {
+	width: 150px;
+	text-align: left;
+}
+
+div.portlet_etde_project_timeline div.upper_box {
+	padding: 10px 0;
+	text-align: center;
+	background: rgba(255,255,255,.15);
+	color: #ff0;
+}
+div.portlet_etde_project_timeline div.lower_box {
+	padding: 10px 0;
+}
+
+div.portlet_etde_project_timeline div.table_title {
+	padding: 10px 20px;
+}
+
+div.portlet_etde_project_timeline span.data_holder.data_days {
+	font-size: 2em;
+}
+
+div.portlet_etde_project_timeline span.data_holder.data_early {
+	color: #0fa;
+}
+div.portlet_etde_project_timeline span.data_holder.data_variance {
+	color: #f5f;
+}
 
 
 
+/*
+----------------------------------------------
+	
+	TW&MV
+
+----------------------------------------------
+*/
+
+
+/*
+----------------------------------------------
+	
+	PSDS
+
+----------------------------------------------
+*/
+
+
+/*
+----------------------------------------------
+	
+	COMMS&ITS
+
+----------------------------------------------
+*/
+
+/*
+
+portlet_commsits_actual_progress
+
+*/
+div.portlet_commsits_actual_progress div.content {
+	background: #252237;
+}
+div.portlet_commsits_actual_progress div.portlet_content {
+}
+div.portlet_commsits_actual_progress div.portlet_title {
+	color: #fff;
+}
+
+
+div.portlet_commsits_actual_progress div.table_title {
+	padding: 10px 20px;
+}
+
+
+/*table*/
+div.portlet_commsits_actual_progress thead {
+	background: #111;
+}
+
+div.portlet_commsits_actual_progress table {
+	margin-top: 10px;
+	font-size: .9em;
+}
+
+
+/*theader border*/
+div.portlet_commsits_actual_progress table th {
+	border-bottom: 1px solid #000 !important;
+	font-weight: normal;
+}
+div.portlet_commsits_actual_progress table .col_separation {
+	border-right: 2px solid #223;
+}
+
+/*tbody border*/
+div.portlet_commsits_actual_progress table tbody td {
+	border-bottom: 1px solid #669 !important;
+}
+
+
+
+/*
+
+portlet_commsits_actual_progress
+
+*/
+div.portlet_commsits_actual_progress div.content {
+	background: #252237;
+}
+div.portlet_commsits_actual_progress div.portlet_content {
+}
+div.portlet_commsits_actual_progress div.portlet_title {
+	color: #fff;
+}
+
+
+div.portlet_commsits_actual_progress div.table_title {
+	padding: 10px 20px;
+}
+
+
+/*table*/
+div.portlet_commsits_actual_progress thead {
+	background: #111;
+}
+
+div.portlet_commsits_actual_progress table {
+	margin-top: 10px;
+	font-size: .9em;
+}
+
+
+/*theader border*/
+div.portlet_commsits_actual_progress table th {
+	border-bottom: 1px solid #000 !important;
+	font-weight: normal;
+}
+div.portlet_commsits_actual_progress table .col_separation {
+	border-right: 2px solid #223;
+}
+
+/*tbody border*/
+div.portlet_commsits_actual_progress table tbody td {
+	border-bottom: 1px solid #669 !important;
+}
+
+
+/*
+----------------------------------------------
+	
+	AFC
+
+----------------------------------------------
+*/
+
+
+
+/*
+
+portlet_afc_actual_progress
+
+*/
+div.portlet_afc_actual_progress div.content {
+	background: #252237;
+}
+div.portlet_afc_actual_progress div.portlet_content {
+}
+div.portlet_afc_actual_progress div.portlet_title {
+	color: #fff;
+}
+
+
+div.portlet_afc_actual_progress div.table_title {
+	padding: 10px 20px;
+}
+
+
+/*table*/
+div.portlet_afc_actual_progress thead {
+	background: #111;
+}
+
+div.portlet_afc_actual_progress table {
+	margin-top: 10px;
+	font-size: .9em;
+}
+
+
+/*theader border*/
+div.portlet_afc_actual_progress table th {
+	border-bottom: 1px solid #000 !important;
+	font-weight: normal;
+}
+div.portlet_afc_actual_progress table .col_separation {
+	border-right: 2px solid #223;
+}
+
+/*tbody border*/
+div.portlet_afc_actual_progress table tbody td {
+	border-bottom: 1px solid #669 !important;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*
+----------------------------------------------
+	
+	ET
+
+----------------------------------------------
+*/
+
+
+/*
+----------------------------------------------
+	
+	DEMV
+
+----------------------------------------------
+*/
+
+
+/*
+----------------------------------------------
+	
+	STC
+
+----------------------------------------------
+*/
+
+
+/*
+----------------------------------------------
+	
+	PSD
+
+----------------------------------------------
+*/
+
+
+/*
+----------------------------------------------
+	
+	PSDS_M
+
+----------------------------------------------
+*/
+
+
+/*
+----------------------------------------------
+	
+	PSDS
+
+----------------------------------------------
+*/
+
+
+/*
+----------------------------------------------
+	
+	TW_M
+
+----------------------------------------------
+*/
+
+
+/*
+----------------------------------------------
+	
+	TW
+
+----------------------------------------------
+*/
+
+
+/*
+----------------------------------------------
+	
+	COMMS
+
+----------------------------------------------
+*/
+
+
+
+
+/*
+----------------------------------------------
+	
+	AFC
+
+----------------------------------------------
+*/
 
 
 

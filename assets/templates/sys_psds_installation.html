@@ -1,9 +1,15 @@
-<div class="col-md-12 portlet portlet_et_project_timeline">
+<div class="col-md-12 portlet portlet_psds_installation">
 	<div class="row content">
 		<div class="col-md-12 portlet_title">
 			<i class="fa_title_icon fa fa-calendar-check-o" aria-hidden="true"></i>
-			<%=data.title%>
-			<span class="plate_asof"><!--(As of : 3rd July 2016)--></span>
+			<% if (typeof(data.data[0]) !=="undefined"){%>
+			<% if (typeof(data.data[0].date) !== "undefined") { %>
+				<%=data.title%> <span class="plate_asof">(As of : <%=data.data[0].date%>) </span>
+			<% } else {%>
+				<%=data.title%>
+			<% }}else {%>
+				<%=data.title%>
+			<% }%>
 		</div>
 		<div class="col-md-12 portlet_content pl0">
 			<div class="row">
@@ -111,73 +117,73 @@
 	
 /*
 
-portlet_et_project_timeline
+portlet_psds_installation
 
 */
 
-div.portlet_et_project_timeline div.content {
+div.portlet_psds_installation div.content {
 	background: #252237;
 }
-div.portlet_et_project_timeline div.portlet_content {
+div.portlet_psds_installation div.portlet_content {
 }
-div.portlet_et_project_timeline div.portlet_title {
+div.portlet_psds_installation div.portlet_title {
 	color: #fff;
 }
 
 
 /*table setup*/
-.portlet_et_project_timeline {
+.portlet_psds_installation {
 	padding: 10px 0 0 0;
 }
-.portlet_et_project_timeline thead {
+.portlet_psds_installation thead {
 	background: #111;
 }
-.portlet_et_project_timeline table {
+.portlet_psds_installation table {
 	font-size: .9em;
 	margin-left: 15px;
 }
 	/*theader border*/
-	.portlet_et_project_timeline table th {
+	.portlet_psds_installation table th {
 		border-bottom: 1px solid #000 !important;
 		font-weight: normal;
 		text-align: center;
 	}
-	.portlet_et_project_timeline table .col_separation {
+	.portlet_psds_installation table .col_separation {
 		border-right: 2px solid #223;
 	}
 
 	/*tbody border*/
-	div.portlet_et_project_timeline table tbody td {
+	div.portlet_psds_installation table tbody td {
 		border-bottom: 1px solid #669 !important;
 	}
 
-div.portlet_et_project_timeline table thead th:first-child {
+div.portlet_psds_installation table thead th:first-child {
 	width: 150px;
 	text-align: left;
 }
 
-div.portlet_et_project_timeline div.upper_box {
+div.portlet_psds_installation div.upper_box {
 	padding: 10px 0;
 	text-align: center;
 	background: rgba(255,255,255,.15);
 	color: #ff0;
 }
-div.portlet_et_project_timeline div.lower_box {
+div.portlet_psds_installation div.lower_box {
 	padding: 10px 0;
 }
 
-div.portlet_et_project_timeline div.table_title {
+div.portlet_psds_installation div.table_title {
 	padding: 10px 20px;
 }
 
-div.portlet_et_project_timeline span.data_holder.data_days {
+div.portlet_psds_installation span.data_holder.data_days {
 	font-size: 2em;
 }
 
-div.portlet_et_project_timeline span.data_holder.data_early {
+div.portlet_psds_installation span.data_holder.data_early {
 	color: #0fa;
 }
-div.portlet_et_project_timeline span.data_holder.data_variance {
+div.portlet_psds_installation span.data_holder.data_variance {
 	color: #f5f;
 }
 	
@@ -189,7 +195,7 @@ div.portlet_et_project_timeline span.data_holder.data_variance {
 	
 $(document).ready(function(){
 
-	var portlet_et_project_timeline_data = [
+	var portlet_psds_installation_data = [
 		{
 			"project_phase":"Phase 1",
 			"sat_days_left":"0",
@@ -216,8 +222,8 @@ $(document).ready(function(){
 		}
 	]
 	
-	for (var i = 0; i < portlet_et_project_timeline_data.length; i++) {
-		a = portlet_et_project_timeline_data[i]
+	for (var i = 0; i < portlet_psds_installation_data.length; i++) {
+		a = portlet_psds_installation_data[i]
 		
 		var td_data1 = a.project_phase;
 		var td_data2a = a.sat_days_left;
@@ -232,7 +238,7 @@ $(document).ready(function(){
 		
 		var append_this = '<tr><td>'+td_data1+'</td><td><div class="col-md-12 upper_box"><div class="row"><div class="col-md-12 col1_data1_data"><span class="data_holder data_days">'+td_data2a+'</span></div><div class="col-md-12 col1_data1_label">Days Left</div></div></div><div class="col-md-12 lower_box"><div class="row"><div class="col-md-6"><div class="row"><div class="col-md-12 col1_data2_label">Start Date:</div><div class="col-md-12 col1_data2_data"><span class="data_holder data_early">'+td_data2b+'</span></div></div></div><div class="col-md-6"><div class="row"><div class="col-md-12 col1_data3_label">Variance:</div><div class="col-md-12 col1_data3_data"><span class="data_holder data_variance">'+td_data2c+'</span></div></div></div></div></div></td><td><div class="col-md-12 upper_box"><div class="row"><div class="col-md-12 col2_data1_data"><span class="data_holder data_days">'+td_data3a+'</span></div><div class="col-md-12 col2_data1_label">Days Left</div></div></div><div class="col-md-12 lower_box"><div class="row"><div class="col-md-6"><div class="row"><div class="col-md-12 col2_data2_label">Start Date:</div><div class="col-md-12 col2_data2_data"><span class="data_holder data_early">'+td_data3b+'</span></div></div></div><div class="col-md-6"><div class="row"><div class="col-md-12 col2_data3_label">Variance:</div><div class="col-md-12 col2_data3_data"><span class="data_holder data_variance">'+td_data3c+'</span></div></div></div></div></div></td><td><div class="col-md-12 upper_box"><div class="row"><div class="col-md-12 col3_data1_data"><span class="data_holder data_days">'+td_data4a+'</span></div><div class="col-md-12 col3_data1_label">Days Left</div></div></div><div class="col-md-12 lower_box"><div class="row"><div class="col-md-6"><div class="row"><div class="col-md-12 col3_data2_label">Start Date:</div><div class="col-md-12 col3_data2_data"><span class="data_holder data_early">'+td_data4b+'</span></div></div></div><div class="col-md-6"><div class="row"><div class="col-md-12 col3_data3_label">Variance:</div><div class="col-md-12 col3_data3_data"><span class="data_holder data_variance">'+td_data4c+'</span></div></div></div></div></div></td></tr>'
 		
-		$('.portlet_et_project_timeline table tbody').append(append_this);
+		$('.portlet_psds_installation table tbody').append(append_this);
 		
 	}
 	

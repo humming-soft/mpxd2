@@ -1,0 +1,349 @@
+<div class="col-md-12 portlet tw_kd_summary">
+	<div class="row content">
+		<div class="col-md-12 portlet_title">
+			<i class="fa_title_icon fa fa-hourglass" aria-hidden="true"></i>
+			<% if (typeof(data.data[0]) !=="undefined"){%>
+			<% if (typeof(data.data[0].date) !== "undefined") { %>
+				<%=data.title%> <span class="plate_asof">(As of : <%=data.data[0].date%>) </span>
+			<% } else {%>
+				<%=data.title%>
+			<% }}else {%>
+				<%=data.title%>
+			<% }%>
+		</div>
+		<div class="col-md-12 portlet_content pl0">
+			<div class="row">
+				
+				<div class="col-md-12 col-lg-5">
+					<div class="row">
+						<div class="col-md-5 col-lg-5">
+							<div class="row ml0">
+								<div class="col-md-12 col-lg-12 item psd_data_type1">
+									<span class="item_title">Planned</span>
+									<span class="item_value iv_early">88%</span>
+								</div>
+								<div class="col-md-12 col-lg-12 item psd_data_type1">
+									<span class="item_title">Actual</span>
+									<span class="item_value iv_actual">88%</span>
+								</div>
+								<div class="col-md-6 col-lg-6 item psd_data_type2">
+									<span class="item_title">Variance (%)</span>
+									<span class="item_value">
+										0
+									</span>
+								</div>
+								<div class="col-md-6 col-lg-6 item psd_data_type2">
+									<span class="item_title">Variance (Week)</span>
+									<span class="item_value">
+										0
+									</span>
+								</div>
+								<div class="col-md-6 col-lg-6 item psd_data_type2">
+									<span class="item_title">Trend</span>
+									<span class="item_value">
+										<i class="fa fa-chevron-up" aria-hidden="true"></i>
+									</span>
+								</div>
+								<div class="col-md-6 col-lg-6 item psd_data_type2">
+									<span class="item_title">Status</span>
+									<span class="item_value status_1">
+										<i class="fa fa-circle" aria-hidden="true"></i>
+									</span>
+								</div>
+							</div>
+						</div>
+						<div class="col-md-7 col-lg-7">
+							<div class="content content_chart">
+								<span class="chart_title">Total Progress :</span>
+								<div style="overflow: hidden;" id="chart_<%=data.id%>">></div>
+							</div>
+						</div>
+					</div>
+				</div>
+				
+				<div class="col-md-12 col-lg-7">
+					<div class="row">
+						<div class="col-md-12 div_table">
+							
+							<div class="col-xs-6 col-sm-4 col-md-3 col-lg-3">
+								<div class="row">
+									<div class="title"><span>Track Survey</span></div>
+									<div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 item psd_data_type1">
+										<span class="item_title">Planned</span>
+										<span class="item_value iv_early">88%</span>
+									</div>
+									<div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 item psd_data_type1">
+										<span class="item_title">Actual</span>
+										<span class="item_value iv_actual">88%</span>
+									</div>
+								</div>
+							</div>
+							<div class="col-xs-6 col-sm-4 col-md-3 col-lg-3">
+								<div class="row">
+									<div class="title"><span>Surface Preparation</span></div>
+									<div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 item psd_data_type1">
+										<span class="item_title">Planned</span>
+										<span class="item_value iv_early">88%</span>
+									</div>
+									<div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 item psd_data_type1">
+										<span class="item_title">Actual</span>
+										<span class="item_value iv_actual">88%</span>
+									</div>
+								</div>
+							</div>
+							<div class="col-xs-6 col-sm-4 col-md-3 col-lg-3">
+								<div class="row">
+									<div class="title"><span>Long Rail Distibution</span></div>
+									<div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 item psd_data_type1">
+										<span class="item_title">Planned</span>
+										<span class="item_value iv_early">88%</span>
+									</div>
+									<div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 item psd_data_type1">
+										<span class="item_title">Actual</span>
+										<span class="item_value iv_actual">88%</span>
+									</div>
+								</div>
+							</div>
+							<div class="col-xs-6 col-sm-4 col-md-3 col-lg-3">
+								<div class="row">
+									<div class="title"><span>Rail & Sleeper Assembly</span></div>
+									<div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 item psd_data_type1">
+										<span class="item_title">Planned</span>
+										<span class="item_value iv_early">88%</span>
+									</div>
+									<div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 item psd_data_type1">
+										<span class="item_title">Actual</span>
+										<span class="item_value iv_actual">88%</span>
+									</div>
+								</div>
+							</div>
+							<div class="col-xs-6 col-sm-4 col-md-3 col-lg-3">
+								<div class="row">
+									<div class="title"><span>Rebar & Form Settingy</span></div>
+									<div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 item psd_data_type1">
+										<span class="item_title">Planned</span>
+										<span class="item_value iv_early">88%</span>
+									</div>
+									<div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 item psd_data_type1">
+										<span class="item_title">Actual</span>
+										<span class="item_value iv_actual">88%</span>
+									</div>
+								</div>
+							</div>
+							<div class="col-xs-6 col-sm-4 col-md-3 col-lg-3">
+								<div class="row">
+									<div class="title"><span>Concreting</span></div>
+									<div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 item psd_data_type1">
+										<span class="item_title">Planned</span>
+										<span class="item_value iv_early">88%</span>
+									</div>
+									<div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 item psd_data_type1">
+										<span class="item_title">Actual</span>
+										<span class="item_value iv_actual">88%</span>
+									</div>
+								</div>
+							</div>
+							<div class="col-xs-6 col-sm-4 col-md-3 col-lg-3">
+								<div class="row">
+									<div class="title"><span>Derailment Wall</span></div>
+									<div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 item psd_data_type1">
+										<span class="item_title">Planned</span>
+										<span class="item_value iv_early">88%</span>
+									</div>
+									<div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 item psd_data_type1">
+										<span class="item_title">Actual</span>
+										<span class="item_value iv_actual">88%</span>
+									</div>
+								</div>
+							</div>
+							<div class="col-xs-6 col-sm-4 col-md-3 col-lg-3">
+								<div class="row">
+									<div class="title"><span>Welding/Destressing</span></div>
+									<div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 item psd_data_type1">
+										<span class="item_title">Planned</span>
+										<span class="item_value iv_early">88%</span>
+									</div>
+									<div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 item psd_data_type1">
+										<span class="item_title">Actual</span>
+										<span class="item_value iv_actual">88%</span>
+									</div>
+								</div>
+							</div>
+							<div class="col-xs-6 col-sm-4 col-md-3 col-lg-3">
+								<div class="row">
+									<div class="title"><span>Rail Alignment</span></div>
+									<div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 item psd_data_type1">
+										<span class="item_title">Planned</span>
+										<span class="item_value iv_early">88%</span>
+									</div>
+									<div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 item psd_data_type1">
+										<span class="item_title">Actual</span>
+										<span class="item_value iv_actual">88%</span>
+									</div>
+								</div>
+							</div>
+							<div class="col-xs-6 col-sm-4 col-md-3 col-lg-3">
+								<div class="row">
+									<div class="title"><span>PR Bracket Installation</span></div>
+									<div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 item psd_data_type1">
+										<span class="item_title">Planned</span>
+										<span class="item_value iv_early">88%</span>
+									</div>
+									<div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 item psd_data_type1">
+										<span class="item_title">Actual</span>
+										<span class="item_value iv_actual">88%</span>
+									</div>
+								</div>
+							</div>
+							<div class="col-xs-6 col-sm-4 col-md-3 col-lg-3">
+								<div class="row">
+									<div class="title"><span>PR Installation/Alignment</span></div>
+									<div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 item psd_data_type1">
+										<span class="item_title">Planned</span>
+										<span class="item_value iv_early">88%</span>
+									</div>
+									<div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 item psd_data_type1">
+										<span class="item_title">Actual</span>
+										<span class="item_value iv_actual">88%</span>
+									</div>
+								</div>
+							</div>
+							<div class="col-xs-6 col-sm-4 col-md-3 col-lg-3">
+								<div class="row">
+									<div class="title"><span>PR Cover Installation</span></div>
+									<div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 item psd_data_type1">
+										<span class="item_title">Planned</span>
+										<span class="item_value iv_early">88%</span>
+									</div>
+									<div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 item psd_data_type1">
+										<span class="item_title">Actual</span>
+										<span class="item_value iv_actual">88%</span>
+									</div>
+								</div>
+							</div>
+							<div class="col-xs-6 col-sm-4 col-md-3 col-lg-3">
+								<div class="row">
+									<div class="title"><span>Emergency Walkway</span></div>
+									<div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 item psd_data_type1">
+										<span class="item_title">Planned</span>
+										<span class="item_value iv_early">88%</span>
+									</div>
+									<div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 item psd_data_type1">
+										<span class="item_title">Actual</span>
+										<span class="item_value iv_actual">88%</span>
+									</div>
+								</div>
+							</div>
+							<div class="col-xs-6 col-sm-4 col-md-3 col-lg-3">
+								<div class="row">
+									<div class="title"><span>Cable Through & Containment</span></div>
+									<div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 item psd_data_type1">
+										<span class="item_title">Planned</span>
+										<span class="item_value iv_early">88%</span>
+									</div>
+									<div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 item psd_data_type1">
+										<span class="item_title">Actual</span>
+										<span class="item_value iv_actual">88%</span>
+									</div>
+								</div>
+							</div>
+							<div class="col-xs-6 col-sm-4 col-md-3 col-lg-3">
+								<div class="row">
+									<div class="title"><span>Commissioning</span></div>
+									<div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 item psd_data_type1">
+										<span class="item_title">Planned</span>
+										<span class="item_value iv_early">88%</span>
+									</div>
+									<div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 item psd_data_type1">
+										<span class="item_title">Actual</span>
+										<span class="item_value iv_actual">88%</span>
+									</div>
+								</div>
+							</div>
+							
+						</div>
+					</div>
+				</div>
+				
+				
+			</div>
+		</div>
+	</div>
+</div>
+
+
+
+
+<style type="text/css">
+	
+/*
+
+tw_kd_summary
+
+
+*/
+div.tw_kd_summary div.content {
+	background: #252237;
+}
+div.tw_kd_summary div.portlet_content {
+}
+div.tw_kd_summary div.portlet_title {
+	color: #fff;
+}
+
+div.tw_kd_summary div.portlet_content .content_chart {
+	text-align: center;
+}
+div.tw_kd_summary div.portlet_content span.chart_title {
+	display: block;
+	margin-top: 10px;
+	font-size: 1em;
+	text-align: center;
+}
+
+div.tw_kd_summary div.portlet_content .psd_data_type2 .item_value_variance,
+div.tw_kd_summary div.portlet_content .psd_data_type2 .item_value{
+	padding: 0 0 0 10px;
+	border-left: 3px solid rgba(255,255,255,.15);
+}
+
+/*chevron color*/
+div.tw_kd_summary div.portlet_content .psd_data_type2 .fa-chevron-up {
+	color: #0f0;
+}
+div.tw_kd_summary div.portlet_content .psd_data_type2 .fa-chevron-right {
+	color: #fa0;
+}
+div.tw_kd_summary div.portlet_content .psd_data_type2 .fa-chevron-down {
+	color: #f59;
+}
+
+/*circle color*/
+div.tw_kd_summary div.portlet_content .psd_data_type2 .status_1 .fa-circle {
+	color: #0f0;
+}
+div.tw_kd_summary div.portlet_content .psd_data_type2 .status_2 .fa-circle {
+	color: #fa0;
+}
+div.tw_kd_summary div.portlet_content .psd_data_type2 .status_3 .fa-circle {
+	color: #f59;
+}
+
+/*div in table style*/
+
+div.tw_kd_summary div.portlet_content .div_table > div{
+	border-left: 10px solid rgba(0,0,0,0);
+	border-right: 10px solid rgba(0,0,0,0);
+}
+div.tw_kd_summary div.portlet_content .div_table div.title {
+	height: 60px;
+	position: relative;
+}
+div.tw_kd_summary div.portlet_content .div_table div.title span {
+	position: absolute;
+	bottom: 0;
+	left: 10px;
+}
+
+	
+</style>

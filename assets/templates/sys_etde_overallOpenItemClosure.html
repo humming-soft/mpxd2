@@ -1,9 +1,15 @@
-<div class="col-md-12 portlet portlet_et_overallOpenItemClosure">
+<div class="col-md-12 portlet portlet_etde_overallOpenItemClosure">
 	<div class="row content">
 		<div class="col-md-12 portlet_title">
 			<i class="fa_title_icon fa fa-bar-chart" aria-hidden="true"></i>
-			<%=data.title%>
-			<span class="plate_asof"><!--(As of : 3rd July 2016)--></span>
+			<% if (typeof(data.data[0]) !=="undefined"){%>
+			<% if (typeof(data.data[0].date) !== "undefined") { %>
+				<%=data.title%> <span class="plate_asof">(As of : <%=data.data[0].date%>) </span>
+			<% } else {%>
+				<%=data.title%>
+			<% }}else {%>
+				<%=data.title%>
+			<% }%>
 		</div>
 		<div class="col-md-12 portlet_content pl0">
 			<div class="row">
@@ -25,31 +31,6 @@
 	<!--</div>-->
 <!--</div>-->
 
-
-
-<style type="text/css">
-
-/*
-portlet_et_overallOpenItemClosure
-*/
-div.portlet_et_overallOpenItemClosure div.content {
-	background: #252237;
-}
-div.portlet_et_overallOpenItemClosure div.portlet_content {
-}
-div.portlet_et_overallOpenItemClosure div.portlet_title {
-	color: #fff;
-}
-
-
-div.portlet_et_overallOpenItemClosure div.table_title {
-	padding: 10px 20px;
-}
-
-
-
-
-</style>
 
 <script type="text/javascript">
 $(document).ready(function(){
@@ -90,7 +71,10 @@ Highcharts.chart('portlet_et_overallOpenItemClosure_chart_1', {
 		name: 'Closed Job',
 		data: [0,0,57,62,70,63,55,70,71,76,75,89,90,81,91,95,85,95,85,100,94,94,97,103,94,98,101,102],
 		color: '#0fa'
-	}]
+	}],
+	credits: {
+		enabled: false
+	}
 });
 
 Highcharts.chart('portlet_et_overallOpenItemClosure_chart_2', {
@@ -109,12 +93,6 @@ Highcharts.chart('portlet_et_overallOpenItemClosure_chart_2', {
 			text: 'Number of Jobs Done'
 		}
 	},
-	legend: {
-		layout: 'vertical',
-		align: 'right',
-		verticalAlign: 'middle'
-	},
-
 	plotOptions: {
 		series: {
 			label: {
@@ -148,6 +126,9 @@ Highcharts.chart('portlet_et_overallOpenItemClosure_chart_2', {
 				}
 			}
 		}]
+	},
+	credits: {
+		enabled: false
 	}
 
 });

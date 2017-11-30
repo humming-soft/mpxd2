@@ -203,35 +203,27 @@ $(document).ready(function(){
 	*/
 	
 	var json = [ 
-		{"chart_id":"db_donut_1a","chart_title":"S&TC","chart_name":"Signalling & Train Control","chart_value":"67","set_donut":"2","url":"sys-stc/index","link_enable":"yes"},
-		{"chart_id":"db_donut_1b","chart_title":"PSD","chart_name":"Platform Screen Door","chart_value":"41","set_donut":"2","url":"sys-psd/index","link_enable":"yes"},
-		{"chart_id":"db_donut_1c","chart_title":"APG","chart_name":"Automatic Platform Gate","chart_value":"0","set_donut":"2","url":"sys-apg/index","link_enable":"no"},
-		{"chart_id":"db_donut_2a","chart_title":"ICSS","chart_name":"Integrated Control Supervisory System","chart_value":"0","set_donut":"2","url":"sys-icss/index","link_enable":"no"},
-		{"chart_id":"db_donut_2b","chart_title":"CMMS","chart_name":"Computerised Maintenance Management System","chart_value":"0","set_donut":"2","url":"sys-cmms/index","link_enable":"no"},
-		{"chart_id":"db_donut_3a","chart_title":"ET","chart_name":"Electric Train","chart_value":"19","set_donut":"2","url":"sys-et/index","link_enable":"yes"},
-		{"chart_id":"db_donut_3b","chart_title":"DE","chart_name":"Depot Equipment","chart_value":"15","set_donut":"2","url":"sys-demv/index","link_enable":"yes"},
-		{"chart_id":"db_donut_4a","chart_title":"TW","chart_name":"Trackworks","chart_value":"39","set_donut":"2","url":"sys-tw/index","link_enable":"yes"},
-		{"chart_id":"db_donut_4b","chart_title":"MV","chart_name":"Maintenance Vehicle / Works Train","chart_value":"46","set_donut":"2","url":"sys-demv/index","link_enable":"yes"},
-		{"chart_id":"db_donut_5a","chart_title":"PS","chart_name":"Power Supply","chart_value":"50","set_donut":"2","url":"sys-psds/index","link_enable":"yes"},
-		{"chart_id":"db_donut_5b","chart_title":"DS","chart_name":"Distribution System","chart_value":"50","set_donut":"2","url":"sys-psds/index","link_enable":"yes"},
-		{"chart_id":"db_donut_6a","chart_title":"COMMS","chart_name":"Communications, GIRN & IDS","chart_value":"85","set_donut":"2","url":"sys-comms/index","link_enable":"yes"},
-		{"chart_id":"db_donut_7a","chart_title":"AFC","chart_name":"Automatic Fare Collection","chart_value":"17","set_donut":"2","url":"sys-afc/index","link_enable":"yes"}
+		
+		//
+		//	arrage by sequence :
+		//
+		//	- S&TC & PSD/APG
+		//	- ICSS&CMMS
+		//	- ET&DE
+		//	- TW&MV
+		//	- PSDS
+		//	- COMMS&ITS
+		//	- AFC
+		//
+		
+		{"chart_id":"db_donut_1a","chart_title":"S&TC & PSD/APG","chart_name":"Signalling & Train Control System And Platform Screen Doors/ Automatic Platform Gates","chart_value":"67","set_donut":"2","url":"sys-stcpsd/index","link_enable":"yes"},
+		{"chart_id":"db_donut_1b","chart_title":"<br>ICSS & CMMS","chart_name":"Integrated Control Supervisory System And Computerised Maintenance Management System","chart_value":"0","set_donut":"2","url":"sys-icsscmms/index","link_enable":"no"},
+		{"chart_id":"db_donut_2a","chart_title":"<br>ET & DE","chart_name":"Electric Trains And Depot Equipment","chart_value":"19","set_donut":"2","url":"sys-etde/index","link_enable":"yes"},
+		{"chart_id":"db_donut_2b","chart_title":"<br>TW & MV","chart_name":"Trackworks, Maintenance Vehicles & Works Train","chart_value":"39","set_donut":"2","url":"sys-twmv/index","link_enable":"yes"},
+		{"chart_id":"db_donut_3a","chart_title":"<br>PS&DS","chart_name":"Power Supply And Distribution System","chart_value":"50","set_donut":"2","url":"sys-psds/index","link_enable":"yes"},
+		{"chart_id":"db_donut_3b","chart_title":"<br>COMMS & ITS","chart_name":"Communications, Government Integrated Radio Network, Commercial Telecom (INFRA) And Information Technology System","chart_value":"85","set_donut":"2","url":"sys-commsits/index","link_enable":"yes"},
+		{"chart_id":"db_donut_4a","chart_title":"<br>AFC","chart_name":"Automatic Fare Collection System","chart_value":"17","set_donut":"2","url":"sys-afc/index","link_enable":"yes"}
 	];
-	// var json = [ 
-	// 	{"chart_id":"db_donut_1a","chart_title":"S&TC","chart_name":"Signalling & Train Control","chart_value":"67","set_donut":"2","url":"stc-psd-apg/index"},
-	// 	{"chart_id":"db_donut_1b","chart_title":"PSD","chart_name":"Platform Screen Door","chart_value":"41","set_donut":"2","url":"stc-psd-apg/index"},
-	// 	{"chart_id":"db_donut_1c","chart_title":"APG","chart_name":"Automatic Platform Gate","chart_value":"41","set_donut":"2","url":"stc-psd-apg/index"},
-	// 	{"chart_id":"db_donut_2a","chart_title":"ICSS","chart_name":"Integrated Control Supervisory System","chart_value":"75","set_donut":"2","url":"icss-cmms/index"},
-	// 	{"chart_id":"db_donut_2b","chart_title":"CMMS","chart_name":"Computerised Maintenance Management System","chart_value":"70","set_donut":"2","url":"icss-cmms/index"},
-	// 	{"chart_id":"db_donut_3a","chart_title":"ET","chart_name":"Electric Train","chart_value":"19","set_donut":"2","url":"etde/index"},
-	// 	{"chart_id":"db_donut_3b","chart_title":"DE","chart_name":"Depot Equipment","chart_value":"15","set_donut":"2","url":"etde/index"},
-	// 	{"chart_id":"db_donut_4a","chart_title":"TW","chart_name":"Trackworks","chart_value":"39","set_donut":"2","url":"twmv/index"},
-	// 	{"chart_id":"db_donut_4b","chart_title":"MV","chart_name":"Maintenance Vehicle / Works Train","chart_value":"46","set_donut":"2","url":"twmv/index"},
-	// 	{"chart_id":"db_donut_5a","chart_title":"PS","chart_name":"Power Supply","chart_value":"50","set_donut":"2","url":"psds/index"},
-	// 	{"chart_id":"db_donut_5b","chart_title":"DS","chart_name":"Distribution System","chart_value":"50","set_donut":"2","url":"psds/index"},
-	// 	{"chart_id":"db_donut_6a","chart_title":"COMMS","chart_name":"Communications, GIRN & IDS","chart_value":"85","set_donut":"2","url":"comms/index"},
-	// 	{"chart_id":"db_donut_7a","chart_title":"AFC","chart_name":"Automatic Fare Collection","chart_value":"17","set_donut":"2","url":"afc/index"}
-	// ];
 	
 	for (i = 0; i < json.length; i++) {
 		var b = json[i];
