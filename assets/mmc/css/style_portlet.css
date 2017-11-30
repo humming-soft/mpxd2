@@ -2019,6 +2019,52 @@ div.portlet_etde_project_timeline span.data_holder.data_variance {
 ----------------------------------------------
 */
 
+/*
+
+portlet_commsits_actual_progress
+
+*/
+div.portlet_commsits_actual_progress div.content {
+	background: #252237;
+}
+div.portlet_commsits_actual_progress div.portlet_content {
+}
+div.portlet_commsits_actual_progress div.portlet_title {
+	color: #fff;
+}
+
+
+div.portlet_commsits_actual_progress div.table_title {
+	padding: 10px 20px;
+}
+
+
+/*table*/
+div.portlet_commsits_actual_progress thead {
+	background: #111;
+}
+
+div.portlet_commsits_actual_progress table {
+	margin-top: 10px;
+	font-size: .9em;
+}
+
+
+/*theader border*/
+div.portlet_commsits_actual_progress table th {
+	border-bottom: 1px solid #000 !important;
+	font-weight: normal;
+}
+div.portlet_commsits_actual_progress table .col_separation {
+	border-right: 2px solid #223;
+}
+
+/*tbody border*/
+div.portlet_commsits_actual_progress table tbody td {
+	border-bottom: 1px solid #669 !important;
+}
+
+
 
 /*
 

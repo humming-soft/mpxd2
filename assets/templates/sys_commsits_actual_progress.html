@@ -1,4 +1,4 @@
-<div class="col-md-12 portlet portlet_comms_actual_progress">
+<div class="col-md-12 portlet portlet_commsits_actual_progress">
 	<div class="row content">
 		<div class="col-md-12 portlet_title">
 			<i class="fa_title_icon fa fa-hourglass" aria-hidden="true"></i>
@@ -42,7 +42,7 @@
 
 <script type="text/javascript">
 $(document).ready(function(){
-	var portlet_comms_actual_progress_data = [
+	var portlet_commsits_actual_progress_data = [
 		{
 			"baseline":"88%",
 			"kpi_target":"88%",
@@ -51,8 +51,8 @@ $(document).ready(function(){
 			"actual_progress":"88%",
 		}
 	]
-	for (var i = 0; i < portlet_comms_actual_progress_data.length; i++) {
-		a = portlet_comms_actual_progress_data[i]
+	for (var i = 0; i < portlet_commsits_actual_progress_data.length; i++) {
+		a = portlet_commsits_actual_progress_data[i]
 		var data_0 = i+1;
 		var data_1 = a.baseline
 		var data_2 = a.kpi_target
@@ -60,7 +60,7 @@ $(document).ready(function(){
 		var data_4 = a.shortfall
 		var data_5 = a.actual_progress
 		append_this = '<tr><td class="set_center">'+data_0+'</td><td class="set_center mrt_colorcode_baseline">'+data_1+'</td><td class="set_center mrt_colorcode_target">'+data_2+'</td><td class="set_center mrt_colorcode_actual">'+data_3+'</td><td class="set_center mrt_colorcode_shortfall">'+data_4+'</td><td class="set_center mrt_colorcode_actual_heavy">'+data_5+'</td></tr>';
-		$('.portlet_comms_actual_progress table tbody').append(append_this);
+		$('.portlet_commsits_actual_progress table tbody').append(append_this);
 	}
 });
 </script>
