@@ -114,7 +114,7 @@ breadcrumb
 div.custom_breadcrumb div.title {
 	color: #fff;
 	padding: 0 0 5px;
-	font-size: 1.5em;
+	font-size: 1.2em;
 	border-bottom: 1px solid #335;
 }
 
@@ -229,7 +229,7 @@ div.portlet_info div.portlet_title {
 
 div.portlet_info div.content div.pc_top {
 	padding: 10px;
-	font-size: 1.5em;
+	font-size: 1.2em;
 	text-align: center;
 	border-bottom: 1px solid #669;
 }
@@ -243,6 +243,7 @@ div.portlet_info div.content div.pc_bottom {
 div.portlet_info div.content span.info_code {
 	display: block;
 	margin: 0 auto;
+	margin-bottom: 10px;
 	width: 200px;
 	font-size: 1em;
 	text-align: center;
@@ -251,7 +252,7 @@ div.portlet_info div.content span.info_code {
 }
 div.portlet_info div.content span.info_title {
 	display: block;
-	font-size: 1.5em;
+	font-size: 1.2em;
 	text-align: center;
 }
 div.portlet_info div.content span.info_subtitle {
