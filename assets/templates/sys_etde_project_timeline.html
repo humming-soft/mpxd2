@@ -14,7 +14,8 @@
 		<div class="col-md-12 portlet_content pl0">
 			<div class="row">
 				<div class="col-md-12">
-					
+<%console.log(data)%>
+					<%console.log(data.data.length)%>
 					<div class="table_title">Project Completion Countdown :</div>
 					<table class="table">
 						<thead>
@@ -26,14 +27,55 @@
 							</tr>
 						</thead>
 						<tbody>
-							<!-- <tr>
+						<%for (var i in data.data) {
+						var varsat="-";
+						var varsit="-";
+						var vart="-";
+						var phase = data.data[i]['phase'];
+						var satdate = data.data[i]['sat_date'];
+						var sitdate = data.data[i]['sit_date'];
+						var trialdate = data.data[i]['trial_date'];
+						<!--var variance = Math.round(compareDates(data.data[i][1],data.data[i][2]));-->
+						if(satdate !=="-"){
+						var daysleftsat = compareDate(satdate)
+						}else { daysleftsat="-";
+						}
+						if(sitdate !=="-"){
+						var daysleftsit = compareDate(sitdate)
+						}else { daysleftsit="-";
+						}
+						if(trialdate !=="-"){
+						var dayslefttrial = compareDate(trialdate)
+						}else { dayslefttrial="-";
+						}
+						if( daysleftsat < 0){ daysleftsat=0 };
+						if( daysleftsit < 0){ daysleftsit=0 };
+						if( dayslefttrial < 0){ dayslefttrial=0 };
+						if(isNaN(daysleftsat) || daysleftsat < 1 ){
+						 varsat="- w";
+						}else{
+						varsat=Math.floor(daysleftsat/7)+ " w";
+						}
+						if(isNaN(daysleftsit) || daysleftsit < 1){
+						 varsit="- w";
+						}else{
+						varsit=Math.floor(daysleftsit/7)+ " w";
+						}
+						if(isNaN(dayslefttrial) || dayslefttrial < 1){
+						vart="- w";
+						}else{
+						vart=Math.floor(dayslefttrial/7) + " w";
+						}
+						%>
+
+							 <tr>
 								<td>
-									Phase 1
+									<%=phase%>
 								</td>
 								<td>
 									<div class="col-md-12 upper_box">
 										<div class="row">
-											<div class="col-md-12 col1_data1_data"><span class="data_holder data_days">88</span></div>
+											<div class="col-md-12 col1_data1_data"><span class="data_holder data_days"><%=daysleftsat%></span></div>
 											<div class="col-md-12 col1_data1_label">Days Left</div>
 										</div>
 									</div>
@@ -42,13 +84,13 @@
 											<div class="col-md-6">
 												<div class="row">
 													<div class="col-md-12 col1_data2_label">Start Date</div>
-													<div class="col-md-12 col1_data2_data"><span class="data_holder data_early">22-Mar-16</span></div>
+													<div class="col-md-12 col1_data2_data"><span class="data_holder data_early"><%=satdate%></span></div>
 												</div>
 											</div>
 											<div class="col-md-6">
 												<div class="row">
 													<div class="col-md-12 col1_data3_label">Variance</div>
-													<div class="col-md-12 col1_data3_data"><span class="data_holder data_variance">-88w</span></div>
+													<div class="col-md-12 col1_data3_data"><span class="data_holder data_variance"><%=varsat%></span></div>
 												</div>
 											</div>
 										</div>
@@ -57,7 +99,7 @@
 								<td>
 									<div class="col-md-12 upper_box">
 										<div class="row">
-											<div class="col-md-12 col2_data1_data"><span class="data_holder data_days">88</span></div>
+											<div class="col-md-12 col2_data1_data"><span class="data_holder data_days"><%=daysleftsit%></span></div>
 											<div class="col-md-12 col2_data1_label">Days Left</div>
 										</div>
 									</div>
@@ -66,13 +108,13 @@
 											<div class="col-md-6">
 												<div class="row">
 													<div class="col-md-12 col2_data2_label">Start Date</div>
-													<div class="col-md-12 col2_data2_data"><span class="data_holder data_early">22-Mar-16</span></div>
+													<div class="col-md-12 col2_data2_data"><span class="data_holder data_early"><%=sitdate%></span></div>
 												</div>
 											</div>
 											<div class="col-md-6">
 												<div class="row">
 													<div class="col-md-12 col2_data3_label">Variance</div>
-													<div class="col-md-12 col2_data3_data"><span class="data_holder data_variance">-88w</span></div>
+													<div class="col-md-12 col2_data3_data"><span class="data_holder data_variance"><%=varsit%></span></div>
 												</div>
 											</div>
 										</div>
@@ -81,7 +123,7 @@
 								<td>
 									<div class="col-md-12 upper_box">
 										<div class="row">
-											<div class="col-md-12 col3_data1_data"><span class="data_holder data_days">88</span></div>
+											<div class="col-md-12 col3_data1_data"><span class="data_holder data_days"><%=dayslefttrial%></span></div>
 											<div class="col-md-12 col3_data1_label">Days Left</div>
 										</div>
 									</div>
@@ -90,19 +132,20 @@
 											<div class="col-md-6">
 												<div class="row">
 													<div class="col-md-12 col3_data2_label">Start Date</div>
-													<div class="col-md-12 col3_data2_data"><span class="data_holder data_early">22-Mar-16</span></div>
+													<div class="col-md-12 col3_data2_data"><span class="data_holder data_early"><%=trialdate%></span></div>
 												</div>
 											</div>
 											<div class="col-md-6">
 												<div class="row">
 													<div class="col-md-12 col3_data3_label">Variance</div>
-													<div class="col-md-12 col3_data3_data"><span class="data_holder data_variance">-88w</span></div>
+													<div class="col-md-12 col3_data3_data"><span class="data_holder data_variance"><%=vart%></span></div>
 												</div>
 											</div>
 										</div>
 									</div>
 								</td>
-							</tr> -->
+							</tr>
+						<%}%>
 						</tbody>
 					</table>
 					
@@ -117,53 +160,7 @@
 	
 $(document).ready(function(){
 
-	var portlet_etde_project_timeline_data = [
-		{
-			"project_phase":"Phase 1",
-			"sat_days_left":"0",
-			"sat_start_date":"22-Mar-16",
-			"sat_variance":"-88w",
-			"sit_days_left":"0",
-			"sit_start_date":"27-Jun-16",
-			"sit_variance":"-74w",
-			"trial_run_days_left":"0",
-			"trial_run_start_date":"25-Sep-16",
-			"trial_run_variance":"-61w",
-		},
-		{
-			"project_phase":"Phase 2",
-			"sat_days_left":"0",
-			"sat_start_date":"18-Oct-16",
-			"sat_variance":"-58w",
-			"sit_days_left":"0",
-			"sit_start_date":"30-Oct-16",
-			"sit_variance":"-56w",
-			"trial_run_days_left":"0",
-			"trial_run_start_date":"28-Apr-17",
-			"trial_run_variance":"-30w",
-		}
-	]
-	
-	for (var i = 0; i < portlet_etde_project_timeline_data.length; i++) {
-		a = portlet_etde_project_timeline_data[i]
-		
-		var td_data1 = a.project_phase;
-		var td_data2a = a.sat_days_left;
-		var td_data2b = a.sat_start_date;
-		var td_data2c = a.sat_variance;
-		var td_data3a = a.sit_days_left;
-		var td_data3b = a.sit_start_date;
-		var td_data3c = a.sit_variance;
-		var td_data4a = a.trial_run_days_left;
-		var td_data4b = a.trial_run_start_date;
-		var td_data4c = a.trial_run_variance;
-		
-		var append_this = '<tr><td>'+td_data1+'</td><td><div class="col-md-12 upper_box"><div class="row"><div class="col-md-12 col1_data1_data"><span class="data_holder data_days">'+td_data2a+'</span></div><div class="col-md-12 col1_data1_label">Days Left</div></div></div><div class="col-md-12 lower_box"><div class="row"><div class="col-md-6"><div class="row"><div class="col-md-12 col1_data2_label">Start Date:</div><div class="col-md-12 col1_data2_data"><span class="data_holder data_early">'+td_data2b+'</span></div></div></div><div class="col-md-6"><div class="row"><div class="col-md-12 col1_data3_label">Variance:</div><div class="col-md-12 col1_data3_data"><span class="data_holder data_variance">'+td_data2c+'</span></div></div></div></div></div></td><td><div class="col-md-12 upper_box"><div class="row"><div class="col-md-12 col2_data1_data"><span class="data_holder data_days">'+td_data3a+'</span></div><div class="col-md-12 col2_data1_label">Days Left</div></div></div><div class="col-md-12 lower_box"><div class="row"><div class="col-md-6"><div class="row"><div class="col-md-12 col2_data2_label">Start Date:</div><div class="col-md-12 col2_data2_data"><span class="data_holder data_early">'+td_data3b+'</span></div></div></div><div class="col-md-6"><div class="row"><div class="col-md-12 col2_data3_label">Variance:</div><div class="col-md-12 col2_data3_data"><span class="data_holder data_variance">'+td_data3c+'</span></div></div></div></div></div></td><td><div class="col-md-12 upper_box"><div class="row"><div class="col-md-12 col3_data1_data"><span class="data_holder data_days">'+td_data4a+'</span></div><div class="col-md-12 col3_data1_label">Days Left</div></div></div><div class="col-md-12 lower_box"><div class="row"><div class="col-md-6"><div class="row"><div class="col-md-12 col3_data2_label">Start Date:</div><div class="col-md-12 col3_data2_data"><span class="data_holder data_early">'+td_data4b+'</span></div></div></div><div class="col-md-6"><div class="row"><div class="col-md-12 col3_data3_label">Variance:</div><div class="col-md-12 col3_data3_data"><span class="data_holder data_variance">'+td_data4c+'</span></div></div></div></div></div></td></tr>'
-		
-		$('.portlet_etde_project_timeline table tbody').append(append_this);
-		
-	}
-	
+
 
 });
 
