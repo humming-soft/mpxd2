@@ -116,7 +116,7 @@
 							<div id="box3" class="box">
 
 								<div class="up"></div>
-								<div class="middle"><img src="../assets/mmc/images/button/cable.png"></div>
+								<a href="#" class="goto_sys-twmv-detail"><div class="middle"><img src="../assets/mmc/images/button/cable.png"></div></a>
 								<div class="below">
 									<div class="number"></div>
 									<div class="trend"></div>
@@ -934,16 +934,6 @@ $(document).ready(function(){
 	$('#plate_vector_map').load('../assets/mmc/svg/sys_twmv_gis.svg',function(){
 		
 		
-		$('#pl_station > span').click(function(){
-			alert('poi');
-		})
-		$('.v_station').click(function(){
-			alert('poi');
-		})
-		$('.v_depot').click(function(){
-			alert('poi');
-		})
-		
 		// vector_track
 		var json = [ 
 			{"vector_track":"legend_v_track_1","vector_status":"0","url":""},
@@ -1229,6 +1219,15 @@ $(document).ready(function(){
 	var currentDate = fullDate.getDate() + " " + n + " " + fullDate.getFullYear();
 	$('#current_date').text(currentDate);
 	
+	
+	
+	//
+	// portlet - links
+	//
+	
+	$('.goto_sys-twmv-detail').click(function(){
+		window.location.href = "detail";
+	})
 	
 	
 	// 
