@@ -322,10 +322,44 @@
 						</div>
 						<br>
 						<span class="chart_title">Number of Fully Completed Train :</span>
-						<span class="complete_train"><%=(typeof data.data.varCompleteTrain == 'undefined')?'0%':data.data.varCompleteTrain%></span>
+						<a href="#" data-toggle="modal" data-target="#modal_complete_train"><span class="complete_train"><%=(typeof data.data.varCompleteTrain == 'undefined')?'0%':data.data.varCompleteTrain%></span></a>
 						
 					</div>
 				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+
+<div class="modal fade portlet_etde_progress_detail modal_train" id="modal_complete_train" tabindex="-1" role="dialog" aria-labelledby="aaaa" aria-hidden="true">
+	<div class="modal-dialog" role="document">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h5 class="modal-title">Fully Completed Trains</h5>
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+			</div>
+			<div id="complete_train_block_1" class="modal-body">
+				<div class="row">
+					<div class="col-sm-12 col-md-12">
+						<div class="diagram">
+							<!-- -- -- -- -- -->
+							No Trains Completed Yet
+							<br><br>
+							Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+							tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+							quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+							consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+							cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+							proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
 			</div>
 		</div>
 	</div>

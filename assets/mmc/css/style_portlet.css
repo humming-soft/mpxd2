@@ -1654,7 +1654,36 @@ div.portlet_etde_progress .complete_train {
 	display: block;
 	font-size: 2.5em;
 	color: #0ff;
-}	
+}
+
+/*modal*/
+
+.portlet_etde_progress_detail {
+	padding: 30px !important;
+}
+
+.portlet_etde_progress_detail .modal-dialog {
+	width: 100%;
+}
+
+.portlet_etde_progress_detail .modal-content {
+	background: #222727;
+	border:5px solid rgba(0,255,255,.25);
+}
+
+.portlet_etde_progress_detail .modal-header {
+	border-bottom:1px solid #000;
+	background: rgba(0,255,255,.25);
+	color: #fff;
+	/*font-weight: bolder;*/
+}
+.portlet_etde_progress_detail .modal-footer {
+	border-top:1px solid #000;
+	background: rgba(0,0,0,.5);
+	color: #000;
+}
+.portlet_etde_progress_detail .modal-body div.train_block {
+}
 
 
 /*
