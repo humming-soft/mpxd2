@@ -357,6 +357,7 @@ function build_commercial($get_asof = false){
 			$commercial_arr->$name /= 1000;
 		
 	}
+	echo $as_of;
 	if($get_asof){
 		$as_of = DateTime::createFromFormat('d-M-Y', $as_of)->format('Y-m-d');
 		return $as_of;
