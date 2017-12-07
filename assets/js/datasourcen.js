@@ -227,12 +227,72 @@ mpxd.modules.sys_etde.sys_etde_progress = Backbone.View.extend({
 	}, render: function () {
 		var that = this;
 		var html = mpxd.getTemplate(that.data.type);
-		var currentProgress = parseFloat((typeof that.data.data.currentActual == "undefined")?0:that.data.data.currentActual);
+		var currentProgress = parseFloat((typeof that.data.data.PROGRESS.currentActual == "undefined")?0:that.data.data.PROGRESS.currentActual);
 		var remainingProgress = 100 - currentProgress;
 		template = _.template(html, {data: that.data});
 		that.$el.html(template);
 		that.$el.find('.portlet_content').css({"height":(that.$el.find('.content').parent().parent().parent().height())-40});
 		that.$el.find('.portlet_content').mCustomScrollbar({theme:"dark-3"});
+		var closedJ = [];
+		var openJ = [];
+		var train = [];
+		var trainData = [];
+		var second=that.data.data.second;
+		var portlet_etde_testing_data_detail =that.data.data.first;
+		var completed=0;
+		for (var i = 0; i < portlet_etde_testing_data_detail.length; i++) {
+			var train_no=0;
+			b = portlet_etde_testing_data_detail[i]
+			var td_data1 =parseInt( b.train);
+			var td_data2a = b.static_total;
+			var td_data2b = b.static_pass;
+			var td_data2c = b.static_incomplete;
+			var td_data2d = b.static_fail;
+			var td_data3a = b.pat_total;
+			var td_data3b = b.pat_pass;
+			var td_data3c = b.pat_incomplete;
+			var td_data3d = b.pat_fail;
+			var td_data4a = b.sat_total;
+			var td_data4b = b.sat_pass;
+			var td_data4c = b.sat_incomplete;
+			var td_data4d = b.sat_fail;
+			var td_data5a = b.it_toatl;
+			var td_data5b = b.it_pass;
+			var td_data5c = b.it_incomplete;
+			var td_data5d = b.it_fail;
+			var td_data6a = b.sit_total;
+			var td_data6b = b.sit_pass;
+			var td_data6c = b.sit_incomplete;
+			var td_data6d = b.sit_fail;
+			if(td_data2a==td_data2b && td_data3a==td_data3b && td_data4a==td_data4b && td_data5a==td_data5b && td_data6a==td_data6b && td_data2c==0 && td_data2d==0 && td_data3c==0 && td_data3d==0 && td_data4c==0 && td_data4d==0 && td_data5c==0 && td_data5d==0 && td_data6c==0 &&  td_data6d==0 ){
+				train_no=td_data1;
+				for (var k = 0; k < second.length; k++) {
+					c = second[k];
+					var train_number=parseInt(c.train);
+					var open=parseInt(c.open_job);
+					var closed=parseInt(c.closed_job);
+					if(open==0 && closed !=0 && train_number==train_no ){
+						console.log("train-> "+train_no);
+						train.push(train_no);
+						openJ.push(open); // values
+						closedJ.push(closed); // values
+						trainData.push(train_number);// all data
+
+					}
+				}
+
+			}
+		}
+		var completed = train.length;
+		var perc = ((parseInt(closedJ.length)/ 58) * 100).toFixed(2);
+		var stop= parseFloat(100-parseFloat(perc));
+		if (perc == 0 || perc == 100) { // to trim trim decimal places for zero and 100
+			perc = ((closedJ.length / 58) * 100);
+		}
+		$('.complete_train').text(completed);
+		$('#complete_per').text(perc+"%");
+		$('#start_id').attr('offset',perc+"%");
+		$('#stop_id').attr('offset',stop+"%");
 		that.$el.find('#chart_' + that.data.id).highcharts({
 			chart: {
 				plotBackgroundColor: null,
@@ -296,6 +356,7 @@ mpxd.modules.sys_etde.sys_etde_progress = Backbone.View.extend({
 				enabled: false
 			}
 		});
+
 	}
 })
 
@@ -309,15 +370,16 @@ mpxd.modules.sys_etde.sys_etde_overallOpenItemClosure = Backbone.View.extend({
 		template = _.template(html, {data: that.data});
 		that.$el.html(template);
 		that.$el.find('.portlet_content').css({"height":(that.$el.find('.content').parent().parent().parent().height())-40});
+
 		that.$el.find('.portlet_content').mCustomScrollbar({theme:"dark-3"});
-		console.log(that.data.data);
 		var train = [];
 		var open = [];
 		var closed = [];
 		var date = [];
 		var jobdone = [];
 		var target = [];
-		for (var i = 0; i < that.data.data.length; i++) {
+		var portlet_detail =that.data.data;
+		for (var i = 0; i <portlet_detail.length; i++) {
 			if(that.data.data[i].open != undefined){
 				train.push(that.data.data[i].open[0]);
 				open.push(parseInt(that.data.data[i].open[1]));
@@ -443,7 +505,6 @@ mpxd.modules.sys_etde.sys_etde_testing = Backbone.View.extend({
 		that.$el.html(template);
 		that.$el.find('.portlet_content').css({"height":(that.$el.find('.content').parent().parent().parent().height())-40});
 		that.$el.find('.portlet_content').mCustomScrollbar({theme:"dark-3"});
-		console.log(that.data.data);
 		var getPercent = function (totalIndex, passIndex) {
 			var totalArray = _.map(that.data.data, function (p) {
 				if(p[totalIndex] > 0){
@@ -534,7 +595,10 @@ mpxd.modules.sys_etde.sys_etde_manufacturing_progress = Backbone.View.extend({
 		that.$el.find('.portlet_content').css({"height":(that.$el.find('.content').parent().parent().parent().height())-40});
 		that.$el.find('.portlet_content').mCustomScrollbar({theme:"dark-3"});
 		var manufacturing_progress =that.data.data;
-
+		var train_no_puzhen = [];
+		var train_no_smh = [];
+		var train_no_subd = [];
+		var train_no_kjd = [];
 		for (var i = 0; i < manufacturing_progress.length; i++) {
 			var y = manufacturing_progress[i];
 			var use_site_name = y.site_name;
@@ -556,6 +620,7 @@ mpxd.modules.sys_etde.sys_etde_manufacturing_progress = Backbone.View.extend({
 			var use_rev = y.rev_no;
 			var use_comment = y.comment;
 			if(use_site_name =="site3" || use_site_name == "Site3" || use_site_name == "SITE3") {
+				train_no_kjd.push(parseInt(y.train_no));
 				if (use_date_deliver === "") {
 					var use_car_1_percentage = y.car_1_percentage;
 					var use_car_2_percentage = y.car_2_percentage;
@@ -570,6 +635,7 @@ mpxd.modules.sys_etde.sys_etde_manufacturing_progress = Backbone.View.extend({
 
 				}
 			}else if(use_site_name =="site4" || use_site_name == "Site4" || use_site_name == "SITE4"){
+				train_no_subd.push(y.train_no);
 				var use_car_1_puzhen = y.car_1_puzhen;
 				var use_car_1_smh = y.car_1_smh;
 				var use_car_2_puzhen = y.car_2_puzhen;
@@ -590,16 +656,19 @@ mpxd.modules.sys_etde.sys_etde_manufacturing_progress = Backbone.View.extend({
 					var use_car_3_percentage = "100";
 					var use_car_4_percentage = "100";
 				}
-			}else{
+			}else if(use_site_name =="site2" || use_site_name == "Site2" || use_site_name == "SITE2"){
+				train_no_smh.push(parseInt(y.train_no));
 				var use_car_1_percentage = y.car_1_percentage;
 				var use_car_2_percentage = y.car_2_percentage;
 				var use_car_3_percentage = y.car_3_percentage;
 				var use_car_4_percentage = y.car_4_percentage;
-				console.log("car1  ->"+use_car_1_percentage);
-				console.log("car2  ->"+use_car_2_percentage);
-				console.log("car3  ->"+use_car_3_percentage);
-				console.log("car4  ->"+use_car_4_percentage);
-
+			}
+			else{
+				train_no_puzhen.push(parseInt(y.train_no));
+				var use_car_1_percentage = y.car_1_percentage;
+				var use_car_2_percentage = y.car_2_percentage;
+				var use_car_3_percentage = y.car_3_percentage;
+				var use_car_4_percentage = y.car_4_percentage;
 			}
 
 
@@ -771,10 +840,121 @@ mpxd.modules.sys_etde.sys_etde_manufacturing_progress = Backbone.View.extend({
 			$('#'+use_site_name+' .train_table table tbody').append(use_train_table_html);
 
 		}
-
-
-		// train_block_1
-		// diagram
+		var tg = function (n) {
+			var t = '', a = [], b = [], k = 0;
+			for (var i = 0; i < n.length; i++) {
+				if (i == 0 || (n[i] != n[i - 1] + 1)) {
+					a.push(n[i]);
+				}
+			}
+			for (var i = 1; i < a.length; i++) {
+				if (a[i] != a[i - 1] + 1) {
+					b.push(n[n.indexOf(a[i]) - 1]);
+				}
+			}
+			b.push(n[n.length - 1]);
+			for (var j = 0; j < a.length; j++) {
+				if (a[j] == b[j]) {
+					if (j == a.length - 1) {
+						t += a[j];
+					} else {
+						t += a[j] + ", ";
+					}
+				} else {
+					if (j == a.length - 1) {
+						t += a[j] + " - " + b[j];
+					}
+					else {
+						t += a[j] + " - " + b[j] + ", ";
+					}
+				}
+			}
+			return t;
+		}
+		var getNumberOfTrains = function (d) {
+			var trains = d;
+			//var trainIndeces = _.map(trains, function (t) {
+			//    return parseInt(t.substr(t.indexOf("Train") + 6));
+			//})
+			var counts=0;
+			var trainIndeces = [];
+			for (var i = 0; i < trains.length; i++) {
+				if (trains[i].length > 2) {
+					var ar = trains[i].split('-');
+					trainIndeces.push(parseInt(ar[0]));
+					trainIndeces.push(parseInt(ar[1]));
+					counts=counts+ (parseInt(ar[1])-parseInt(ar[0])+1);
+				} else {
+					counts=counts+1
+					trainIndeces.push(parseInt(trains[i]));
+				}
+			}
+			trainIndeces.sort(function (a, b) {
+				return a - b
+			});
+			//console.log(parseInt(trainIndeces.length));
+			//return parseInt(trainIndeces[trainIndeces.length - 1]) - parseInt(trainIndeces[0]) + 1;
+			return counts;
+		}
+		var getSummarys_k = function (d) {
+			var trains = d;
+			var trainIndeces = [];
+			for (var i = 0; i < trains.length; i++) {
+				if (trains[i].length > 2) {
+					var ar = trains[i].split('-');
+						trainIndeces.push(parseInt(ar[0]));
+					    trainIndeces.push(parseInt(ar[1]));
+				} else {
+					trainIndeces.push(parseInt(trains[i]));
+				}
+			}
+			trainIndeces.sort(function (a, b) {
+				return a - b
+			});
+			if (trainIndeces[0] == undefined && trainIndeces[trainIndeces.length - 1] == undefined) {
+				return "No Train(s) here ";
+			}
+			else {
+				if (trainIndeces.length > 1) {
+					return  tg(trainIndeces);
+				} else {
+					return  trainIndeces[0];
+				}
+			}
+		}
+		var getSummary = function (d) {
+			var trainIndeces = d;
+			trainIndeces.sort(function (a, b) {
+				return a - b
+			});
+			if (trainIndeces[0] == undefined && trainIndeces[trainIndeces.length - 1] == undefined) {
+				return "No Train(s) here ";
+			}
+			else {
+				if (trainIndeces.length > 1) {
+					return  tg(trainIndeces);
+				}
+				else {
+					return  trainIndeces[0];
+				}
+			}
+		}
+		var mfgsummary = getSummary(train_no_puzhen);
+		var asssummary = getSummary(train_no_smh);
+		var kjdsummary = getSummary(train_no_kjd);
+		var subdsummary = getSummarys_k(train_no_subd);
+		var subdnumber = getNumberOfTrains(train_no_subd);
+		var kjdnumber = getNumberOfTrains(train_no_kjd);
+		$('#kjd_name').text("SITE FOUR");
+		$('#kjd_no').text(kjdsummary);
+		$('#kjd_total').text(kjdnumber);
+		$('#smh_name').text("SITE TWO");
+		$('#smh_no').text(asssummary);
+		$('#puzhen_name').text("SITE ONE");
+		$('#puzhen_no').text(mfgsummary);
+		$('#subd_name').text("SITE THREE");
+		$('#subd_no').text(subdsummary);
+		$('#subd_total').text(subdnumber);
 
 	}
 })
