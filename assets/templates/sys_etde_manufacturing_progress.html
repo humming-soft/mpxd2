@@ -1,0 +1,284 @@
+<div class="col-md-12 portlet portlet_etde_manufacturing_progress poipoipoi">
+	<div class="row content">
+		<div class="col-md-12 portlet_title">
+			<i class="fa_title_icon fa fa-hourglass" aria-hidden="true"></i>
+			<% if (typeof(data.data[0]) !=="undefined"){%>
+			<% if (typeof(data.data[0].date) !== "undefined") { %>
+				<%=data.title%> <span class="plate_asof">(As of : <%=data.data[0].date%>) </span>
+			<% } else {%>
+				<%=data.title%>
+			<% }}else {%>
+				<%=data.title%>
+			<% }%>
+		</div>
+		<div class="col-md-12 portlet_content">
+			<% console.log(data)%>
+			<div class="">
+				<div class="col-md-3 sub_portlet">
+					<div class="title" id="puzhen_name">
+
+					</div>
+					<div class="block_num">
+						<div class="title">
+							Train
+						</div>
+						<div class="number" id="puzhen_no">
+
+						</div>
+					</div>
+					<div class="link">
+						<button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#train_data1">
+							<i class="fa fa-eye" aria-hidden="true"></i> Detail
+						</button>
+					</div>
+				</div>
+				<div class="col-md-3 sub_portlet">
+					<div class="title" id="smh_name">
+
+					</div>
+					<div class="block_num">
+						<div class="title">
+							Train
+						</div>
+						<div class="number" id="smh_no">
+
+						</div>
+					</div>
+					<div class="link">
+						<button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#train_data2">
+							<i class="fa fa-eye" aria-hidden="true"></i> Detail
+						</button>
+					</div>
+				</div>
+				<div class="col-md-3 sub_portlet">
+					<div class="title" id="subd_name">
+
+					</div>
+					<div class="block_num">
+						<div class="title">
+							Train
+						</div>
+						<div class="number" id="subd_no">
+
+						</div>
+						<div class="title">
+							Total
+						</div>
+						<div class="number" id="subd_total">
+
+						</div>
+					</div>
+					<div class="link">
+						<button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#train_data3">
+							<i class="fa fa-eye" aria-hidden="true"></i> Detail
+						</button>
+					</div>
+				</div>
+				<div class="col-md-3 sub_portlet">
+					<div class="title" id="kjd_name">
+
+					</div>
+					<div class="block_num">
+						<div class="title">
+							Train
+						</div>
+						<div class="number" id="kjd_no">
+
+						</div>
+						<div class="title">
+							Total
+						</div>
+						<div class="number" id="kjd_total">
+
+						</div>
+					</div>
+					<div class="link">
+						<button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#train_data4">
+							<i class="fa fa-eye" aria-hidden="true"></i> Detail
+						</button>
+					</div>
+				</div>
+			</div>
+			
+			
+			
+		</div>
+	</div>
+</div>
+
+
+<!--<div class="col-md-5">-->
+	<!--<div class="row">-->
+		<!--<div class="content">-->
+			<!--<div style="height: 90%;" id="chart_<%=data.id%>">></div>-->
+		<!--</div>-->
+	<!--</div>-->
+<!--</div>-->
+
+<!-- -- modal -- -->
+<div class="modal fade portlet_etde_manufacturing_progress_detail modal_train" id="train_data1" tabindex="-1" role="dialog" aria-labelledby="aaaa" aria-hidden="true">
+	<div class="modal-dialog" role="document">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h5 class="modal-title" id="aaaa">Puzhen Manufacturing Progress</h5>
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+			</div>
+			<div id="train_block_1" class="modal-body train_block">
+				<div class="row">
+					<div class="col-sm-12 col-md-6">
+						<div class="diagram">
+							<!-- -- -- -- -- -->
+						</div>
+					</div>
+					<div class="col-sm-12 col-md-6">
+						<div class="legend">
+							Legend :
+							<div class="legend1">Delayed against schedule / Pending Roll-out</div>
+							<div class="legend2">Production / Assembly progress in percentage</div>
+							<div class="legend3">Production completed / Rolled out</div>
+						</div>
+						<div class="train_table">
+							
+							<table class="table table-dark">
+								<thead>
+									<tr>
+										<th>Train No.</th>
+										<th>Dates According To Baseline Revision 6</th>
+										<th>Current CRRC Forecast Date</th>
+										<th>Status</th>
+									</tr>
+								</thead>
+								<tbody>
+								</tbody>
+							</table>
+							
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+			</div>
+		</div>
+	</div>
+</div>
+
+<div class="modal fade portlet_etde_manufacturing_progress_detail modal_train" id="train_data2" tabindex="-1" role="dialog" aria-labelledby="aaaa" aria-hidden="true">
+	<div class="modal-dialog" role="document">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h5 class="modal-title" id="aaaa">SMH Rail, Rasa</h5>
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+			</div>
+			<div id="train_block_2" class="modal-body train_block">
+				<div class="row">
+					<div class="col-sm-12 col-md-6">
+						<div class="diagram">
+							<!-- -- -- -- -- -->
+						</div>
+					</div>
+					<div class="col-sm-12 col-md-6">
+						<div class="legend">
+							Legend :
+							<div class="legend1">Delayed against schedule / Pending Roll-out</div>
+							<div class="legend2">Production / Assembly progress in percentage</div>
+							<div class="legend3">Production completed / Rolled out</div>
+						</div>
+						<div class="train_table">
+							
+							<table class="table table-dark">
+								<thead>
+									<tr>
+										<th>Train No.</th>
+										<th>Dates According To Baseline Revision 6</th>
+										<th>Current Forecast Rollout</th>
+										<th>Status</th>
+									</tr>
+								</thead>
+								<tbody>
+								</tbody>
+							</table>
+							
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+			</div>
+		</div>
+	</div>
+</div>
+
+<div class="modal fade portlet_etde_manufacturing_progress_detail modal_train" id="train_data3" tabindex="-1" role="dialog" aria-labelledby="aaaa" aria-hidden="true">
+	<div class="modal-dialog" role="document">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h5 class="modal-title" id="aaaa">SUBD</h5>
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+			</div>
+			<div id="train_block_3" class="modal-body train_block">
+				<div class="row">
+					<div class="col-sm-12 col-md-12">
+						<div class="diagram">
+							<!-- -- -- -- -- -->
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+			</div>
+		</div>
+	</div>
+</div>
+
+<div class="modal fade portlet_etde_manufacturing_progress_detail modal_train" id="train_data4" tabindex="-1" role="dialog" aria-labelledby="aaaa" aria-hidden="true">
+	<div class="modal-dialog" role="document">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h5 class="modal-title" id="aaaa">KJD</h5>
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+			</div>
+			<div id="train_block_4" class="modal-body train_block">
+				<div class="row">
+					<div class="col-sm-12 col-md-12">
+						<div class="diagram">
+							<!-- -- -- -- -- -->
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+			</div>
+		</div>
+	</div>
+</div>
+<!-- -- modal -- -->
+
+
+
+
+<script type="text/javascript">
+	
+$(document).ready(function(){
+	
+
+});
+	
+	
+	
+
+	
+</script>
+
+

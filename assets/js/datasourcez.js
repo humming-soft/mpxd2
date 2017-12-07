@@ -759,7 +759,7 @@ mpxd.modules.gallery.GalleryView = Backbone.View.extend({
         that.$el.html(template);
 		that.$el.find('.portlet_content').css({"height":(that.$el.find('.content').parent().parent().parent().height())-40});
 		that.$el.find('.portlet_content').mCustomScrollbar({theme:"dark-3"});
-
+		
 		if(typeof that.data.data.items === 'object') // Local repository format
 		{
 			images = that.data.data.items;
@@ -772,7 +772,7 @@ mpxd.modules.gallery.GalleryView = Backbone.View.extend({
 						"srct":  mpxd.siteurl+image.path,
 						"title":  image.title,
 						"ID":  image.id,
-						"kind":  image.kind
+						"kind":  image.kind,
 					});
 				}
 				else if(image.kind == 'image'){
@@ -780,7 +780,7 @@ mpxd.modules.gallery.GalleryView = Backbone.View.extend({
 						"src":  mpxd.siteurl+image.path,
 						"srct":  mpxd.siteurl+image.path,
 						"title":  image.title,
-						"albumID":  image.id
+						"albumID":  image.id,
 					});
 				}
 			}
@@ -808,7 +808,7 @@ mpxd.modules.gallery.GalleryView = Backbone.View.extend({
 			});
 		}
 		else { // Picasa repository
-			that.$el.find("#nanoGallery2").nanoGallery({
+			that.$el.find("#nanoGallery2____TEMPORARY_DISABLED____").nanoGallery({
 				kind: 'picasa',
 				userID: '106498362119815035474',
 				//userID: '111186676244625461692',
@@ -996,8 +996,8 @@ mpxd.modules.general.GeneralView = Backbone.View.extend({
 
             if (that.data.type === 'slider') {
                 // modified by agaile to show image slider from local repository : 31/05/2016 : START
-                //var lg = that.data.data.length;
                 var lg = that.data.data.items.length;
+                //console.log('inside loop');
 				if(lg > 0) {
 					for (var i = 0; i < lg; i++) {
 						if ((that.data.data.items[i].id == 1) && (that.data.data.items[i].kind == "image")) {
@@ -1220,12 +1220,13 @@ $(function() {
 
 function GetDate(str)
 {
-    var arr = str.split("-");
-    var months = ["jan", "feb", "mar", "apr", "may", "jun", "jul", "aug", "sep", "oct", "nov", "dec"];
+		var arr = str.split("-");
+		var months = ["jan", "feb", "mar", "apr", "may", "jun", "jul", "aug", "sep", "oct", "nov", "dec"];
 
-    var month = months.indexOf(arr[1].toLowerCase());
+		var month = months.indexOf(arr[1].toLowerCase());
 
-    return new Date(parseInt("20" + arr[2]), month, parseInt(arr[0]));
+		return new Date(parseInt("20" + arr[2]), month, parseInt(arr[0]));
+
 }
 
 function compareDate(end) {

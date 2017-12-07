@@ -1,0 +1,265 @@
+<div class="col-md-12 portlet portlet_psds_trip_cable">
+	<div class="row content">
+		<div class="col-md-12 portlet_title">
+			<i class="fa_title_icon fa fa-calendar-check-o" aria-hidden="true"></i>
+			<% if (typeof(data.data[0]) !=="undefined"){%>
+			<% if (typeof(data.data[0].date) !== "undefined") { %>
+				<%=data.title%> <span class="plate_asof">(As of : <%=data.data[0].date%>) </span>
+			<% } else {%>
+				<%=data.title%>
+			<% }}else {%>
+				<%=data.title%>
+			<% }%>
+		</div>
+		<div class="col-md-12 portlet_content pl0">
+			<div class="row">
+				<div class="col-md-12">
+					
+					<table class="table table-bordered table-condensed table" style="">
+						<thead>
+						<tr>
+							<th rowspan="2" class="color-beige" >Station/Block</th>
+							<th rowspan="2" class="color-beige" >33KV AC/750V DC</th>
+							<th colspan="2" class="color-beige" >Cable Installation</th>
+							<th colspan="2" class="color-beige" >Testing</th>
+							<th rowspan="2" class="color-beige" colspan="2" >Energization</th>
+						</tr>
+						<tr>
+							<th class="title-1">Laying</th>
+							<th class="title-2">Termination</th>
+							<th class="title-3">PAT</th>
+							<th class="title-4">SAT</th>
+						</tr>
+						</thead>
+						   
+						<tbody></tbody>
+					</table>
+
+					<div class="legend"> 
+
+						<span class="circle_completed"><i class="fa fa-circle"></i><span>Completed</span></span>
+						<span class="circle_in_progress"><i class="fa fa-circle"></i><span>In Progress</span></span>
+						<span class="circle_pending"><i class="fa fa-circle"></i><span>Pending</span></span>
+					   
+					</div>
+					
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+
+<style type="text/css">
+	
+/*
+
+portlet_psds_trip_cable
+
+*/
+
+div.portlet_psds_trip_cable div.content {
+	background: #252237;
+}
+div.portlet_psds_trip_cable div.portlet_content {
+}
+div.portlet_psds_trip_cable div.portlet_title {
+	color: #fff;
+}
+
+
+/*table setup*/
+.portlet_psds_trip_cable {
+	padding: 10px 0 0 0;
+}
+.portlet_psds_trip_cable thead {
+	background: #111;
+}
+.portlet_psds_trip_cable table {
+	font-size: .9em;
+	margin-left: 15px;
+}
+	/*theader border*/
+	.portlet_psds_trip_cable table th {
+		border-bottom: 1px solid #000 !important;
+		font-weight: normal;
+		text-align: center;
+	}
+	.portlet_psds_trip_cable table .col_separation {
+		border-right: 2px solid #223;
+	}
+
+	/*tbody border*/
+	div.portlet_psds_trip_cable table tbody td {
+		border-bottom: 1px solid #669 !important;
+	}
+
+div.portlet_psds_trip_cable table thead th:first-child {
+	width: 150px;
+	text-align: left;
+}
+
+div.portlet_psds_trip_cable div.upper_box {
+	padding: 10px 0;
+	text-align: center;
+	background: rgba(255,255,255,.15);
+	color: #ff0;
+}
+div.portlet_psds_trip_cable div.lower_box {
+	padding: 10px 0;
+}
+
+div.portlet_psds_trip_cable div.table_title {
+	padding: 10px 20px;
+}
+
+div.portlet_psds_trip_cable span.data_holder.data_days {
+	font-size: 2em;
+}
+
+div.portlet_psds_trip_cable span.data_holder.data_early {
+	color: #0fa;
+}
+div.portlet_psds_trip_cable span.data_holder.data_variance {
+	color: #f5f;
+}
+
+
+
+
+.portlet_psds_trip_cable .color-beige{
+	text-align: center; 
+	vertical-align: middle
+}
+
+.portlet_psds_trip_cable .title-1{
+	text-align: center; 
+	color: #FFAF78
+}
+
+.portlet_psds_trip_cable .title-2{
+	text-align: center; 
+	color: #FFAF78;
+}
+
+.portlet_psds_trip_cable .title-3{
+	text-align: center; 
+	color: #009e8c;
+}
+
+.portlet_psds_trip_cable .title-4{
+	text-align: center; 
+	color: #009e8c;
+}
+
+.portlet_psds_trip_cable .circle_completed i{
+	color:#0fa;
+}
+.portlet_psds_trip_cable .circle_in_progress i{
+	color:#ff0;
+}
+.portlet_psds_trip_cable .circle_pending i{
+	color:#f05;
+}
+.portlet_psds_trip_cable .circle_none i{
+	color:rgba(0,0,0,0);
+}
+
+.portlet_psds_trip_cable .align{
+	 text-align: center;
+}
+
+.portlet_psds_trip_cable .legend{
+	text-align: right; 
+	margin-top: 15px;
+	margin-bottom: 20px;
+}
+.portlet_psds_trip_cable .legend span{
+	padding: 0 10px 0;
+}
+.portlet_psds_trip_cable .legend span i{
+	padding: 0 10px;
+}
+		
+</style>
+
+
+
+<script type="text/javascript">
+	
+$(document).ready(function(){
+
+	var portlet_psds_trip_cable_data = [
+		{
+			"station_block":"End Track - STN 01",
+			"a_acdc":"33KV AC",
+			"a_cable_laying":"completed",
+			"a_cable_termination":"in_progress",
+			"a_testing_pat":"pending",
+			"a_testing_sat":"completed",
+			"a_energization":"Energized",
+			"b_acdc":"750V DC",
+			"b_cable_laying":"completed",
+			"b_cable_termination":"completed",
+			"b_testing_pat":"none",
+			"b_testing_sat":"none",
+			"b_energization":"-"
+		},{
+			"station_block":"STN 01 - STN 02",
+			"a_acdc":"33KV AC",
+			"a_cable_laying":"completed",
+			"a_cable_termination":"completed",
+			"a_testing_pat":"completed",
+			"a_testing_sat":"completed",
+			"a_energization":"17-Jan-2016",
+			"b_acdc":"750V DC",
+			"b_cable_laying":"completed",
+			"b_cable_termination":"completed",
+			"b_testing_pat":"none",
+			"b_testing_sat":"none",
+			"b_energization":"-"
+		},{
+			"station_block":"STN 02 - STN 04",
+			"a_acdc":"33KV AC",
+			"a_cable_laying":"completed",
+			"a_cable_termination":"completed",
+			"a_testing_pat":"completed",
+			"a_testing_sat":"completed",
+			"a_energization":"29-Dec-2016",
+			"b_acdc":"750V DC",
+			"b_cable_laying":"completed",
+			"b_cable_termination":"completed",
+			"b_testing_pat":"none",
+			"b_testing_sat":"none",
+			"b_energization":"-"
+		}
+	]
+	
+	for (var i = 0; i < portlet_psds_trip_cable_data.length; i++) {
+		a = portlet_psds_trip_cable_data[i]
+		
+		var td_data1 = a.station_block;
+		var td_data2a = a.a_acdc;
+		var td_data2b = a.a_cable_laying;
+		var td_data2c = a.a_cable_termination;
+		var td_data2d = a.a_testing_pat;
+		var td_data2e = a.a_testing_sat;
+		var td_data2f = a.a_energization;
+		var td_data3a = a.b_acdc;
+		var td_data3b = a.b_cable_laying;
+		var td_data3c = a.b_cable_termination;
+		var td_data3d = a.b_testing_pat;
+		var td_data3e = a.b_testing_sat;
+		var td_data3f = a.b_energization;
+		
+		
+		var append_this = '<tr><td rowspan="2">'+td_data1+'</td><td class="color-beige">'+td_data2a+'</td><td class="align circle_'+td_data2b+'"><i class="fa fa-circle"></i></td><td class="align circle_'+td_data2c+'"><i class="fa fa-circle"></i></td><td class="align circle_'+td_data2d+'"><i class="fa fa-circle"></i></td><td class="align circle_'+td_data2e+'"><i class="fa fa-circle"></i></td><td>'+td_data2f+'</td></tr><tr><td class="color-beige">'+td_data3a+'</td><td class="align circle_'+td_data3b+'"><i class="fa fa-circle"></i></td><td class="align circle_'+td_data3c+'"><i class="fa fa-circle"></i></td><td class="align circle_'+td_data3d+'"><i class="fa fa-circle"></i></td><td class="align circle_'+td_data3e+'"><i class="fa fa-circle"></i></td><td>'+td_data3f+'</td></tr>'
+		
+		$('.portlet_psds_trip_cable table tbody').append(append_this);
+		
+	}
+	
+
+});
+
+</script>

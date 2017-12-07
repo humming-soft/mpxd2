@@ -1,0 +1,325 @@
+<div class="col-md-12 portlet portlet_psds_installation">
+	<div class="row content">
+		<div class="col-md-12 portlet_title">
+			<i class="fa_title_icon fa fa-calendar-check-o" aria-hidden="true"></i>
+			<% if (typeof(data.data[0]) !=="undefined"){%>
+			<% if (typeof(data.data[0].date) !== "undefined") { %>
+				<%=data.title%> <span class="plate_asof">(As of : <%=data.data[0].date%>) </span>
+			<% } else {%>
+				<%=data.title%>
+			<% }}else {%>
+				<%=data.title%>
+			<% }%>
+		</div>
+		<div class="col-md-12 portlet_content pl0">
+			<div class="row">
+				<div class="col-md-12">
+					
+					<table class="table table-bordered table-condensed table" style="">
+						<thead>
+							<tr>
+								<th rowspan="2" class="color-beige">Station</th>
+								<th rowspan="2" class="color-beige">Installation</th>
+								<th rowspan="2" class="color-beige">AC/DC</th>
+								<th colspan="2" class="color-beige">Testing</th>
+								<th colspan="2" class="color-beige">Energization</th>
+							</tr>
+							<tr>
+								<th class="pat_sat">PAT</th>
+								<th class="pat_sat">SAT</th>
+								<th class="mrt_colorcode_target">Forecast</th>
+								<th class="mrt_colorcode_actual">Actual</th>
+							</tr>
+						</thead>
+					   
+
+						<tbody></tbody>
+					</table>
+					<div class="legend"> 
+
+						<span class="circle_completed"><i class="fa fa-circle"></i><span>Completed</span></span>
+						<span class="circle_in_progress"><i class="fa fa-circle"></i><span>In Progress</span></span>
+						<span class="circle_pending"><i class="fa fa-circle"></i><span>Pending</span></span>
+					   
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+
+<style type="text/css">
+	
+/*
+
+portlet_psds_installation
+
+*/
+
+div.portlet_psds_installation div.content {
+	background: #252237;
+}
+div.portlet_psds_installation div.portlet_content {
+}
+div.portlet_psds_installation div.portlet_title {
+	color: #fff;
+}
+
+
+/*table setup*/
+.portlet_psds_installation {
+	padding: 10px 0 0 0;
+}
+.portlet_psds_installation thead {
+	background: #111;
+}
+.portlet_psds_installation table {
+	font-size: .9em;
+	margin-left: 15px;
+}
+	/*theader border*/
+	.portlet_psds_installation table th {
+		border-bottom: 1px solid #000 !important;
+		font-weight: normal;
+		text-align: center;
+	}
+	.portlet_psds_installation table .col_separation {
+		border-right: 2px solid #223;
+	}
+
+	/*tbody border*/
+	div.portlet_psds_installation table tbody td {
+		border-bottom: 1px solid #669 !important;
+	}
+
+div.portlet_psds_installation table thead th:first-child {
+	width: 150px;
+	text-align: left;
+}
+
+div.portlet_psds_installation div.upper_box {
+	padding: 10px 0;
+	text-align: center;
+	background: rgba(255,255,255,.15);
+	color: #ff0;
+}
+div.portlet_psds_installation div.lower_box {
+	padding: 10px 0;
+}
+
+div.portlet_psds_installation div.table_title {
+	padding: 10px 20px;
+}
+
+div.portlet_psds_installation span.data_holder.data_days {
+	font-size: 2em;
+}
+
+div.portlet_psds_installation span.data_holder.data_early {
+	color: #0fa;
+}
+div.portlet_psds_installation span.data_holder.data_variance {
+	color: #f5f;
+}
+
+
+
+
+.portlet_psds_installation .color-beige{
+	text-align: center; 
+	vertical-align: middle
+}
+
+.portlet_psds_installation .pat_sat{
+	text-align: center; 
+	color: #FFAF78
+}
+
+.portlet_psds_installation .circle_completed i{
+	color:#0fa;
+}
+.portlet_psds_installation .circle_in_progress i{
+	color:#ff0;
+}
+.portlet_psds_installation .circle_pending i{
+	color:#f05;
+}
+.portlet_psds_installation .circle_none i,
+.portlet_psds_installation i{
+	color:rgba(0,0,0,0);
+}
+
+.portlet_psds_installation .align{
+	 text-align: center;
+}
+
+.portlet_psds_installation .legend{
+	text-align: right; 
+	margin-top: 15px;
+	margin-bottom: 20px;
+}
+.portlet_psds_installation .legend span{
+	padding: 0 10px 0;
+}
+.portlet_psds_installation .legend span i{
+	padding: 0 10px;
+}
+		
+</style>
+
+
+
+
+<script type="text/javascript">
+	
+$(document).ready(function(){
+
+	var portlet_psds_installation_data = [
+		{
+			"station":"<b>SUBD</b><br>Sungai Buloh Depot",
+			"installation":"completed",
+			"a_acdc":"33KV",
+			"a_testing_pat":"completed",
+			"a_testing_sat":"completed",
+			"a_forecast":"30-Apr-2014",
+			"a_actual":"20-Oct-2014",
+			"b_acdc":"750V",
+			"b_testing_pat":"completed",
+			"b_testing_sat":"completed",
+			"b_forecast":"30-May-2015",
+			"b_actual":"24-Apr-2015",
+			"c_acdc":"PSCADA",
+			"c_testing_pat":"completed",
+			"c_testing_sat":"completed",
+			"c_forecast":"-",
+			"c_actual":"Pending"
+		},{
+			"station":"<b>STN 01</b><br>Sungai Buloh",
+			"installation":"completed",
+			"a_acdc":"33KV",
+			"a_testing_pat":"completed",
+			"a_testing_sat":"completed",
+			"a_forecast":"26-Nov-2015",
+			"a_actual":"27-Jan-2016",
+			"b_acdc":"750V",
+			"b_testing_pat":"completed",
+			"b_testing_sat":"completed",
+			"b_forecast":"25-Jan-2016",
+			"b_actual":"Pending",
+			"c_acdc":"PSCADA",
+			"c_testing_pat":"completed",
+			"c_testing_sat":"completed",
+			"c_forecast":"-",
+			"c_actual":"Pending"
+		},{
+			"station":"<b>STN 02</b><br>Kampung Selamat",
+			"installation":"completed",
+			"a_acdc":"33KV",
+			"a_testing_pat":"completed",
+			"a_testing_sat":"completed",
+			"a_forecast":"25-Nov-2015",
+			"a_actual":"29-Dec-2015",
+			"b_acdc":"750V",
+			"b_testing_pat":"completed",
+			"b_testing_sat":"completed",
+			"b_forecast":"25-Jan-2016",
+			"b_actual":"Pending",
+			"c_acdc":"PSCADA",
+			"c_testing_pat":"completed",
+			"c_testing_sat":"completed",
+			"c_forecast":"-",
+			"c_actual":"Pending"
+		},{
+			"station":"<b>KWDE2</b><br>Kwasa Damansara Future",
+			"installation":"completed",
+			"a_acdc":"33KV",
+			"a_testing_pat":"completed",
+			"a_testing_sat":"in_progress",
+			"a_forecast":"06-Oct-2015",
+			"a_actual":"15-Oct-2015",
+			"b_acdc":"750V",
+			"b_testing_pat":"N/A",
+			"b_testing_sat":"N/A",
+			"b_forecast":"N/A",
+			"b_actual":"N/A",
+			"c_acdc":"PSCADA",
+			"c_testing_pat":"-",
+			"c_testing_sat":"-",
+			"c_forecast":"-",
+			"c_actual":"-"
+		}
+	]
+	
+	for (var i = 0; i < portlet_psds_installation_data.length; i++) {
+		a = portlet_psds_installation_data[i]
+		
+		var td_data1a = a.station;
+		var td_data1b = a.installation;
+		var td_data2a = a.a_acdc;
+		var td_data2b = a.a_testing_pat;
+		var td_data2c = a.a_testing_sat;
+		var td_data2d = a.a_forecast;
+		var td_data2e = a.a_actual;
+		var td_data3a = a.b_acdc;
+		var td_data3b = a.b_testing_pat;
+		var td_data3c = a.b_testing_sat;
+		var td_data3d = a.b_forecast;
+		var td_data3e = a.b_actual;
+		var td_data4a = a.c_acdc;
+		var td_data4b = a.c_testing_pat;
+		var td_data4c = a.c_testing_sat;
+		var td_data4d = a.c_forecast;
+		var td_data4e = a.c_actual;
+		
+		
+		if (td_data1b == "N/A") {
+			var td_data1b_text = td_data1b;
+		} else {
+			var td_data1b_text = "";
+		}
+		
+		if (td_data2b == "N/A") {
+			var td_data2b_text = td_data2b;
+		} else {
+			var td_data2b_text = "";
+		}
+		if (td_data2c == "N/A") {
+			var td_data2c_text = td_data2c;
+		} else {
+			var td_data2c_text = "";
+		}
+		
+		if (td_data3b == "N/A") {
+			var td_data3b_text = td_data3b;
+		} else {
+			var td_data3b_text = "";
+		}
+		if (td_data3c == "N/A") {
+			var td_data3c_text = td_data3c;
+		} else {
+			var td_data3c_text = "";
+		}
+		
+		if (td_data4b == "N/A") {
+			var td_data4b_text = td_data4b;
+		} else {
+			var td_data4b_text = "";
+		}
+		if (td_data4c == "N/A") {
+			var td_data4c_text = td_data4c;
+		} else {
+			var td_data4c_text = "";
+		}
+		
+		var append_this = '<tr><td rowspan="3">'+td_data1a+'</td><td rowspan="3" class="align circle_'+td_data1b+'">'+td_data1b_text+'<i class="fa fa-circle"></i></td><td class="color-beige">'+td_data2a+'</td><td class="align circle_'+td_data2b+'">'+td_data2b_text+'<i class="fa fa-circle"></i></td><td class="align circle_'+td_data2c+'">'+td_data2c_text+'<i class="fa fa-circle"></i></td><td>'+td_data2d+'</td><td>'+td_data2e+'</td></tr><tr><td class="color-beige">'+td_data3a+'</td><td class="align circle_'+td_data3b+'">'+td_data3b_text+'<i class="fa fa-circle"></i></td><td class="align circle_'+td_data3c+'">'+td_data3c_text+'<i class="fa fa-circle"></i></td><td>'+td_data3d+'</td><td>'+td_data3e+'</td></tr><tr><td class="color-beige">'+td_data4a+'</td><td class="align circle_'+td_data4b+'">'+td_data4b_text+'<i class="fa fa-circle"></i></td><td class="align circle_'+td_data4c+'">'+td_data3c_text+'<i class="fa fa-circle"></i></td><td>'+td_data4d+'</td><td>'+td_data4e+'</td></tr>'
+		
+		$('.portlet_psds_installation table tbody').append(append_this);
+		
+	}
+	
+
+});
+
+</script>
+

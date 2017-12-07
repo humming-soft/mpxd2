@@ -3,8 +3,7 @@ mpxd = {};
 
 isPDF = true;
 isUseCustomPortlet = (getUrlParameter("print") == "1");
-//var imageBase = window.location.origin;
-var imageBase = 'http://192.168.1.63:90';
+var imageBase = window.location.origin;
 //mpxd.siteurl = 'https://mpxd.mymrt.com.my/';
 mpxd.siteurl = imageBase+'/';
 $(function(){
@@ -25,6 +24,12 @@ $(function(){
 
 });
 mpxd.templateURLs = {
+	
+	/*
+		GENERIC
+	
+	*/
+	
     "none": {"templateURL": "assets/templates/none.html"},
     "scurve-1": {"templateURL": "assets/templates/scurve-1.html"},
     "scurve-2": {"templateURL": "assets/templates/scurve-2.html"},
@@ -49,7 +54,58 @@ mpxd.templateURLs = {
 	"barchart_workpackage" : {"templateURL": "assets/templates/procurement_contract_awarded.html"},
 	"ug_work_progress" : {"templateURL": "assets/templates/ug_work_progress.html"},
 	"summary_list" : {"templateURL": "assets/templates/summary_list.html"},
-	"report" : {"templateURL": "assets/templates/generate_report.html"}
+	"report" : {"templateURL": "assets/templates/generate_report.html"},
+	"gis_sbk_s_05" : {"templateURL": "assets/templates/page_gis_sbk_s_05.html"},
+	
+	
+	/*
+		system
+	
+	*/
+	
+	/*TEMP*/
+	"temp_portlet" : {"templateURL": "assets/templates/temp_portlet.html"},
+	"padu_progress" : {"templateURL": "assets/templates/padu_progress.html"},
+	"padu_projectcost" : {"templateURL": "assets/templates/padu_projectcost.html"},
+	"padu_scurve" : {"templateURL": "assets/templates/padu_scurve.html"},
+	"padu_upcomingtask" : {"templateURL": "assets/templates/padu_upcomingtask.html"},
+	"padu_latetask" : {"templateURL": "assets/templates/padu_latetask.html"},
+	"padu_issuemitigation" : {"templateURL": "assets/templates/padu_issuemitigation.html"},
+	
+	/*GENERIC*/
+	"sys_info" : {"templateURL": "assets/templates/sys_info.html"},
+	
+	/*SPECIFIC - S&TC & PSD/APG*/
+	"sys_stcpsd_actual_progress" : {"templateURL": "assets/templates/sys_stcpsd_actual_progress.html"},
+	
+	/*SPECIFIC - ICSS&CMMS*/
+	
+	
+	/*SPECIFIC - ET&DE*/
+	"sys_etde_actual_progress" : {"templateURL": "assets/templates/sys_etde_actual_progress.html"},
+	"sys_etde_progress" : {"templateURL": "assets/templates/sys_etde_progress.html"},
+	"sys_etde_overallOpenItemClosure" : {"templateURL": "assets/templates/sys_etde_overallOpenItemClosure.html"},
+	"sys_etde_testing" : {"templateURL": "assets/templates/sys_etde_testing.html"},
+	"sys_etde_manufacturing_progress" : {"templateURL": "assets/templates/sys_etde_manufacturing_progress.html"},
+	"sys_etde_project_timeline" : {"templateURL": "assets/templates/sys_etde_project_timeline.html"},
+	
+	/*SPECIFIC - TW&MV*/
+	"sys_twmv_gis" : {"templateURL": "assets/templates/sys_twmv_gis.html"},
+	"sys_twmv_actual_progress" : {"templateURL": "assets/templates/sys_twmv_actual_progress.html"},
+	"sys_twmv_kd_overall_progress" : {"templateURL": "assets/templates/sys_twmv_kd_overall_progress.html"},
+	"sys_twmv_kd_summary" : {"templateURL": "assets/templates/sys_twmv_kd_summary.html"},
+	
+	/*SPECIFIC - PSDS*/
+	"sys_psds_gis" : {"templateURL": "assets/templates/sys_psds_gis.html"},
+	"sys_psds_trip_cable" : {"templateURL": "assets/templates/sys_psds_trip_cable.html"},
+	"sys_psds_installation" : {"templateURL": "assets/templates/sys_psds_installation.html"},
+	
+	/*SPECIFIC - COMMS&ITS*/
+	"sys_commsits_actual_progress" : {"templateURL": "assets/templates/sys_commsits_actual_progress.html"},
+	
+	/*SPECIFIC - AFC*/
+	"sys_afc_actual_progress" : {"templateURL": "assets/templates/sys_afc_actual_progress.html"}
+	
 }
 
 mpxd.templateData = {};

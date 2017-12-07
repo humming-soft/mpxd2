@@ -61,7 +61,7 @@
 			
 			
 			
-	<div id="plate_system">
+	<!-- <div id="plate_system">
 		<div id="donut_plate">
 			<div id="dp_db_donut_0" class="dp_top"></div>
 			<div id="dp_db_donut_1" class="dp_bottom"></div>
@@ -72,8 +72,31 @@
 			<div id="dp_db_donut_6" class="dp_bottom"></div>
 			<div id="dp_db_donut_7" class="dp_bottom"></div>
 		</div>
-	</div>
+	</div> -->
 	
+	<div id="plate_system">
+		<div id="donut_plate">
+			<div class="donut_box_small">
+			</div>
+			<div class="donut_box_small">
+				<div class="the_donut dp_db_donut_1a"></div>
+				<div class="the_donut dp_db_donut_1b"></div>
+			</div>
+			<div class="donut_box_small">
+				<div class="the_donut dp_db_donut_2a"></div>
+				<div class="the_donut dp_db_donut_2b"></div>
+			</div>
+			<div class="donut_box_small">
+				<div class="the_donut dp_db_donut_3a"></div>
+				<div class="the_donut dp_db_donut_3b"></div>
+			</div>
+			<div class="donut_box_small">
+				<div class="the_donut dp_db_donut_4a"></div>
+				<div class="the_donut "></div>
+			</div>
+		</div>
+	</div>
+
 	<div id="plate_physical">
 		<div id="pp_station">
 			<span class="set1"></span>

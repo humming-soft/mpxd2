@@ -1,0 +1,40 @@
+<div class="col-md-12 portlet portlet_etde_overallOpenItemClosure">
+	<div class="row content">
+		<div class="col-md-12 portlet_title">
+			<i class="fa_title_icon fa fa-bar-chart" aria-hidden="true"></i>
+			<% if (typeof(data.data[0]) !=="undefined"){%>
+			<% if (typeof(data.data[0].date) !== "undefined") { %>
+				<%=data.title%> <span class="plate_asof">(As of : <%=data.data[0].date%>) </span>
+			<% } else {%>
+				<%=data.title%>
+			<% }}else {%>
+				<%=data.title%>
+			<% }%>
+		</div>
+		<div class="col-md-12 portlet_content pl0">
+			<div class="row">
+				<div class="col-md-12">
+					<div class="table_title">Overall Progress Per Train</div>
+					<div id="portlet_et_overallOpenItemClosure_chart_1"></div>
+					<div class="table_title">Outstanding Item Completion Progress</div>
+					<div id="portlet_et_overallOpenItemClosure_chart_2"></div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<!--<div class="col-md-5">-->
+	<!--<div class="row">-->
+		<!--<div class="content">-->
+			<!--<div style="height: 90%;" id="chart_<%=data.id%>">></div>-->
+		<!--</div>-->
+	<!--</div>-->
+<!--</div>-->
+
+
+<script type="text/javascript">
+$(document).ready(function(){
+
+
+});
+</script>

@@ -1,0 +1,64 @@
+<div class="col-md-12 portlet portlet_etde_actual_progress">
+	<div class="row content">
+		<div class="col-md-12 portlet_title">
+			<i class="fa_title_icon fa fa-hourglass" aria-hidden="true"></i>
+			<% if (typeof(data.data[0]) !=="undefined"){%>
+			<% if (typeof(data.data[0].date) !== "undefined") { %>
+				<%=data.title%> <span class="plate_asof">(As of : <%=data.data[0].date%>) </span>
+			<% } else {%>
+				<%=data.title%>
+			<% }}else {%>
+				<%=data.title%>
+			<% }%>
+		</div>
+		<div class="col-md-12 portlet_content">
+			<div class="">
+				<table class="table">
+					<thead>
+						<tr>
+							<th class="col_separation">Category</th>
+							<th class="col_separation set_center">Total</th>
+							<th class="col_separation set_center">Actual</th>
+							<th class="col_separation set_center">Shortfall</th>
+							<th class="col_separation set_center">Actual Progress</th>
+						</tr>
+					</thead>
+					<tbody>
+						<!-- <tr>
+							<td class="set_center">1</td>
+							<td class="set_center mrt_colorcode_baseline">88%</td>
+							<td class="set_center mrt_colorcode_target">88%</td>
+							<td class="set_center mrt_colorcode_actual">88%</td>
+							<td class="set_center mrt_colorcode_shortfall">88%</td>
+							<td class="set_center mrt_colorcode_actual_heavy">88%</td>
+						</tr> -->
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</div>
+</div>
+
+<script type="text/javascript">
+$(document).ready(function(){
+	var portlet_etde_actual_progress_data = [
+		{
+			"category":"Test",
+			"total":"88%",
+			"actual":"88%",
+			"shortfall":"88%",
+			"actual_progress":"88%",
+		}
+	]
+	for (var i = 0; i < portlet_etde_actual_progress_data.length; i++) {
+		a = portlet_etde_actual_progress_data[i]
+		var data_0 = a.category;
+		var data_1 = a.total
+		var data_2 = a.actual
+		var data_3 = a.shortfall
+		var data_4 = a.actual_progress
+		append_this = '<tr><td class="set_center">'+data_0+'</td><td class="set_center mrt_colorcode_target">'+data_1+'</td><td class="set_center mrt_colorcode_actual">'+data_2+'</td><td class="set_center mrt_colorcode_shortfall">'+data_3+'</td><td class="set_center mrt_colorcode_actual_heavy">'+data_4+'</td></tr>';
+		$('.portlet_etde_actual_progress table tbody').append(append_this);
+	}
+});
+</script>

@@ -2,10 +2,18 @@
 	<div class="row content">
 		<div class="col-md-12 portlet_title">
 			<i class="fa_title_icon fa fa-calendar-check-o" aria-hidden="true"></i>
-			Work Progress
+			<% if (typeof(data.data.date) !== "undefined") { %>
+			<%=data.title%> <span class="plate_asof"> (As of <%=data.data.date%>)</span>
+			<% } else {%>
+			<%=data.title%>
+			<% } %>
 		</div>
 		<div class="col-md-12 portlet_content">
-		
+			<%console.log(data)%>
+			<%
+			var raw = data.data;
+			var levels = {"Station Box": "st","Entrance": "et","Vent Shaft": "vs"};
+			%>
 			<ul class="nav nav-tabs">
 				<li class="show_Station_Box active"><a href="#">Station Box</a></li>
 				<li class="show_Entrance"><a href="#">Entrance</a></li>
@@ -13,7 +21,6 @@
 			</ul>
 			
 			<div class="">
-				
 				<div class="table_plate show_Station_Box">
 					<div class="header">
 						<span class="text">Item</span>
@@ -23,10 +30,13 @@
 				
 				<!-- -- -->
 				<div class="show show_Station_Box">
+					<%var count = 0; for (var i in raw["Station Box"]) { count++;
+					var row = raw["Station Box"][i];
+					%>
 					<div class="table_plate">
 						<div class="summary">
 							<span class="text">
-								Retaining Structure
+								Retaining Structure <%=i%>
 								<!-- <span><a href="#"><i class="hidden fa_title_icon fa fa-minus-square" aria-hidden="true"></i><i class="fa_title_icon fa fa-plus-square" aria-hidden="true"></i></a></span> -->
 							</span>
 							<span class="value">88%</span>
@@ -34,6 +44,7 @@
 						<div class="detail">
 						</div>
 					</div>
+					<%}%>
 					<div class="table_plate">
 						<div class="summary">
 							<span class="text">

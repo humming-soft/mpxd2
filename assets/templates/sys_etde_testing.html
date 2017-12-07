@@ -1,0 +1,232 @@
+<div class="col-md-12 portlet portlet_etde_testing">
+	<div class="row content">
+		<div class="col-md-12 portlet_title">
+			<i class="fa_title_icon fa fa-check-square-o" aria-hidden="true"></i>
+			<% if (typeof(data.data[0]) !=="undefined"){%>
+			<% if (typeof(data.data[0].date) !== "undefined") { %>
+				<%=data.title%> <span class="plate_asof">(As of : <%=data.data[0].date%>) </span>
+			<% } else {%>
+				<%=data.title%>
+			<% }}else {%>
+				<%=data.title%>
+			<% }%>
+		</div>
+		<div class="col-md-12 portlet_content">
+			<%console.log(data) %>
+			<div class="">
+				<table class="table">
+					<thead>
+						<tr>
+							<th>Static Test</th>
+							<th>PAT</th>
+							<th>SAT</th>
+							<th>IT</th>
+							<th>SIT</th>
+						</tr>
+					</thead>
+					<tbody>
+						<!-- <tr>
+							<td>88%</td>
+							<td>88%</td>
+							<td>88%</td>
+							<td>88%</td>
+							<td>88%</td>
+						</tr> -->
+					</tbody>
+				</table>
+				<div class="link">
+					<button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#et_testing_detail">
+						<i class="fa fa-eye" aria-hidden="true"></i> View testing report
+					</button>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<!-- -- modal -- -->
+<div class="modal fade portlet_etde_testing_detail" id="et_testing_detail" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+	<div class="modal-dialog" role="document">
+		<div class="modal-content">
+			<div class="modal-header">
+				<div class="title"><%=data.title%> ( Testing Report )</div>
+			</div>
+			<div class="modal-body">
+				<div class="row">
+					<table class="table table-bordered">
+						<thead>
+							<tr class="">
+								<th>Train No</th>
+								<th colspan="4">Static Test</th>
+								<th colspan="4">PAT</th>
+								<th colspan="4">SAT</th>
+								<th colspan="4">IT</th>
+								<th colspan="4">SIT</th>
+							</tr>
+							<tr class="">
+								<th class="hidden-xs hidden-sm hidden-md"></th>
+								<th class="hidden-xs hidden-sm hidden-md">Total</th>
+								<th class="hidden-xs hidden-sm hidden-md">Pass</th>
+								<th class="hidden-xs hidden-sm hidden-md">Incomplete</th>
+								<th class="hidden-xs hidden-sm hidden-md">Fail</th>
+								<th class="hidden-xs hidden-sm hidden-md">Total</th>
+								<th class="hidden-xs hidden-sm hidden-md">Pass</th>
+								<th class="hidden-xs hidden-sm hidden-md">Incomplete</th>
+								<th class="hidden-xs hidden-sm hidden-md">Fail</th>
+								<th class="hidden-xs hidden-sm hidden-md">Total</th>
+								<th class="hidden-xs hidden-sm hidden-md">Pass</th>
+								<th class="hidden-xs hidden-sm hidden-md">Incomplete</th>
+								<th class="hidden-xs hidden-sm hidden-md">Fail</th>
+								<th class="hidden-xs hidden-sm hidden-md">Total</th>
+								<th class="hidden-xs hidden-sm hidden-md">Pass</th>
+								<th class="hidden-xs hidden-sm hidden-md">Incomplete</th>
+								<th class="hidden-xs hidden-sm hidden-md">Fail</th>
+								<th class="hidden-xs hidden-sm hidden-md">Total</th>
+								<th class="hidden-xs hidden-sm hidden-md">Pass</th>
+								<th class="hidden-xs hidden-sm hidden-md">Incomplete</th>
+								<th class="hidden-xs hidden-sm hidden-md">Fail</th>
+								
+								<th class="hidden-lg"></th>
+								<th class="hidden-lg">Total</th>
+								<th class="hidden-lg">Pass</th>
+								<th class="hidden-lg" title="Incomplete">Inc.</th>
+								<th class="hidden-lg">Fail</th>
+								<th class="hidden-lg">Total</th>
+								<th class="hidden-lg">Pass</th>
+								<th class="hidden-lg" title="Incomplete">Inc.</th>
+								<th class="hidden-lg">Fail</th>
+								<th class="hidden-lg">Total</th>
+								<th class="hidden-lg">Pass</th>
+								<th class="hidden-lg" title="Incomplete">Inc.</th>
+								<th class="hidden-lg">Fail</th>
+								<th class="hidden-lg">Total</th>
+								<th class="hidden-lg">Pass</th>
+								<th class="hidden-lg" title="Incomplete">Inc.</th>
+								<th class="hidden-lg">Fail</th>
+								<th class="hidden-lg">Total</th>
+								<th class="hidden-lg">Pass</th>
+								<th class="hidden-lg" title="Incomplete">Inc.</th>
+								<th class="hidden-lg">Fail</th>
+							</tr>
+						</thead>
+						<tbody></tbody>
+					</table>
+				</div>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+			</div>
+		</div>
+	</div>
+</div>
+
+
+
+<script type="text/javascript">
+	
+/*
+$(document).ready(function(){
+
+	var portlet_etde_testing_data = [
+		{
+			"static_test":"68",
+			"pat":"91",
+			"sat":"0",
+			"it":"0",
+			"sit":"0"
+		}
+	];
+	
+	for (var i = 0; i < portlet_etde_testing_data.length; i++) {
+		a = portlet_etde_testing_data[i]
+		
+		var td_data1 = a.static_test;
+		var td_data2 = a.pat;
+		var td_data3 = a.sat;
+		var td_data4 = a.it;
+		var td_data5 = a.sit;
+		
+		var append_this = '<tr><td>'+td_data1+'%</td><td>'+td_data2+'%</td><td>'+td_data3+'%</td><td>'+td_data4+'%</td><td>'+td_data5+'%</td></tr>'
+		
+		$('.portlet_etde_testing table tbody').append(append_this);
+		
+	}
+	
+	
+	
+	var portlet_etde_testing_data_detail =
+			[
+		{"Train_No":"Train 1","Static_Test_Total":"18","Static_Test_Pass":"17","Static_Test_Incomplete":"1","Static_Test_Fail":"0","PAT_Total":"7","PAT_Pass":"5","PAT_Incomplete":"2","PAT_Fail":"0","SAT_Total":"2","SAT_Pass":"-","SAT_Incomplete":"-","SAT_Fail":"-","IT_Total":"-","IT_Pass":"-","IT_Incomplete":"-","IT_Fail":"-","SIT_Total":"-","SIT_Pass":"-","SIT_Incomplete":"-","SIT_Fail":"-"},
+		{"Train_No":"Train 2","Static_Test_Total":"19","Static_Test_Pass":"18","Static_Test_Incomplete":"1","Static_Test_Fail":"0","PAT_Total":"7","PAT_Pass":"5","PAT_Incomplete":"2","PAT_Fail":"0","SAT_Total":"2","SAT_Pass":"-","SAT_Incomplete":"-","SAT_Fail":"-","IT_Total":"-","IT_Pass":"-","IT_Incomplete":"-","IT_Fail":"-","SIT_Total":"-","SIT_Pass":"-","SIT_Incomplete":"-","SIT_Fail":"-"},
+		{"Train_No":"Train 3","Static_Test_Total":"17","Static_Test_Pass":"10","Static_Test_Incomplete":"7","Static_Test_Fail":"0","PAT_Total":"5","PAT_Pass":"5","PAT_Incomplete":"0","PAT_Fail":"0","SAT_Total":"2","SAT_Pass":"-","SAT_Incomplete":"-","SAT_Fail":"-","IT_Total":"-","IT_Pass":"-","IT_Incomplete":"-","IT_Fail":"-","SIT_Total":"-","SIT_Pass":"-","SIT_Incomplete":"-","SIT_Fail":"-"},
+		{"Train_No":"Train 4","Static_Test_Total":"17","Static_Test_Pass":"9","Static_Test_Incomplete":"8","Static_Test_Fail":"0","PAT_Total":"5","PAT_Pass":"5","PAT_Incomplete":"0","PAT_Fail":"0","SAT_Total":"2","SAT_Pass":"-","SAT_Incomplete":"-","SAT_Fail":"-","IT_Total":"-","IT_Pass":"-","IT_Incomplete":"-","IT_Fail":"-","SIT_Total":"-","SIT_Pass":"-","SIT_Incomplete":"-","SIT_Fail":"-"},
+		{"Train_No":"Train 5","Static_Test_Total":"17","Static_Test_Pass":"10","Static_Test_Incomplete":"7","Static_Test_Fail":"0","PAT_Total":"5","PAT_Pass":"5","PAT_Incomplete":"0","PAT_Fail":"0","SAT_Total":"2","SAT_Pass":"-","SAT_Incomplete":"-","SAT_Fail":"-","IT_Total":"-","IT_Pass":"-","IT_Incomplete":"-","IT_Fail":"-","SIT_Total":"-","SIT_Pass":"-","SIT_Incomplete":"-","SIT_Fail":"-"},
+		{"Train_No":"Train 6","Static_Test_Total":"17","Static_Test_Pass":"8","Static_Test_Incomplete":"9","Static_Test_Fail":"0","PAT_Total":"5","PAT_Pass":"5","PAT_Incomplete":"0","PAT_Fail":"0","SAT_Total":"2","SAT_Pass":"-","SAT_Incomplete":"-","SAT_Fail":"-","IT_Total":"-","IT_Pass":"-","IT_Incomplete":"-","IT_Fail":"-","SIT_Total":"-","SIT_Pass":"-","SIT_Incomplete":"-","SIT_Fail":"-"},
+		{"Train_No":"Train 7","Static_Test_Total":"17","Static_Test_Pass":"9","Static_Test_Incomplete":"8","Static_Test_Fail":"0","PAT_Total":"5","PAT_Pass":"5","PAT_Incomplete":"0","PAT_Fail":"0","SAT_Total":"7","SAT_Pass":"-","SAT_Incomplete":"-","SAT_Fail":"-","IT_Total":"-","IT_Pass":"-","IT_Incomplete":"-","IT_Fail":"-","SIT_Total":"-","SIT_Pass":"-","SIT_Incomplete":"-","SIT_Fail":"-"},
+		{"Train_No":"Train 8","Static_Test_Total":"17","Static_Test_Pass":"12","Static_Test_Incomplete":"5","Static_Test_Fail":"0","PAT_Total":"5","PAT_Pass":"5","PAT_Incomplete":"0","PAT_Fail":"0","SAT_Total":"2","SAT_Pass":"-","SAT_Incomplete":"-","SAT_Fail":"-","IT_Total":"-","IT_Pass":"-","IT_Incomplete":"-","IT_Fail":"-","SIT_Total":"-","SIT_Pass":"-","SIT_Incomplete":"-","SIT_Fail":"-"},
+		{"Train_No":"Train 9","Static_Test_Total":"17","Static_Test_Pass":"11","Static_Test_Incomplete":"6","Static_Test_Fail":"0","PAT_Total":"5","PAT_Pass":"5","PAT_Incomplete":"0","PAT_Fail":"0","SAT_Total":"2","SAT_Pass":"-","SAT_Incomplete":"-","SAT_Fail":"-","IT_Total":"-","IT_Pass":"-","IT_Incomplete":"-","IT_Fail":"-","SIT_Total":"-","SIT_Pass":"-","SIT_Incomplete":"-","SIT_Fail":"-"},
+		{"Train_No":"Train 10","Static_Test_Total":"17","Static_Test_Pass":"14","Static_Test_Incomplete":"3","Static_Test_Fail":"0","PAT_Total":"5","PAT_Pass":"5","PAT_Incomplete":"0","PAT_Fail":"0","SAT_Total":"2","SAT_Pass":"-","SAT_Incomplete":"-","SAT_Fail":"-","IT_Total":"-","IT_Pass":"-","IT_Incomplete":"-","IT_Fail":"-","SIT_Total":"-","SIT_Pass":"-","SIT_Incomplete":"-","SIT_Fail":"-"},
+		{"Train_No":"Train 11","Static_Test_Total":"17","Static_Test_Pass":"14","Static_Test_Incomplete":"3","Static_Test_Fail":"0","PAT_Total":"5","PAT_Pass":"5","PAT_Incomplete":"0","PAT_Fail":"0","SAT_Total":"2","SAT_Pass":"-","SAT_Incomplete":"-","SAT_Fail":"-","IT_Total":"-","IT_Pass":"-","IT_Incomplete":"-","IT_Fail":"-","SIT_Total":"-","SIT_Pass":"-","SIT_Incomplete":"-","SIT_Fail":"-"},
+		{"Train_No":"Train 12","Static_Test_Total":"17","Static_Test_Pass":"13","Static_Test_Incomplete":"4","Static_Test_Fail":"0","PAT_Total":"5","PAT_Pass":"4","PAT_Incomplete":"1","PAT_Fail":"0","SAT_Total":"2","SAT_Pass":"-","SAT_Incomplete":"-","SAT_Fail":"-","IT_Total":"-","IT_Pass":"-","IT_Incomplete":"-","IT_Fail":"-","SIT_Total":"-","SIT_Pass":"-","SIT_Incomplete":"-","SIT_Fail":"-"},
+		{"Train_No":"Train 13","Static_Test_Total":"17","Static_Test_Pass":"13","Static_Test_Incomplete":"4","Static_Test_Fail":"0","PAT_Total":"5","PAT_Pass":"5","PAT_Incomplete":"0","PAT_Fail":"0","SAT_Total":"2","SAT_Pass":"-","SAT_Incomplete":"-","SAT_Fail":"-","IT_Total":"-","IT_Pass":"-","IT_Incomplete":"-","IT_Fail":"-","SIT_Total":"-","SIT_Pass":"-","SIT_Incomplete":"-","SIT_Fail":"-"},
+		{"Train_No":"Train 14","Static_Test_Total":"17","Static_Test_Pass":"14","Static_Test_Incomplete":"3","Static_Test_Fail":"0","PAT_Total":"5","PAT_Pass":"5","PAT_Incomplete":"0","PAT_Fail":"0","SAT_Total":"2","SAT_Pass":"-","SAT_Incomplete":"-","SAT_Fail":"-","IT_Total":"-","IT_Pass":"-","IT_Incomplete":"-","IT_Fail":"-","SIT_Total":"-","SIT_Pass":"-","SIT_Incomplete":"-","SIT_Fail":"-"},
+		{"Train_No":"Train 15","Static_Test_Total":"17","Static_Test_Pass":"13","Static_Test_Incomplete":"4","Static_Test_Fail":"0","PAT_Total":"5","PAT_Pass":"5","PAT_Incomplete":"0","PAT_Fail":"0","SAT_Total":"2","SAT_Pass":"-","SAT_Incomplete":"-","SAT_Fail":"-","IT_Total":"-","IT_Pass":"-","IT_Incomplete":"-","IT_Fail":"-","SIT_Total":"-","SIT_Pass":"-","SIT_Incomplete":"-","SIT_Fail":"-"},
+		{"Train_No":"Train 16","Static_Test_Total":"17","Static_Test_Pass":"13","Static_Test_Incomplete":"4","Static_Test_Fail":"0","PAT_Total":"5","PAT_Pass":"5","PAT_Incomplete":"0","PAT_Fail":"0","SAT_Total":"2","SAT_Pass":"-","SAT_Incomplete":"-","SAT_Fail":"-","IT_Total":"-","IT_Pass":"-","IT_Incomplete":"-","IT_Fail":"-","SIT_Total":"-","SIT_Pass":"-","SIT_Incomplete":"-","SIT_Fail":"-"},
+		{"Train_No":"Train 17","Static_Test_Total":"17","Static_Test_Pass":"12","Static_Test_Incomplete":"5","Static_Test_Fail":"0","PAT_Total":"5","PAT_Pass":"5","PAT_Incomplete":"0","PAT_Fail":"0","SAT_Total":"2","SAT_Pass":"-","SAT_Incomplete":"-","SAT_Fail":"-","IT_Total":"-","IT_Pass":"-","IT_Incomplete":"-","IT_Fail":"-","SIT_Total":"-","SIT_Pass":"-","SIT_Incomplete":"-","SIT_Fail":"-"},
+		{"Train_No":"Train 18","Static_Test_Total":"17","Static_Test_Pass":"12","Static_Test_Incomplete":"5","Static_Test_Fail":"0","PAT_Total":"5","PAT_Pass":"5","PAT_Incomplete":"0","PAT_Fail":"0","SAT_Total":"2","SAT_Pass":"-","SAT_Incomplete":"-","SAT_Fail":"-","IT_Total":"-","IT_Pass":"-","IT_Incomplete":"-","IT_Fail":"-","SIT_Total":"-","SIT_Pass":"-","SIT_Incomplete":"-","SIT_Fail":"-"},
+		{"Train_No":"Train 19","Static_Test_Total":"17","Static_Test_Pass":"11","Static_Test_Incomplete":"6","Static_Test_Fail":"0","PAT_Total":"5","PAT_Pass":"5","PAT_Incomplete":"0","PAT_Fail":"0","SAT_Total":"2","SAT_Pass":"-","SAT_Incomplete":"-","SAT_Fail":"-","IT_Total":"-","IT_Pass":"-","IT_Incomplete":"-","IT_Fail":"-","SIT_Total":"-","SIT_Pass":"-","SIT_Incomplete":"-","SIT_Fail":"-"},
+		{"Train_No":"Train 20","Static_Test_Total":"17","Static_Test_Pass":"13","Static_Test_Incomplete":"4","Static_Test_Fail":"0","PAT_Total":"5","PAT_Pass":"5","PAT_Incomplete":"0","PAT_Fail":"0","SAT_Total":"2","SAT_Pass":"-","SAT_Incomplete":"-","SAT_Fail":"-","IT_Total":"-","IT_Pass":"-","IT_Incomplete":"-","IT_Fail":"-","SIT_Total":"-","SIT_Pass":"-","SIT_Incomplete":"-","SIT_Fail":"-"},
+		{"Train_No":"Train 21","Static_Test_Total":"17","Static_Test_Pass":"11","Static_Test_Incomplete":"6","Static_Test_Fail":"0","PAT_Total":"5","PAT_Pass":"5","PAT_Incomplete":"0","PAT_Fail":"0","SAT_Total":"2","SAT_Pass":"-","SAT_Incomplete":"-","SAT_Fail":"-","IT_Total":"-","IT_Pass":"-","IT_Incomplete":"-","IT_Fail":"-","SIT_Total":"-","SIT_Pass":"-","SIT_Incomplete":"-","SIT_Fail":"-"},
+		{"Train_No":"Train 22","Static_Test_Total":"17","Static_Test_Pass":"12","Static_Test_Incomplete":"5","Static_Test_Fail":"0","PAT_Total":"5","PAT_Pass":"5","PAT_Incomplete":"0","PAT_Fail":"0","SAT_Total":"2","SAT_Pass":"-","SAT_Incomplete":"-","SAT_Fail":"-","IT_Total":"-","IT_Pass":"-","IT_Incomplete":"-","IT_Fail":"-","SIT_Total":"-","SIT_Pass":"-","SIT_Incomplete":"-","SIT_Fail":"-"},
+		{"Train_No":"Train 23","Static_Test_Total":"17","Static_Test_Pass":"13","Static_Test_Incomplete":"4","Static_Test_Fail":"0","PAT_Total":"5","PAT_Pass":"4","PAT_Incomplete":"1","PAT_Fail":"0","SAT_Total":"2","SAT_Pass":"-","SAT_Incomplete":"-","SAT_Fail":"-","IT_Total":"-","IT_Pass":"-","IT_Incomplete":"-","IT_Fail":"-","SIT_Total":"-","SIT_Pass":"-","SIT_Incomplete":"-","SIT_Fail":"-"},
+		{"Train_No":"Train 24","Static_Test_Total":"17","Static_Test_Pass":"13","Static_Test_Incomplete":"4","Static_Test_Fail":"0","PAT_Total":"5","PAT_Pass":"5","PAT_Incomplete":"0","PAT_Fail":"0","SAT_Total":"2","SAT_Pass":"-","SAT_Incomplete":"-","SAT_Fail":"-","IT_Total":"-","IT_Pass":"-","IT_Incomplete":"-","IT_Fail":"-","SIT_Total":"-","SIT_Pass":"-","SIT_Incomplete":"-","SIT_Fail":"-"},
+		{"Train_No":"Train 25","Static_Test_Total":"17","Static_Test_Pass":"14","Static_Test_Incomplete":"3","Static_Test_Fail":"0","PAT_Total":"5","PAT_Pass":"5","PAT_Incomplete":"0","PAT_Fail":"0","SAT_Total":"2","SAT_Pass":"-","SAT_Incomplete":"-","SAT_Fail":"-","IT_Total":"-","IT_Pass":"-","IT_Incomplete":"-","IT_Fail":"-","SIT_Total":"-","SIT_Pass":"-","SIT_Incomplete":"-","SIT_Fail":"-"},
+		{"Train_No":"Train 26","Static_Test_Total":"17","Static_Test_Pass":"14","Static_Test_Incomplete":"3","Static_Test_Fail":"0","PAT_Total":"5","PAT_Pass":"5","PAT_Incomplete":"0","PAT_Fail":"0","SAT_Total":"2","SAT_Pass":"-","SAT_Incomplete":"-","SAT_Fail":"-","IT_Total":"-","IT_Pass":"-","IT_Incomplete":"-","IT_Fail":"-","SIT_Total":"-","SIT_Pass":"-","SIT_Incomplete":"-","SIT_Fail":"-"},
+		{"Train_No":"Train 27","Static_Test_Total":"17","Static_Test_Pass":"11","Static_Test_Incomplete":"6","Static_Test_Fail":"0","PAT_Total":"5","PAT_Pass":"5","PAT_Incomplete":"0","PAT_Fail":"0","SAT_Total":"2","SAT_Pass":"-","SAT_Incomplete":"-","SAT_Fail":"-","IT_Total":"-","IT_Pass":"-","IT_Incomplete":"-","IT_Fail":"-","SIT_Total":"-","SIT_Pass":"-","SIT_Incomplete":"-","SIT_Fail":"-"},
+		{"Train_No":"Train 28","Static_Test_Total":"17","Static_Test_Pass":"11","Static_Test_Incomplete":"6","Static_Test_Fail":"0","PAT_Total":"5","PAT_Pass":"5","PAT_Incomplete":"0","PAT_Fail":"0","SAT_Total":"2","SAT_Pass":"-","SAT_Incomplete":"-","SAT_Fail":"-","IT_Total":"-","IT_Pass":"-","IT_Incomplete":"-","IT_Fail":"-","SIT_Total":"-","SIT_Pass":"-","SIT_Incomplete":"-","SIT_Fail":"-"},
+		{"Train_No":"Train 29","Static_Test_Total":"17","Static_Test_Pass":"10","Static_Test_Incomplete":"7","Static_Test_Fail":"0","PAT_Total":"5","PAT_Pass":"5","PAT_Incomplete":"0","PAT_Fail":"0","SAT_Total":"2","SAT_Pass":"-","SAT_Incomplete":"-","SAT_Fail":"-","IT_Total":"-","IT_Pass":"-","IT_Incomplete":"-","IT_Fail":"-","SIT_Total":"-","SIT_Pass":"-","SIT_Incomplete":"-","SIT_Fail":"-"},
+		{"Train_No":"Train 30","Static_Test_Total":"17","Static_Test_Pass":"8","Static_Test_Incomplete":"6","Static_Test_Fail":"0","PAT_Total":"5","PAT_Pass":"5","PAT_Incomplete":"0","PAT_Fail":"0","SAT_Total":"2","SAT_Pass":"-","SAT_Incomplete":"-","SAT_Fail":"-","IT_Total":"-","IT_Pass":"-","IT_Incomplete":"-","IT_Fail":"-","SIT_Total":"-","SIT_Pass":"-","SIT_Incomplete":"-","SIT_Fail":"-"},
+		{"Train_No":"Train 31","Static_Test_Total":"17","Static_Test_Pass":"7","Static_Test_Incomplete":"7","Static_Test_Fail":"0","PAT_Total":"5","PAT_Pass":"5","PAT_Incomplete":"0","PAT_Fail":"0","SAT_Total":"2","SAT_Pass":"-","SAT_Incomplete":"-","SAT_Fail":"-","IT_Total":"-","IT_Pass":"-","IT_Incomplete":"-","IT_Fail":"-","SIT_Total":"-","SIT_Pass":"-","SIT_Incomplete":"-","SIT_Fail":"-"},
+		{"Train_No":"Train 32","Static_Test_Total":"17","Static_Test_Pass":"9","Static_Test_Incomplete":"8","Static_Test_Fail":"0","PAT_Total":"5","PAT_Pass":"-","PAT_Incomplete":"-","PAT_Fail":"-","SAT_Total":"2","SAT_Pass":"-","SAT_Incomplete":"-","SAT_Fail":"-","IT_Total":"-","IT_Pass":"-","IT_Incomplete":"-","IT_Fail":"-","SIT_Total":"-","SIT_Pass":"-","SIT_Incomplete":"-","SIT_Fail":"-"},
+		{"Train_No":"Train 33","Static_Test_Total":"17","Static_Test_Pass":"6","Static_Test_Incomplete":"11","Static_Test_Fail":"0","PAT_Total":"5","PAT_Pass":"-","PAT_Incomplete":"-","PAT_Fail":"-","SAT_Total":"2","SAT_Pass":"-","SAT_Incomplete":"-","SAT_Fail":"-","IT_Total":"-","IT_Pass":"-","IT_Incomplete":"-","IT_Fail":"-","SIT_Total":"-","SIT_Pass":"-","SIT_Incomplete":"-","SIT_Fail":"-"}
+
+	];
+
+	for (var i = 0; i < portlet_etde_testing_data_detail.length; i++) {
+		b = portlet_etde_testing_data_detail[i]
+		
+		var td_data1 = b.Train_No;
+		var td_data2a = b.Static_Test_Total;
+		var td_data2b = b.Static_Test_Pass;
+		var td_data2c = b.Static_Test_Incomplete;
+		var td_data2d = b.Static_Test_Fail;
+		var td_data3a = b.PAT_Total;
+		var td_data3b = b.PAT_Pass;
+		var td_data3c = b.PAT_Incomplete;
+		var td_data3d = b.PAT_Fail;
+		var td_data4a = b.SAT_Total;
+		var td_data4b = b.SAT_Pass;
+		var td_data4c = b.SAT_Incomplete;
+		var td_data4d = b.SAT_Fail;
+		var td_data5a = b.IT_Total;
+		var td_data5b = b.IT_Pass;
+		var td_data5c = b.IT_Incomplete;
+		var td_data5d = b.IT_Fail;
+		var td_data6a = b.SIT_Total;
+		var td_data6b = b.SIT_Pass;
+		var td_data6c = b.SIT_Incomplete;
+		var td_data6d = b.SIT_Fail;
+		
+		var append_this = '<tr><td>'+td_data1+'</td><td>'+td_data2a+'</td><td>'+td_data2b+'</td><td>'+td_data2c+'</td><td>'+td_data2d+'</td><td>'+td_data3a+'</td><td>'+td_data3b+'</td><td>'+td_data3c+'</td><td>'+td_data3d+'</td><td>'+td_data4a+'</td><td>'+td_data4b+'</td><td>'+td_data4c+'</td><td>'+td_data4d+'</td><td>'+td_data5a+'</td><td>'+td_data5b+'</td><td>'+td_data5c+'</td><td>'+td_data5d+'</td><td>'+td_data6a+'</td><td>'+td_data6b+'</td><td>'+td_data6c+'</td><td>'+td_data6d+'</td></tr>';
+		
+		$('.portlet_etde_testing_detail table tbody').append(append_this);
+		
+	}
+	
+	
+	
+
+});
+*/
+
+</script>
