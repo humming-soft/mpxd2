@@ -877,20 +877,18 @@ function build_viaducts($slug){
  }
 function build_systems($slug){
 $final = array();
-	$info = packageInfo($slug,3);
-	$gallery = gallery($slug);
-	$kad = kad($slug,3);
-	$scurve = scurve($slug);
-    if($slug=="sys-etde"){
+if($slug=="sys-etde"){
+		$info = packageInfo($slug,3);
+		$gallery = gallery($slug);
+		$kad = kad($slug,3);
+		$scurve = scurve($slug);
 		$testAndCompletion = testAndCompletion($slug);
 		$manufacturing = manufacturing($slug);
 		$actualProgress = actualProgress($slug);
 		$etde_progress = etDeProgress($slug);
 		$overall = overallItem($slug);
 		$timeline = projectTimeline($slug);
-    }
-	//SCURVE
-	if(sizeof($scurve['scurve'])>0 ) {
+		if(sizeof($scurve['scurve'])>0 ) {
 		$actual = array();
 		$late = array();
 		$early = array();
@@ -916,24 +914,23 @@ $final = array();
 			'chartType' => "long",
 			'viewType' => "2",
 		);
-	}
-	if(sizeof($scurve['scurve'])>0 ) {
-		$progress['PROGRESS'] = array(
-			'date' => date('d-M-y', strtotime($scurve['scurve'][0]['scurve_date'])),
-			'currentEarly' => $scurve['scurve'][0]['early_data'] . '%',
-			'currentLate' => $scurve['scurve'][0]['delayed_data'] . '%',
-			'currentActual' => $scurve['scurve'][0]['actual_data'] . '%',
-			'varEarly' => $scurve['scurve'][0]['var_early'] . 'w',
-			'varLate' => $scurve['scurve'][0]['var_late'] . 'w',
-			'varTrainCompletion' => "58%",
-			'viewType' => "2",
-		);
-	}
-	$finalKAD = array("KAD" => $kad);
-	$finalINFO = array("INFO" =>$info);
-	$finalGALLERY = array("gallery" => $gallery);
-	$finalSCURVE = array("scurve" => (sizeof($scurve['scurve'])>0 ? $scurvearr : []));
-	if($slug=="sys-etde"){
+		}
+		if(sizeof($scurve['scurve'])>0 ) {
+			$progress['PROGRESS'] = array(
+				'date' => date('d-M-y', strtotime($scurve['scurve'][0]['scurve_date'])),
+				'currentEarly' => $scurve['scurve'][0]['early_data'] . '%',
+				'currentLate' => $scurve['scurve'][0]['delayed_data'] . '%',
+				'currentActual' => $scurve['scurve'][0]['actual_data'] . '%',
+				'varEarly' => $scurve['scurve'][0]['var_early'] . 'w',
+				'varLate' => $scurve['scurve'][0]['var_late'] . 'w',
+				'varTrainCompletion' => "58%",
+				'viewType' => "2",
+			);
+		}
+		 $finalKAD = array("KAD" => $kad);
+		 $finalINFO = array("INFO" =>$info);
+		 $finalGALLERY = array("gallery" => $gallery);
+		 $finalSCURVE = array("scurve" => (sizeof($scurve['scurve'])>0 ? $scurvearr : []));
 		 $finalMANP = array("sys_etde_manufacturing_progress" => $manufacturing);
 	     $finalACTP = array("sys_etde_actual_progress" => $actualProgress);
 	     $finalETP =array('sys_etde_progress' =>array_merge($progress,$etde_progress));
@@ -941,8 +938,10 @@ $final = array();
 		 $finalTIME = array("sys_etde_project_timeline" => $timeline);
 		 $finalTESTING = array("sys_etde_testing" => $testAndCompletion);
 		 $superFinal = array($slug => array_merge($finalINFO,$finalKAD, $finalGALLERY, $finalSCURVE,$finalTESTING,$finalTIME,$finalOPEN,$finalETP,$finalACTP,$finalMANP));
-	}else{
-		$superFinal = array($slug => array_merge($finalINFO,  $finalKAD, $finalGALLERY, $finalSCURVE));
+	
+    }
+	else{
+		$superFinal = array();
 	}
 	return json_encode($superFinal);
 }
