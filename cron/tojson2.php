@@ -167,19 +167,34 @@ function packageInfo($slug, $type = 1){
  * @return Array
  * @Desc
  */
-function kad($slug, $type = 1){
-	$query = db()->{'"key_dates'.$type.'"'}
+function kad($slug, $type){
+	if($type==1){
+		$query = db()->{'"key_dates'.$type.'"'}
 		->select('pagename','slug','name','forecast','contract','dps','date')
 		->where("slug", $slug)
 		->or("slug", strtoupper($slug));
+	}
+	if($type==2 or $type==3){
+		$query = db()->{'"key_dates'.$type.'"'}
+		->select('pagename','slug','name','forecast','contract','date')
+		->where("slug", $slug)
+		->or("slug", strtoupper($slug));
+		}
 	$result = array_map('iterator_to_array', iterator_to_array($query));
 
 	if(sizeof($result)>0) {
 		$kadarr = array();
 		$kadobj = (object)array('date' => date('d-M-y', strtotime($result[0]['date'])));
 		$kadarr[] = $kadobj;
-		foreach ($result as $q) {
+		if($type==1){
+			foreach ($result as $q) {
 			$kadarr[] = array($q['name'], date('d-M-y', strtotime($q['forecast'])), date('d-M-y', strtotime($q['contract'])), date('d-M-y', strtotime($q['dps'])));
+			}
+		}
+		if($type==2 or $type==3){
+			foreach ($result as $q) {
+			$kadarr[] = array($q['name'], date('d-M-y', strtotime($q['forecast'])), date('d-M-y', strtotime($q['contract'])));
+			}
 		}
 		return $kadarr;
 	}else{
@@ -354,7 +369,7 @@ function v_summary($slug){
 }
 
 /**
- * Viaduct Summary
+ * Dashboard
  * @param $slug
  * @return Array
  * @Desc
@@ -367,7 +382,7 @@ function dashboard(){
 }
 
 /**
- * Viaduct Summary
+ * North and South Summary
  * @param $slug
  * @return Array
  * @Desc
@@ -384,17 +399,19 @@ function ns_summary($slugs){
 function testAndCompletion($slug){
 	$train = array();
 	$temp = array();
-
+	
 	$query = db()->{'"et_testing_completion"'}
 				 ->select('pagename', 'slug', 'train', 'static_total', 'static_pass', 'static_incomplete', 'static_fail', 'sat_total', 'sat_pass', 'sat_incomplete', 'sat_fail', 'it_toatl', 'it_pass', 
-				 'it_incomplete', 'it_fail', 'sit_total', 'sit_pass', 'sit_incomplete', 'sit_fail', 'publish_date', 'data_date','pat_total', 'pat_pass', 'pat_incomplete', 'pat_fail' )
+				 'it_incomplete', 'it_fail', 'sit_total', 'sit_pass', 'sit_incomplete', 'sit_fail', 'publish_date', 'data_date','pat_total', 'pat_pass', 'pat_incomplete', 'pat_fail' ,'data_date')
 				 ->where("slug", $slug)
 				 ->order("train");
 	$result= array_map('iterator_to_array', iterator_to_array($query));
+	$kadobj = (object)array('date' => date('d-M-y', strtotime($result[0]['data_date'])));
+	$train[] = $kadobj;
 	foreach ($result as $q) {
-				$temp['train_no'] ="Train ".$q['train'];
-				$temp['static_total'] = $q['static_total'];
-				$temp['static_pass'] = $q['static_pass'];
+	$temp['train_no'] ="Train ".$q['train'];
+	$temp['static_total'] = $q['static_total'];
+	$temp['static_pass'] = $q['static_pass'];
 	$temp['static_incomplete'] = $q['static_incomplete'];
 	$temp['static_fail']= $q['static_fail'];
 	$temp['sat_total']= $q['sat_total'];
@@ -419,6 +436,131 @@ function testAndCompletion($slug){
 }
 
 /**
+ * Piers
+ * @param $slug
+ * @return Array
+ * @Desc
+ */
+
+function piers($slug){
+	$final = array();
+	$query = db()->{'"pier_ref"'}
+				 ->select('pier_v','pier_id','pier_north_id', 'pier_south_id','pier_marker_a','pier_marker_b', 'pier_layout', 'pier_type', 'span_type', 'sbg')
+				 ->where("pier_v", $slug);
+	$result= array_map('iterator_to_array', iterator_to_array($query));
+	foreach($result as $v){	
+		$ad =  pier_span_col($slug,$v['pier_id']);
+		$temp = array();
+		$temp['pier_v']= $v['pier_v'];
+		$temp['pier_id']= $v['pier_id'];
+		$temp['pier_north_id']= $v['pier_north_id'];
+		$temp['pier_south_id']= $v['pier_south_id'];
+		$temp['pier_marker_a']= $v['pier_marker_a'];
+		$temp['pier_marker_b']= $v['pier_marker_b'];
+		$temp['pier_layout']= $v['pier_layout'];
+		$temp['pier_type']= $v['pier_type'];
+		$temp['span_type']= $v['span_type'];
+		if(sizeof($ad)>0){
+			$temp['pier_pile_1']= $ad[0]['pier_pile_1'];
+			$temp['pier_pile_2']= $ad[0]['pier_pile_2'];
+			$temp['pier_pilecap_1']= $ad[0]['pier_pilecap_1'];
+			$temp['pier_pilecap_2']= $ad[0]['pier_pilecap_2'];
+			$temp['pier_pier_1']= $ad[0]['pier_pier_1'];
+			$temp['pier_pier_2']= $ad[0]['pier_pier_2'];
+			$temp['pier_pierhead_1']= $ad[0]['pier_pieread_1'];
+			$temp['pier_pierhead_2']= $ad[0]['pier_pieread_2'];
+			$temp['pier_pierhead_3']= $ad[0]['pier_pieread_3'];
+			$temp['span1']= $ad[0]['span_1'];
+			$temp['span2']= $ad[0]['span_2'];
+			$temp['span3']= $ad[0]['span_3'];
+			$temp['sbg'] = array();
+			$temp['sbg']= pier_sbg_res($ad[0]['sbg_left_count'], $ad[0]['sbg_right_count'],$ad[0]['sbg_left'],$ad[0]['sbg_right']);
+			$temp['parapet1']= $ad[0]['parapet_1'];
+			$temp['parapet2']= $ad[0]['parapet_2'];
+			$temp['parapet3']= $ad[0]['parapet_3'];
+		}else{
+			$temp['pier_pile_1']= "0";
+			$temp['pier_pile_2']= "0";
+			$temp['pier_pilecap_1']= "0";
+			$temp['pier_pilecap_2']= "0";
+			$temp['pier_pier_1']= "0";
+			$temp['pier_pier_2']= "0";
+			$temp['pier_pierhead_1']= "0";
+			$temp['pier_pierhead_2']= "0";
+			$temp['pier_pierhead_3']= "0";
+			$temp['span1']= "0";
+			$temp['span2']= "0";
+			$temp['span3']= "0";
+			$temp['sbg'] = array();
+			$temp['sbg']= pier_sbg_res(0,0,0,0);
+			$temp['parapet1']= "0";
+			$temp['parapet2']= "0";
+			$temp['parapet3']= "0";
+		}
+		array_push($final,$temp);
+	}
+	return $final;
+}
+
+function pier_span_col($slug, $id){
+	$query = db()->{'"pier_span_col"'}
+		->select('pier_v', 'pier_id', 'pier_north_id', 'pier_south_id', 
+				'pier_pile_1', 'pier_pile_2', 'pier_pilecap_1', 'pier_pilecap_2', 'pier_pier_1', 
+				'pier_pier_2', 'pier_pieread_1', 'pier_pieread_2', 'pier_pieread_3', 'sbg_left_count', 'sbg_right_count',
+				'sbg_left', 'sbg_right', 'span_1', 'span_2', 'span_3', 'span_4', 'parapet_1', 
+				'parapet_2', 'parapet_3')
+		->where("slug", $slug)->and("pier_id", $id);
+	$result= array_map('iterator_to_array', iterator_to_array($query));
+	return $result;
+}
+
+function pier_sbg_res($left_total, $right_total,$left_completed,$right_completed){
+	$sbg = array(
+		'sbg_id'=>array(),
+		'sbg_lr' =>array(),
+		'sbg_va' =>array()
+	);
+  	 for($q = 0; $q< ($left_total+$right_total); $q++){ 
+		array_push($sbg['sbg_id'],"sbg".($q+1));
+/* 		if($q < $left_completed){
+			array_push($sbg['sbg_va'],1);
+		}else{
+			if(sizeof($sbg['sbg_va']) <= $left_total){
+				array_push($sbg['sbg_va'],0);
+			}else{
+				if($q > $left_total){
+					if(){
+						array_push($sbg['sbg_va'],1);
+					}else{
+						array_push($sbg['sbg_va'],0);
+					}
+				}
+			}
+		} */
+	 }   
+	 for($q = 0; $q< $left_total; $q++){
+		 if($q < $left_completed){
+			 array_push($sbg['sbg_va'],1);
+		 }else{
+			 array_push($sbg['sbg_va'],0);
+		 }
+	 }
+	 for($q = 0; $q< $right_total; $q++){
+		 if($q < $right_completed){
+			 array_push($sbg['sbg_va'],1);
+		 }else{
+			 array_push($sbg['sbg_va'],0);
+		 }
+	 }
+	 for($q = 0; $q< ($left_total); $q++){ 
+		array_push($sbg['sbg_lr'],"left");
+	 }
+	 for($q = 0; $q< ($right_total); $q++){ 
+		array_push($sbg['sbg_lr'],"right");
+	 }  	 
+	return $sbg;
+}
+/**
  *69696969669696969696969696969696969696969696969696969696969696969696969696969696969699696969696996969696969696969696969696969696969696969696969696969
  */
 
@@ -437,6 +579,7 @@ function build_viaducts($slug){
 	$kd = kd($slug,1);
 	$hsse = safety_incident($slug);
 	$scurve = scurve($slug);
+	$piers = piers($slug);
 
 	//SCURVE
 	if(sizeof($scurve['scurve'])>0 ) {
@@ -475,8 +618,8 @@ function build_viaducts($slug){
 	$finalHSSE = array("hsse" => $hsse);
 	$finalGALLERY = array("gallery" => $galleryFormatter);
 	$finalSCURVE = array("scurve" => (sizeof($scurve['scurve'])>0 ? $scurvearr : []));
-	$superFinal = array($slug => array_merge($finalQRM, $finalKAD, $finalKD, $finalINFO, $finalHSSE, $finalGALLERY, $finalSCURVE));
-
+	$finalPIERS = array("PIERS" => $piers);
+	$superFinal = array($slug => array_merge($finalQRM, $finalKAD, $finalKD, $finalINFO, $finalHSSE, $finalGALLERY, $finalSCURVE,$finalPIERS));
 	return json_encode($superFinal);
 //	updateDB($slug, json_encode($superFinal), $date);
 }
@@ -499,6 +642,8 @@ function build_viaducts($slug){
 				 ->where("slug", $slug)
 				 ->order("train_no");
 	$result1= array_map('iterator_to_array', iterator_to_array($query1));
+	$kadobj = (object)array('date' => date('d-M-y', strtotime($result1[0]['data_date'])));
+	$final[] = $kadobj;
     foreach ($result1 as $q) {
 				$puzhen['site_name'] ="site1";
 				$puzhen['site'] ="Site Name 1";
@@ -646,6 +791,8 @@ function build_viaducts($slug){
 					->where("slug", $slug)
 					->order("train");
 				$result= array_map('iterator_to_array', iterator_to_array($query));
+				$kadobj = (object)array('date' => date('d-M-y', strtotime($result[0]['data_date'])));
+	            $final[] = $kadobj;
 				foreach ($result as $q) {
 					if($q['static_total']==$q['static_pass'] && $q['sat_total']==$q['sat_pass'] && $q['it_toatl']==$q['it_pass'] && $q['sit_total']==$q['sit_pass'] && $q['static_incomplete']=='0' && $q['static_fail']=='0' && $q['sat_incomplete']=='0' && $q['sat_fail']=='0' && $q['it_incomplete']=='0' && $q['it_fail']=='0' && $q['sit_incomplete']=='0' && $q['sit_fail']=='0'  && $q['pat_incomplete']=='0' && $q['pat_fail']=='0')
 					{
@@ -680,6 +827,8 @@ function build_viaducts($slug){
 				 ->where("slug", $slug)
 				 ->order("train");
 	$result= array_map('iterator_to_array', iterator_to_array($query));
+	$kadobj = (object)array('date' => date('d-M-y', strtotime($result[0]['data_date'])));
+	$final[] = $kadobj;
 	$query1 = db()->{'"et_outstanding"'}
 				 ->select('pagename', 'slug', 'date', 'job_done', 'target', 'publish_date', 'data_date')
 				 ->where("slug", $slug);
@@ -702,6 +851,8 @@ function build_viaducts($slug){
 				 ->where("slug", $slug)
 				 ->order("phase");
 	$result= array_map('iterator_to_array', iterator_to_array($query));
+	$kadobj = (object)array('date' => date('d-M-y', strtotime($result[0]['data_date'])));
+	$final[] = $kadobj;
 	$var2="-";
 	foreach ($result as $q) {
 		        $temp['phase'] ="Phase ".$q['phase'];
@@ -728,7 +879,7 @@ function build_systems($slug){
 $final = array();
 	$info = packageInfo($slug,3);
 	$gallery = gallery($slug);
-	$kad = kad($slug);
+	$kad = kad($slug,3);
 	$scurve = scurve($slug);
     if($slug=="sys-etde"){
 		$testAndCompletion = testAndCompletion($slug);
@@ -789,7 +940,7 @@ $final = array();
 	     $finalOPEN = array("sys_etde_overall_open_item_closure" => $overall);
 		 $finalTIME = array("sys_etde_project_timeline" => $timeline);
 		 $finalTESTING = array("sys_etde_testing" => $testAndCompletion);
-		 $superFinal = array($slug => array_merge($finalINFO,  $finalKAD, $finalGALLERY, $finalSCURVE,$finalTESTING,$finalTIME,$finalOPEN,$finalETP,$finalACTP,$finalMANP));
+		 $superFinal = array($slug => array_merge($finalINFO,$finalKAD, $finalGALLERY, $finalSCURVE,$finalTESTING,$finalTIME,$finalOPEN,$finalETP,$finalACTP,$finalMANP));
 	}else{
 		$superFinal = array($slug => array_merge($finalINFO,  $finalKAD, $finalGALLERY, $finalSCURVE));
 	}
@@ -839,10 +990,11 @@ function build_stations($slug){
 		);
 	}
 
+	$galleryFormatter = array("title"=> strtoupper($slug).' Image Gallery',"items" => $gallery);
 	$finalQRM = array("QRM" => $kpi);
 	$finalKAD = array("KAD" => $kad);
 	$finalINFO = array("INFO" =>$info);
-	$finalGALLERY = array("gallery" => $gallery);
+	$finalGALLERY = array("gallery" => $galleryFormatter);
 	$finalSCURVE = array("scurve" => (sizeof($scurve['scurve'])>0 ? $scurvearr : []));
 	$superFinal = array($slug => array_merge($finalQRM, $finalKAD, $finalINFO, $finalGALLERY, $finalSCURVE));
 	return json_encode($superFinal);
@@ -860,8 +1012,8 @@ function build_ug($slug){
 	$station_progress = ug_station_progress($slug);
 	//$gallery = gallery($slug);
 	$gallery_tunnel = gallery($slug);
-	$kad = kad($slug);
-	$kad_tunnel = kad($slug);
+	$kad = kad($slug,2);
+	$kad_tunnel = kad($slug,2);
 	$hsse = safety_incident($slug);
 	$hsse_tunnel = safety_incident($slug);
 	$scurve = scurve($slug);
@@ -927,7 +1079,7 @@ function build_ug_stations($slug){
 
 	$info = packageInfo($slug,2);
 	$gallery = gallery($slug);
-	$kad = kad($slug);
+	$kad = kad($slug,2);
 	$hsse = safety_incident($slug);
 	$station_activity = ug_station_activity($slug);
 	//ANCY
@@ -998,12 +1150,13 @@ function build_depot($slug){
 		);
 	}
 
+	$galleryFormatter = array("title"=> strtoupper($slug).' Image Gallery',"items" => $gallery);
 	$finalQRM = array("QRM" => $kpi);
 	$finalKD = array("KD" => $kd);
 	$finalKAD = array("KAD" => $kad);
 	$finalINFO = array("INFO" =>$info);
 	$finalHSSE = array("hsse" => $hsse);
-	$finalGALLERY = array("gallery" => $gallery);
+	$finalGALLERY = array("gallery" => $galleryFormatter);
 	$finalSCURVE = array("scurve" => (sizeof($scurve['scurve'])>0 ? $scurvearr : []));
 	$superFinal = array($slug => array_merge($finalQRM, $finalINFO, $finalKAD, $finalKD, $finalHSSE, $finalGALLERY, $finalSCURVE));
 	return json_encode($superFinal);
@@ -1098,10 +1251,10 @@ function build_mspr($slug){
 			'viewType' => "2",
 		);
 	}
-
+    $galleryFormatter = array("title"=> strtoupper($slug).' Image Gallery',"items" => $gallery);
 	$finalKAD = array("KAD" => $kad);
 	$finalINFO = array("INFO" =>$info);
-	$finalGALLERY = array("gallery" => $gallery);
+	$finalGALLERY = array("gallery" => $galleryFormatter);
 	$finalSCURVE = array("scurve" => (sizeof($scurve['scurve'])>0 ? $scurvearr : []));
 	$superFinal = array($slug => array_merge($finalINFO,  $finalKAD, $finalGALLERY, $finalSCURVE));
 	return json_encode($superFinal);
