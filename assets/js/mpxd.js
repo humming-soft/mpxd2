@@ -71,6 +71,7 @@ mpxd.templateURLs = {
 	"padu_upcomingtask" : {"templateURL": "assets/templates/padu_upcomingtask.html"},
 	"padu_latetask" : {"templateURL": "assets/templates/padu_latetask.html"},
 	"padu_issuemitigation" : {"templateURL": "assets/templates/padu_issuemitigation.html"},
+	"mpxd1_gis" : {"templateURL": "assets/templates/mpxd1_gis.html"},
 	
 	/*GENERIC*/
 	"sys_info" : {"templateURL": "assets/templates/sys_info.html"},
