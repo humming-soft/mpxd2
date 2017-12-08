@@ -12,31 +12,32 @@
 			<% }%>
 		</div>
 		<div class="col-md-12 portlet_content pl0">
+			<%console.log(data)%>
 			<div class="row">
 				<div class="col-md-4">
 					<div class="row ml0">
 						<div class="col-md-12 item psd_data_type1">
 							<span class="item_title">Early</span>
-							<span class="item_value iv_early"><%=(typeof data.data.currentEarly == 'undefined')?'0%':data.data.currentEarly%></span>
+							<span class="item_value iv_early"><%=(typeof data.data.PROGRESS.currentEarly == 'undefined')?'0%':data.data.PROGRESS.currentEarly%></span>
 						</div>
 						<div class="col-md-12 item psd_data_type1">
 							<span class="item_title">Actual</span>
-							<span class="item_value iv_late"><%=(typeof data.data.currentActual == 'undefined')?'0%':data.data.currentActual%></span>
+							<span class="item_value iv_late"><%=(typeof data.data.PROGRESS.currentActual == 'undefined')?'0%':data.data.PROGRESS.currentActual%></span>
 						</div>
 						<div class="col-md-12 item psd_data_type1">
 							<span class="item_title">Late</span>
-							<span class="item_value iv_actual"><%=(typeof data.data.currentLate == 'undefined')?'0%':data.data.currentLate%></span>
+							<span class="item_value iv_actual"><%=(typeof data.data.PROGRESS.currentLate == 'undefined')?'0%':data.data.PROGRESS.currentLate%></span>
 						</div>
 						<div class="col-md-12 item psd_data_type2">
 							<span class="item_title">Variance</span>
 							<div class="">
 								<div class="col-md-6 item">
 									<span class="item_title_variance">Early</span>
-									<span class="item_value_variance iv_early"><%=(typeof data.data.varEarly == 'undefined')?'0%':data.data.varEarly%></span>
+									<span class="item_value_variance iv_early"><%=(typeof data.data.PROGRESS.varEarly == 'undefined')?'0%':data.data.PROGRESS.varEarly%></span>
 								</div>
 								<div class="col-md-6 item">
 									<span class="item_title_variance">Late</span>
-									<span class="item_value_variance iv_actual"><%=(typeof data.data.varLate == 'undefined')?'0%':data.data.varLate%></span>
+									<span class="item_value_variance iv_actual"><%=(typeof data.data.PROGRESS.varLate == 'undefined')?'0%':data.data.PROGRESS.varLate%></span>
 								</div>
 							</div>
 							<br><br><br>
@@ -61,12 +62,10 @@
 								 sodipodi:docname="mrt-head-small.svg">
 								<defs>
 									<linearGradient id="grad1" x1="0%" y1="100%" x2="0%" y2="0%">
-									  <stop offset="<%=(typeof data.data.varTrainCompletion == 'undefined')?'0%':data.data.varTrainCompletion%>" style="stop-color:#0ff;stop-opacity:.35" />
-									  <stop offset="100%-<%=(typeof data.data.varTrainCompletion == 'undefined')?'0%':data.data.varTrainCompletion%>" style="stop-color:rgba(0,0,0,0);stop-opacity:.35" />
+									  <stop id="start_id" offset="" style="stop-color:#0ff;stop-opacity:.35" />
+									  <stop id="stop_id" offset="" style="stop-color:rgba(0,0,0,0);stop-opacity:.35" />
 									</linearGradient>
 								</defs>
-								
-								
 								<g
 									 inkscape:groupmode="layer"
 									 id="layer2"
@@ -310,19 +309,20 @@
 										 x="294.96909"
 										 y="747.51343"
 										 id="text4171-0"
-										 sodipodi:linespacing="125%"><tspan
+										 sodipodi:linespacing="125%"><tspan id="complete_per"
 											 sodipodi:role="line"
 											 id="tspan4173-4"
 											 x="294.96909"
 											 y="747.51343"
-											 style="text-align:center;text-anchor:middle"><%=(typeof data.data.varTrainCompletion == 'undefined')?'0%':data.data.varTrainCompletion%></tspan></text>
+											 style="text-align:center;text-anchor:middle"></tspan></text>
 								</g>
 							</svg>
 
 						</div>
 						<br>
 						<span class="chart_title">Number of Fully Completed Train :</span>
-						<a href="#" data-toggle="modal" data-target="#modal_complete_train"><span class="complete_train"><%=(typeof data.data.varCompleteTrain == 'undefined')?'0%':data.data.varCompleteTrain%></span></a>
+						<a href="#" data-toggle="modal" data-target="#modal_complete_train"><span class="complete_train"></span></a>
+
 						
 					</div>
 				</div>
