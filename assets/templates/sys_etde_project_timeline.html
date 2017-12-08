@@ -2,9 +2,9 @@
 	<div class="row content">
 		<div class="col-md-12 portlet_title">
 			<i class="fa_title_icon fa fa-calendar-check-o" aria-hidden="true"></i>
-			<% if (typeof(data.data[0]) !=="undefined"){%>
-			<% if (typeof(data.data[0].date) !== "undefined") { %>
-				<%=data.title%> <span class="plate_asof">(As of : <%=data.data[0].date%>) </span>
+			<% if (typeof(data.data) !=="undefined"){%>
+			<% if (typeof(data.data[0]['date']) !== "undefined") { %>
+				<%=data.title%> <span class="plate_asof">(As of : <%=data.data[0]['date']%>) </span>
 			<% } else {%>
 				<%=data.title%>
 			<% }}else {%>
@@ -14,8 +14,7 @@
 		<div class="col-md-12 portlet_content pl0">
 			<div class="row">
 				<div class="col-md-12">
-<%console.log(data)%>
-					<%console.log(data.data.length)%>
+					<%console.log(data)%>
 					<div class="table_title">Project Completion Countdown :</div>
 					<table class="table">
 						<thead>
@@ -27,7 +26,8 @@
 							</tr>
 						</thead>
 						<tbody>
-						<%for (var i in data.data) {
+						<%
+						for(var i=1; i<(data.data).length; i++){
 						var varsat="-";
 						var varsit="-";
 						var vart="-";

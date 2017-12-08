@@ -9,6 +9,18 @@ mpxd.constructors.temp_portlet = function(data) {
 	return new mpxd.modules.temp_module.temp_portlet_data({data: data, el: el});
 }
 
+
+
+//
+// MPXD1
+//
+
+mpxd.constructors.mpxd1_gis = function(data) {
+	var el = "#portlet_" + data.id;
+	return new mpxd.modules.temp_mpxd1.mpxd1_gis_data({data: data, el: el});
+}
+
+
 //
 // /*SPECIFIC - S&TC & PSD/APG*/
 //
@@ -126,6 +138,7 @@ mpxd.constructors.sys_afc_actual_progress = function(data) {
 // DECLARATION
 //----------------------
 mpxd.modules.temp_module ={};	// TEMPORARY (FOR TEST ONLY)
+mpxd.modules.temp_mpxd1 ={};	// TEMPORARY (LINE 1)
 mpxd.modules.sys_stcpsd ={};	// S&TC & PSD/APG
 mpxd.modules.sys_icsscmms ={};	// ICSS&CMMS
 mpxd.modules.sys_etde ={};		// ET&DE
@@ -135,6 +148,7 @@ mpxd.modules.sys_psds_m ={};	// PSDS (Main)
 mpxd.modules.sys_psds ={};		// PSDS
 mpxd.modules.sys_commsits ={};	// COMMS&ITS
 mpxd.modules.sys_afc ={};		// AFC
+
 //----------------------
 // DECLARATION
 //
@@ -148,6 +162,26 @@ mpxd.modules.sys_afc ={};		// AFC
 //
 
 mpxd.modules.temp_module.temp_portlet_data = Backbone.View.extend({   
+	initialize: function (options) {
+		this.data = options.data;
+		this.render();
+	}, render: function () {
+		var that = this;
+		var html = mpxd.getTemplate(that.data.type);
+		template = _.template(html, {data: that.data});
+		that.$el.html(template);
+		that.$el.find('.portlet_content').css({"height":(that.$el.find('.content').parent().parent().parent().height())-40});
+		that.$el.find('.portlet_content').mCustomScrollbar({theme:"dark-3"});
+	}
+})
+
+
+
+//
+//	MPXD1
+//
+
+mpxd.modules.temp_mpxd1.mpxd1_gis_data = Backbone.View.extend({   
 	initialize: function (options) {
 		this.data = options.data;
 		this.render();
@@ -180,8 +214,6 @@ mpxd.modules.sys_stcpsd.sys_stcpsd_actual_progress = Backbone.View.extend({
 		that.$el.find('.portlet_content').mCustomScrollbar({theme:"dark-3"});
 	}
 })
-
-
 
 //
 // ICSS&CMMS
@@ -220,7 +252,7 @@ mpxd.modules.sys_etde.sys_info = Backbone.View.extend({
 		that.$el.find('.portlet_content').mCustomScrollbar({theme:"dark-3"});
 	}
 })
-mpxd.modules.sys_etde.sys_etde_progress = Backbone.View.extend({   
+mpxd.modules.sys_etde.sys_etde_progress = Backbone.View.extend({
 	initialize: function (options) {
 		this.data = options.data;
 		this.render();
