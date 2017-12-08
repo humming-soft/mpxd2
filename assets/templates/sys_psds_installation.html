@@ -10,6 +10,8 @@
 			<% }}else {%>
 				<%=data.title%>
 			<% }%>
+
+			<a href="#" data-toggle="modal" data-target="#modal_ring_comment"><i class="fa fa-comments" style="color: cyan" ></i></a>
 		</div>
 		<div class="col-md-12 portlet_content pl0">
 			<div class="row">
@@ -47,7 +49,35 @@
 		</div>
 	</div>
 </div>
-
+<div class="modal fade portlet_etde_progress_detail modal_train" id="modal_ring_comment" tabindex="-1" role="dialog" aria-labelledby="aaaa" aria-hidden="true">
+	<div class="modal-dialog" role="document">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-hidden="true" style="color: #ce1797"><h4>×</h4></button>
+				<h4 class="modal-title"><i class="fa fa-comments"></i> Add Comment</h4>
+			</div>
+			<div class="modal-body" style="padding-bottom: 20px;">
+				<div class="table-container1" style="max-width: 500px; text-align: center; margin: auto; ">
+					<div class="row"  style="margin-bottom: 15px;">
+						<div style="top: 5px; margin-bottom: 6px; width: 50%;" class="input-group">
+							<input style="cursor: pointer;" readonly="true" id="comment_date" class="form-control" type="text" value="" placeholder="Select date" name="comment-date">
+							<input type="hidden" id="comment_date_selected" value=""/>
+                            <span id="comment_selector" style="cursor: pointer;" class="input-group-addon">
+                                <i id="date_open" class="fa fa-calendar"></i>
+                            </span>
+						</div>
+					</div>
+					<div class="row">
+						<textarea cols="28" rows="5" placeholder="Your Comment...." maxlength="100" id="ring_comment" style="border-color: rgba(21, 166, 233, 0.2);" class="form-control"></textarea>
+					</div>
+				</div>
+			</div>
+			<div class="modal-footer">
+				<button type="button" id="cmnt_ring" class="btn btn-success pull-right" style="margin-right: 22px;">Submit</button>
+			</div>
+		</div>
+	</div>
+</div>
 
 <style type="text/css">
 	
@@ -175,6 +205,63 @@ div.portlet_psds_installation span.data_holder.data_variance {
 	
 $(document).ready(function(){
 
+	$('#comment_date').datepicker({
+		dateFormat: "dd M yy",
+		beforeShowDay: enableAllTheseDays,
+		nextText: "",
+		prevText: "",
+		altField: '#data_date_selected',
+		altFormat: "dd-M-y",
+		onSelect: function (dateText, inst) {
+			p = reallink.substr(0, (reallink.indexOf('?') == -1) ? reallink.length : reallink.indexOf('?'));
+			var selected = $('#data_date_selected').val();
+			$("#date-display").text(selected);
+			loadPage(p + '?date=' + selected)
+
+		}
+	});
+	$('#comment_selector').on('click', function () {
+		$('#comment_date').datepicker('show');
+	});
+
+	var $err="<small class='pull-left' style='color:rgb(194, 67, 71)'>*Required</small>";
+	$('#ring_comment').keyup(function(){
+		if($(this).val().trim().length>0){
+			$(this).css("border-color", "rgba(21, 166, 233, 0.2)");$(this).next('small').remove();
+		}else{
+			$(this).css("border-color","rgb(194, 67, 71)");$(this).next('small').remove();$(this).after($err);
+		}
+	});
+
+	$("#cmnt_ring").click(function(){
+		var flag=0;
+		if($("#comment_date_selected").val()!=""){
+			$('#comment_date').css("border-color", "rgba(21, 166, 233, 0.2)");$('#comment_date').parent().next('small').remove();
+			flag++;
+		}else{
+			$('#comment_date').css("border-color","rgb(194, 67, 71)");$('#comment_date').parent().next('small').remove();$('#comment_date').parent().after($err);
+		}
+		if($("#ring_comment").val()!=""){
+			$('#ring_comment').css("border-color", "rgba(21, 166, 233, 0.2)");$('#ring_comment').next('small').remove();
+			flag++;
+		}else{
+			$('#ring_comment').css("border-color","rgb(194, 67, 71)");$('#ring_comment').next('small').remove();$('#ring_comment').after($err);
+		}
+		if(flag>1){
+			mpxd.getJSONData("commentRing/get?r="+$("#page_title").text().trim().substring(1,3)+"&comments=" + $('#ring_comment').val()+"&date="+$("#comment_date_selected").val(), function (d) {
+				if(d==1){
+					$("#modal_ring_comment").modal('hide');
+					$('#ring_comment').val('');
+					$("#save_status").text('').text("Comment saved successfully.");
+					$("#status_box").modal('show');
+					$("#comment_date").val('');
+					$("#comment_date_selected").val('');
+				}else{
+					$("#save_status").text('').text("Unable to save the Comment. Try Later.");
+				}
+			});
+		}
+	});
 	var portlet_psds_installation_data = [
 		{
 			"station":"<b>SUBD</b><br>Sungai Buloh Depot",

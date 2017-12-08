@@ -272,6 +272,7 @@ mpxd.modules.sys_etde.sys_etde_progress = Backbone.View.extend({
 		var second=that.data.data.second;
 		var portlet_etde_testing_data_detail =that.data.data.first;
 		var completed=0;
+		var flag = 0;
 		for (var i = 0; i < portlet_etde_testing_data_detail.length; i++) {
 			var train_no=0;
 			b = portlet_etde_testing_data_detail[i]
@@ -298,6 +299,7 @@ mpxd.modules.sys_etde.sys_etde_progress = Backbone.View.extend({
 			var td_data6d = b.sit_fail;
 			if(td_data2a==td_data2b && td_data3a==td_data3b && td_data4a==td_data4b && td_data5a==td_data5b && td_data6a==td_data6b && td_data2c==0 && td_data2d==0 && td_data3c==0 && td_data3d==0 && td_data4c==0 && td_data4d==0 && td_data5c==0 && td_data5d==0 && td_data6c==0 &&  td_data6d==0 ){
 				train_no=td_data1;
+				var td = "";
 				for (var k = 0; k < second.length; k++) {
 					c = second[k];
 					var train_number=parseInt(c.train);
@@ -309,11 +311,19 @@ mpxd.modules.sys_etde.sys_etde_progress = Backbone.View.extend({
 						openJ.push(open); // values
 						closedJ.push(closed); // values
 						trainData.push(train_number);// all data
-
 					}
 				}
 
 			}
+		}
+
+		for (var l = 0; l < trainData.length; l++) {
+			flag = 1;
+			td += "<tr><td>Train " + trainData[l] + "</td></tr>";
+		}
+		if (flag == 0) // to show if there is not completed trains
+		{
+			$('#id_tabHed').text("No Trains Completed Yet");
 		}
 		var completed = train.length;
 		var perc = ((parseInt(closedJ.length)/ 58) * 100).toFixed(2);
@@ -325,6 +335,7 @@ mpxd.modules.sys_etde.sys_etde_progress = Backbone.View.extend({
 		$('#complete_per').text(perc+"%");
 		$('#start_id').attr('offset',perc+"%");
 		$('#stop_id').attr('offset',stop+"%");
+		$('#id_fullyTable').append(td);
 		that.$el.find('#chart_' + that.data.id).highcharts({
 			chart: {
 				plotBackgroundColor: null,
@@ -631,7 +642,7 @@ mpxd.modules.sys_etde.sys_etde_manufacturing_progress = Backbone.View.extend({
 		var train_no_smh = [];
 		var train_no_subd = [];
 		var train_no_kjd = [];
-		for (var i = 0; i < manufacturing_progress.length; i++) {
+		for (var i = 1; i < manufacturing_progress.length; i++) {
 			var y = manufacturing_progress[i];
 			var use_site_name = y.site_name;
 			var site = y.site;
