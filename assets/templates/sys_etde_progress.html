@@ -2,9 +2,9 @@
 	<div class="row content">
 		<div class="col-md-12 portlet_title">
 			<i class="fa_title_icon fa fa-hourglass" aria-hidden="true"></i>
-			<% if (typeof(data.data[0]) !=="undefined"){%>
-			<% if (typeof(data.data[0].date) !== "undefined") { %>
-				<%=data.title%> <span class="plate_asof">(As of : <%=data.data[0].date%>) </span>
+			<% if (typeof(data.data.PROGRESS.date) !=="undefined"){%>
+			<% if (typeof(typeof data.data.PROGRESS.date) !== "undefined") { %>
+				<%=data.title%> <span class="plate_asof">(As of : <%=(typeof data.data.PROGRESS.date == 'undefined')?'0%':data.data.PROGRESS.date%>) </span>
 			<% } else {%>
 				<%=data.title%>
 			<% }}else {%>
