@@ -1211,6 +1211,557 @@ mpxd.modules.sys_psds_m.sys_psds_gis = Backbone.View.extend({
 		that.$el.html(template);
 		that.$el.find('.portlet_content').css({"height":(that.$el.find('.content').parent().parent().parent().height())-40});
 		that.$el.find('.portlet_content').mCustomScrollbar({theme:"dark-3"});
+        console.log(that.data.data);
+		var trendJSON=that.data.data.TREND;
+		console.log(trendJSON);
+		/*var json = [
+			{"boxid":"box1","b_name":"Design","arrow":"up","percentage":"86%"},
+			{"boxid":"box2","b_name":"Installation","arrow":"down","percentage":"56%"},
+			{"boxid":"box3","b_name":"Test & Comm","arrow":"right","percentage":"75%"},
+			{"boxid":"box4","b_name":"Hand Over","arrow":"right","percentage":"35%"}
+		];*/
+		for (i = 1; i < trendJSON.length; i++) {
+			var b = trendJSON[i];
+			use_d__arrow=b.d_arrow;
+			use_d_percentage=b.d_percentage;
+			use_i__arrow=b.i_arrow;
+			use_i_percentage=b.i_percentage;
+			use_t__arrow=b.t_arrow;
+			use_t_percentage=b.t_percentage;
+			use_h__arrow=b.h_arrow;
+			use_h_percentage=b.h_percentage;
+
+			if(use_d__arrow=="1.00") {
+				apply_arrow_d='<i style="color:#0f3" class="fa fa-arrow-up" aria-hidden="true"></i>'
+			} else if(use_d__arrow=="3.00") {
+				apply_arrow_d='<i style="color:#f03" class="fa fa-arrow-down" aria-hidden="true"></i>'
+			} else if (use_d__arrow=="2.00"){
+				apply_arrow_d='<i style="color:#333" class="fa fa-arrow-right" aria-hidden="true"></i>'
+			}else{
+				apply_arrow_d='<i style="color:#333" class="fa fa-arrow-right" aria-hidden="true"></i>'
+			}
+			if(use_i__arrow=="1.00") {
+				apply_arrow_i='<i style="color:#0f3" class="fa fa-arrow-up" aria-hidden="true"></i>'
+			} else if(use_i__arrow=="3.00") {
+				apply_arrow_i='<i style="color:#f03" class="fa fa-arrow-down" aria-hidden="true"></i>'
+			} else if (use_i__arrow=="2.00"){
+				apply_arrow_i='<i style="color:#333" class="fa fa-arrow-right" aria-hidden="true"></i>'
+			}else{
+				apply_arrow_i='<i style="color:#333" class="fa fa-arrow-right" aria-hidden="true"></i>'
+			}
+			if(use_t__arrow=="1.00") {
+				apply_arrow_t='<i style="color:#0f3" class="fa fa-arrow-up" aria-hidden="true"></i>'
+			} else if(use_t__arrow=="3.00") {
+				apply_arrow_t='<i style="color:#f03" class="fa fa-arrow-down" aria-hidden="true"></i>'
+			} else if (use_t__arrow=="2.00"){
+				apply_arrow_t='<i style="color:#333" class="fa fa-arrow-right" aria-hidden="true"></i>'
+			}else{
+				apply_arrow_t='<i style="color:#333" class="fa fa-arrow-right" aria-hidden="true"></i>'
+			}
+			if(use_h__arrow=="1.00") {
+				apply_arrow_h='<i style="color:#0f3" class="fa fa-arrow-up" aria-hidden="true"></i>'
+			} else if(use_h__arrow=="3.00") {
+				apply_arrow_h='<i style="color:#f03" class="fa fa-arrow-down" aria-hidden="true"></i>'
+			} else if (use_h__arrow=="2.00"){
+				apply_arrow_h='<i style="color:#333" class="fa fa-arrow-right" aria-hidden="true"></i>'
+			}else{
+				apply_arrow_h='<i style="color:#333" class="fa fa-arrow-right" aria-hidden="true"></i>'
+			}
+			$('.number_d' ).text(use_d_percentage +"%");
+			$('.number_i' ).text(use_i_percentage+"%");
+			$('.number_t' ).text(use_t_percentage+"%");
+			$('.number_h' ).text(use_h_percentage+"%");
+
+			$('.trend_d' ).html(apply_arrow_d);
+			$('.trend_i' ).html(apply_arrow_i);
+			$('.trend_t' ).html(apply_arrow_t);
+			$('.trend_h' ).html(apply_arrow_h);
+			var json = [
+				{"chart_title":"System Overall","chart_name":"","chart_id":"db_donut_0","chart_value":"25","set_donut":"1","url":"#"}
+			];
+
+
+				var b = json[i];
+				use_chart_title ="System Overall";
+				use_chart_id = "db_donut_0";
+				use_chart_value =parseFloat((parseFloat(use_d_percentage)+parseFloat(use_i_percentage)+parseFloat(use_t_percentage)+parseFloat(use_h_percentage))/4);
+				use_chart_set_donut = "1";
+				use_chart_name = "";
+				use_chart_url="#";
+
+				use_chart_font_size = '25px';
+				use_chart_font_color = '#ffffff';
+				if (use_chart_value >= 75) {
+					use_chart_donut_color = '#00ff55';
+				} else if (use_chart_value >= 50) {
+					use_chart_donut_color = '#ffff00';
+				} else if (use_chart_value >= 25) {
+					use_chart_donut_color = '#ff7700';
+				} else if (use_chart_value < 25) {
+					use_chart_donut_color = '#ff0055';
+				};
+				use_chart_circle_border = 'border:1px solid '+use_chart_donut_color+';'
+				use_chart_svg_width = 165;
+				use_chart_svg_height = 165;
+				use_chart_circle_r = 80;
+				use_chart_circle_cx = 81.5;
+				use_chart_circle_cy = 81.5;
+				use_chart_circle_data_total = 503;
+				use_chart_circle_data_used = use_chart_value / 100 * use_chart_circle_data_total;
+
+
+				donut_body = '<div><a class="url_donut_system" style="text-decoration: none; color: #fff;" href="'+use_chart_url+'" title="'+use_chart_name+'"><span class="donut_title1_name">'+use_chart_title+'</span></a><svg class="svg_donut_system" width="'+use_chart_svg_width+'" height="'+use_chart_svg_height+'" style="border:1px solid '+use_chart_donut_color+';"><text style="font-style:normal;font-weight:bold;font-size:'+use_chart_font_size+';fill:'+use_chart_font_color+';" transform="matrix(0,1,-1,0,0,0)"><tspan sodipodi:role="line" x="50" y="-65">'+use_chart_value+'%</tspan></text><circle class="svg_donut_system_circle" r="'+use_chart_circle_r+'" cx="'+use_chart_circle_cx+'" cy="'+use_chart_circle_cy+'" class="pie" style="stroke: '+use_chart_donut_color+';stroke-dasharray: '+use_chart_circle_data_used+','+use_chart_circle_data_total+';"></circle></svg></div>';
+
+
+				$('.dp_top').append(donut_body);
+
+		}
+
+		// below this
+
+
+		var json = [
+			{"ring":"R6","comment":"750 DC cable termination in progress for STN 23 - STN 27","Date":"25 Jul 2016"},
+			{"ring":"R1","comment":"PSCADA SAT testing are pending due to BTN unavability","Date":"29 Jun 2016"},
+			{"ring":"R4","comment":"33KV AC cable termination in progress for STN 31-STN 33","Date":"23 Jul 2016"},
+			{"ring":"R4","comment":"33KV AC cable termination in progress for STN 31-STN 33","Date":"23 Jul 2016"},
+			{"ring":"R4","comment":"33KV AC cable termination in progress for STN 31-STN 33","Date":"23 Jul 2016"},
+			{"ring":"R4","comment":"33KV AC cable termination in progress for STN 31-STN 33","Date":"23 Jul 2016"},
+			{"ring":"R1","comment":"@ southern elevatedstations work in progress","Date":"29 Jun 2016"},
+			{"ring":"R5","comment":"33KV cable laying and termination completed including Fiber Optic Cable","Date":"29 Jun 2016"}
+
+
+		];
+		for (i = 0; i < json.length; i++) {
+			var b = json[i];
+			use_ring= b.ring;
+			use_comment=b.comment;
+			use_Date=b.Date;
+
+
+
+			$('#box1_modal-test table tbody' ).append('<tr><td>'+use_ring+'</td><td>'+use_comment+'</td><td>'+use_Date+'</td></tr>');
+
+
+
+		}
+
+		//end fahmy
+
+
+
+		// below this
+
+
+		var jsonSummary = that.data.data.SUMMARY;
+			/*{"activities":"Overall Installation PS&DS(Station)","details":"","percentage":"79.5%"},
+			{"activities":"Installation & Termination for TRIP Cable Northern","details":"33KV AC","percentage":"100%"},
+			{"activities":"","details":"750V AC","percentage":"96.4% "},
+			{"activities":"Installation & Termination for TRIP Cable Souhern","details":"33KV AC","percentage":"95.02%"},
+			{"activities":"","details":"750V AC","percentage":"23.13%"},
+			{"activities":"Overall T&C for PS&DS","details":"","percentage":"42.44%"}
+
+
+
+		];*/
+		for (i = 1; i < jsonSummary.length; i++) {
+			var b = jsonSummary[i];
+			use_activities= b.activities;
+			use_percentage=b.total;
+			use_a_percentage=b.ac;
+			use_b_percentage=b.dc;
+			if(use_percentage !=""){
+				activities=b.activities;
+				deatils="";
+				percent=b.total+"%";
+				$('#box1_modal-installation table tbody' ).append('<tr><td>'+activities+'</td><td>'+deatils+'</td><td>'+percent+'</td></tr>');
+			}
+			if(use_a_percentage !="" && use_a_percentage !=""){
+				activities=b.activities;
+				deatils_ac="33KV AC";
+				deatils_dc="750V AC";
+				percent_a=b.ac+"%";
+				percent_b=b.dc+"%";
+				$('#box1_modal-installation table tbody' ).append('<tr><td>'+activities+'</td><td>'+deatils_ac+'</td><td>'+percent_a+'</td></tr><tr><td></td><td>'+deatils_dc+'</td><td>'+percent_b+'</td></tr>');
+			}
+
+		}
+		$('#plate_vector_map').load('../assets/mmc/svg/sys_psds_gis.svg',function(){
+
+
+			/*$('#pl_station > span').click(function(){
+			 alert('poi');
+			 })
+			 $('.v_station').click(function(){
+			 alert('poi');
+			 })
+			 $('.v_depot').click(function(){
+			 alert('poi');
+			 })*/
+
+			// vector_track
+			var json = [
+				{"vector_track":"legend_v_track_1","vector_status":"0","url":""},
+				{"vector_track":"legend_v_track_2","vector_status":"1","url":""},
+				{"vector_track":"legend_v_track_3","vector_status":"2","url":""},
+				{"vector_track":"legend_v_track_4","vector_status":"3","url":""},
+				{"vector_track":"psds_track_01","vector_status":"1","url":""},
+				{"vector_track":"psds_track_02","vector_status":"1","url":""},
+				{"vector_track":"psds_track_03","vector_status":"1","url":""},
+				{"vector_track":"psds_track_04","vector_status":"1","url":""},
+				{"vector_track":"psds_track_05","vector_status":"2","url":""},
+				{"vector_track":"psds_track_06","vector_status":"2","url":""},
+				{"vector_track":"psds_track_07","vector_status":"2","url":""},
+				{"vector_track":"psds_track_08","vector_status":"3","url":""},
+				{"vector_track":"psds_track_09","vector_status":"3","url":""},
+				{"vector_track":"psds_track_10","vector_status":"3","url":""},
+				{"vector_track":"psds_track_11","vector_status":"3","url":""},
+				{"vector_track":"psds_track_12","vector_status":"3","url":""},
+				{"vector_track":"psds_track_13","vector_status":"2","url":""},
+				{"vector_track":"psds_track_14","vector_status":"1","url":""},
+				{"vector_track":"psds_track_15","vector_status":"1","url":""},
+				{"vector_track":"psds_track_16","vector_status":"1","url":""},
+				{"vector_track":"psds_track_17","vector_status":"1","url":""},
+				{"vector_track":"psds_track_18","vector_status":"1","url":""},
+				{"vector_track":"psds_track_19","vector_status":"1","url":""},
+				{"vector_track":"psds_track_20","vector_status":"1","url":""},
+				{"vector_track":"psds_track_21","vector_status":"1","url":""},
+				{"vector_track":"psds_track_22","vector_status":"1","url":""},
+				{"vector_track":"psds_track_23","vector_status":"1","url":""},
+				{"vector_track":"psds_track_24","vector_status":"0","url":""},
+				{"vector_track":"psds_track_25","vector_status":"0","url":""},
+				{"vector_track":"psds_track_26","vector_status":"0","url":""},
+				{"vector_track":"psds_track_27","vector_status":"0","url":""},
+				{"vector_track":"psds_track_28","vector_status":"0","url":""},
+				{"vector_track":"psds_track_29","vector_status":"0","url":""},
+				{"vector_track":"psds_track_30","vector_status":"0","url":""},
+				{"vector_track":"psds_track_31","vector_status":"0","url":""},
+				{"vector_track":"psds_track_32","vector_status":"0","url":""},
+				{"vector_track":"psds_track_33","vector_status":"0","url":""},
+				{"vector_track":"psds_track_34","vector_status":"0","url":""},
+				{"vector_track":"psds_track_35","vector_status":"0","url":""},
+				{"vector_track":"psds_track_36","vector_status":"0","url":""},
+				{"vector_track":"psds_track_37","vector_status":"0","url":""},
+				{"vector_track":"psds_track_38","vector_status":"0","url":""},
+				{"vector_track":"psds_track_38","vector_status":"2","url":""},
+				{"vector_track":"psds_track_39","vector_status":"2","url":""}
+
+
+			];
+			for (i = 0; i < json.length; i++) {
+				var b = json[i];
+				vector_track_name = b.vector_track;
+				vector_track_status = b.vector_status;
+				vector_track_url = b.url;
+				if (vector_track_status==0) {/*blank*/
+					$('#'+vector_track_name).css({'stroke':'#9FA09F'});
+				} else if (vector_track_status==1) {/*on schedule*/
+					$('#'+vector_track_name).css({'stroke':'#00ff55'});
+				} else if (vector_track_status==2) {/*behind late*/
+					$('#'+vector_track_name).css({'stroke':'#ff0055'});
+				} else if (vector_track_status==3) {/*critical*/
+					blink('#'+vector_track_name, -1, 500);
+					function blink(elem, times, speed) {
+						if (times > 0 || times < 0) {
+							if ($(elem).fadeTo( 500, 0.33 ))
+								$(elem).fadeTo( 500, 1);
+							else
+								$(elem).fadeTo( 500, 0.33 );
+						}
+						clearTimeout(function () {
+							blink(elem, times, speed);
+						});
+
+						if (times > 0 || times < 0) {
+							setTimeout(function () {
+								blink(elem, times, speed);
+							}, speed);
+							times -= .5;
+						}
+					}
+					$('#'+vector_track_name).toggle('pulsate').css({'stroke-width':'20','fill':'#ff0055','stroke':'#ff0055'});
+				};
+			}
+
+			var json = [
+				{"vector_station":"legend_v_station_1","vector_status":"0"},
+				{"vector_station":"legend_v_station_2","vector_status":"4"},
+				{"vector_station":"legend_v_station_3","vector_status":"2"},
+				{"vector_station":"legend_v_station_4","vector_status":"3"},
+
+				{"vector_station":"v_station_1","vector_status":"1"},
+				{"vector_station":"v_station_2","vector_status":"2"},
+				{"vector_station":"v_station_3","vector_status":"3"},
+				{"vector_station":"v_station_4","vector_status":"0"},
+				{"vector_station":"v_station_5","vector_status":"1"},
+				{"vector_station":"v_station_6","vector_status":"1"},
+				{"vector_station":"v_station_7","vector_status":"1"},
+				{"vector_station":"v_station_8","vector_status":"1"},
+				{"vector_station":"v_station_9","vector_status":"1"},
+				{"vector_station":"v_station_10","vector_status":"2"},
+				{"vector_station":"v_station_11","vector_status":"3"},
+				{"vector_station":"v_station_12","vector_status":"0"},
+				{"vector_station":"v_station_13","vector_status":"1"},
+				{"vector_station":"v_station_14","vector_status":"2"},
+				{"vector_station":"v_station_15","vector_status":"3"},
+				{"vector_station":"v_station_16","vector_status":"0"},
+				{"vector_station":"v_station_17","vector_status":"1"},
+				{"vector_station":"v_station_18","vector_status":"2"},
+				{"vector_station":"v_station_19","vector_status":"3"},
+				{"vector_station":"v_station_20","vector_status":"0"},
+				{"vector_station":"v_station_21","vector_status":"1"},
+				{"vector_station":"v_station_22","vector_status":"1"},
+				{"vector_station":"v_station_23","vector_status":"1"},
+				{"vector_station":"v_station_24","vector_status":"1"},
+				{"vector_station":"v_station_25","vector_status":"1"},
+				{"vector_station":"v_station_26","vector_status":"1"},
+				{"vector_station":"v_station_27","vector_status":"1"},
+				{"vector_station":"v_station_28","vector_status":"1"},
+				{"vector_station":"v_station_29","vector_status":"1"},
+				{"vector_station":"v_station_30","vector_status":"1"},
+				{"vector_station":"v_station_31","vector_status":"2"},
+				{"vector_station":"v_station_32","vector_status":"3"},
+				{"vector_station":"v_station_33","vector_status":"0"},
+				{"vector_station":"v_station_34","vector_status":"0"},
+				{"vector_station":"v_station_35","vector_status":"1"},
+				{"vector_station":"v_station_36","vector_status":"2"},
+				{"vector_station":"v_station_37","vector_status":"3"},
+				{"vector_station":"v_station_38","vector_status":"1"},
+
+				{"vector_station":"v_station_99","vector_status":"0"},
+				{"vector_station":"v_station_98","vector_status":"1"},
+				{"vector_station":"v_station_97","vector_status":"2"},
+				{"vector_station":"v_station_96","vector_status":"3"},
+				{"vector_station":"v_station_95","vector_status":"4"}
+
+
+
+
+			];
+			for (i = 0; i < json.length; i++) {
+				var b = json[i];
+				vector_station_name = b.vector_station;
+				vector_station_status = b.vector_status;
+				if (vector_station_status==0) {/*blank*/
+					$('#'+vector_station_name).css({'fill':'#ffffff','stroke':'#222222'});
+				} else if (vector_station_status==1) {/*on schedule*/
+					$('#'+vector_station_name).css({'fill':'#ffffff','stroke':'#f50'});
+				} else if (vector_station_status==2) {/*behind late*/
+					$('#'+vector_station_name).css({'fill':'#ffffff','stroke':'#f05'});
+				} else if (vector_station_status==3) {/*behind late*/
+					blink('#'+vector_station_name, -1, 500);
+					function blink(elem, times, speed) {
+						if (times > 0 || times < 0) {
+							if ($(elem).fadeTo( 500, 0.33 ))
+								$(elem).fadeTo( 500, 1);
+							else
+								$(elem).fadeTo( 500, 0.33 );
+						}
+						clearTimeout(function () {
+							blink(elem, times, speed);
+						});
+
+						if (times > 0 || times < 0) {
+							setTimeout(function () {
+								blink(elem, times, speed);
+							}, speed);
+							times -= .5;
+						}
+					}
+					$('#'+vector_station_name).toggle('pulsate').css({'fill':'#ffffff','stroke':'#ff0055'});
+
+				} else if (vector_station_status==4) {/*critical*/
+					$('#'+vector_station_name).css({'fill':'#ffffff','stroke':'#0f5'});
+
+				};
+			}
+
+			var json = [
+				{"vector_depot":"legend_v_depot_1","vector_status":"0"},
+				{"vector_depot":"legend_v_depot_2","vector_status":"1"},
+				{"vector_depot":"legend_v_depot_3","vector_status":"2"},
+				{"vector_depot":"legend_v_depot_4","vector_status":"3"},
+				{"vector_depot":"v_depot_1","vector_status":"1"}
+			];
+			for (i = 0; i < json.length; i++) {
+				var b = json[i];
+				vector_depot_name = b.vector_depot;
+				vector_depot_status = b.vector_status;
+				if (vector_depot_status==0) {/*blank*/
+					$('#'+vector_depot_name).css({'fill':'#ffffff','stroke':'#222222'});
+				} else if (vector_depot_status==1) {/*on schedule*/
+					$('#'+vector_depot_name).css({'fill':'#ffffff','stroke':'#00ff55'});
+				} else if (vector_depot_status==2) {/*behind late*/
+					$('#'+vector_depot_name).css({'fill':'#ffffff','stroke':'#ff0055'});
+				} else if (vector_depot_status==3) {/*critical*/
+					blink('#'+vector_depot_name, -1, 500);
+					function blink(elem, times, speed) {
+						if (times > 0 || times < 0) {
+							if ($(elem).fadeTo( 500, 0.33 ))
+								$(elem).fadeTo( 500, 1);
+							else
+								$(elem).fadeTo( 500, 0.33 );
+						}
+						clearTimeout(function () {
+							blink(elem, times, speed);
+						});
+
+						if (times > 0 || times < 0) {
+							setTimeout(function () {
+								blink(elem, times, speed);
+							}, speed);
+							times -= .5;
+						}
+					}
+					$('#'+vector_depot_name).toggle('pulsate').css({'fill':'#ffffff','stroke':'#ff0055'});
+				};
+			}
+
+
+
+		});
+
+
+
+		// current date
+		var fullDate = new Date()
+		var month = new Array();
+		month[0] = "JAN";
+		month[1] = "FEB";
+		month[2] = "MAR";
+		month[3] = "APR";
+		month[4] = "MAY";
+		month[5] = "JUN";
+		month[6] = "JUL";
+		month[7] = "AUG";
+		month[8] = "SEP";
+		month[9] = "OCT";
+		month[10] = "NOV";
+		month[11] = "DEC";
+		var n = month[fullDate.getMonth()];
+		var currentDate = fullDate.getDate() + " " + n + " " + fullDate.getFullYear();
+		$('#current_date').text(currentDate);
+
+
+
+		//
+		// portlet - main menu date
+		//
+
+
+		$('#header_menu button.goto_home').click(function(){
+			window.location.href = "index.php";
+		});
+		$('#header_menu button.goto_scurve').click(function(){
+			window.location.href = "scurve.php";
+		});
+		$('#header_menu button.goto_procurement').click(function(){
+			window.location.href = "procurement.php";
+		});
+		$('#header_menu button.goto_generate_report').click(function(){
+			window.location.href = "generate_report.php";
+		});
+
+
+
+
+		//
+		// portlet - portlet_tunnel_progress
+		//
+
+		$('div.portlet_tunnel_progress ul li.show_Rings').click(function(){
+			$('div.portlet_tunnel_progress ul li').removeClass('active');$(this).addClass('active');
+			$('div.portlet_tunnel_progress table').addClass('hidden');
+			$('div.portlet_tunnel_progress table.show_Rings').removeClass('hidden');
+		});
+		$('div.portlet_tunnel_progress ul li.show_Trackbed').click(function(){
+			$('div.portlet_tunnel_progress ul li').removeClass('active');$(this).addClass('active');
+			$('div.portlet_tunnel_progress table').addClass('hidden');
+			$('div.portlet_tunnel_progress table.show_Trackbed').removeClass('hidden');
+		});
+		$('div.portlet_tunnel_progress ul li.show_Bracket').click(function(){
+			$('div.portlet_tunnel_progress ul li').removeClass('active');$(this).addClass('active');
+			$('div.portlet_tunnel_progress table').addClass('hidden');
+			$('div.portlet_tunnel_progress table.show_Bracket').removeClass('hidden');
+		});
+		$('div.portlet_tunnel_progress ul li.show_ES1').click(function(){
+			$('div.portlet_tunnel_progress ul li').removeClass('active');$(this).addClass('active');
+			$('div.portlet_tunnel_progress table').addClass('hidden');
+			$('div.portlet_tunnel_progress table.show_ES1').removeClass('hidden');
+		});
+		$('div.portlet_tunnel_progress ul li.show_ES3').click(function(){
+			$('div.portlet_tunnel_progress ul li').removeClass('active');$(this).addClass('active');
+			$('div.portlet_tunnel_progress table').addClass('hidden');
+			$('div.portlet_tunnel_progress table.show_ES3').removeClass('hidden');
+		});
+		$('div.portlet_tunnel_progress ul li.show_IVS1').click(function(){
+			$('div.portlet_tunnel_progress ul li').removeClass('active');$(this).addClass('active');
+			$('div.portlet_tunnel_progress table').addClass('hidden');
+			$('div.portlet_tunnel_progress table.show_IVS1').removeClass('hidden');
+		});
+		$('div.portlet_tunnel_progress ul li.show_IVS2').click(function(){
+			$('div.portlet_tunnel_progress ul li').removeClass('active');$(this).addClass('active');
+			$('div.portlet_tunnel_progress table').addClass('hidden');
+			$('div.portlet_tunnel_progress table.show_IVS2').removeClass('hidden');
+		});
+
+
+		//
+		// portlet - portlet_work_progress
+		//
+
+
+		/*menu*/
+		$('div.portlet_work_progress ul li.show_Station_Box').click(function(){
+			$('div.portlet_work_progress ul li').removeClass('active');$(this).addClass('active');
+			$('div.portlet_work_progress div.show').addClass('hidden');
+			$('div.portlet_work_progress div.show.show_Station_Box').removeClass('hidden');
+		});
+
+		$('div.portlet_work_progress ul li.show_Entrance').click(function(){
+			$('div.portlet_work_progress ul li').removeClass('active');$(this).addClass('active');
+			$('div.portlet_work_progress div.show').addClass('hidden');
+			$('div.portlet_work_progress div.show.show_Entrance').removeClass('hidden');
+		});
+
+		$('div.portlet_work_progress ul li.show_Vent_Shaft').click(function(){
+			$('div.portlet_work_progress ul li').removeClass('active');$(this).addClass('active');
+			$('div.portlet_work_progress div.show').addClass('hidden');
+			$('div.portlet_work_progress div.show.show_Vent_Shaft').removeClass('hidden');
+		});
+
+		$('.portlet_work_progress i.fa-plus-square',this).click(function(){
+			console.log(this);
+			$(this).parent().find('i.fa-plus-square').addClass('hidden');
+			$(this).parent().find('i.fa-minus-square').removeClass('hidden');
+			$(this).parent().parent().parent().parent().parent().find('table').removeClass('hidden');
+		});
+		$('.portlet_work_progress i.fa-minus-square',this).click(function(){
+			console.log(this);
+			$(this).parent().find('i.fa-minus-square').addClass('hidden');
+			$(this).parent().find('i.fa-plus-square').removeClass('hidden');
+			$(this).parent().parent().parent().parent().parent().find('table').addClass('hidden');
+		});
+
+
+		//
+		// portlet - portlet_generate_report
+		//
+		$('.portlet_generate_report i.fa-plus-square',this).click(function(){
+			$(this).parent().find('i.fa-plus-square').addClass('hidden');
+			$(this).parent().find('i.fa-minus-square').removeClass('hidden');
+			console.log($(this).parent().parent().parent().parent().parent().parent());
+			$(this).parent().parent().parent().parent().parent().parent().find('tbody').removeClass('hidden');
+		});
+		$('.portlet_generate_report i.fa-minus-square',this).click(function(){
+			console.log(this);
+			$(this).parent().find('i.fa-minus-square').addClass('hidden');
+			$(this).parent().find('i.fa-plus-square').removeClass('hidden');
+			$(this).parent().parent().parent().parent().parent().parent().find('tbody').addClass('hidden');
+		});
+
+
+
 	}
 })
 
@@ -1245,6 +1796,207 @@ mpxd.modules.sys_psds.sys_psds_installation = Backbone.View.extend({
 		that.$el.html(template);
 		that.$el.find('.portlet_content').css({"height":(that.$el.find('.content').parent().parent().parent().height())-40});
 		that.$el.find('.portlet_content').mCustomScrollbar({theme:"dark-3"});
+		$('#comment_date').datepicker({
+			dateFormat: "dd M yy",
+			beforeShowDay: enableAllTheseDays,
+			nextText: "",
+			prevText: "",
+			altField: '#data_date_selected',
+			altFormat: "dd-M-y",
+			onSelect: function (dateText, inst) {
+				p = reallink.substr(0, (reallink.indexOf('?') == -1) ? reallink.length : reallink.indexOf('?'));
+				var selected = $('#data_date_selected').val();
+				$("#date-display").text(selected);
+				loadPage(p + '?date=' + selected)
+
+			}
+		});
+		$('#comment_selector').on('click', function () {
+			$('#comment_date').datepicker('show');
+		});
+
+		var $err="<small class='pull-left' style='color:rgb(194, 67, 71)'>*Required</small>";
+		$('#ring_comment').keyup(function(){
+			if($(this).val().trim().length>0){
+				$(this).css("border-color", "rgba(21, 166, 233, 0.2)");$(this).next('small').remove();
+			}else{
+				$(this).css("border-color","rgb(194, 67, 71)");$(this).next('small').remove();$(this).after($err);
+			}
+		});
+
+		$("#cmnt_ring").click(function(){
+			var flag=0;
+			if($("#comment_date_selected").val()!=""){
+				$('#comment_date').css("border-color", "rgba(21, 166, 233, 0.2)");$('#comment_date').parent().next('small').remove();
+				flag++;
+			}else{
+				$('#comment_date').css("border-color","rgb(194, 67, 71)");$('#comment_date').parent().next('small').remove();$('#comment_date').parent().after($err);
+			}
+			if($("#ring_comment").val()!=""){
+				$('#ring_comment').css("border-color", "rgba(21, 166, 233, 0.2)");$('#ring_comment').next('small').remove();
+				flag++;
+			}else{
+				$('#ring_comment').css("border-color","rgb(194, 67, 71)");$('#ring_comment').next('small').remove();$('#ring_comment').after($err);
+			}
+			if(flag>1){
+				mpxd.getJSONData("commentRing/get?r="+$("#page_title").text().trim().substring(1,3)+"&comments=" + $('#ring_comment').val()+"&date="+$("#comment_date_selected").val(), function (d) {
+					if(d==1){
+						$("#modal_ring_comment").modal('hide');
+						$('#ring_comment').val('');
+						$("#save_status").text('').text("Comment saved successfully.");
+						$("#status_box").modal('show');
+						$("#comment_date").val('');
+						$("#comment_date_selected").val('');
+					}else{
+						$("#save_status").text('').text("Unable to save the Comment. Try Later.");
+					}
+				});
+			}
+		});
+		var portlet_psds_installation_data = [
+			{
+				"station":"<b>SUBD</b><br>Sungai Buloh Depot",
+				"installation":"completed",
+				"a_acdc":"33KV",
+				"a_testing_pat":"completed",
+				"a_testing_sat":"completed",
+				"a_forecast":"30-Apr-2014",
+				"a_actual":"20-Oct-2014",
+				"b_acdc":"750V",
+				"b_testing_pat":"completed",
+				"b_testing_sat":"completed",
+				"b_forecast":"30-May-2015",
+				"b_actual":"24-Apr-2015",
+				"c_acdc":"PSCADA",
+				"c_testing_pat":"completed",
+				"c_testing_sat":"completed",
+				"c_forecast":"-",
+				"c_actual":"Pending"
+			},{
+				"station":"<b>STN 01</b><br>Sungai Buloh",
+				"installation":"completed",
+				"a_acdc":"33KV",
+				"a_testing_pat":"completed",
+				"a_testing_sat":"completed",
+				"a_forecast":"26-Nov-2015",
+				"a_actual":"27-Jan-2016",
+				"b_acdc":"750V",
+				"b_testing_pat":"completed",
+				"b_testing_sat":"completed",
+				"b_forecast":"25-Jan-2016",
+				"b_actual":"Pending",
+				"c_acdc":"PSCADA",
+				"c_testing_pat":"completed",
+				"c_testing_sat":"completed",
+				"c_forecast":"-",
+				"c_actual":"Pending"
+			},{
+				"station":"<b>STN 02</b><br>Kampung Selamat",
+				"installation":"completed",
+				"a_acdc":"33KV",
+				"a_testing_pat":"completed",
+				"a_testing_sat":"completed",
+				"a_forecast":"25-Nov-2015",
+				"a_actual":"29-Dec-2015",
+				"b_acdc":"750V",
+				"b_testing_pat":"completed",
+				"b_testing_sat":"completed",
+				"b_forecast":"25-Jan-2016",
+				"b_actual":"Pending",
+				"c_acdc":"PSCADA",
+				"c_testing_pat":"completed",
+				"c_testing_sat":"completed",
+				"c_forecast":"-",
+				"c_actual":"Pending"
+			},{
+				"station":"<b>KWDE2</b><br>Kwasa Damansara Future",
+				"installation":"completed",
+				"a_acdc":"33KV",
+				"a_testing_pat":"completed",
+				"a_testing_sat":"in_progress",
+				"a_forecast":"06-Oct-2015",
+				"a_actual":"15-Oct-2015",
+				"b_acdc":"750V",
+				"b_testing_pat":"N/A",
+				"b_testing_sat":"N/A",
+				"b_forecast":"N/A",
+				"b_actual":"N/A",
+				"c_acdc":"PSCADA",
+				"c_testing_pat":"-",
+				"c_testing_sat":"-",
+				"c_forecast":"-",
+				"c_actual":"-"
+			}
+		]
+
+		for (var i = 0; i < portlet_psds_installation_data.length; i++) {
+			a = portlet_psds_installation_data[i]
+
+			var td_data1a = a.station;
+			var td_data1b = a.installation;
+			var td_data2a = a.a_acdc;
+			var td_data2b = a.a_testing_pat;
+			var td_data2c = a.a_testing_sat;
+			var td_data2d = a.a_forecast;
+			var td_data2e = a.a_actual;
+			var td_data3a = a.b_acdc;
+			var td_data3b = a.b_testing_pat;
+			var td_data3c = a.b_testing_sat;
+			var td_data3d = a.b_forecast;
+			var td_data3e = a.b_actual;
+			var td_data4a = a.c_acdc;
+			var td_data4b = a.c_testing_pat;
+			var td_data4c = a.c_testing_sat;
+			var td_data4d = a.c_forecast;
+			var td_data4e = a.c_actual;
+
+
+			if (td_data1b == "N/A") {
+				var td_data1b_text = td_data1b;
+			} else {
+				var td_data1b_text = "";
+			}
+
+			if (td_data2b == "N/A") {
+				var td_data2b_text = td_data2b;
+			} else {
+				var td_data2b_text = "";
+			}
+			if (td_data2c == "N/A") {
+				var td_data2c_text = td_data2c;
+			} else {
+				var td_data2c_text = "";
+			}
+
+			if (td_data3b == "N/A") {
+				var td_data3b_text = td_data3b;
+			} else {
+				var td_data3b_text = "";
+			}
+			if (td_data3c == "N/A") {
+				var td_data3c_text = td_data3c;
+			} else {
+				var td_data3c_text = "";
+			}
+
+			if (td_data4b == "N/A") {
+				var td_data4b_text = td_data4b;
+			} else {
+				var td_data4b_text = "";
+			}
+			if (td_data4c == "N/A") {
+				var td_data4c_text = td_data4c;
+			} else {
+				var td_data4c_text = "";
+			}
+
+			var append_this = '<tr><td rowspan="3">'+td_data1a+'</td><td rowspan="3" class="align circle_'+td_data1b+'">'+td_data1b_text+'<i class="fa fa-circle"></i></td><td class="color-beige">'+td_data2a+'</td><td class="align circle_'+td_data2b+'">'+td_data2b_text+'<i class="fa fa-circle"></i></td><td class="align circle_'+td_data2c+'">'+td_data2c_text+'<i class="fa fa-circle"></i></td><td>'+td_data2d+'</td><td>'+td_data2e+'</td></tr><tr><td class="color-beige">'+td_data3a+'</td><td class="align circle_'+td_data3b+'">'+td_data3b_text+'<i class="fa fa-circle"></i></td><td class="align circle_'+td_data3c+'">'+td_data3c_text+'<i class="fa fa-circle"></i></td><td>'+td_data3d+'</td><td>'+td_data3e+'</td></tr><tr><td class="color-beige">'+td_data4a+'</td><td class="align circle_'+td_data4b+'">'+td_data4b_text+'<i class="fa fa-circle"></i></td><td class="align circle_'+td_data4c+'">'+td_data3c_text+'<i class="fa fa-circle"></i></td><td>'+td_data4d+'</td><td>'+td_data4e+'</td></tr>'
+
+			$('.portlet_psds_installation table tbody').append(append_this);
+
+		}
+
+
 	}
 })
 

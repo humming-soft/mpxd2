@@ -2,7 +2,14 @@
 	<div class="row content">
 		<div class="col-md-12 portlet_title">
 			<i class="fa_title_icon fa fa-calendar-check-o" aria-hidden="true"></i>
-			Tunnel Progress
+			<% if (typeof(data.data[0]) !=="undefined"){%>
+			<% if (typeof(data.data[0].date) !== "undefined") { %>
+			<%=data.title%> <span class="plate_asof">(As of : <%=data.data[0].date%>) </span>
+			<% } else {%>
+			<%=data.title%>
+			<% }}else {%>
+			<%=data.title%>
+			<% }%>
 		</div>
 		<div class="col-md-12 portlet_content">
 
@@ -15,7 +22,7 @@
 				<li class="show_IVS1 "><a href="#">IVS1</a></li>
 				<li class="show_IVS2 "><a href="#">IVS2</a></li>
 			</ul>
-
+			<%console.log(data.data)%>
 			<div class="">
 
 				<table class="table show_Rings">
@@ -29,14 +36,20 @@
 					</tr>
 					</thead>
 					<tbody>
+					<%for(var i=1; i<(data.data).length; i++){ %>
+					<% if(data.data[i].name=="Rings"){%>
 					<tr>
-						<td>Ring</td>
-						<td class="set_center">88%</td>
+						<td><%=data.data[i].name%></td>
+						<td class="set_center"><%=data.data[i].value%>%</td>
 					</tr>
+					<% }}%>
+					<%for(var i=1; i<(data.data).length; i++){ %>
+					<% if(data.data[i].name=="Cumulative Ring"){%>
 					<tr>
-						<td>Cumulating Ring</td>
-						<td class="set_center">88%</td>
+						<td><%=data.data[i].name%></td>
+						<td class="set_center"><%=data.data[i].value%>%</td>
 					</tr>
+					<% }}%>
 					</tbody>
 				</table>
 
@@ -49,18 +62,17 @@
 						<th class="col_separation">January/16</th>
 						<th class="col_separation set_center">Wk 1</th>
 						<th class="col_separation set_center">Wk 2</th>
-						<th class="col_separation set_center">Wk 3</th>
-						<th class="col_separation set_center">Wk 4</th>
 					</tr>
 					</thead>
 					<tbody>
+					<%for(var i=1; i<(data.data).length; i++){ %>
+					<% if(data.data[i].name=="Percentage Completed - Trackbed"){%>
 					<tr>
-						<td>% Completed - Trackbed</td>
-						<td class="set_center">88%</td>
-						<td class="set_center">88%</td>
-						<td class="set_center">88%</td>
-						<td class="set_center">88%</td>
+						<td><%=data.data[i].name%></td>
+						<td class="set_center"><%=data.data[i].value%>%</td>
+						<td class="set_center"><%=data.data[i].prev_value%>%</td>
 					</tr>
+					<% }}%>
 					</tbody>
 				</table>
 
@@ -73,18 +85,19 @@
 						<th class="col_separation">October/16</th>
 						<th class="col_separation set_center">Wk 1</th>
 						<th class="col_separation set_center">Wk 2</th>
-						<th class="col_separation set_center">Wk 3</th>
-						<th class="col_separation set_center">Wk 4</th>
+						<!--<th class="col_separation set_center">Wk 3</th>
+						<th class="col_separation set_center">Wk 4</th>-->
 					</tr>
 					</thead>
 					<tbody>
+					<%for(var i=1; i<(data.data).length; i++){ %>
+					<% if(data.data[i].name=="Percentage Completed - Bracket"){%>
 					<tr>
-						<td>% Completed - Bracket</td>
-						<td class="set_center">88%</td>
-						<td class="set_center">88%</td>
-						<td class="set_center">88%</td>
-						<td class="set_center">88%</td>
+						<td><%=data.data[i].name%></td>
+						<td class="set_center"><%=data.data[i].value%>%</td>
+						<td class="set_center"><%=data.data[i].prev_value%>%</td>
 					</tr>
+					<% }}%>
 					</tbody>
 				</table>
 
@@ -99,14 +112,20 @@
 					</tr>
 					</thead>
 					<tbody>
+					<%for(var i=1; i<(data.data).length; i++){ %>
+					<% if(data.data[i].name=="Percentage Completed - ES1"){%>
 					<tr>
 						<td>Excavation ES1</td>
-						<td class="set_center">88%</td>
+						<td class="set_center"><%=data.data[i].value%>%</td>
 					</tr>
+					<%}}%>
+					<%for(var i=1; i<(data.data).length; i++){ %>
+					<% if(data.data[i].name=="Percentage Completed - ES1 RC Structure"){%>
 					<tr>
 						<td>RC Structure</td>
-						<td class="set_center">88%</td>
+						<td class="set_center"><%=data.data[i].value%>%</td>
 					</tr>
+					<%}}%>
 					</tbody>
 				</table>
 
@@ -121,14 +140,20 @@
 					</tr>
 					</thead>
 					<tbody>
+					<%for(var i=1; i<(data.data).length; i++){ %>
+					<% if(data.data[i].name=="Percentage Completed - ES2"){%>
 					<tr>
 						<td>Excavation ES3</td>
-						<td class="set_center">88%</td>
+						<td class="set_center"><%=data.data[i].value%>%</td>
 					</tr>
+					<%}}%>
+					<%for(var i=1; i<(data.data).length; i++){ %>
+					<% if(data.data[i].name=="Percentage Completed - ES2 RC Structure"){%>
 					<tr>
 						<td>RC Structure</td>
 						<td class="set_center">88%</td>
 					</tr>
+					<%}}%>
 					</tbody>
 				</table>
 
@@ -143,14 +168,20 @@
 					</tr>
 					</thead>
 					<tbody>
+					<%for(var i=1; i<(data.data).length; i++){ %>
+					<% if(data.data[i].name=="Percentage Completed - IVS1"){%>
 					<tr>
-						<td>Excavation IVS1</td>
-						<td class="set_center">88%</td>
+						<td>Excavation ES3</td>
+						<td class="set_center"><%=data.data[i].value%>%</td>
 					</tr>
+					<%}}%>
+					<%for(var i=1; i<(data.data).length; i++){ %>
+					<% if(data.data[i].name=="Percentage Completed - IVS1 RC Structure"){%>
 					<tr>
-						<td>RC Structure</td>
-						<td class="set_center">88%</td>
+						<td>Excavation ES3</td>
+						<td class="set_center"><%=data.data[i].value%>%</td>
 					</tr>
+					<%}}%>
 					</tbody>
 				</table>
 
@@ -165,14 +196,20 @@
 					</tr>
 					</thead>
 					<tbody>
+					<%for(var i=1; i<(data.data).length; i++){ %>
+					<% if(data.data[i].name=="Percentage Completed - IVS2"){%>
 					<tr>
-						<td>Excavation IVS2</td>
-						<td class="set_center">88%</td>
+						<td>Excavation ES3</td>
+						<td class="set_center"><%=data.data[i].value%>%</td>
 					</tr>
+					<%}}%>
+					<%for(var i=1; i<(data.data).length; i++){ %>
+					<% if(data.data[i].name=="Percentage Completed - IVS2 RC Structure"){%>
 					<tr>
-						<td>RC Structure</td>
-						<td class="set_center">88%</td>
+						<td>Excavation ES3</td>
+						<td class="set_center"><%=data.data[i].value%>%</td>
 					</tr>
+					<%}}%>
 					</tbody>
 				</table>
 
