@@ -1211,9 +1211,7 @@ mpxd.modules.sys_psds_m.sys_psds_gis = Backbone.View.extend({
 		that.$el.html(template);
 		that.$el.find('.portlet_content').css({"height":(that.$el.find('.content').parent().parent().parent().height())-40});
 		that.$el.find('.portlet_content').mCustomScrollbar({theme:"dark-3"});
-        console.log(that.data.data);
 		var trendJSON=that.data.data.TREND;
-		console.log(trendJSON);
 		/*var json = [
 			{"boxid":"box1","b_name":"Design","arrow":"up","percentage":"86%"},
 			{"boxid":"box2","b_name":"Installation","arrow":"down","percentage":"56%"},
@@ -1764,15 +1762,10 @@ mpxd.modules.sys_psds_m.sys_psds_gis = Backbone.View.extend({
 
 	}
 })
-
-
-
-
-
 //
 // PSDS
 // 
-mpxd.modules.sys_psds.sys_psds_trip_cable = Backbone.View.extend({   
+mpxd.modules.sys_psds.sys_psds_trip_cable = Backbone.View.extend({
 	initialize: function (options) {
 		this.data = options.data;
 		this.render();
@@ -1781,11 +1774,163 @@ mpxd.modules.sys_psds.sys_psds_trip_cable = Backbone.View.extend({
 		var html = mpxd.getTemplate(that.data.type);
 		template = _.template(html, {data: that.data});
 		that.$el.html(template);
-		that.$el.find('.portlet_content').css({"height":(that.$el.find('.content').parent().parent().parent().height())-40});
-		that.$el.find('.portlet_content').mCustomScrollbar({theme:"dark-3"});
+		that.$el.find('.portlet_content').css({"height": (that.$el.find('.content').parent().parent().parent().height()) - 40});
+		that.$el.find('.portlet_content').mCustomScrollbar({theme: "dark-3"});
+		console.log(that.data.data)
+		var portlet_psds_trip_cable_data = that.data.data
+		for (var i = 0; i < portlet_psds_trip_cable_data.length; i++) {
+			a = portlet_psds_trip_cable_data[i]
+
+			var td_data1 = a.station_from + "_" + a.station_to;
+			var td_data2a = "33KV AC";
+			var td_data2b1 = a.th_laying;
+			var td_data2c1 = a.th_termination;
+			var td_data2d1 = a.th_pat;
+			var td_data2e1 = a.th_sat;
+			var td_data2f1 = a.th_ener_stat;
+			var td_data2g1 = a.th_ener_date;
+			var td_data3a = "750V DC";
+			var td_data3b1 = a.sev_laying;
+			var td_data3c1 = a.sev_termination;
+			var td_data3d1 = a.sev_pat;
+			var td_data3e1 = a.sev_sat;
+			var td_data3f1 = a.sev_ener_stat;
+			var td_data3g1 = a.sev_ener_date;
+
+			if (td_data2b1 == "-1.00") {
+				var td_data2b = "none";
+			} else if(td_data2b1 == "2.00"){
+				var td_data2b = "in_progress";
+			}else if(td_data2b1 == "1.00"){
+				var td_data2b = "completed";
+			}else if(td_data2b1 == "3.00"){
+				var td_data2b = "pending";
+			}else {
+				var td_data2b = "none";
+			}
+
+			if (td_data3b1 == "-1.00") {
+				var td_data3b = "none";
+			} else if(td_data3b1 == "2.00"){
+				var td_data3b = "in_progress";
+			}else if(td_data3b1 == "1.00"){
+				var td_data3b = "completed";
+			}else if(td_data3b1 == "3.00"){
+				var td_data3b = "pending";
+			}else {
+				var td_data3b = "none";
+			}
+
+			if (td_data2d1 == "-1.00") {
+				var td_data2d = "none";
+			} else if(td_data2d1 == "2.00"){
+				var td_data2d = "in_progress";
+			}else if(td_data2d1 == "1.00"){
+				var td_data2d = "completed";
+			}else if(td_data2d1 == "3.00"){
+				var td_data2d = "pending";
+			}else {
+				var td_data2d = "none";
+			}
+			if (td_data2e1 == "-1.00") {
+				var td_data2e = "none";
+			} else if(td_data2e1 == "2.00"){
+				var td_data2e = "in_progress";
+			}else if(td_data2e1 == "1.00"){
+				var td_data2e = "completed";
+			}else if(td_data2e1 == "3.00"){
+				var td_data2e = "pending";
+			}else {
+				var td_data2e = "none";
+			}
+
+
+			if (td_data3d1 == "-1.00") {
+				var td_data3d = "none";
+			} else if(td_data3d1 == "2.00"){
+				var td_data3d = "in_progress";
+			}else if(td_data3d1 == "1.00"){
+				var td_data3d = "completed";
+			}else if(td_data3d1 == "3.00"){
+				var td_data3d = "pending";
+			}else {
+				var td_data3d = "none";
+			}
+			if (td_data3e1 == "-1.00") {
+				var td_data3e = "none";
+			} else if(td_data3e1 == "2.00"){
+				var td_data3e = "in_progress";
+			}else if(td_data3e1 == "1.00"){
+				var td_data3e = "completed";
+			}else if(td_data3e1 == "3.00"){
+				var td_data3e = "pending";
+			}else {
+				var td_data3e = "none";
+			}
+
+			if (td_data2c1 == "-1.00") {
+				var td_data2c = "none";
+			} else if(td_data2c1 == "2.00"){
+				var td_data2c = "in_progress";
+			}else if(td_data2c1 == "1.00"){
+				var td_data2c = "completed";
+			}else if(td_data2c1 == "3.00"){
+				var td_data2c = "pending";
+			}else {
+				var td_data2c = "none";
+			}
+			if (td_data3c1 == "-1.00") {
+				var td_data3c = "none";
+			} else if(td_data3c1 == "2.00"){
+				var td_data3c = "in_progress";
+			}else if(td_data3c1 == "1.00"){
+				var td_data3c = "completed";
+			}else if(td_data3c1 == "3.00"){
+				var td_data3c = "pending";
+			}else {
+				var td_data3c = "none";
+			}
+			var td_data2f1 = a.th_ener_stat;
+			var td_data2g1 = a.th_ener_date;
+
+			if(td_data2f1 == "1.00"){
+				var td_data2f = "Work Not Yet Started";
+			}else if(td_data2f1 == "2.00"){
+				var td_data2f = "Work In Progrss";
+			}else if(td_data2f1 == "3.00"){
+				var td_data2f = "Testing Completed";
+			}else if(td_data2f1 == "4.00"){
+				var td_data2f = "AC Energized";
+			}else if(td_data2f1 == "5.00"){
+				var td_data2f = "AC & DC Energized";
+			}else{
+				var td_data2f = "-";
+			}
+
+			if(td_data3f1 == "1.00"){
+				var td_data3f = "Work Not Yet Started";
+			}else if(td_data3f1 == "2.00"){
+				var td_data3f = "Work In Progrss";
+			}else if(td_data3f1 == "3.00"){
+				var td_data3f = "Testing Completed";
+			}else if(td_data3f1 == "4.00"){
+				var td_data3f = "AC Energized";
+			}else if(td_data3f1 == "5.00"){
+				var td_data3f = "AC & DC Energized";
+			}else{
+				var td_data3f = "-";
+			}
+
+
+			var append_this = '<tr><td rowspan="2">' + td_data1 + '</td>' + '<td class="color-beige">' + td_data2a + '</td>' + '<td class="align circle_' + td_data2b + '"><i class="fa fa-circle"></i></td>' + '<td class="align circle_' + td_data2c + '"><i class="fa fa-circle"></i></td>' + '<td class="align circle_' + td_data2d + '"><i class="fa fa-circle"></i></td>' + '<td class="align circle_' + td_data2e + '"><i class="fa fa-circle"></i></td>' + '<td>' + td_data2f + '</td>' + '</tr><tr>' + '<td class="color-beige">' + td_data3a + '</td>' + '<td class="align circle_' + td_data3b + '"><i class="fa fa-circle"></i></td>' + '<td class="align circle_' + td_data3c + '"><i class="fa fa-circle"></i></td>' + '<td class="align circle_' + td_data3d + '"><i class="fa fa-circle"></i></td>' + '<td class="align circle_' + td_data3e + '"><i class="fa fa-circle"></i></td>' + '<td>' + td_data3f + '</td></tr>'
+
+			$('.portlet_psds_trip_cable table tbody').append(append_this);
+
+		}
 	}
+
 })
-mpxd.modules.sys_psds.sys_psds_installation = Backbone.View.extend({   
+mpxd.modules.sys_psds.sys_psds_installation = Backbone.View.extend({
 	initialize: function (options) {
 		this.data = options.data;
 		this.render();
@@ -1853,144 +1998,183 @@ mpxd.modules.sys_psds.sys_psds_installation = Backbone.View.extend({
 				});
 			}
 		});
-		var portlet_psds_installation_data = [
-			{
-				"station":"<b>SUBD</b><br>Sungai Buloh Depot",
-				"installation":"completed",
-				"a_acdc":"33KV",
-				"a_testing_pat":"completed",
-				"a_testing_sat":"completed",
-				"a_forecast":"30-Apr-2014",
-				"a_actual":"20-Oct-2014",
-				"b_acdc":"750V",
-				"b_testing_pat":"completed",
-				"b_testing_sat":"completed",
-				"b_forecast":"30-May-2015",
-				"b_actual":"24-Apr-2015",
-				"c_acdc":"PSCADA",
-				"c_testing_pat":"completed",
-				"c_testing_sat":"completed",
-				"c_forecast":"-",
-				"c_actual":"Pending"
-			},{
-				"station":"<b>STN 01</b><br>Sungai Buloh",
-				"installation":"completed",
-				"a_acdc":"33KV",
-				"a_testing_pat":"completed",
-				"a_testing_sat":"completed",
-				"a_forecast":"26-Nov-2015",
-				"a_actual":"27-Jan-2016",
-				"b_acdc":"750V",
-				"b_testing_pat":"completed",
-				"b_testing_sat":"completed",
-				"b_forecast":"25-Jan-2016",
-				"b_actual":"Pending",
-				"c_acdc":"PSCADA",
-				"c_testing_pat":"completed",
-				"c_testing_sat":"completed",
-				"c_forecast":"-",
-				"c_actual":"Pending"
-			},{
-				"station":"<b>STN 02</b><br>Kampung Selamat",
-				"installation":"completed",
-				"a_acdc":"33KV",
-				"a_testing_pat":"completed",
-				"a_testing_sat":"completed",
-				"a_forecast":"25-Nov-2015",
-				"a_actual":"29-Dec-2015",
-				"b_acdc":"750V",
-				"b_testing_pat":"completed",
-				"b_testing_sat":"completed",
-				"b_forecast":"25-Jan-2016",
-				"b_actual":"Pending",
-				"c_acdc":"PSCADA",
-				"c_testing_pat":"completed",
-				"c_testing_sat":"completed",
-				"c_forecast":"-",
-				"c_actual":"Pending"
-			},{
-				"station":"<b>KWDE2</b><br>Kwasa Damansara Future",
-				"installation":"completed",
-				"a_acdc":"33KV",
-				"a_testing_pat":"completed",
-				"a_testing_sat":"in_progress",
-				"a_forecast":"06-Oct-2015",
-				"a_actual":"15-Oct-2015",
-				"b_acdc":"750V",
-				"b_testing_pat":"N/A",
-				"b_testing_sat":"N/A",
-				"b_forecast":"N/A",
-				"b_actual":"N/A",
-				"c_acdc":"PSCADA",
-				"c_testing_pat":"-",
-				"c_testing_sat":"-",
-				"c_forecast":"-",
-				"c_actual":"-"
-			}
-		]
+		var portlet_psds_installation_data = that.data.data
+
 
 		for (var i = 0; i < portlet_psds_installation_data.length; i++) {
 			a = portlet_psds_installation_data[i]
+			var station = "<b>" + a.station_code +"</b><br>" + a.station;
 
-			var td_data1a = a.station;
-			var td_data1b = a.installation;
-			var td_data2a = a.a_acdc;
-			var td_data2b = a.a_testing_pat;
-			var td_data2c = a.a_testing_sat;
-			var td_data2d = a.a_forecast;
-			var td_data2e = a.a_actual;
-			var td_data3a = a.b_acdc;
-			var td_data3b = a.b_testing_pat;
-			var td_data3c = a.b_testing_sat;
-			var td_data3d = a.b_forecast;
-			var td_data3e = a.b_actual;
-			var td_data4a = a.c_acdc;
-			var td_data4b = a.c_testing_pat;
-			var td_data4c = a.c_testing_sat;
-			var td_data4d = a.c_forecast;
-			var td_data4e = a.c_actual;
+			var td_data1a =  station;
+			var td_data1b1 = a.installation;
+			var td_data2a = "33KV";
+			var td_data2b1 = a.th_testing_sat;
+			var td_data2c1 = a.th_testing_pat;
+			if(a.th_fore){
+				var td_data2d = a.th_fore;
+			}else{
+				var td_data2d="-";
+			}
+			if(a.th_actual){
+				var td_data2e = a.th_actual;
+			}else{
+				var td_data2e="-";
+			}
+			var td_data3a = "750V";
+			var td_data3b1 = a.sev_pat;
+			var td_data3c1 = a.sev_sat;
+			if(a.sev_fore){
+				var td_data3d = a.sev_fore;
+			}else{
+				var td_data3d="-";
+			}
+
+			if(a.sev_actual){
+				var td_data3e = a.sev_actual ;
+			}else{
+				var td_data3e="-";
+			}
+
+			var td_data4a = "PSCADA";
+			var td_data4b1 = a.pscada_pat;
+			var td_data4c1 = a.pscada_sat;
+			if(a.pscada_fore){
+				var td_data4d = a.pscada_fore;
+			}else{
+				var td_data4d="-";
+			}
+
+			if(a.pscada_actual){
+				var td_data4e = a.pscada_actual;
+			}else{
+				var td_data4e="-";
+			}
 
 
-			if (td_data1b == "N/A") {
-				var td_data1b_text = td_data1b;
-			} else {
+
+			if (td_data1b1 == "-1.00") {
+				var td_data1b = "";
+				var td_data1b_text = "N/A";
+			} else if(td_data1b1 == "2.00"){
+				var td_data1b = "in_progress";
 				var td_data1b_text = "";
+			}else if(td_data1b1 == "1.00"){
+				var td_data1b = "completed";
+				var td_data1b_text = "";
+			}else if(td_data1b1 == "3.00"){
+				var td_data1b = "pending";
+				var td_data1b_text = "";
+			}else {
+				var td_data1b = "";
+				var td_data1b_text ="N/A";
 			}
 
-			if (td_data2b == "N/A") {
-				var td_data2b_text = td_data2b;
-			} else {
+			if (td_data2b1 == "-1.00") {
+				var td_data2b = "";
+				var td_data2b_text = "N/A";
+			} else if(td_data2b1 == "2.00"){
+				var td_data2b = "in_progress";
 				var td_data2b_text = "";
+			}else if(td_data2b1 == "1.00"){
+				var td_data2b = "completed";
+				var td_data2b_text = "";
+			}else if(td_data2b1 == "3.00"){
+				var td_data2b = "pending";
+				var td_data2b_text = "";
+			}else {
+				var td_data2b = "";
+				var td_data2b_text ="N/A";
 			}
-			if (td_data2c == "N/A") {
-				var td_data2c_text = td_data2c;
-			} else {
+
+			if (td_data2c1 == "-1.00") {
+				var td_data2c = "";
+				var td_data2c_text = "N/A";
+			} else if(td_data2c1 == "2.00"){
+				var td_data2c = "in_progress";
 				var td_data2c_text = "";
+			}else if(td_data2c1 == "1.00"){
+				var td_data2c = "completed";
+				var td_data2c_text = "";
+			}else if(td_data2c1 == "3.00"){
+				var td_data2c = "pending";
+				var td_data2c_text = "";
+			}else {
+				var td_data2c = "";
+				var td_data2c_text ="N/A";
 			}
 
-			if (td_data3b == "N/A") {
-				var td_data3b_text = td_data3b;
-			} else {
+
+			if (td_data3b1 == "-1.00") {
+				var td_data3b = "";
+				var td_data3b_text = "N/A";
+			} else if(td_data3b1 == "2.00"){
+				var td_data3b = "in_progress";
 				var td_data3b_text = "";
+			}else if(td_data3b1 == "1.00"){
+				var td_data3b = "completed";
+				var td_data3b_text = "";
+			}else if(td_data3b1 == "3.00"){
+				var td_data3b = "pending";
+				var td_data3b_text = "";
+			}else {
+				var td_data3b = "";
+				var td_data3b_text ="N/A";
 			}
-			if (td_data3c == "N/A") {
-				var td_data3c_text = td_data3c;
-			} else {
+			if (td_data3c1 == "-1.00") {
+				var td_data3c = "";
+				var td_data3c_text = "N/A";
+			} else if(td_data3c1 == "2.00"){
+				var td_data3c = "in_progress";
 				var td_data3c_text = "";
+			}else if(td_data3c1 == "1.00"){
+				var td_data3c = "completed";
+				var td_data3c_text = "";
+			}else if(td_data3c1 == "3.00"){
+				var td_data3c = "pending";
+				var td_data3c_text = "";
+			}else {
+				var td_data3c = "";
+				var td_data3c_text ="N/A";
 			}
 
-			if (td_data4b == "N/A") {
-				var td_data4b_text = td_data4b;
-			} else {
+
+			if (td_data4b1 == "-1.00") {
+				var td_data4b = "";
+				var td_data4b_text = "N/A";
+			} else if(td_data4b1 == "2.00"){
+				var td_data4b = "in_progress";
 				var td_data4b_text = "";
+			}else if(td_data4b1 == "1.00"){
+				var td_data4b = "completed";
+				var td_data4b_text = "";
+			}else if(td_data4b1 == "3.00"){
+				var td_data4b = "pending";
+				var td_data4b_text = "";
+			}else {
+				var td_data4b = "";
+				var td_data4b_text ="N/A";
 			}
-			if (td_data4c == "N/A") {
-				var td_data4c_text = td_data4c;
-			} else {
+			if (td_data4c1 == "-1.00") {
+				var td_data4c = "";
+				var td_data4c_text = "N/A";
+			} else if(td_data4c1 == "2.00"){
+				var td_data4c = "in_progress";
 				var td_data4c_text = "";
+			}else if(td_data4c1 == "1.00"){
+				var td_data4c = "completed";
+				var td_data4c_text = "";
+			}else if(td_data4c1 == "3.00"){
+				var td_data4c = "pending";
+				var td_data4c_text = "";
+			}else {
+				var td_data4c = "";
+				var td_data4c_text ="N/A";
 			}
-
-			var append_this = '<tr><td rowspan="3">'+td_data1a+'</td><td rowspan="3" class="align circle_'+td_data1b+'">'+td_data1b_text+'<i class="fa fa-circle"></i></td><td class="color-beige">'+td_data2a+'</td><td class="align circle_'+td_data2b+'">'+td_data2b_text+'<i class="fa fa-circle"></i></td><td class="align circle_'+td_data2c+'">'+td_data2c_text+'<i class="fa fa-circle"></i></td><td>'+td_data2d+'</td><td>'+td_data2e+'</td></tr><tr><td class="color-beige">'+td_data3a+'</td><td class="align circle_'+td_data3b+'">'+td_data3b_text+'<i class="fa fa-circle"></i></td><td class="align circle_'+td_data3c+'">'+td_data3c_text+'<i class="fa fa-circle"></i></td><td>'+td_data3d+'</td><td>'+td_data3e+'</td></tr><tr><td class="color-beige">'+td_data4a+'</td><td class="align circle_'+td_data4b+'">'+td_data4b_text+'<i class="fa fa-circle"></i></td><td class="align circle_'+td_data4c+'">'+td_data3c_text+'<i class="fa fa-circle"></i></td><td>'+td_data4d+'</td><td>'+td_data4e+'</td></tr>'
+			var append_this = '<tr><td rowspan="3">'+td_data1a+'</td>' +
+				'<td rowspan="3" class="align circle_'+td_data1b+'">'+td_data1b_text+'<i class="fa fa-circle"></i></td>' +
+				'<td class="color-beige">'+td_data2a+'</td>' +
+				'<td class="align circle_'+td_data2b+'">'+td_data2b_text+'<i class="fa fa-circle"></i></td>' +
+				'<td class="align circle_'+td_data2c+'">'+td_data2c_text+'<i class="fa fa-circle"></i></td><td>'+td_data2d+'</td><td>'+td_data2e+'</td></tr><tr><td class="color-beige">'+td_data3a+'</td><td class="align circle_'+td_data3b+'">'+td_data3b_text+'<i class="fa fa-circle"></i></td><td class="align circle_'+td_data3c+'">'+td_data3c_text+'<i class="fa fa-circle"></i></td><td>'+td_data3d+'</td><td>'+td_data3e+'</td></tr><tr><td class="color-beige">'+td_data4a+'</td><td class="align circle_'+td_data4b+'">'+td_data4b_text+'<i class="fa fa-circle"></i></td><td class="align circle_'+td_data4c+'">'+td_data4c_text+'<i class="fa fa-circle"></i></td><td>'+td_data4d+'</td><td>'+td_data4e+'</td></tr>'
 
 			$('.portlet_psds_installation table tbody').append(append_this);
 

@@ -701,9 +701,9 @@ function loadPage(p, dontsavestate) {
             }
         }
         if (getParameterByName("date").length == 0) {
-            console.log(result[0].date);
-            $("#data_date").val(moment(result[0].date, "DD-MMM-YY").format("DD MMM YYYY").toUpperCase());
-            curr_data_date = result[0].date;
+           console.log(result[0].date);
+                $("#data_date").val(moment(result[0].date, "DD-MMM-YY").format("DD MMM YYYY").toUpperCase());
+                curr_data_date = result[0].date;
         }
         //ellipseTitle(title +" ("+ moment(curr_data_date, "DD-MMM-YY").format("DD MMMM YYYY") +")");
         var titletext = title + " (" + moment(curr_data_date, "DD-MMM-YY").format("DD MMMM YYYY") + ")";

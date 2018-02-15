@@ -976,11 +976,18 @@ mpxd.modules.procurement.piechart_workpackage = Backbone.View.extend({
         that.$el.html(template);
         that.$el.find('.portlet_content').css({"height":(that.$el.find('.content').parent().parent().parent().height())-40});
         that.$el.find('.portlet_content').mCustomScrollbar({theme:"dark-3"});
+if(that.data.data[0]){
+    var procdata = that.data.data[0].data.procurement;
+    var awarded = procdata.awarded;
+    var yetcalled = procdata.yetcalled;
+    var calledin = procdata.calledin;
+}else{
+    var awarded =0;
+    var yetcalled = 0;
+    var calledin =0;
+}
 
-        var procdata = that.data.data[0].data.procurement;
-        var awarded = procdata.awarded;
-        var yetcalled = procdata.yetcalled;
-        var calledin = procdata.calledin;
+
 
         var ac = (_.reduce(awarded, function (memo, num) {
             if (typeof num === "object") return memo + 1; else return memo;

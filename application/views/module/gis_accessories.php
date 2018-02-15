@@ -2,6 +2,7 @@
 	<div id="plate_vector_map" class="plate_vector_map">
 		missing plate_vector_map.svg
 	</div>
+
 	<div id="plate_overall_progress">
 		<div id="pop_label">
 			<span class="set1">Overall Progress</span>
@@ -27,6 +28,7 @@
 			<span class="set6">Retention Sum</span>
 			<span class="set7">Variation Orders</span>
 			<span class="set8">Contigency Sum</span>
+			
 		</div>
 		<div id="pcom_value">
 			<span class="set1">16.75 Bil</span>

@@ -35,7 +35,7 @@
 					}
 					}
 					for(var i=k; i<(data.data).length; i++){
-					var variance = ((typeof(data.data[i][1]) !== "undefined" || typeof(data.data[i][2]) !== "undefined") || (data.data[i][1] != "" || data.data[i][2] != "" ) ) ? Math.round(compareDates(data.data[i][1],data.data[i][2])) : "N/A"
+					var variance = ((typeof(data.data[i][2]) !== "undefined" || typeof(data.data[i][3]) !== "undefined") || (data.data[i][2] != "" || data.data[i][3] != "" ) ) ? Math.round(compareDates(data.data[i][2],data.data[i][3])) : "N/A"
 					var daysleft = compareDate(data.data[i][3])
 					if( daysleft < 0){ daysleft=0 };
 					%>
