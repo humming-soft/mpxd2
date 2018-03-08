@@ -2,16 +2,14 @@
     <div class="row content">
         <div class="col-md-12 portlet_title">
             <i class="fa_title_icon fa fa-calendar-check-o" aria-hidden="true"></i>
-            <% if (typeof(data.data[0]) !== "undefined") {
-            if(data.data != null){
-            %>
+            <% if (typeof(data.data[0]) !== "undefined") { %>
             <% if (typeof(data.data[0].date) !== "undefined") { %>
                 <%=data.title%> <span class="plate_asof">(As of : <%=data.data[0].date%>) </span>
             <% } else {%>
                 <%=data.title%>
             <% }}else {%>
                 <%=data.title%>
-            <% }}%>
+            <% }%>
         </div>
         <div class="col-md-12 portlet_content">
             <div class="">
