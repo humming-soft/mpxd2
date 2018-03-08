@@ -59,26 +59,18 @@ function gallery($slug){
  * @Desc
  */
 function kpi($slug){
-	$max_date = db()->kpi()
-		->select('MAX(date)')
-		->where("slug", $slug)
-		->or("slug", strtoupper($slug));
-	$m = $max_date->fetch();
-	if($m) {
-		$date = ($m['max']);
+
 		$query = db()->kpi()
 			->select('name', 'baseline', 'target', 'actual')
 			->where("slug", $slug)
 			->or("slug", strtoupper($slug))
-			->where("date", $date);
+			->and("date", db()->kpi()->select('MAX(date)'));
 		$result = array_map('iterator_to_array', iterator_to_array($query));
 		$kpiarr = array();
 		foreach($result as $q){
 			$kpiarr[] = array($q['name'], (float)$q['baseline'], (float)$q['target'], (float)$q['actual']);
 		}
 		return $kpiarr;
-	}
-	return [];
 }
 
 /**
@@ -953,6 +945,49 @@ function build_viaducts($slug){
 	}
 	 return $final;
  }
+  function twTranding($slug)
+ {
+	   $final = array();
+	   $temp1 = array();
+       $temp= array();
+	   $query = db()->{'"tbl_tw_trending_and_progress"'}
+				 ->select( 'project_name', 'slug', 'design_trend', 'design_progress',  'proc_trend', 'proc_progress',
+                    'in_trend', 'in_progress','publish_date', 'data_date')
+				 ->where("slug", $slug)
+				 ->and("tw_trend_id", db()->tbl_tw_trending_and_progress()->select('MAX(tw_trend_id)'));
+				 $result= array_map('iterator_to_array', iterator_to_array($query));
+				 $kadobj = (object)array('date' => date('d-M-y', strtotime($result[0]['data_date'])));
+	             $final[] = $kadobj;
+				 foreach ($result as $q) {
+						    $temp['d_arrow'] = $q['design_trend'];
+						    $temp['d_percentage'] = $q['design_progress'];
+							$temp['p_arrow'] = $q['proc_trend'];
+							$temp['p_percentage'] =$q['proc_progress'];
+							$temp['i_arrow'] = $q['in_trend'];
+							$temp['i_percentage'] = $q['in_progress'];
+				  array_push($final,$temp);
+				 }
+				 return $final;
+ }
+  function twDesign($slug)
+ {
+	   $final = array();
+	   $temp1 = array();
+       $temp= array();
+	   $query = db()->{'"tbl_tw_design_progress"'}
+				 ->select( 'project_name', 'slug', 'activity', 'progress', 'publish_date', 'data_date')
+				 ->where("slug", $slug)
+				 ->order("prog_id");
+				 $result= array_map('iterator_to_array', iterator_to_array($query));
+				 $kadobj = (object)array('date' => date('d-M-y', strtotime($result[0]['data_date'])));
+	             $final[] = $kadobj;
+				 foreach ($result as $q) {
+						    $temp['act'] = $q['activity'];
+						    $temp['per'] = $q['progress'];
+				  array_push($final,$temp);
+				 }
+				 return $final;
+ }
 function build_systems($slug){
 $final = array();
 	if($slug=="sys-etde"){
@@ -1026,12 +1061,61 @@ $final = array();
 		 $finalGIS =array('sys_psds_gis' =>array_merge($finalTREND,$finalSUMMARY));
 		 $superFinal = array($slug => $finalGIS);
 	}
+	else if($slug=="sys-twmv"){
+		$twTrend=twTranding($slug);
+	   $twDesign=twDesign($slug);
+	   $finalTREND=array("TREND" => $twTrend);
+	   $finalDESIGN=array("DESIGN" => $twDesign);
+	   $finalGIS =array('sys_twmv_gis' =>array_merge($finalTREND,$finalDESIGN));
+	   $superFinal = array($slug => $finalGIS);
+	}
 	else{
 		$superFinal = array();
 	}
 	return json_encode($superFinal);
 }
 
+function build_twmv_detail($slug){
+	$info = packageInfo($slug,1);
+	$gallery = gallery($slug);
+	$kad = kad($slug,3);
+	$scurve = scurve($slug);
+	//SCURVE
+	if(sizeof($scurve['scurve'])>0 ) {
+		$actual = array();
+		$late = array();
+		$early = array();
+		foreach ($scurve['scurve_main'] as $q) {
+			if ($q['actual_data'] != '-')
+				$actual[] = (float)$q['actual_data'];
+			if ($q['delayed_data'] != '-')
+				$late[] = (float)$q['delayed_data'];
+			if ($q['early_data'] != '-')
+				$early[] = (float)$q['early_data'];
+		}
+		$scurvearr = array(
+			'date' => date('d-M-y', strtotime($scurve['scurve'][0]['scurve_date'])),
+			'actualData' => $actual,
+			'earlyData' => $early,
+			'delayedData' => $late,
+			'currentEarly' => $scurve['scurve'][0]['early_data'] . '%',
+			'currentLate' => $scurve['scurve'][0]['delayed_data'] . '%',
+			'currentActual' => $scurve['scurve'][0]['actual_data'] . '%',
+			'varEarly' => $scurve['scurve'][0]['var_early'] . 'w',
+			'varLate' => $scurve['scurve'][0]['var_late'] . 'w',
+			'trend' => $scurve['scurve'][0]['trend'],
+			'chartType' => "long",
+			'viewType' => "2",
+		);
+	}
+	$galleryFormatter = array("title"=> strtoupper($slug).' Image Gallery',"items" => $gallery);
+	$finalGALLERY = array("gallery" => $galleryFormatter);
+	$finalKAD = array("KAD" => $kad);
+	$finalINFO = array("INFO" =>$info);
+	$finalSCURVE = array("scurve" => (sizeof($scurve['scurve'])>0 ? $scurvearr : []));
+	$superFinal = array($slug => array_merge($finalKAD,$finalINFO,$finalGALLERY,$finalSCURVE));
+	return json_encode($superFinal);
+}
 /**
  * STATIONS
  * @param $slug
@@ -1310,11 +1394,11 @@ function testComm($slug){
 				$test['installation'] =$q['in_status'];
 				$test['in_perc'] =$q['ins_perc'];
 				
-				$test['33_testing_pat'] = $q['thkv_pat'];
-				$test['33_testing_sat'] = $q['thkv_sat'];
-				$test['33_fore'] = $q['thkv_fore'];
-				$test['33_actual'] = $q['thkv_actual'];
-				$test['33_act_stat'] = $q['thkv_actual_sat'];
+				$test['th_testing_pat'] = $q['thkv_pat'];
+				$test['th_testing_sat'] = $q['thkv_sat'];
+				$test['th_fore'] = $q['thkv_fore'];
+				$test['th_actual'] = $q['thkv_actual'];
+				$test['th_act_stat'] = $q['thkv_actual_sat'];
 				
 				$test['sev_pat'] = $q['sev_pat'];
 				$test['sev_sat'] = $q['sev_sat'];
@@ -1334,7 +1418,32 @@ function testComm($slug){
  }
  function tripCable($slug){
 	 $final = array();
-	
+	 $trip=array();
+	 $query1 = db()->{'"tbl_psds_trip"'}
+				 ->select('trip_id', 'project_name', 'slug', 'station_from', 'station_to', 'th_laying', 
+       'sev_laying', 'th_termination', 'sev_termination', 'th_pat', 'sev_pat', 
+       'th_sat', 'sev_sat', 'th_ener_date', 'th_ener_stat', 'sev_ener_stat', 'sev_ener_date', 
+       'publish_date', 'data_date')
+				 ->where("slug", $slug)
+				 ->order("trip_id");
+	$result1= array_map('iterator_to_array', iterator_to_array($query1));
+    foreach ($result1 as $q) {
+				$trip['station_from'] =$q['station_from'];
+				$trip['station_to'] =$q['station_to'];
+				$trip['th_laying'] =$q['th_laying'];
+				$trip['sev_laying'] =$q['sev_laying'];
+				$trip['th_termination'] = $q['th_termination'];
+				$trip['sev_termination'] = $q['sev_termination'];
+				$trip['th_pat'] = $q['th_pat'];
+				$trip['sev_pat'] = $q['sev_pat'];
+				$trip['th_sat'] = $q['th_sat'];
+				$trip['sev_sat'] = $q['sev_sat'];
+				$trip['th_ener_date'] = $q['th_ener_date'];
+				$trip['th_ener_stat'] = $q['th_ener_stat'];
+				$trip['sev_ener_stat'] = $q['sev_ener_stat'];
+				$trip['sev_ener_date'] = $q['sev_ener_date'];
+	 array_push($final,$trip);
+	}
 	 return $final;
  }
 function build_ring($slug){
@@ -1344,7 +1453,7 @@ function build_ring($slug){
 	$kad = kad($slug,3);
 	$scurve = scurve($slug);
     $testing = testComm($slug);
-	//$trip=tripCable($slug);
+	$trip=tripCable($slug);
 	//SCURVE
 	if(sizeof($scurve['scurve'])>0 ) {
 		$actual = array();
@@ -1378,7 +1487,7 @@ function build_ring($slug){
 	$finalINFO = array("INFO" =>$info);
 	$finalGALLERY = array("gallery" => $galleryFormatter);
 	$finalSCURVE = array("scurve" => (sizeof($scurve['scurve'])>0 ? $scurvearr : []));
-	//$finalINFO = array("sys_psds_trip_cable" =>$trip);
+	$finalINFO = array("sys_psds_trip_cable" =>$trip);
 	$finalGALLERY = array("sys_psds_installation" => $testing);
 	$superFinal = array($slug => array_merge($finalINFO,  $finalKAD, $finalGALLERY, $finalSCURVE));
 	return json_encode($superFinal);
@@ -1660,6 +1769,10 @@ function run(){
 			case 15:
 				$ring = build_ring($q['slug']);
 				updateDB($q['slug'], $ring, $date);
+				break;
+			case 16:
+				$twdetail = build_twmv_detail($q['slug']);
+				updateDB($q['slug'], $twdetail, $date);
 				break;
 			default:
 				echo "Nothing to run";
