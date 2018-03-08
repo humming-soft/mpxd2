@@ -684,27 +684,28 @@ function loadPage(p, dontsavestate) {
     mpxd.getDateList("api/get?date_list=" + currentSlug, function (result) {
         var datelist = $("#date_list").empty();
         var curr_data_date = "";
+        //add If loop By ANCY MATHEW
+       if(result.length > 0){
+           for (var i = 0; i < result.length; i++) {
+               var date = result[i].date;
+               enableDays.push(date);
+               if (i == 0)
+                   datelist.append("<li><a href='javascript:void(0)' onClick=loadPage('" + p + "')>" + date + " (Latest)</a></li>");
+               else
+                   datelist.append("<li><a href='javascript:void(0)' onClick=loadPage('" + p + "?date=" + date + "')>" + date + "</a></li>");
 
-
-        for (var i = 0; i < result.length; i++) {
-            var date = result[i].date;
-            enableDays.push(date);
-            if (i == 0)
-                datelist.append("<li><a href='javascript:void(0)' onClick=loadPage('" + p + "')>" + date + " (Latest)</a></li>");
-            else
-                datelist.append("<li><a href='javascript:void(0)' onClick=loadPage('" + p + "?date=" + date + "')>" + date + "</a></li>");
-
-            //Update the current date field
-            if (getParameterByName("date") === date) {
-                $("#data_date").val(moment(getParameterByName("date"), "DD-MMM-YY").format("DD MMM YYYY").toUpperCase());
-                curr_data_date = date;
-            }
-        }
-        if (getParameterByName("date").length == 0) {
-            console.log(result[0].date);
-            $("#data_date").val(moment(result[0].date, "DD-MMM-YY").format("DD MMM YYYY").toUpperCase());
-            curr_data_date = result[0].date;
-        }
+               //Update the current date field
+               if (getParameterByName("date") === date) {
+                   $("#data_date").val(moment(getParameterByName("date"), "DD-MMM-YY").format("DD MMM YYYY").toUpperCase());
+                   curr_data_date = date;
+               }
+           }
+           if (getParameterByName("date").length == 0) {
+               $("#data_date").val(moment(result[0].date, "DD-MMM-YY").format("DD MMM YYYY").toUpperCase());
+               curr_data_date = result[0].date;
+           }
+       }
+        //add If loop By ANCY MATHEW END
         //ellipseTitle(title +" ("+ moment(curr_data_date, "DD-MMM-YY").format("DD MMMM YYYY") +")");
         var titletext = title + " (" + moment(curr_data_date, "DD-MMM-YY").format("DD MMMM YYYY") + ")";
         if (!isUseCustomPortlet) {

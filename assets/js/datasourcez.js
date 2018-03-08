@@ -996,21 +996,29 @@ mpxd.modules.general.GeneralView = Backbone.View.extend({
 
             if (that.data.type === 'slider') {
                 // modified by agaile to show image slider from local repository : 31/05/2016 : START
-                var lg = that.data.data.items.length;
-                //console.log('inside loop');
-				if(lg > 0) {
-					for (var i = 0; i < lg; i++) {
-						if ((that.data.data.items[i].id == 1) && (that.data.data.items[i].kind == "image")) {
-							ihtm += "<img src='" + mpxd.siteurl + that.data.data.items[i].path + "' alt='" + that.data.data.items[i].title + "'/>";
+				//added by ANCY MATHEW check with if loop
+				if(that.data.data.items != undefined){
+					var lg = that.data.data.items.length;
+					//console.log('inside loop');
+					if(lg > 0) {
+						for (var i = 0; i < lg; i++) {
+							if ((that.data.data.items[i].id == 1) && (that.data.data.items[i].kind == "image")) {
+								ihtm += "<img src='" + mpxd.siteurl + that.data.data.items[i].path + "' alt='" + that.data.data.items[i].title + "'/>";
+							}
 						}
+						$('#slider').append(ihtm);
+						imageSlider.reload();
+					}else{
+						var $slider = $('#sliderFrame');
+						$slider.attr("style","display:none");
+						$slider.parent().append('<table style="width: 100%; margin-top: 17%;"><tbody><tr> <td style="text-align: center; font-size: 18px">No Image <span style="color: #953b39">!<span></td>                      </tr> </tbody> </table>');
 					}
-					$('#slider').append(ihtm);
-					imageSlider.reload();
 				}else{
 					var $slider = $('#sliderFrame');
 					$slider.attr("style","display:none");
-					$slider.parent().append('<table style="width: 100%; margin-top: 17%;"><tbody><tr> <td style="text-align: center; font-size: 18px">No Image <span style="color: #953b39">!<span></td> </tr> </tbody> </table>');
+					$slider.parent().append('<table style="width: 100%; margin-top: 17%;"><tbody><tr> <td style="text-align: center; font-size: 18px">No Image <span style="color: #953b39">!<span></td>                      </tr> </tbody> </table>');
 				}
+   //added by ANCY MATHEW check with if loop end 1016 else
                 // modified by agaile : 31/05/2016 : END
             }else{
 				that.$el.find('.portlet_content').mCustomScrollbar({theme:"dark-3"});

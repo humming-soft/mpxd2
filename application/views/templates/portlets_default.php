@@ -35,7 +35,8 @@
 <script type=text/javascript src=<?php echo $this->config->base_url(); ?>assets/js/datasourcez.js></script>
 <script type=text/javascript src=<?php echo $this->config->base_url(); ?>assets/js/datasourcen.js></script>
 <script type=text/javascript src=<?php echo $this->config->base_url(); ?>assets/js/datasources.js></script>
-<script type=text/javascript src=<?php echo $this->config->base_url(); ?>assets/js/datasource_padu.js></script>
+<!--Disabled BY ANCY MATHEW -->
+<!--<script type=text/javascript src=<?php /*echo $this->config->base_url(); */?>assets/js/datasource_padu.js></script>-->
 
 <script type=text/javascript src=<?php echo $this->config->base_url(); ?>assets/js/tinybox.js></script>
 

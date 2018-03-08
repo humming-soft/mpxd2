@@ -2,20 +2,29 @@
 	<div class="row content">
 		<div class="col-md-12 portlet_title">
 			<i class="fa_title_icon fa fa-hourglass" aria-hidden="true"></i>
-			<% if (typeof(data.data.PROGRESS.date) !=="undefined"){%>
-			<% if (typeof(typeof data.data.PROGRESS.date) !== "undefined") { %>
-				<%=data.title%> <span class="plate_asof">(As of : <%=(typeof data.data.PROGRESS.date == 'undefined')?'0%':data.data.PROGRESS.date%>) </span>
-			<% } else {%>
-				<%=data.title%>
-			<% }}else {%>
-				<%=data.title%>
-			<% }%>
+			<% if (typeof(data.data) !=="undefined" ) {
+				if (data.data != null )  {%>
+					<% if (typeof(data.data.PROGRESS) !=="undefined"){%>
+					<% if (typeof(data.data.PROGRESS.date) !=="undefined"){%>
+					<% if (typeof(typeof data.data.PROGRESS.date) !== "undefined") { %>
+					<%=data.title%> <span class="plate_asof">(As of : <%=(typeof data.data.PROGRESS.date == 'undefined')?'0%':data.data.PROGRESS.date%>) </span>
+					<% } else {%>
+					<%=data.title%>
+					<% }}else {%>
+					<%=data.title%>
+					<% }%>
+					<% }%>
+				<% } else { %>Progress <% }%>
+			<% } else { %>Progress <% }%>
 		</div>
 		<div class="col-md-12 portlet_content pl0">
 			<%console.log(data)%>
 			<div class="row">
 				<div class="col-md-4">
 					<div class="row ml0">
+						<%  if (typeof(data.data) !=="undefined" ) {
+						if (data.data != null ) {%>
+						<% if (typeof(data.data.PROGRESS) !=="undefined"){%>
 						<div class="col-md-12 item psd_data_type1">
 							<span class="item_title">Early</span>
 							<span class="item_value iv_early"><%=(typeof data.data.PROGRESS.currentEarly == 'undefined')?'0%':data.data.PROGRESS.currentEarly%></span>
@@ -42,6 +51,89 @@
 							</div>
 							<br><br><br>
 						</div>
+						<% } else {%>
+						<div class="col-md-12 item psd_data_type1">
+							<span class="item_title">Early</span>
+							<span class="item_value iv_early">0%</span>
+						</div>
+						<div class="col-md-12 item psd_data_type1">
+							<span class="item_title">Actual</span>
+							<span class="item_value iv_late">0%</span>
+						</div>
+						<div class="col-md-12 item psd_data_type1">
+							<span class="item_title">Late</span>
+							<span class="item_value iv_actual">0%</span>
+						</div>
+						<div class="col-md-12 item psd_data_type2">
+							<span class="item_title">Variance</span>
+							<div class="">
+								<div class="col-md-6 item">
+									<span class="item_title_variance">Early</span>
+									<span class="item_value_variance iv_early">0%</span>
+								</div>
+								<div class="col-md-6 item">
+									<span class="item_title_variance">Late</span>
+									<span class="item_value_variance iv_actual">0%</span>
+								</div>
+							</div>
+							<br><br><br>
+						</div>
+						<% } } else { %>
+						<div class="col-md-12 item psd_data_type1">
+							<span class="item_title">Early</span>
+							<span class="item_value iv_early">0%</span>
+						</div>
+						<div class="col-md-12 item psd_data_type1">
+							<span class="item_title">Actual</span>
+							<span class="item_value iv_late">0%</span>
+						</div>
+						<div class="col-md-12 item psd_data_type1">
+							<span class="item_title">Late</span>
+							<span class="item_value iv_actual">0%</span>
+						</div>
+						<div class="col-md-12 item psd_data_type2">
+							<span class="item_title">Variance</span>
+							<div class="">
+								<div class="col-md-6 item">
+									<span class="item_title_variance">Early</span>
+									<span class="item_value_variance iv_early">0%</span>
+								</div>
+								<div class="col-md-6 item">
+									<span class="item_title_variance">Late</span>
+									<span class="item_value_variance iv_actual">0%</span>
+								</div>
+							</div>
+							<br><br><br>
+						</div>
+						<%  } %>
+						<%} else {%>
+						<div class="col-md-12 item psd_data_type1">
+							<span class="item_title">Early</span>
+							<span class="item_value iv_early">0%</span>
+						</div>
+						<div class="col-md-12 item psd_data_type1">
+							<span class="item_title">Actual</span>
+							<span class="item_value iv_late">0%</span>
+						</div>
+						<div class="col-md-12 item psd_data_type1">
+							<span class="item_title">Late</span>
+							<span class="item_value iv_actual">0%</span>
+						</div>
+						<div class="col-md-12 item psd_data_type2">
+							<span class="item_title">Variance</span>
+							<div class="">
+								<div class="col-md-6 item">
+									<span class="item_title_variance">Early</span>
+									<span class="item_value_variance iv_early">0%</span>
+								</div>
+								<div class="col-md-6 item">
+									<span class="item_title_variance">Late</span>
+									<span class="item_value_variance iv_actual">0%</span>
+								</div>
+							</div>
+							<br><br><br>
+						</div>
+						<% }%>
 					</div>
 				</div>
 				<div class="col-md-4">
