@@ -785,6 +785,95 @@ class Dashboard_model extends CI_Model
         $query = $this->db->get();
         return $query->result_array();
     }
+
+    FUNCTION format_cash_mil($cash)
+    {
+
+        $cash = (0 + STR_REPLACE(',', '', $cash));
+        IF (!IS_NUMERIC($cash)) {
+            RETURN 0;
+        }
+        IF ($cash > 1000000000) {
+            RETURN ROUND(($cash / 1000000000), 2) . ' bil';
+        } ELSE {
+            RETURN ROUND($cash / 1000, 4) . ' Th';
+        }
+
+        RETURN NUMBER_FORMAT($cash);
+    }
+
+    FUNCTION format_cash_bil($cash)
+    {
+
+        $cash = (0 + STR_REPLACE(',', '', $cash));
+        IF (!IS_NUMERIC($cash)) {
+            RETURN 0;
+        }
+        IF ($cash > 1000000) {
+            RETURN ROUND(($cash / 1000000), 2) . ' Mil';
+        } ELSE {
+            RETURN ROUND($cash / 1000, 3) . ' Th';
+        }
+
+        RETURN NUMBER_FORMAT($cash);
+    }
+
+    public function getCost()
+    {
+        $psd = 0.00;
+        $ap = 0.00;
+        $pdp = 0.00;
+        $wpc = 0.00;
+        $retsum = 0.00;
+        $vorder = 0.00;
+        $consum = 0.00;
+        $sql = "SELECT dt.\"id\", dt.\"item_id\", dt.\"name\", dt.\"date\", dt.\"value\" FROM \"data_sources\" dt join \"items\" i on dt.\"item_id\"=i.\"id\" and i.\"slug\"='dashboard' and dt.\"date\" = (SELECT distinct max(dt.\"date\")FROM \"data_sources\" dt join \"items\" i on dt.\"item_id\"=i.\"id\" and i.\"slug\"='dashboard');";
+        $query = $this->db->query($sql);
+        $result = $query->result_array();
+       
+        foreach ($result as $key => $val) {
+            $json = $val['value'];
+        }
+        $obj = json_decode($json);
+        if(($obj->{'final'})!= "undefined"){
+            $psd = $this->format_cash_bil($obj->{'final'}->{'project_spend_to_date'});
+            $ap = $this->format_cash_bil($obj->{'final'}->{'awarded_package'});
+            $pdp = $this->format_cash_mil($obj->{'final'}->{'pdp_reimbursables'});
+            $wpc = $this->format_cash_mil($obj->{'final'}->{'wpcs_payment'});
+            $retsum = $this->format_cash_mil($obj->{'final'}->{'retention_sum'});
+            $vorder = $this->format_cash_mil($obj->{'final'}->{'variation_orders'});
+            $consum = $this->format_cash_mil($obj->{'final'}->{'contigency_sum'});
+            $data = Array('data' => Array(
+                'project_spend_to_date' => $psd, //Bil
+                'awarded_packages' => $ap, //Bil
+                'pdp_reimbursables' => $pdp, //Mil
+                'wpcs_payment' => $wpc, //Bil
+                'retention_sum' => $retsum, //Mil
+                'variation_orders' => $vorder, //Mil
+                'contingency_sum' => $consum //Bil
+            ));
+        }else{
+            $data = Array('data' => Array(
+                'project_spend_to_date' => 0, //Bil
+                'awarded_packages' => 0, //Bil
+                'pdp_reimbursables' =>0, //Mil
+                'wpcs_payment' => 0, //Bil
+                'retention_sum' => 0, //Mil
+                'variation_orders' => 0, //Mil
+                'contingency_sum' => 0 //Bil
+            ));
+        }
+        return $data;
+    }
+
+    public function setComments($data)
+    {
+
+        $this->db->insert('tbl_psds_comment', $data);
+        return $this->db->affected_rows();
+
+
+    }
     //    Author:Sebin Thomas
 //    Usage : Get Comments
 //    Created:
@@ -1182,6 +1271,23 @@ class Dashboard_model extends CI_Model
          return $query->result_array();*/
     }
 
+    public function get_comments_ps()
+    {
+        $comments_ps = array();
+        $sql = "SELECT \"m_id\", \"message\", \"ring_slug\",\"timestamps\", \"data_date\" FROM \"tbl_psds_comment\" order by \"timestamps\" desc";
+        $query = $this->db->query($sql);
+        $result = $query->result_array();
+        $i = 0;
+        foreach ($result as $val) {
+            $comments_ps[$i]["message_id"] = $val['m_id'];
+            $comments_ps[$i]["comment"] = $val['message'];
+            $comments_ps[$i]["Date"] = $val['data_date'];
+            $comments_ps[$i]["ring"] = $val['ring_slug'];
+            $i++;
+        }
+        return $comments_ps;
+    }
+
 //    Author:Agaile Victor
 //    Usage : Testing reports of 58 trains
 //    Created: 09/05/2016
@@ -1404,7 +1510,7 @@ class Dashboard_model extends CI_Model
     /**
      * @return array
      */
-    public function get_comments_ps()
+    /*public function get_comments_ps()
     {
         $comments_ps = array();
         $sql = "SELECT \"MESSAGE_ID\", \"MESSAGE\", to_char(\"TIMESTAMP\", 'DD Mon YYYY') as timestamp,to_char(\"DATE_SELECTED\", 'DD Mon YYYY') as date,\"RING_NUMBER\" FROM \"tbl_psds_comment\" ORDER BY \"TIMESTAMP\" desc";
@@ -1419,7 +1525,7 @@ class Dashboard_model extends CI_Model
             $i++;
         }
         return $comments_ps;
-    }
+    }*/
     //    Author:ANCY MATHEW 23/06/2016
     //    Usage : Store ps and ds Comments
     //    Created:
@@ -1427,13 +1533,7 @@ class Dashboard_model extends CI_Model
      * @param $data
      * @return mixed
      */
-    public function set_psds_comments($data)
-    {
-//        print_r($data);
-        $this->db->insert('tbl_psds_comment', $data);
-        return $this->db->affected_rows();
-
-    }
+    
     //    Author:ANCY MATHEW
     //    Usage : Summary PS&DS
     //    Created: 24/06/2016
@@ -2065,4 +2165,5 @@ class Dashboard_model extends CI_Model
         $region_progress['value'] = json_encode($tem_array);
         return $region_progress;
     }
+
 }

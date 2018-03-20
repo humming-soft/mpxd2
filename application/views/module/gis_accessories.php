@@ -9,12 +9,13 @@
 			<span class="set3">Planned</span>
 			<span class="set4">Variance</span>
 			<span class="set5">Trend</span>
+
 		</div>
 		<div id="pop_value">
-			<span class="set1">76%</span>
-			<span class="set2">78%</span>
-			<span class="set3">-2w</span>
-			<span class="set4"><i class="fa fa-arrow-up" aria-hidden="true"></i> UP</span>
+			<span class="set1">0%</span>
+			<span class="set2">0%</span>
+			<span class="set3">0w</span>
+			<span class="set4"><i class="fa fa-arrow-down" aria-hidden="true"></i> DOWN</span>
 		</div>
 	</div>
 	<div id="plate_commercial">
@@ -31,13 +32,13 @@
 		</div>
 	
 		<div id="pcom_value">
-			<span class="set1">1.57 Bil</span>
-			<span class="set2">1.56 Bil </span>
-			<span class="set3">1.55 Mil</span>
-			<span class="set4">13.50 Bil</span>
-			<span class="set5">382.51 Mil</span>
-			<span class="set6">502.80 Mil</span>
-			<span class="set7">775.46 Mil</span>
+			<span class="set1"><?php echo $data['project_spend_to_date']; ?></span>
+			<span class="set2"><?php echo $data['awarded_packages']; ?> </span>
+			<span class="set3"><?php echo $data['pdp_reimbursables']; ?></span>
+			<span class="set4"><?php echo $data['wpcs_payment']; ?></span>
+			<span class="set5"><?php echo $data['retention_sum']; ?></span>
+			<span class="set6"><?php echo $data['variation_orders']; ?></span>
+			<span class="set7"><?php echo $data['contingency_sum']; ?></span>
 		</div>
 	</div>
 	<div id="plate_legend">

@@ -102,6 +102,7 @@ class Dashboard extends CI_Controller {
 
         if (!$this->session->userdata('uid'))
             return redirect('/');
+       // $data['menu'] = $this->dashboard_model->getCost();
 
 //        $data = $this->dashboard_model->get_source_archivable(5);
 //        $data = json_decode($data[0]['value'], true);
@@ -147,24 +148,8 @@ class Dashboard extends CI_Controller {
 //
 //
 //        //print_r(array_keys(json_encode($data[0]['value'])));die();
-//        $data = Array('data' => Array(
-//                'overall_actual' => $actual,
-//                'overall_early' => $early,
-//                'overall_late' => $late,
-//                'overall_variance' => $var_early,
-//                // 'project_spend_to_date' => 9.3, //Bil
-//                // 'awarded_packages' => "21.0", //Bil
-//                // 'pdp_reimbursables' => 972.5, //Mil
-//                // 'wpcs_payment' => 7.5, //Bil
-//                // 'retention_sum' => 316.6, //Mil
-//                // 'variation_orders' => 198.4, //Mil
-//                // 'contingency_sum' => 241.2, //Bil
-//                // 'vo_number' => 747,
-//                // 'contingency_total' => 3.2, //Bil
-//                'progress_date' => $date,
-//				'comdate' => $comdate
-//
-//            /*
+   
+            //$value .=','..','..','..','..','..',777,';
 //              'project_value' => 36.6,
 //              'vo_value' => 2.5,
 //              'claims' => 39.1,
@@ -183,8 +168,11 @@ class Dashboard extends CI_Controller {
 //            foreach ($d as $kk => $dd)
 //                $data['data'][$kk] = $dd;
 //        }
-//        $this->load->view('index', $data);
-        $this->load->view('index');
+
+        $data = $this->dashboard_model->getCost();
+        
+        $this->load->view('index',$data);
+       // $this->load->view('index');
     }
 
     public function view($item = FALSE, $query_type = FALSE, $query_key = FALSE) {
@@ -218,6 +206,36 @@ class Dashboard extends CI_Controller {
 //        $this->load->view('templates/header', $data);
 //        $this->load->view('dashboard/view', $data);
         $this->load->view('portlets_holder',$data);
+    }
+    public function ringComment(){
+        if ($this->input->get()) {
+            $date=date_create($this->input->get('date'));
+            $data = array(
+                'message' => $this->input->get('comments'),
+                'ring_slug' => $this->input->get('r'),
+                'timestamps' =>date('Y-m-d h:i:s'),
+                'data_date' =>date_format($date,'Y/m/d')
+            );
+            $result = $this->dashboard_model->setComments($data);
+            $int = (int)$result;
+            if($int > 0){
+                $data['item'] = 1;
+            }else{
+                $data['item'] = 0;
+            }
+
+        } else {
+            return show_404();
+        }
+        $this->load->view('dashboard/api', $data);
+        
+    }
+    public function getComment(){
+
+        $comments = $this->dashboard_model->get_comments_ps();
+        $data['item'] = $comments;
+        $this->load->view('dashboard/api', $data);
+
     }
 
     public function portlet($slug = FALSE, $page = FALSE) {
