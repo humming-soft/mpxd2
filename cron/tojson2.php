@@ -81,7 +81,7 @@ function kpi($slug){
  */
 function info($slug){
 	$query = db()->package_info()
-		->select('spd','type','url')
+		->select('spd','type')
 		->where("slug", $slug)
 		->or("slug", strtoupper($slug));
 	$result = array_map('iterator_to_array', iterator_to_array($query));
@@ -109,7 +109,7 @@ function getName($slug){
  */
 function contractor($slug){
 	$query = db()->contractors()
-		->select('contractor')
+		->select('contractor','url')
 		->where("slug", $slug)
 		->or("slug", strtoupper($slug));
 	$result = array_map('iterator_to_array', iterator_to_array($query));
@@ -123,52 +123,68 @@ function contractor($slug){
  * @Desc
  */
 function packageInfo($slug, $type = 1){
-	$contractor = contractor($slug);
-	$i = array();
-	$i["name"] = getName($slug);
-	foreach ($contractor as $value) {
-		$i["contractor"] = $value['contractor'];
-	}
+	    $i = array();
+		$i["name"] = getName($slug);
 	if ($type == 1) {
+		$contractor = contractor($slug);
+	    foreach ($contractor as $value) {
+		$i["contractor"] = $value['contractor'];
+		$i["url"] = $value['url'];
+	    }
 		$info = info($slug);
 		$i["station"] = array();
 		$i["mspr"] = array();
 		$i["depot"] = array();
-		foreach ($info as $value) {
-			if ($value["type"] == 1) {
-				array_push($i["station"], $value["spd"]);
-			} elseif ($value["type"] == 2) {
-				array_push($i["mspr"], $value["spd"]);
+		foreach ($info as $value1) {
+			if ($value1["type"] == 1) {
+				array_push($i["station"], $value1["spd"]);
+			} elseif ($value1["type"] == 2) {
+				array_push($i["mspr"], $value1["spd"]);
 			} else {
-				array_push($i["depot"], $value["spd"]);
+				array_push($i["depot"], $value1["spd"]);
 			}
 		}
 	}
 	if ($type == 3) {
+		$contractor = contractor($slug);
+	    foreach ($contractor as $value) {
+		$i["contractor"] = $value['contractor'];
+	    }
 		$info = info($slug);
-		foreach ($info as $value) {
-			if ($value["type"] == 4) {
-			$i['code']=$value["spd"];
+		foreach ($info as $value1) {
+			if ($value1["type"] == 4) {
+			$i['code']=$value1["spd"];
 			}
 		}
 	}
 	if ($type == 4) {
+		$contractor = contractor($slug);
+	    foreach ($contractor as $value) {
+		$i["contractor"] = $value['contractor'];
+	    }
 		$info = info($slug);
 		$i["station"] = array();
 		$i["mspr"] = array();
 		$i["depot"] = array();
 		$i["code"] = array();
-		foreach ($info as $value) {
-			if ($value["type"] == 1) {
-				array_push($i["station"], $value["spd"]);
-			} elseif ($value["type"] == 2) {
-				array_push($i["mspr"], $value["spd"]);
-			} elseif ($value["type"] == 3){
-				array_push($i["depot"], $value["spd"]);
+		foreach ($info as $value1) {
+			if ($value1["type"] == 1) {
+				array_push($i["station"], $value1["spd"]);
+			} elseif ($value1["type"] == 2) {
+				array_push($i["mspr"], $value1["spd"]);
+			} elseif ($value1["type"] == 3){
+				array_push($i["depot"], $value1["spd"]);
 			}else{
-				array_push($i["code"],$value["spd"]);
+				array_push($i["code"],$value1["spd"]);
 			}
 		}
+	}
+	if ($type == 2) {
+		$contractor = contractor($slug);
+	    foreach ($contractor as $value) {
+		$i["contractor"] = $value['contractor'];
+		$i["stat"] = $value['url'];
+	    }
 	}
 	return $i;
 }
@@ -310,6 +326,7 @@ function tunnel_progress($slug){
 		->select( 'pagename', 'slug', 'name', 'value', 'prev_value', 'date')
 		->where("slug", $slug);
 	$result = array_map('iterator_to_array', iterator_to_array($query));
+	if($result != null){
 	$kadobj = (object)array('date' => date('d-M-y', strtotime($result[0]['date'])));
 	$tunnel[] = $kadobj;
 	foreach ($result as $q) {
@@ -318,6 +335,8 @@ function tunnel_progress($slug){
 	$temp['prev_value'] = $q['prev_value'];
 	array_push($tunnel,$temp);
 	}
+	}
+	
 	return $tunnel;
 }
 
@@ -412,8 +431,8 @@ function dashboard(){
 function ns_summary($slugs){
 	$query = db()->{'"scurve"'}
 		->select('pagename','early_data','delayed_data','actual_data','var_early','var_late','trend')
-		->where("slug", $slugs)
-		->and("scurve_date", db()->scurve()->select('MAX(scurve_date)'));
+		->where("slug", $slugs);
+	
 	$result= array_map('iterator_to_array', iterator_to_array($query));
 	return $result;
 }
@@ -428,6 +447,7 @@ function testAndCompletion($slug){
 				 ->where("slug", $slug)
 				 ->order("train");
 	$result= array_map('iterator_to_array', iterator_to_array($query));
+	if($result != null){
 	$kadobj = (object)array('date' => date('d-M-y', strtotime($result[0]['data_date'])));
 	$train[] = $kadobj;
 	foreach ($result as $q) {
@@ -454,6 +474,7 @@ function testAndCompletion($slug){
 	$temp['pat_fail'] = $q['pat_fail'];
 	array_push($train,$temp);
 	}
+	}
 	return $train;
 }
 
@@ -466,8 +487,8 @@ function testAndCompletion($slug){
 
 function piers($slug){
 	$final = array();
-	$query = db()->{'"pier_ref"'}
-				 ->select('pier_v','pier_id','pier_north_id', 'pier_south_id','pier_marker_a','pier_marker_b', 'pier_layout', 'pier_type', 'span_type', 'sbg')
+	$query = db()->{'"pier_span_col"'}
+				 ->select('pier_v','pier_id','pier_north_id', 'pier_south_id','pier_marker_a','pier_marker_b', 'pier_layout', 'pier_type', 'span_type')
 				 ->where("pier_v", $slug);
 	$result= array_map('iterator_to_array', iterator_to_array($query));
 	foreach($result as $v){	
@@ -664,6 +685,7 @@ function build_viaducts($slug){
 				 ->where("slug", $slug)
 				 ->order("train_no");
 	$result1= array_map('iterator_to_array', iterator_to_array($query1));
+	if($result1 != null){
 	$kadobj = (object)array('date' => date('d-M-y', strtotime($result1[0]['data_date'])));
 	$final[] = $kadobj;
     foreach ($result1 as $q) {
@@ -689,6 +711,7 @@ function build_viaducts($slug){
 				$puzhen['date_forecast'] = $q['forecast'];
 				$puzhen['comments'] = "";
 	 array_push($final,$puzhen);
+	}
 	}
 	$query2 = db()->{'"et_smh"'}
 				 ->select('pagename', 'slug', 'train_no', 'car1', 'car1_perc', 'car1_out_date', 
@@ -813,6 +836,7 @@ function build_viaducts($slug){
 					->where("slug", $slug)
 					->order("train");
 				$result= array_map('iterator_to_array', iterator_to_array($query));
+				if($result != null){
 				$kadobj = (object)array('date' => date('d-M-y', strtotime($result[0]['data_date'])));
 	            $final[] = $kadobj;
 				foreach ($result as $q) {
@@ -821,6 +845,7 @@ function build_viaducts($slug){
 						$temp['TRAIN_NO'] =array($q['train']);
 						 array_push($final,$temp);
 					}
+				}
 				}
 
 				$query2 = db()->{'"et_overall_open"'}
@@ -851,6 +876,7 @@ function build_viaducts($slug){
 				 ->where("slug", $slug)
 				 ->and("trend_id", db()->tbl_psds_trending_and_progress()->select('MAX(trend_id)'));
 				 $result= array_map('iterator_to_array', iterator_to_array($query));
+				 if($result != null){
 				 $kadobj = (object)array('date' => date('d-M-y', strtotime($result[0]['data_date'])));
 	             $final[] = $kadobj;
 				 foreach ($result as $q) {
@@ -865,6 +891,7 @@ function build_viaducts($slug){
 					
 				  array_push($final,$temp);
 				 }
+				 }
 				 return $final;
  }
  function psSummary($slug){
@@ -876,6 +903,7 @@ function build_viaducts($slug){
                   'dc_progress', 'publish_date', 'data_date')
 				 ->where("slug", $slug);
 				 $result= array_map('iterator_to_array', iterator_to_array($query));
+				 if($result != null){
 				 $kadobj = (object)array('date' => date('d-M-y', strtotime($result[0]['data_date'])));
 	             $final[] = $kadobj;
 				 foreach ($result as $q) {
@@ -884,6 +912,7 @@ function build_viaducts($slug){
 						  $temp['ac']=$q['ac_progress'];
 						  $temp['dc'] =$q['dc_progress'];
 				  array_push($final,$temp);
+				 }
 				 }
 				 return $final;
  }
@@ -897,16 +926,18 @@ function build_viaducts($slug){
 				 ->where("slug", $slug)
 				 ->order("train");
 	$result= array_map('iterator_to_array', iterator_to_array($query));
+	if($result != null){
 	$kadobj = (object)array('date' => date('d-M-y', strtotime($result[0]['data_date'])));
 	$final[] = $kadobj;
+	foreach ($result as $q) {
+				$temp['open'] =array("Train ".$q['train'],$q['open_job'],$q['closed_job']);
+	array_push($final,$temp);
+	}}
 	$query1 = db()->{'"et_outstanding"'}
 				 ->select('pagename', 'slug', 'date', 'job_done', 'target', 'publish_date', 'data_date')
 				 ->where("slug", $slug);
 	$result1= array_map('iterator_to_array', iterator_to_array($query1));
-	foreach ($result as $q) {
-				$temp['open'] =array("Train ".$q['train'],$q['open_job'],$q['closed_job']);
-	array_push($final,$temp);
-	}
+	
 	foreach ($result1 as $s) {
 				$temp1['outstanding'] =array($s['date'],$s['job_done'],$s['target']);
 	array_push($final,$temp1);
@@ -921,6 +952,7 @@ function build_viaducts($slug){
 				 ->where("slug", $slug)
 				 ->order("phase");
 	$result= array_map('iterator_to_array', iterator_to_array($query));
+	if($result != null){
 	$kadobj = (object)array('date' => date('d-M-y', strtotime($result[0]['data_date'])));
 	$final[] = $kadobj;
 	$var2="-";
@@ -942,7 +974,7 @@ function build_viaducts($slug){
 					$temp['trial_date'] ="-";
 				}
 	array_push($final,$temp);
-	}
+	}}
 	 return $final;
  }
   function twTranding($slug)
@@ -955,7 +987,9 @@ function build_viaducts($slug){
                     'in_trend', 'in_progress','publish_date', 'data_date')
 				 ->where("slug", $slug)
 				 ->and("tw_trend_id", db()->tbl_tw_trending_and_progress()->select('MAX(tw_trend_id)'));
+				 
 				 $result= array_map('iterator_to_array', iterator_to_array($query));
+				 if($result != null){
 				 $kadobj = (object)array('date' => date('d-M-y', strtotime($result[0]['data_date'])));
 	             $final[] = $kadobj;
 				 foreach ($result as $q) {
@@ -966,6 +1000,7 @@ function build_viaducts($slug){
 							$temp['i_arrow'] = $q['in_trend'];
 							$temp['i_percentage'] = $q['in_progress'];
 				  array_push($final,$temp);
+				 }
 				 }
 				 return $final;
  }
@@ -979,12 +1014,14 @@ function build_viaducts($slug){
 				 ->where("slug", $slug)
 				 ->order("prog_id");
 				 $result= array_map('iterator_to_array', iterator_to_array($query));
+				 if($result != null){
 				 $kadobj = (object)array('date' => date('d-M-y', strtotime($result[0]['data_date'])));
 	             $final[] = $kadobj;
 				 foreach ($result as $q) {
 						    $temp['act'] = $q['activity'];
 						    $temp['per'] = $q['progress'];
 				  array_push($final,$temp);
+				 }
 				 }
 				 return $final;
  }
@@ -1001,6 +1038,7 @@ $final = array();
 		$etde_progress = etDeProgress($slug);
 		$overall = overallItem($slug);
 		$timeline = projectTimeline($slug);
+		$progress = array();
 		if(sizeof($scurve['scurve'])>0 ) {
 		$actual = array();
 		$late = array();
@@ -1046,7 +1084,16 @@ $final = array();
 		 $finalSCURVE = array("scurve" => (sizeof($scurve['scurve'])>0 ? $scurvearr : []));
 		 $finalMANP = array("sys_etde_manufacturing_progress" => $manufacturing);
 	     $finalACTP = array("sys_etde_actual_progress" => $actualProgress);
-	     $finalETP =array('sys_etde_progress' =>array_merge($progress,$etde_progress));
+		 if(sizeof($progress)>0 && sizeof($etde_progress)>0){
+			  $finalETP =array('sys_etde_progress' =>array_merge($progress,$etde_progress));
+		 }else if(sizeof($progress)>0 && sizeof($etde_progress) < 0 ){
+			   $finalETP =array('sys_etde_progress' =>$progress);
+		 }else if(sizeof($progress)<0 && sizeof($etde_progress) > 0){
+			  $finalETP =array('sys_etde_progress' =>$etde_progress);
+		 }else{
+			 $finalETP =array('sys_etde_progress' =>array());
+		 }
+	    
 	     $finalOPEN = array("sys_etde_overall_open_item_closure" => $overall);
 		 $finalTIME = array("sys_etde_project_timeline" => $timeline);
 		 $finalTESTING = array("sys_etde_testing" => $testAndCompletion);
@@ -1218,11 +1265,12 @@ function build_ug($slug){
 
 	//station progress
 	$station_progress_arr=new stdClass();
-	$station_progress_arr->date = date('d-M-y', strtotime($station_progress[0]['asof']));
-	foreach($station_progress as $q){
+	if(sizeof($station_progress) > 0){
+		$station_progress_arr->date = date('d-M-y', strtotime($station_progress[0]['asof']));
+		foreach($station_progress as $q){
 		$station_progress_arr->$q['station_name'] = array("progress" => (float) $q['progress']);
+		}
 	}
-
 	$finalPROGRESS = array("overall_tunnel_progress" => $tunnel_progress);
 	$finalSP =  array("station" => $station_progress_arr);
 	$finalKAD = array("KAD" => $kad);
@@ -1446,6 +1494,101 @@ function testComm($slug){
 	}
 	 return $final;
  }
+ function kd_summary($slug){
+	 $final = array();
+	 $temp=array();
+	 $query1 = db()->{'"tw_kd_overallprogress"'}
+				 ->select('kd_id', 'pagename', 'slug', 'region', 'tsp', 'tsa', 'spp', 'spa', 'lrdp', 'lrda', 
+       'rsap', 'rsaa', 'rfp', 'rfa', 'cp', 'ca', 'dp', 'da', 'wdp', 'wda','rap','raa', 'prbip', 
+       'prbia', 'prip', 'pria', 'prcp', 'prca', 'ewp', 'ewa', 'ctcpp', 'ctcpa','cpp','cpa', 
+       'total_plan','total_act','total_var','var_week','publish_date','data_date')
+				 ->where("slug", $slug)
+				 ->order("kd_id");
+	$result1= array_map('iterator_to_array', iterator_to_array($query1));
+	$kadobj = (object)array('date' => date('d-M-y', strtotime($result1[0]['data_date'])));
+	$final[] = $kadobj;
+    foreach ($result1 as $q) {
+		        $temp['1'] =array("Track Survey",$q['tsp'],$q['tsa']);
+				$temp['2'] =array("Surface Preparation",$q['spp'],$q['spa']);
+				$temp['3'] =array("Long Rail Distibution",$q['lrdp'],$q['lrda']);
+				$temp['4'] =array("Rail & Sleeper Assembly",$q['rsap'],$q['rsaa']);
+				$temp['5'] =array("Rebar & Form Settingy",$q['rfp'],$q['rfa']);
+				$temp['6'] =array("Concreting",$q['cp'],$q['ca']);
+				$temp['7'] =array("Derailment Wall",$q['dp'],$q['da']);
+				$temp['8'] =array("Welding/Destressing",$q['wdp'],$q['wda']);
+				$temp['9'] =array("Rail Alignment",$q['rap'],$q['raa']);
+				$temp['10'] =array("PR Bracket Installation",$q['prbip'],$q['prbia']);
+				$temp['11'] =array("PR Installation/Alignment",$q['prip'],$q['pria']);
+				$temp['12'] =array("PR Cover Installation",$q['prcp'],$q['prca']);
+				$temp['13'] =array("Emergency Walkway",$q['ewp'],$q['ewa']);
+				$temp['14'] =array("Cable Through & Containment",$q['ctcpp'],$q['ctcpa']);
+				$temp['15'] =array("Commissioning",$q['cpp'],$q['cpa']);
+				$temp['total_plan'] = $q['total_plan'] ;
+				$temp['total_act'] = $q['total_act'] ;
+				$temp['total_var'] = $q['total_var'] ;
+				$temp['var_week'] = $q['var_week'] ;
+	}
+	 array_push($final,$temp);
+	 return $final;
+ }
+ function build_kd($slug){
+	$info = packageInfo($slug,4);
+	$gallery = gallery($slug);
+	$kad = kad($slug,3);
+	$scurve = scurve($slug);
+	$summary = kd_summary($slug);
+	$progress = array();
+	if(sizeof($scurve['scurve'])>0 ) {
+		$actual = array();
+		$late = array();
+		$early = array();
+		foreach ($scurve['scurve_main'] as $q) {
+			if ($q['actual_data'] != '-')
+				$actual[] = (float)$q['actual_data'];
+			if ($q['delayed_data'] != '-')
+				$late[] = (float)$q['delayed_data'];
+			if ($q['early_data'] != '-')
+				$early[] = (float)$q['early_data'];
+		}
+		$scurvearr = array(
+			'date' => date('d-M-y', strtotime($scurve['scurve'][0]['scurve_date'])),
+			'actualData' => $actual,
+			'earlyData' => $early,
+			'delayedData' => $late,
+			'currentEarly' => $scurve['scurve'][0]['early_data'] . '%',
+			'currentLate' => $scurve['scurve'][0]['delayed_data'] . '%',
+			'currentActual' => $scurve['scurve'][0]['actual_data'] . '%',
+			'varEarly' => $scurve['scurve'][0]['var_early'] . 'w',
+			'varLate' => $scurve['scurve'][0]['var_late'] . 'w',
+			'trend' => $scurve['scurve'][0]['trend'],
+			'chartType' => "long",
+			'viewType' => "2",
+		);
+	}
+	if(sizeof($scurve['scurve'])>0 ) {
+			$progress['PROGRESS'] = array(
+				'date' => date('d-M-y', strtotime($scurve['scurve'][0]['scurve_date'])),
+				'currentEarly' => $scurve['scurve'][0]['early_data'] . '%',
+				'currentLate' => $scurve['scurve'][0]['delayed_data'] . '%',
+				'currentActual' => $scurve['scurve'][0]['actual_data'] . '%',
+				'varEarly' => $scurve['scurve'][0]['var_early'] . 'w',
+				'varLate' => $scurve['scurve'][0]['var_late'] . 'w',
+				'varTrainCompletion' => "58%",
+				'viewType' => "2",
+			);
+		}
+	$galleryFormatter = array("title"=> strtoupper($slug).' Image Gallery',"items" => $gallery);
+	$finalKAD = array("KAD" => $kad);
+	$finalINFO = array("INFO" =>$info);
+	$finalGALLERY = array("gallery" => $galleryFormatter);
+	$finalProgress = array ("sys_twmv_actual_progress"=>$progress);
+	$finalOverAll =  array ("sys_twmv_kd_overall_progress"=>$summary);
+	$finalSummary =  array ("sys_twmv_kd_summary"=>$summary);
+	$finalSCURVE = array("scurve" => (sizeof($scurve['scurve'])>0 ? $scurvearr : []));
+	$superFinal = array($slug => array_merge($finalINFO,  $finalKAD, $finalGALLERY, $finalSCURVE,$finalOverAll,$finalProgress,$finalSummary));
+	return json_encode($superFinal);
+	 
+ }
 function build_ring($slug){
 
 	$info = packageInfo($slug,4);
@@ -1487,9 +1630,9 @@ function build_ring($slug){
 	$finalINFO = array("INFO" =>$info);
 	$finalGALLERY = array("gallery" => $galleryFormatter);
 	$finalSCURVE = array("scurve" => (sizeof($scurve['scurve'])>0 ? $scurvearr : []));
-	$finalINFO = array("sys_psds_trip_cable" =>$trip);
+	$finalTrip = array("sys_psds_trip_cable" =>$trip);
 	$finalGALLERY = array("sys_psds_installation" => $testing);
-	$superFinal = array($slug => array_merge($finalINFO,  $finalKAD, $finalGALLERY, $finalSCURVE));
+	$superFinal = array($slug => array_merge($finalINFO,  $finalKAD, $finalGALLERY, $finalSCURVE,$finalTrip));
 	return json_encode($superFinal);
 }
 /**
@@ -1557,26 +1700,53 @@ function build_procurement($slug){
  * @return Array
  * @Desc  Portlet specific info of Under Ground (UG)
  */
-function build_dashboard($get_asof = false){
 
+function overSummary($slug){
+
+	$arr_slugs = array();
+	if($slug==="viaduct"){
+		array_push($arr_slugs, "v201","v202","v203", "v204","v205","v206","v207", "v208", "v209", "v210");
+	}else if($slug==="depot"){
+		array_push($arr_slugs, "serdang-dpt");
+	}else if($slug==="mspr"){
+		array_push($arr_slugs, "mspr1","mspr2","mspr3","mspr4","mspr5","mspr6","mspr7","mspr8","mspr9","mspr10", "mspr11","mspr12","mspr13","mspr14","mspr15");
+	}else if($slug==="system"){
+		array_push($arr_slugs, "sys-etde","sys-psds","sys-twmv");
+	}else if($slug==="station"){
+		array_push($arr_slugs, "sg-buloh","dsara-damai","sri-dsara-west","sri-dsara-east","kepong-sentral","metro-prima","kepong-baru","jinjang","sri-delima","kg-batu","kentonmen","jln-ipoh",
+		"sentul-west","hkl","kg-baru-north","ampang-park","klcc-east","conlay","titiwangsa","trx","chan-sow-lin","bdr-malaysia-north","bdr-malaysia-south","kuchai-lama","tmn-naga-emas",
+		"sg-besi","tech-park","serdang-raya-north","serdang-raya-south","sri-kembangan","upm","tmn-universiti","equine-park","tmn-putra-permai","16-sierra","cyberjaya-north","cyberjaya-city-centre","putrajaya-sentral");
+	}
+	$summary = ns_summary($arr_slugs);
+	return $summary;
+}
+/**
+ * DASHBOARD
+ * @param $slug
+ * @return Array
+ * @Desc  Portlet specific info of Under Ground (UG)
+ */
+function build_dashboard($get_asof = false){
 	$commercial = dashboard();
-	$commercial_arr = new stdClass();
+	$overallViaduct=overSummary('viaduct');
+	$overallDepot=overSummary('depot');
+	$overallMspr=overSummary('mspr');
+	$overallSys=overSummary('system');
+	$overallStation=overSummary('station');
 	foreach($commercial as $k => $q){
 		$as_of = $q['as_of'];
 		$name = slugify($q['name']);
-		$commercial_arr->$name = (float) $q['value'];
-		if($k==0 || $k==1 || $k==2)
-			$commercial_arr->$name /= 1000;
-
+		$commercial_arr[$name ] = (float) $q['value'];
 	}
-	if($get_asof){
-		//$as_of = DateTime::createFromFormat('d-M-Y', $as_of)->format('Y-m-d');
-		return $as_of;
-	}
-	else
-		return json_encode($commercial_arr);
+	    $finalCom=array("final" => $commercial_arr );
+        $finalVIADUCT= array("viaduct" => $overallViaduct );
+	    $finalDEPOT = array("depot" => $overallDepot );
+	    $finalMSPR = array("mspr" => $overallMspr);
+	    $finalSYSTEM = array("system" => $overallSys);
+		$finalSTATION = array("station" => $overallStation );
+	    $superFinall =  array_merge($finalCom,$finalVIADUCT, $finalDEPOT, $finalMSPR, $finalSYSTEM ,$finalSTATION);
+		return json_encode($superFinall);
 }
-
 /**
  * Systems Summary
  * @param $slug
@@ -1585,10 +1755,10 @@ function build_dashboard($get_asof = false){
  */
 function build_systems_summary($slug){
 	$arr_slugs = array();
-	array_push($arr_slugs, "stc-psd-apg","icss-cmms","etde","twmv","psds","comms","afc");
+	array_push($arr_slugs,"sys-etde","sys-twmv","sys-psds");
 	$summary = ns_summary($arr_slugs);
-	$finalSUMMARY = array("syspackage" => $summary);
-	$superFinal = array($slug => array_merge($finalSUMMARY));
+    $finalSUMMARY = array("scorecard" => $summary);
+	$superFinal = array("summary" => array_merge($finalSUMMARY));
 	return json_encode($superFinal);
 }
 
@@ -1608,7 +1778,7 @@ function build_viaducts_summary($slug){
 	}
 	$summary = ns_summary($arr_slugs);
 	$finalSUMMARY = array("scorecard" => $summary);
-	$superFinal = array($slug => array_merge($finalSUMMARY));
+	$superFinal = array("summary" => array_merge($finalSUMMARY));
 	return json_encode($superFinal);
 }
 
@@ -1756,7 +1926,7 @@ function run(){
 				break;
 			case 10:
 				$dashboard = build_dashboard();
-				updateDB($q['slug'], $dashboard, build_dashboard(true));
+				updateDB($q['slug'], $dashboard, $date);
 				break;
 			case 11:
 				$systems_summary = build_systems_summary($q['slug']);
@@ -1774,8 +1944,12 @@ function run(){
 				$twdetail = build_twmv_detail($q['slug']);
 				updateDB($q['slug'], $twdetail, $date);
 				break;
+			case 17:
+				$kddetail = build_kd($q['slug']);
+				updateDB($q['slug'], $kddetail, $date);
+				break;
 			default:
-				echo "Nothing to run";
+				echo "---- ".$q['slug']. "--------";
 		}
 	}
 }
