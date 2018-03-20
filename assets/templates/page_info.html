@@ -15,7 +15,7 @@
                     <% if(typeof data.data.station != "undefined"){%>
                     <span class="item_title">Station</span>
                     <%_.each(data.data.station, function(i) {%>
-                        <span class="item_value iv_station"><i class="fa fa-train" aria-hidden="true"></i><%=i%></span>
+                        <span class="item_value iv_station"><i class="fa fa-train" aria-hidden="true"></i><a href="javascript:void(0);" onClick="loadPage('<%=String.prototype.toSlug(i)%>/index')"><%=i%></a></span>
                     <%})}%>
                 </div>
                 <div class="col-md-6">
@@ -23,18 +23,18 @@
                         if(data.data.mspr.length > 0){%>
                      <span class="item_title">MSPR</span>
                     <%_.each(data.data.mspr, function(i) {%>
-                        <span class="item_value iv_mspr"><i class="fa fa-car" aria-hidden="true"></i><%=i%></span>
+                        <span class="item_value iv_mspr"><i class="fa fa-car" aria-hidden="true"></i></i><a href="javascript:void(0);" onClick="loadPage('<%=String.prototype.toSlug(i)%>/index')"><%=i%></a></span>
                     <%})}}%>
                     <% if(typeof data.data.depot != "undefined"){
                     if(data.data.depot.length > 0){%>
                     <span class="item_title">Depot</span>
                     <%_.each(data.data.depot, function(i) {%>
-                    <span class="item_value iv_mspr"><i class="fa fa-train" aria-hidden="true"></i><%=i%></span>
+                    <span class="item_value iv_mspr"><i class="fa fa-train" aria-hidden="true"></i></i><a href="javascript:void(0);" onClick="loadPage('<%=String.prototype.toSlug(i)%>/index')"><%=i%></a></span>
                     <%})}}%>
                 </div>
                 <% if(typeof data.data.url != "undefined"){%>
                 <div class="pier_chart">
-                    <a href="javascript:void(0)" onClick="loadPage('<%=data.data.url%>')"><span class="item_value iv_pierchart"><i class="fa fa-map" aria-hidden="true"></i> Pier Chart</span></a>
+                    <a href="javascript:void(0)" onClick="loadPage('<%=data.data.url%>/piers')"><span class="item_value iv_pierchart"><i class="fa fa-map" aria-hidden="true"></i> Pier Chart</span></a>
                 </div>
                 <%}%>
             </div>

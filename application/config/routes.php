@@ -59,7 +59,9 @@ $route['draw'] = 'dashboard/draw';
 $route['save'] = 'dashboard/save';
 $route['404'] = 'dashboard/error_404';
 $route['dashboard'] = 'dashboard/dashboard';
-
+//$route['sys-psds/index'] = 'dashboard/psdsFront';
+$route['commentRing/(:any)'] = 'dashboard/ringComment';
+$route['getcommentRing/(:any)'] = 'dashboard/getComment';
 
 $route['login'] = 'dashboard/login';
 $route['logout'] = 'dashboard/logout';

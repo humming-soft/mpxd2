@@ -3,11 +3,13 @@
 		<div class="col-md-12 portlet_title">
 			<i class="fa_title_icon fa fa-circle-o-notch" aria-hidden="true"></i>
 			<% if (typeof(data.data[0]) !== "undefined") { %>
+			<%if (data.data != null )  {%>
 			<% if (typeof(data.data[0].date) !== "undefined") { %>
 			<%=data.title%> <h2 class="asof">(As of <%=data.data[0].date%>)</h2>
 			<% } else {%>
 			<%=data.title%>
-			<% }} %>
+			<% }}} %>
+
 		</div>
 		<div class="col-md-12 portlet_content">
 			<div class="">
@@ -21,7 +23,7 @@
 								<input type="checkbox" name="" value="">
 								Select All
 							</th> -->
-							<th class="col_separation col-md-3">North Pages</th>
+							<th class="col_separation col-md-3">Pages</th>
 							<th class="col_separation col-md-4" colspan="3">Percentage (%)</th>
 							<th class="col_separation col-md-3" colspan="2">Weeks</th>
 							<th class="col_separation col-md-1">Status</th>
@@ -38,30 +40,33 @@
 						</tr>
 					</thead>
 					<tbody>
-					<% if (typeof(data.data) !== "undefined") { %>
-							<%_.each(data.data, function(row) {
+					<%if (data.data != null )  {%>
+					<% if (typeof(data.data[0].data.summary.scorecard) !== "undefined") { %>
+							<%_.each(data.data[0].data.summary.scorecard, function(row) {
 							var numColor = "num-green";
 							var blinker = "";
-							if(row.varianceLate < 0  && row.varianceLate >= -4) {
+							if(row.var_late < 0  && row.var_late >= -4) {
 								numColor = "num-yellow";
-							}else if(row.varianceLate < -4  && row.varianceLate > -8) {
+							}else if(row.var_late < -4  && row.var_late > -8) {
 								numColor = "num-red";
-							}else if(row.varianceLate <= -8) {
+							}else if(row.var_late <= -8) {
 								blinker = "blink";
 							numColor = "num-red";
 							}
 							%>
 							<tr>
-							<td><%=row.item%></td>
-							<td class="val_early"><%=row.early%></td>
-							<td class="val_late"><%=row.late%></td>
-							<td class="val_actual"><%=row.actual%></td>
-							<td class="val_varearly"><%=row.varianceEarly%></td>
-							<td class="val_varlate"><%=row.varianceLate%></td>
+							<td><a href="<%=baseURL%><%=row.pagename%>/index"><span style="font-weight: 600;"></span><%=row.pagename.toUpperCase()%></a></td>
+							<td class="val_early"><%=row.early_data%></td>
+							<td class="val_late"><%=row.delayed_data%></td>
+							<td class="val_actual"><%=row.actual_data%></td>
+							<td class="val_varearly"><%=row.actual_data%></td>
+							<td class="val_varlate"><%=row.actual_data%></td>
 							<td class="ball_indicator mrt_colorcode_ball_1"><i class="fa fa-circle" aria-hidden="true"></i></td>
 						</tr>
 						<%});%>
-					<% } %>
+					<% }} else { %>
+					<td colspan="7">No Data Found</td>
+					<%}%>
 					</tbody>
 				</table>
 			</div>

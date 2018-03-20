@@ -3,8 +3,25 @@ $(document).ready(function(){
 	
 	// 
 	// directory
-	// 
-	
+	//
+	/*mpxd.constructors.sys_psds_gis = function(data) {
+		var el = "#portlet_" + data.id;
+		return new mpxd.modules.sys_psds_m.sys_psds_gis({data: data, el: el});
+	}
+	mpxd.modules.sys_psds_m.sys_psds_gis = Backbone.View.extend({
+		initialize: function (options) {
+			this.data = options.data;
+			this.render();
+		}, render: function () {
+			var that = this;
+			var html = mpxd.getTemplate(that.data.type);
+			template = _.template(html, {data: that.data});
+			that.$el.html(template);
+			that.$el.find('.portlet_content').css({"height":(that.$el.find('.content').parent().parent().parent().height())-40});
+			that.$el.find('.portlet_content').mCustomScrollbar({theme:"dark-3"});
+		}
+	})*/
+	//console.log("dada" + this.data);
 	$('#pl_package_V201').click(function(){
 		window.location.href = "viaduct.php";
 	})
@@ -13,25 +30,22 @@ $(document).ready(function(){
 	})
 	$('#plate_vector_map').load('assets/mmc/svg/plate_vector_map.svg',function(){
 
-		
-
-		// vector_track
 		var json = [ 
 			{"vector_track":"legend_v_track_1","vector_status":"0","url":""},
 			{"vector_track":"legend_v_track_2","vector_status":"1","url":""},
 			{"vector_track":"legend_v_track_3","vector_status":"2","url":""},
 			{"vector_track":"legend_v_track_4","vector_status":"3","url":""},
-			{"vector_track":"v_track_201","vector_status":"1","url":""},
-			{"vector_track":"v_track_202","vector_status":"2","url":""},
-			{"vector_track":"v_track_203","vector_status":"3","url":""},
-			{"vector_track":"v_track_ug","vector_status":"1","url":""},
+			{"vector_track":"v_track_201","vector_status":"0","url":""},
+			{"vector_track":"v_track_202","vector_status":"0","url":""},
+			{"vector_track":"v_track_203","vector_status":"0","url":""},
+			{"vector_track":"v_track_ug","vector_status":"0","url":""},
 			{"vector_track":"v_track_204","vector_status":"0","url":""},
 			{"vector_track":"v_track_205","vector_status":"0","url":""},
 			{"vector_track":"v_track_206","vector_status":"0","url":""},
 			{"vector_track":"v_track_207","vector_status":"0","url":""},
 			{"vector_track":"v_track_208","vector_status":"0","url":""},
 			{"vector_track":"v_track_209","vector_status":"0","url":""},
-			{"vector_track":"v_track_210","vector_status":"2","url":""}
+			{"vector_track":"v_track_210","vector_status":"0","url":""}
 		];
 		for (i = 0; i < json.length; i++) {
 			var b = json[i];
@@ -70,47 +84,47 @@ $(document).ready(function(){
 		
 		var json = [ 
 			{"vector_station":"legend_v_station_1","vector_status":"0"},
-			{"vector_station":"legend_v_station_2","vector_status":"1"},
-			{"vector_station":"legend_v_station_3","vector_status":"2"},
-			{"vector_station":"legend_v_station_4","vector_status":"3"},
-			{"vector_station":"v_station_1","vector_status":"1"},
-			{"vector_station":"v_station_2","vector_status":"2"},
-			{"vector_station":"v_station_3","vector_status":"3"},
+			{"vector_station":"legend_v_station_2","vector_status":"0"},
+			{"vector_station":"legend_v_station_3","vector_status":"0"},
+			{"vector_station":"legend_v_station_4","vector_status":"0"},
+			{"vector_station":"v_station_1","vector_status":"0"},
+			{"vector_station":"v_station_2","vector_status":"0"},
+			{"vector_station":"v_station_3","vector_status":"0"},
 			{"vector_station":"v_station_4","vector_status":"0"},
-			{"vector_station":"v_station_5","vector_status":"1"},
-			{"vector_station":"v_station_6","vector_status":"1"},
-			{"vector_station":"v_station_7","vector_status":"1"},
-			{"vector_station":"v_station_8","vector_status":"1"},
-			{"vector_station":"v_station_9","vector_status":"1"},
-			{"vector_station":"v_station_10","vector_status":"2"},
-			{"vector_station":"v_station_11","vector_status":"3"},
+			{"vector_station":"v_station_5","vector_status":"0"},
+			{"vector_station":"v_station_6","vector_status":"0"},
+			{"vector_station":"v_station_7","vector_status":"0"},
+			{"vector_station":"v_station_8","vector_status":"0"},
+			{"vector_station":"v_station_9","vector_status":"0"},
+			{"vector_station":"v_station_10","vector_status":"0"},
+			{"vector_station":"v_station_11","vector_status":"0"},
 			{"vector_station":"v_station_12","vector_status":"0"},
-			{"vector_station":"v_station_13","vector_status":"1"},
-			{"vector_station":"v_station_14","vector_status":"2"},
-			{"vector_station":"v_station_15","vector_status":"3"},
+			{"vector_station":"v_station_13","vector_status":"0"},
+			{"vector_station":"v_station_14","vector_status":"0"},
+			{"vector_station":"v_station_15","vector_status":"0"},
 			{"vector_station":"v_station_16","vector_status":"0"},
-			{"vector_station":"v_station_17","vector_status":"1"},
-			{"vector_station":"v_station_18","vector_status":"2"},
-			{"vector_station":"v_station_19","vector_status":"3"},
+			{"vector_station":"v_station_17","vector_status":"0"},
+			{"vector_station":"v_station_18","vector_status":"0"},
+			{"vector_station":"v_station_19","vector_status":"0"},
 			{"vector_station":"v_station_20","vector_status":"0"},
-			{"vector_station":"v_station_21","vector_status":"1"},
-			{"vector_station":"v_station_22","vector_status":"1"},
-			{"vector_station":"v_station_23","vector_status":"1"},
-			{"vector_station":"v_station_24","vector_status":"1"},
-			{"vector_station":"v_station_25","vector_status":"1"},
-			{"vector_station":"v_station_26","vector_status":"1"},
-			{"vector_station":"v_station_27","vector_status":"1"},
-			{"vector_station":"v_station_28","vector_status":"1"},
-			{"vector_station":"v_station_29","vector_status":"1"},
-			{"vector_station":"v_station_30","vector_status":"1"},
-			{"vector_station":"v_station_31","vector_status":"2"},
-			{"vector_station":"v_station_32","vector_status":"3"},
+			{"vector_station":"v_station_21","vector_status":"0"},
+			{"vector_station":"v_station_22","vector_status":"0"},
+			{"vector_station":"v_station_23","vector_status":"0"},
+			{"vector_station":"v_station_24","vector_status":"0"},
+			{"vector_station":"v_station_25","vector_status":"0"},
+			{"vector_station":"v_station_26","vector_status":"0"},
+			{"vector_station":"v_station_27","vector_status":"0"},
+			{"vector_station":"v_station_28","vector_status":"0"},
+			{"vector_station":"v_station_29","vector_status":"0"},
+			{"vector_station":"v_station_30","vector_status":"0"},
+			{"vector_station":"v_station_31","vector_status":"0"},
+			{"vector_station":"v_station_32","vector_status":"0"},
 			{"vector_station":"v_station_33","vector_status":"0"},
 			{"vector_station":"v_station_34","vector_status":"0"},
-			{"vector_station":"v_station_35","vector_status":"1"},
-			{"vector_station":"v_station_36","vector_status":"2"},
-			{"vector_station":"v_station_37","vector_status":"3"},
-			{"vector_station":"v_station_38","vector_status":"1"}
+			{"vector_station":"v_station_35","vector_status":"0"},
+			{"vector_station":"v_station_36","vector_status":"0"},
+			{"vector_station":"v_station_37","vector_status":"0"},
+			{"vector_station":"v_station_38","vector_status":"0"}
 		];
 		for (i = 0; i < json.length; i++) {
 			var b = json[i];
@@ -216,13 +230,13 @@ $(document).ready(function(){
 		//	- AFC
 		//
 		
-		{"chart_id":"db_donut_1a","chart_title":"S&TC & PSD/APG","chart_name":"Signalling & Train Control System And Platform Screen Doors/ Automatic Platform Gates","chart_value":"67","set_donut":"2","url":"sys-stcpsd/index","link_enable":"yes"},
+		{"chart_id":"db_donut_1a","chart_title":"S&TC & PSD/APG","chart_name":"Signalling & Train Control System And Platform Screen Doors/ Automatic Platform Gates","chart_value":"0","set_donut":"2","url":"sys-stcpsd/index","link_enable":"no"},
 		{"chart_id":"db_donut_1b","chart_title":"<br>ICSS & CMMS","chart_name":"Integrated Control Supervisory System And Computerised Maintenance Management System","chart_value":"0","set_donut":"2","url":"sys-icsscmms/index","link_enable":"no"},
-		{"chart_id":"db_donut_2a","chart_title":"<br>ET & DE","chart_name":"Electric Trains And Depot Equipment","chart_value":"19","set_donut":"2","url":"sys-etde/index","link_enable":"yes"},
-		{"chart_id":"db_donut_2b","chart_title":"<br>TW & MV","chart_name":"Trackworks, Maintenance Vehicles & Works Train","chart_value":"39","set_donut":"2","url":"sys-twmv/index","link_enable":"yes"},
-		{"chart_id":"db_donut_3a","chart_title":"<br>PS&DS","chart_name":"Power Supply And Distribution System","chart_value":"50","set_donut":"2","url":"sys-psds/index","link_enable":"yes"},
-		{"chart_id":"db_donut_3b","chart_title":"<br>COMMS & ITS","chart_name":"Communications, Government Integrated Radio Network, Commercial Telecom (INFRA) And Information Technology System","chart_value":"85","set_donut":"2","url":"sys-commsits/index","link_enable":"yes"},
-		{"chart_id":"db_donut_4a","chart_title":"<br>AFC","chart_name":"Automatic Fare Collection System","chart_value":"17","set_donut":"2","url":"sys-afc/index","link_enable":"yes"}
+		{"chart_id":"db_donut_2a","chart_title":"<br>ET & DE","chart_name":"Electric Trains And Depot Equipment","chart_value":"0","set_donut":"2","url":"sys-etde/index","link_enable":"yes"},
+		{"chart_id":"db_donut_2b","chart_title":"<br>TW & MV","chart_name":"Trackworks, Maintenance Vehicles & Works Train","chart_value":"0","set_donut":"2","url":"sys-twmv/index","link_enable":"yes"},
+		{"chart_id":"db_donut_3a","chart_title":"<br>PS&DS","chart_name":"Power Supply And Distribution System","chart_value":"0","set_donut":"2","url":"sys-psds/index","link_enable":"yes"},
+		{"chart_id":"db_donut_3b","chart_title":"<br>COMMS & ITS","chart_name":"Communications, Government Integrated Radio Network, Commercial Telecom (INFRA) And Information Technology System","chart_value":"0","set_donut":"2","url":"sys-commsits/index","link_enable":"no"},
+		{"chart_id":"db_donut_4a","chart_title":"<br>AFC","chart_name":"Automatic Fare Collection System","chart_value":"0","set_donut":"2","url":"sys-afc/index","link_enable":"no"}
 	];
 	
 	for (i = 0; i < json.length; i++) {

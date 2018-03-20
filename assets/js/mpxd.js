@@ -648,11 +648,11 @@ String.prototype.addslashes = function() {
 
 String.prototype.toSlug = function (Text)
 {
-    return Text
-        .toLowerCase()
-        .replace(/[^\w ]+/g,'')
-        .replace(/ +/g,'-')
-        ;
+	return Text
+		.toLowerCase()
+		.replace(/[^\w ]+/g,'')
+		.replace(/ +/g,'-')
+		;
 }
 
 String.prototype.numberWithCommas = function(x) {

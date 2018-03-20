@@ -57,61 +57,7 @@ div.tw_kd_overall_progress div.table_title {
 <script type="text/javascript">
 $(document).ready(function(){
 
-Highcharts.chart('tw_kd_overall_progress_chart_1', {
-	chart: {
-		type: 'column'
-	},
-	title: {
-		text: ''
-	},
-	xAxis: {
-		categories: [
-          "Track Survey",
-          "Surface Preparation",
-          "Long Rail Distibution",
-          "Rail & Sleeper Assembly",
-          "Rebar & Form Settingy",
-          "Concreting",
-          "Derailment Wall",
-          "Welding/Destressing",
-          "Rail Alignment",
-          "PR Bracket Installation",
-          "PR Installation/Alignment",
-          "PR Cover Installation",
-          "Emergency Walkway",
-          "Cable Through & Containment",
-          "Commissioning"
-        ],
-        crosshair: 'true',
-		title: {
-			text: ''
-		}
-	},
-	yAxis: {
-		min: 0,
-		title: {
-			text: 'Total Work (m)'
-		}
-	},
-	tooltip: {
-		pointFormat: '<span style="color:{series.color}">{series.name}</span>: <b>{point.y}</b> ({point.percentage:.0f}%)<br/>',
-		shared: true
-	},
-	plotOptions: {
-	},
-	series: [{
-		name: 'Planned',
-		data: [48135,48135,48135,48135,48135,48135,48135,47371,47371,47371,47371,47371,24346,20418,47371],
-		color: '#9f3'
-	}, {
-		name: 'Actual',
-		data: [48135,48135,48135,48135,47637,47637,47637,47594,47371,47537,47537,47371,24429,20418,46006],
-		color: '#f59'
-	}],
-	credits: {
-		enabled: false
-	}
-});
+
 
 });
 </script>
