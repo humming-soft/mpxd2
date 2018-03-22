@@ -1739,7 +1739,7 @@ function build_dashboard($get_asof = false){
 		$commercial_arr[$name ] = (float) $q['value'];
 	}
 	    $finalCom=array("final" => $commercial_arr );
-        $finalVIADUCT= array("viaduct" => $overallViaduct );
+        $finalVIADUCT= array("viaduct" => $overallViaduct);
 	    $finalDEPOT = array("depot" => $overallDepot );
 	    $finalMSPR = array("mspr" => $overallMspr);
 	    $finalSYSTEM = array("system" => $overallSys);
