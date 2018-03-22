@@ -830,42 +830,86 @@ class Dashboard_model extends CI_Model
         $sql = "SELECT dt.\"id\", dt.\"item_id\", dt.\"name\", dt.\"date\", dt.\"value\" FROM \"data_sources\" dt join \"items\" i on dt.\"item_id\"=i.\"id\" and i.\"slug\"='dashboard' and dt.\"date\" = (SELECT distinct max(dt.\"date\")FROM \"data_sources\" dt join \"items\" i on dt.\"item_id\"=i.\"id\" and i.\"slug\"='dashboard');";
         $query = $this->db->query($sql);
         $result = $query->result_array();
-       
+
+       if($result != null){
+           foreach ($result as $key => $val) {
+               $json = $val['value'];
+           }
+           $obj = json_decode($json);
+           if(sizeof($obj)>0){
+               if(($obj->{'final'})!= "undefined"){
+                   $psd = $this->format_cash_bil($obj->{'final'}->{'project_spend_to_date'});
+                   $ap = $this->format_cash_bil($obj->{'final'}->{'awarded_package'});
+                   $pdp = $this->format_cash_mil($obj->{'final'}->{'pdp_reimbursables'});
+                   $wpc = $this->format_cash_mil($obj->{'final'}->{'wpcs_payment'});
+                   $retsum = $this->format_cash_mil($obj->{'final'}->{'retention_sum'});
+                   $vorder = $this->format_cash_mil($obj->{'final'}->{'variation_orders'});
+                   $consum = $this->format_cash_mil($obj->{'final'}->{'contigency_sum'});
+                   $data['data'] = Array(
+                       'project_spend_to_date' => $psd, //Bil
+                       'awarded_packages' => $ap, //Bil
+                       'pdp_reimbursables' => $pdp, //Mil
+                       'wpcs_payment' => $wpc, //Bil
+                       'retention_sum' => $retsum, //Mil
+                       'variation_orders' => $vorder, //Mil
+                       'contingency_sum' => $consum  );
+                      
+               }else{
+                   $data['data']= Array(
+                       'project_spend_to_date' => 0, //Bil
+                       'awarded_packages' => 0, //Bil
+                       'pdp_reimbursables' =>0, //Mil
+                       'wpcs_payment' => 0, //Bil
+                       'retention_sum' => 0, //Mil
+                       'variation_orders' => 0, //Mil
+                       'contingency_sum' => 0 //Bil
+                   );
+               } if(($obj->{'viaduct'})!= "undefined"){
+                   $data ['viaduct'] = Array($obj->{'viaduct'}
+                   );
+               }
+               if(($obj->{'depot'})!= "undefined"){
+                   $data ['depot'] = Array($obj->{'depot'}
+                   );
+               }
+               if(($obj->{'mspr'})!= "undefined"){
+                   $data['mspr'] = Array($obj->{'mspr'}
+                   );
+               }
+               if(($obj->{'system'})!= "undefined"){
+                   $data ['system'] = Array($obj->{'system'}
+                   );
+               }
+               if(($obj->{'station'})!= "undefined"){
+                   $data ['station'] = Array($obj->{'station'}
+                   );
+               }
+           }
+       }else{
+           $data = Array('data' => Array(
+               'project_spend_to_date' => 0, //Bil
+               'awarded_packages' => 0, //Bil
+               'pdp_reimbursables' =>0, //Mil
+               'wpcs_payment' => 0, //Bil
+               'retention_sum' => 0, //Mil
+               'variation_orders' => 0, //Mil
+               'contingency_sum' => 0 //Bil
+           ));
+       }
+        return $data;
+    }
+    public function getOverall()
+    {
+        $sql = "SELECT dt.\"id\", dt.\"item_id\", dt.\"name\", dt.\"date\", dt.\"value\" FROM \"data_sources\" dt join \"items\" i on dt.\"item_id\"=i.\"id\" and i.\"slug\"='dashboard' and dt.\"date\" = (SELECT distinct max(dt.\"date\")FROM \"data_sources\" dt join \"items\" i on dt.\"item_id\"=i.\"id\" and i.\"slug\"='dashboard');";
+        $query = $this->db->query($sql);
+        $result = $query->result_array();
         foreach ($result as $key => $val) {
             $json = $val['value'];
         }
-        $obj = json_decode($json);
-        if(($obj->{'final'})!= "undefined"){
-            $psd = $this->format_cash_bil($obj->{'final'}->{'project_spend_to_date'});
-            $ap = $this->format_cash_bil($obj->{'final'}->{'awarded_package'});
-            $pdp = $this->format_cash_mil($obj->{'final'}->{'pdp_reimbursables'});
-            $wpc = $this->format_cash_mil($obj->{'final'}->{'wpcs_payment'});
-            $retsum = $this->format_cash_mil($obj->{'final'}->{'retention_sum'});
-            $vorder = $this->format_cash_mil($obj->{'final'}->{'variation_orders'});
-            $consum = $this->format_cash_mil($obj->{'final'}->{'contigency_sum'});
-            $data = Array('data' => Array(
-                'project_spend_to_date' => $psd, //Bil
-                'awarded_packages' => $ap, //Bil
-                'pdp_reimbursables' => $pdp, //Mil
-                'wpcs_payment' => $wpc, //Bil
-                'retention_sum' => $retsum, //Mil
-                'variation_orders' => $vorder, //Mil
-                'contingency_sum' => $consum //Bil
-            ));
-        }else{
-            $data = Array('data' => Array(
-                'project_spend_to_date' => 0, //Bil
-                'awarded_packages' => 0, //Bil
-                'pdp_reimbursables' =>0, //Mil
-                'wpcs_payment' => 0, //Bil
-                'retention_sum' => 0, //Mil
-                'variation_orders' => 0, //Mil
-                'contingency_sum' => 0 //Bil
-            ));
-        }
+        $data = json_decode($json);
+      
         return $data;
     }
-
     public function setComments($data)
     {
 

@@ -1,10 +1,13 @@
+
+
 $(document).ready(function(){
-	
+
+
 	
 	// 
 	// directory
 	//
-	/*mpxd.constructors.sys_psds_gis = function(data) {
+	/*/!*mpxd.constructors.sys_psds_gis = function(data) {
 		var el = "#portlet_" + data.id;
 		return new mpxd.modules.sys_psds_m.sys_psds_gis({data: data, el: el});
 	}
@@ -19,8 +22,22 @@ $(document).ready(function(){
 			that.$el.html(template);
 			that.$el.find('.portlet_content').css({"height":(that.$el.find('.content').parent().parent().parent().height())-40});
 			that.$el.find('.portlet_content').mCustomScrollbar({theme:"dark-3"});
-		}
-	})*/
+		}$(document).ready(function(){
+
+	 mspr = <?php echo json_encode($overall[0]->mspr); ?>;
+	 station = <?php echo json_encode($overall[0]->station); ?>;
+	 viaduct = <?php echo json_encode($overall[0]->viaduct); ?>;
+	 depot = <?php echo json_encode($overall[0]->depot); ?>;
+	 systems = <?php echo json_encode($overall[0]->system); ?>;
+	 console.log(mspr);
+	 console.log(station);
+	 console.log(viaduct);
+	 console.log(depot);
+	 console.log(systems);
+
+	 });
+
+	 })*!/*/
 	//console.log("dada" + this.data);
 	$('#pl_package_V201').click(function(){
 		window.location.href = "viaduct.php";
@@ -52,13 +69,13 @@ $(document).ready(function(){
 			vector_track_name = b.vector_track;
 			vector_track_status = b.vector_status;
 			vector_track_url = b.url;
-			if (vector_track_status==0) {/*blank*/
+			if (vector_track_status==0) {/!*blank*!/
 				$('#'+vector_track_name).css({'fill':'#777777','stroke':'#222222'});
-			} else if (vector_track_status==1) {/*on schedule*/
+			} else if (vector_track_status==1) {/!*on schedule*!/
 				$('#'+vector_track_name).css({'fill':'#00ff55','stroke':'#00ff55'});
-			} else if (vector_track_status==2) {/*behind late*/
+			} else if (vector_track_status==2) {/!*behind late*!/
 				$('#'+vector_track_name).css({'fill':'#ff0055','stroke':'#ff0055'});
-			} else if (vector_track_status==3) {/*critical*/
+			} else if (vector_track_status==3) {/!*critical*!/
 				blink('#'+vector_track_name, -1, 500);
 				function blink(elem, times, speed) {
 					if (times > 0 || times < 0) {
@@ -130,13 +147,13 @@ $(document).ready(function(){
 			var b = json[i];
 			vector_station_name = b.vector_station;
 			vector_station_status = b.vector_status;
-			if (vector_station_status==0) {/*blank*/
+			if (vector_station_status==0) {/!*blank*!/
 				$('#'+vector_station_name).css({'fill':'#ffffff','stroke':'#222222'});
-			} else if (vector_station_status==1) {/*on schedule*/
+			} else if (vector_station_status==1) {/!*on schedule*!/
 				$('#'+vector_station_name).css({'fill':'#ffffff','stroke':'#00ff55'});
-			} else if (vector_station_status==2) {/*behind late*/
+			} else if (vector_station_status==2) {/!*behind late*!/
 				$('#'+vector_station_name).css({'fill':'#ffffff','stroke':'#ff0055'});
-			} else if (vector_station_status==3) {/*critical*/
+			} else if (vector_station_status==3) {/!*critical*!/
 				blink('#'+vector_station_name, -1, 500);
 				function blink(elem, times, speed) {
 					if (times > 0 || times < 0) {
@@ -171,13 +188,13 @@ $(document).ready(function(){
 			var b = json[i];
 			vector_depot_name = b.vector_depot;
 			vector_depot_status = b.vector_status;
-			if (vector_depot_status==0) {/*blank*/
+			if (vector_depot_status==0) {/!*blank*!/
 				$('#'+vector_depot_name).css({'fill':'#ffffff','stroke':'#222222'});
-			} else if (vector_depot_status==1) {/*on schedule*/
+			} else if (vector_depot_status==1) {/!*on schedule*!/
 				$('#'+vector_depot_name).css({'fill':'#ffffff','stroke':'#00ff55'});
-			} else if (vector_depot_status==2) {/*behind late*/
+			} else if (vector_depot_status==2) {/!*behind late*!/
 				$('#'+vector_depot_name).css({'fill':'#ffffff','stroke':'#ff0055'});
-			} else if (vector_depot_status==3) {/*critical*/
+			} else if (vector_depot_status==3) {/!*critical*!/
 				blink('#'+vector_depot_name, -1, 500);
 				function blink(elem, times, speed) {
 					if (times > 0 || times < 0) {
@@ -211,10 +228,6 @@ $(document).ready(function(){
 	
 	
 	
-	/*
-		donut
-	
-	*/
 	
 	var json = [ 
 		
@@ -347,3 +360,4 @@ $(document).ready(function(){
 	
 	
 });	
+
