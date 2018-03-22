@@ -1,3 +1,4 @@
+
 <div id="float_plate" class="row">
 	<div id="plate_vector_map" class="plate_vector_map">
 		missing plate_vector_map.svg
@@ -188,3 +189,10 @@
 		</div>
 	</div>
 </div>
+<script>
+	$(document).ready(function(){
+		mspr = <?php echo json_encode($data); ?>;
+		console.log(mspr);
+	});
+</script>
+

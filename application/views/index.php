@@ -40,7 +40,7 @@
 </div>
 <script>
 	baseURL = <?php echo json_encode($this->config->base_url()); ?>;
-	$(window).load(function(){
+	/*$(window).load(function(){
 		data = <?php echo json_encode($data); ?>;
 		$('#overall_actual').text(data['overall_actual']+'%');
 		$('#overall_variance').text(data['overall_variance']["early"]+'%');
@@ -55,7 +55,7 @@
 			$css = "";
 		}
 		$trend.removeClass().addClass($css);
-	});
+	});*/
 </script>
 <script type="text/javascript" src="<?php echo $this->config->base_url(); ?>assets/mmc/js/db.js"></script>
 <?php include 'templates/default_footer.php' ?>

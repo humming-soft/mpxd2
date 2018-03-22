@@ -168,11 +168,10 @@ class Dashboard extends CI_Controller {
 //            foreach ($d as $kk => $dd)
 //                $data['data'][$kk] = $dd;
 //        }
-
-        $data = $this->dashboard_model->getCost();
-        
-        $this->load->view('index',$data);
-       // $this->load->view('index');
+      /*  $data['comdata'] = $this->dashboard_model->getOverall();*/
+      $data = $this->dashboard_model->getCost();
+      $this->load->view('index',$data);
+        //$this->load->view('index');
     }
 
     public function view($item = FALSE, $query_type = FALSE, $query_key = FALSE) {
