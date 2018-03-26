@@ -191,7 +191,7 @@
 </div>
 <script>
 	$(document).ready(function(){
-		mspr = <?php echo json_encode($data); ?>;
+		mspr = <?php echo json_encode($date); ?>;
 		console.log(mspr);
 	});
 </script>

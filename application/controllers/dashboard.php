@@ -108,7 +108,7 @@ class Dashboard extends CI_Controller {
 //        $data = json_decode($data[0]['value'], true);
 //        $data = $data['programme']['overall_elevated_underground'];
 //
-//		$comdate = $this->dashboard_model->get_date_list('commercial_front')[0]['date'];
+      //  $comdate = $this->dashboard_model->get_date_list('commercial_front')[0]['date'];
 //
 //		$comdata = $this->dashboard_model->get_source_archivable(78);
 //		$comdata = json_decode($comdata[0]['value'],true);

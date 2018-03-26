@@ -827,7 +827,17 @@ class Dashboard_model extends CI_Model
         $retsum = 0.00;
         $vorder = 0.00;
         $consum = 0.00;
+        $sql1 = "SELECT \"date\" FROM \"data_sources\" where \"name\" = 'Home'";
+        $query1 = $this->db->query($sql1);
+        $result1 = $query1->result_array();
+        $data['date'] = Array();
+        if($result1 != null){
+            foreach ($result1 as $key => $val1) {
+                array_push( $data['date'],$val1['date']);
+            }
+        }
         $sql = "SELECT dt.\"id\", dt.\"item_id\", dt.\"name\", dt.\"date\", dt.\"value\" FROM \"data_sources\" dt join \"items\" i on dt.\"item_id\"=i.\"id\" and i.\"slug\"='dashboard' and dt.\"date\" = (SELECT distinct max(dt.\"date\")FROM \"data_sources\" dt join \"items\" i on dt.\"item_id\"=i.\"id\" and i.\"slug\"='dashboard');";
+
         $query = $this->db->query($sql);
         $result = $query->result_array();
 
@@ -836,65 +846,83 @@ class Dashboard_model extends CI_Model
                $json = $val['value'];
            }
            $obj = json_decode($json);
-           if(sizeof($obj)>0){
+           if((sizeof($obj)) > 0){
                if(($obj->{'final'})!= "undefined"){
-                   $psd = $this->format_cash_bil($obj->{'final'}->{'project_spend_to_date'});
-                   $ap = $this->format_cash_bil($obj->{'final'}->{'awarded_package'});
-                   $pdp = $this->format_cash_mil($obj->{'final'}->{'pdp_reimbursables'});
-                   $wpc = $this->format_cash_mil($obj->{'final'}->{'wpcs_payment'});
-                   $retsum = $this->format_cash_mil($obj->{'final'}->{'retention_sum'});
-                   $vorder = $this->format_cash_mil($obj->{'final'}->{'variation_orders'});
-                   $consum = $this->format_cash_mil($obj->{'final'}->{'contigency_sum'});
-                   $data['data'] = Array(
-                       'project_spend_to_date' => $psd, //Bil
-                       'awarded_packages' => $ap, //Bil
-                       'pdp_reimbursables' => $pdp, //Mil
-                       'wpcs_payment' => $wpc, //Bil
-                       'retention_sum' => $retsum, //Mil
-                       'variation_orders' => $vorder, //Mil
-                       'contingency_sum' => $consum  );
+                   if((sizeof($obj->{'final'})) > 0) {
+                       $psd = $this->format_cash_bil($obj->{'final'}->{'project_spend_to_date'});
+                       $ap = $this->format_cash_bil($obj->{'final'}->{'awarded_package'});
+                       $pdp = $this->format_cash_mil($obj->{'final'}->{'pdp_reimbursables'});
+                       $wpc = $this->format_cash_mil($obj->{'final'}->{'wpcs_payment'});
+                       $retsum = $this->format_cash_mil($obj->{'final'}->{'retention_sum'});
+                       $vorder = $this->format_cash_mil($obj->{'final'}->{'variation_orders'});
+                       $consum = $this->format_cash_mil($obj->{'final'}->{'contigency_sum'});
+                       $data['data'] = Array(
+                           'project_spend_to_date' => $psd, //Bil
+                           'awarded_packages' => $ap, //Bil
+                           'pdp_reimbursables' => $pdp, //Mil
+                           'wpcs_payment' => $wpc, //Bil
+                           'retention_sum' => $retsum, //Mil
+                           'variation_orders' => $vorder, //Mil
+                           'contingency_sum' => $consum);
+                   }else{
+                       $data['data']= Array(
+                           'project_spend_to_date' => 0.00, //Bil
+                           'awarded_packages' => 0.00, //Bil
+                           'pdp_reimbursables' =>0.00, //Mil
+                           'wpcs_payment' => 0.00, //Bil
+                           'retention_sum' => 0.00, //Mil
+                           'variation_orders' => 0.00, //Mil
+                           'contingency_sum' => 0.00 //Bil
+                       );
+                   }
                       
                }else{
                    $data['data']= Array(
-                       'project_spend_to_date' => 0, //Bil
-                       'awarded_packages' => 0, //Bil
-                       'pdp_reimbursables' =>0, //Mil
-                       'wpcs_payment' => 0, //Bil
-                       'retention_sum' => 0, //Mil
-                       'variation_orders' => 0, //Mil
-                       'contingency_sum' => 0 //Bil
-                   );
-               } if(($obj->{'viaduct'})!= "undefined"){
-                   $data ['viaduct'] = Array($obj->{'viaduct'}
+                       'project_spend_to_date' => 0.00, //Bil
+                       'awarded_packages' => 0.00, //Bil
+                       'pdp_reimbursables' =>0.00, //Mil
+                       'wpcs_payment' => 0.00, //Bil
+                       'retention_sum' => 0.00, //Mil
+                       'variation_orders' => 0.00, //Mil
+                       'contingency_sum' => 0.00 //Bil
                    );
                }
+               if(($obj->{'viaduct'})!= "undefined"){
+                   $data ['viaduct'] = Array($obj->{'viaduct'}
+                   );
+               }else{$data ['viaduct'] = Array();}
                if(($obj->{'depot'})!= "undefined"){
                    $data ['depot'] = Array($obj->{'depot'}
                    );
-               }
+               }else{$data ['depot'] = Array();}
                if(($obj->{'mspr'})!= "undefined"){
                    $data['mspr'] = Array($obj->{'mspr'}
                    );
-               }
+               }else{ $data ['mspr'] = Array();}
                if(($obj->{'system'})!= "undefined"){
                    $data ['system'] = Array($obj->{'system'}
                    );
-               }
+               }else{  $data ['system'] = Array();}
                if(($obj->{'station'})!= "undefined"){
                    $data ['station'] = Array($obj->{'station'}
                    );
-               }
+               }else{ $data ['station'] = Array();}
            }
        }else{
-           $data = Array('data' => Array(
-               'project_spend_to_date' => 0, //Bil
-               'awarded_packages' => 0, //Bil
-               'pdp_reimbursables' =>0, //Mil
-               'wpcs_payment' => 0, //Bil
-               'retention_sum' => 0, //Mil
-               'variation_orders' => 0, //Mil
-               'contingency_sum' => 0 //Bil
-           ));
+           $data['data']= Array(
+               'project_spend_to_date' => 0.00, //Bil
+               'awarded_packages' => 0.00, //Bil
+               'pdp_reimbursables' =>0.00, //Mil
+               'wpcs_payment' => 0.00, //Bil
+               'retention_sum' => 0.00, //Mil
+               'variation_orders' => 0.00, //Mil
+               'contingency_sum' => 0.00 //Bil
+           );
+           $data ['viaduct'] = Array();
+           $data ['depot'] = Array();
+           $data ['mspr'] = Array();
+           $data ['system'] = Array();
+           $data ['station'] = Array();
        }
         return $data;
     }

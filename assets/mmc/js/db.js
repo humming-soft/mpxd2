@@ -1,21 +1,66 @@
 enableDays = [];
-var result = [{date:"31-Jan-16"}];
+
 var datelist = $("#date_list").empty();
 var curr_data_date = "";
 for (var i = 0; i < result.length; i++) {
     var date = result[i].date;
     enableDays.push(date);
-     if (i == 0)
-         datelist.append("<li><a href='"+baseURL+"dashboard?date="+date+"'>" + date + " (Latest)</a></li>");
-     else
-         datelist.append("<li><a href='"+baseURL+"dashboard?date="+date+"')>" + date + "</a></li>");
+    if (i == 0)
+        datelist.append("<li><a href='"+baseURL+"dashboard?date="+date+"'>" + date + " (Latest)</a></li>");
+    else
+        datelist.append("<li><a href='"+baseURL+"dashboard?date="+date+"')>" + date + "</a></li>");
 
-     //Update the current date field
-     if (getParameterByName("date") === date) {
-         $("#data_date").val(moment(getParameterByName("date"), "DD-MMM-YY").format("DD MMM YYYY").toUpperCase());
-            curr_data_date = date;
-      }
+    //Update the current date field
+    if (getParameterByName("date") === date) {
+        $("#data_date").val(moment(getParameterByName("date"), "DD-MMM-YY").format("DD MMM YYYY").toUpperCase());
+        curr_data_date = date;
+    }
 }
+
+
+/*
+mpxd.getDateList("api/get?date_list=" + currentSlug, function (result) {
+    var datelist = $("#date_list").empty();
+    var curr_data_date = "";
+    enableDays = [];
+
+    for (var i = 0; i < result.length; i++) {
+        var date = result[i].date;
+        enableDays.push(date);
+        if (i == 0)
+            datelist.append("<li><a href='"+baseURL+"dashboard?date="+date+"'>" + date + " (Latest)</a></li>");
+        else
+            datelist.append("<li><a href='"+baseURL+"dashboard?date="+date+"')>" + date + "</a></li>");
+
+        //Update the current date field
+        if (getParameterByName("date") === date) {
+            $("#data_date").val(moment(getParameterByName("date"), "DD-MMM-YY").format("DD MMM YYYY").toUpperCase());
+            curr_data_date = date;
+        }
+    }
+    if (getParameterByName("date").length == 0) {
+        $("#data_date").val(moment(result[0].date, "DD-MMM-YY").format("DD-MMMM-YYYY"));
+        curr_data_date = result[0].date;
+    }
+    //Added by Sebin
+    $("#et_data_date").val(curr_data_date);
+    //ellipseTitle(title +" ("+ moment(curr_data_date, "DD-MMM-YY").format("DD MMMM YYYY") +")");
+    var titletext = title + " (" + moment(curr_data_date, "DD-MMM-YY").format("DD MMMM YYYY") + ")";
+    if (!isUseCustomPortlet) {
+        ellipseTitle(titletext);
+    }
+    else {
+        $('#page_title').text(titletext);
+    }
+    setPageTitle(title);
+
+
+});
+*/
+
+
+
+/**/
 if (getParameterByName("date").length == 0) {
     console.log(result[0].date);
      $("#data_date").val(moment(result[0].date, "DD-MMM-YY").format("DD MMM YYYY").toUpperCase());
