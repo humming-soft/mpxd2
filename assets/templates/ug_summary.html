@@ -28,7 +28,7 @@
 					%>
 					<tr>
 						<% if (p !== "date") { %>
-						<td class=""><%=p%></td>
+						<td class=""><a href="<%=baseURL%><%=p%>/index"><span style="font-weight: 600;"></span><%=p.replace(/\b[a-z]/g,function(f){return (f.toUpperCase()).replace(/-/g, ' ');})%></a></td>
 						<% if (typeof(data.data[p].progress) !== "undefined") { %>
 						<td  class="val_actual"><%=data.data[p].progress%>%</td>
 						<% } else {%>

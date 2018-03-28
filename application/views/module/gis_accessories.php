@@ -28,7 +28,7 @@
 			<span class="set5">WPCs Payment</span>
 			<span class="set6">Retention Sum</span>
 			<span class="set7">Variation Orders</span>
-			<span class="set8">Contigency Sum</span>
+			<span class="set8">Contingency Sum</span>
 			
 		</div>
 	
@@ -143,7 +143,7 @@
 			<span class="set27"><a href="<?php echo $this->config->base_url(); ?>tech-park/index">Tech. Park</a></span>
 			<span class="set28"><a href="<?php echo $this->config->base_url(); ?>serdang-raya-north/index">Serdang Raya North</a></span>
 			<span class="set29"><a href="<?php echo $this->config->base_url(); ?>serdang-raya-south/index">Serdang Raya South</a></span>
-			<span class="set30"><a href="<?php echo $this->config->base_url(); ?>sri-kembangan/index">Sri Kembangan</a></span>
+			<span class="set30"><a href="<?php echo $this->config->base_url(); ?>sri-kembangan/index">Seri Kembangan</a></span>
 			<span class="set31"><a href="<?php echo $this->config->base_url(); ?>upm/index">UPM</a></span>
 			<span class="set32"><a href="<?php echo $this->config->base_url(); ?>tmn-universiti/index">Tmn. Universiti</a></span>
 			<span class="set33"><a href="<?php echo $this->config->base_url(); ?>equine-park/index">Equine Park</a></span>
@@ -191,8 +191,8 @@
 </div>
 <script>
 	$(document).ready(function(){
-		mspr = <?php echo json_encode($date); ?>;
-		console.log(mspr);
+		progress = <?php echo json_encode($progress); ?>;
+		console.log(progress);
 	});
 </script>
 

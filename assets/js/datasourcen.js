@@ -1097,6 +1097,7 @@ mpxd.modules.sys_twmv_m.sys_twmv_gis = Backbone.View.extend({
 		that.$el.html(template);
 		that.$el.find('.portlet_content').css({"height":(that.$el.find('.content').parent().parent().parent().height())-40});
 		that.$el.find('.portlet_content').mCustomScrollbar({theme:"dark-3"});
+		if(that.data.data.TREND !=null) {
 		if(that.data.data.TREND.length>0) {
          if(that.data.data.TREND != undefined){
 			 var json = that.data.data.TREND;
@@ -1241,6 +1242,40 @@ mpxd.modules.sys_twmv_m.sys_twmv_gis = Backbone.View.extend({
 			use_chart_circle_data_used =0;
 			donut_body = '<div><a class="url_donut_system" style="text-decoration: none; color: #fff;" href="'+use_chart_url+'" title="'+use_chart_name+'"><span class="donut_title1_name">'+use_chart_title+'</span></a><svg class="svg_donut_system" width="'+use_chart_svg_width+'" height="'+use_chart_svg_height+'" style="border:1px solid '+use_chart_donut_color+';"><text style="font-style:normal;font-weight:bold;font-size:'+use_chart_font_size+';fill:'+use_chart_font_color+';" transform="matrix(0,1,-1,0,0,0)"><tspan sodipodi:role="line" x="50" y="-65">'+use_chart_value+'%</tspan></text><circle class="svg_donut_system_circle" r="'+use_chart_circle_r+'" cx="'+use_chart_circle_cx+'" cy="'+use_chart_circle_cy+'" class="pie" style="stroke: '+use_chart_donut_color+';stroke-dasharray: '+use_chart_circle_data_used+','+use_chart_circle_data_total+';"></circle></svg></div>';
 			$('.dp_top').append(donut_body);
+		}
+		}
+		else{
+				apply_arrow_i='<i style="color:#f03" class="fa fa-arrow-down" aria-hidden="true"></i>'
+				$('.number_d' ).text("0.00%");
+				$('.number_i' ).text("0.00%");
+				$('.number_p' ).text("0.00%");
+
+				$('.trend_d' ).html(apply_arrow_i);
+				$('.trend_i' ).html(apply_arrow_i);
+				$('.trend_p' ).html(apply_arrow_i);
+
+
+				use_chart_id = "db_donut_0";
+				use_chart_value = 0.0;
+				use_chart_set_donut ="1";
+				use_chart_name = "Donut ";
+				use_chart_url= "#";
+
+				use_chart_font_size = '25px';
+				use_chart_font_color = '#ffffff';
+
+				use_chart_title = "Overall Progress <br> <span style='font-size:16px;'>(As of )</span>";
+				use_chart_circle_border = 'border:1px solid #ff0055;'
+				use_chart_svg_width = 165;
+				use_chart_svg_height = 165;
+				use_chart_circle_r = 80;
+				use_chart_circle_cx = 81.5;
+				use_chart_circle_cy = 81.5;
+				use_chart_circle_data_total = 503;
+				use_chart_circle_data_used =0;
+				donut_body = '<div><a class="url_donut_system" style="text-decoration: none; color: #fff;" href="'+use_chart_url+'" title="'+use_chart_name+'"><span class="donut_title1_name">'+use_chart_title+'</span></a><svg class="svg_donut_system" width="'+use_chart_svg_width+'" height="'+use_chart_svg_height+'" style="border:1px solid '+use_chart_donut_color+';"><text style="font-style:normal;font-weight:bold;font-size:'+use_chart_font_size+';fill:'+use_chart_font_color+';" transform="matrix(0,1,-1,0,0,0)"><tspan sodipodi:role="line" x="50" y="-65">'+use_chart_value+'%</tspan></text><circle class="svg_donut_system_circle" r="'+use_chart_circle_r+'" cx="'+use_chart_circle_cx+'" cy="'+use_chart_circle_cy+'" class="pie" style="stroke: '+use_chart_donut_color+';stroke-dasharray: '+use_chart_circle_data_used+','+use_chart_circle_data_total+';"></circle></svg></div>';
+				$('.dp_top').append(donut_body);
+
 		}
 		if(that.data.data.DESIGN != undefined){
 			var jsonDesign= that.data.data.DESIGN;
@@ -1672,51 +1707,109 @@ mpxd.modules.sys_twmv.sys_twmv_kd_overall_progress = Backbone.View.extend({
 		var item = [];
 		var plan = [];
 		var actual = [];
-		if((Object.keys(that.data.data[1]).length) > 0){
-			for (var i = 1; i <(Object.keys(that.data.data[1]).length)-3; i++) {
+		if(that.data.data[1] !=null){
+			if((Object.keys(that.data.data[1]).length) > 0){
+				for (var i = 1; i <(Object.keys(that.data.data[1]).length)-3; i++) {
 					item.push(that.data.data[1][i][0]);
 					plan.push(parseInt(that.data.data[1][i][1]));
 					actual.push(parseInt(that.data.data[1][i][2]));
-			}
-			Highcharts.chart('tw_kd_overall_progress_chart_1', {
-				chart: {
-					type: 'column'
-				},
-				title: {
-					text: ''
-				},
-				xAxis: {
-					categories: item,
-					crosshair: 'true',
+				}
+				Highcharts.chart('tw_kd_overall_progress_chart_1', {
+					chart: {
+						type: 'column'
+					},
 					title: {
 						text: ''
+					},
+					xAxis: {
+						categories: item,
+						crosshair: 'true',
+						title: {
+							text: ''
+						}
+					},
+					yAxis: {
+						min: 0,
+						title: {
+							text: 'Total Work (m)'
+						}
+					},
+					tooltip: {
+						pointFormat: '<span style="color:{series.color}">{series.name}</span>: <b>{point.y}</b> ({point.percentage:.0f}%)<br/>',
+						shared: true
+					},
+					plotOptions: {
+					},
+					series: [{
+						name: 'Planned',
+						data: plan,
+						color: '#9f3'
+					}, {
+						name: 'Actual',
+						data: actual,
+						color: '#f59'
+					}],
+					credits: {
+						enabled: false
 					}
-				},
-				yAxis: {
-					min: 0,
+				});
+			}else{
+				Highcharts.chart('tw_kd_overall_progress_chart_1', {
+					chart: {
+						type: 'column'
+					},
 					title: {
-						text: 'Total Work (m)'
+						text: ''
+					},
+					xAxis: {
+						categories: [
+							"Track Survey",
+							"Surface Preparation",
+							"Long Rail Distibution",
+							"Rail & Sleeper Assembly",
+							"Rebar & Form Settingy",
+							"Concreting",
+							"Derailment Wall",
+							"Welding/Destressing",
+							"Rail Alignment",
+							"PR Bracket Installation",
+							"PR Installation/Alignment",
+							"PR Cover Installation",
+							"Emergency Walkway",
+							"Cable Through & Containment",
+							"Commissioning"
+						],
+						crosshair: 'true',
+						title: {
+							text: ''
+						}
+					},
+					yAxis: {
+						min: 0,
+						title: {
+							text: 'Total Work (m)'
+						}
+					},
+					tooltip: {
+						pointFormat: '<span style="color:{series.color}">{series.name}</span>: <b>{point.y}</b> ({point.percentage:.0f}%)<br/>',
+						shared: true
+					},
+					plotOptions: {
+					},
+					series: [{
+						name: 'Planned',
+						data: [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+						color: '#9f3'
+					}, {
+						name: 'Actual',
+						data: [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+						color: '#f59'
+					}],
+					credits: {
+						enabled: false
 					}
-				},
-				tooltip: {
-					pointFormat: '<span style="color:{series.color}">{series.name}</span>: <b>{point.y}</b> ({point.percentage:.0f}%)<br/>',
-					shared: true
-				},
-				plotOptions: {
-				},
-				series: [{
-					name: 'Planned',
-					data: plan,
-					color: '#9f3'
-				}, {
-					name: 'Actual',
-					data: actual,
-					color: '#f59'
-				}],
-				credits: {
-					enabled: false
-				}
-			});
+				});
+			}
 		}else{
 			Highcharts.chart('tw_kd_overall_progress_chart_1', {
 				chart: {
@@ -1776,6 +1869,7 @@ mpxd.modules.sys_twmv.sys_twmv_kd_overall_progress = Backbone.View.extend({
 		}
 
 
+
 	}
 })
 
@@ -1795,11 +1889,13 @@ mpxd.modules.sys_twmv.sys_twmv_kd_summary = Backbone.View.extend({
 			}else{
 				var currentProgress = 0.00;
 			}
+			var remainingProgress =  parseFloat((typeof that.data.data[1]['total_plan'] == "undefined")?0:that.data.data[1]['total_plan']) - currentProgress;
 		}
 		else{
 			var currentProgress = 0.00;
+			var remainingProgress =  0.00;
 		}
-		var remainingProgress =  parseFloat((typeof that.data.data[1]['total_plan'] == "undefined")?0:that.data.data[1]['total_plan']) - currentProgress;
+
 		template = _.template(html, {data: that.data});
 		that.$el.html(template);
 		that.$el.find('.portlet_content').css({"height":(that.$el.find('.content').parent().parent().parent().height())-40});
@@ -1887,7 +1983,7 @@ mpxd.modules.sys_psds_m.sys_psds_gis = Backbone.View.extend({
 		that.$el.html(template);
 		that.$el.find('.portlet_content').css({"height":(that.$el.find('.content').parent().parent().parent().height())-40});
 		that.$el.find('.portlet_content').mCustomScrollbar({theme:"dark-3"});
-
+		if(that.data.data.TREND != null) {
 		if(that.data.data.TREND.length>0) {
 			if (that.data.data.TREND != undefined) {
 				var trendJSON = that.data.data.TREND;
@@ -2044,6 +2140,49 @@ mpxd.modules.sys_psds_m.sys_psds_gis = Backbone.View.extend({
 
 			}
 		}else{
+			apply_arrow_d = '<i style="color:#f03" class="fa fa-arrow-down" aria-hidden="true"></i>'
+			$('.number_d').text("0%");
+			$('.number_i').text("0%");
+			$('.number_t').text("0%");
+			$('.number_h').text("0%");
+
+			$('.trend_d').html(apply_arrow_d);
+			$('.trend_i').html(apply_arrow_d);
+			$('.trend_t').html(apply_arrow_d);
+			$('.trend_h').html(apply_arrow_d);
+
+			use_chart_title = "System Overall";
+			use_chart_id = "db_donut_0";
+			use_chart_value = "0";
+			use_chart_set_donut = "1";
+			use_chart_name = "";
+			use_chart_url = "#";
+
+			use_chart_font_size = '25px';
+			use_chart_font_color = '#ffffff';
+			if (use_chart_value >= 75) {
+				use_chart_donut_color = '#00ff55';
+			} else if (use_chart_value >= 50) {
+				use_chart_donut_color = '#ffff00';
+			} else if (use_chart_value >= 25) {
+				use_chart_donut_color = '#ff7700';
+			} else if (use_chart_value < 25) {
+				use_chart_donut_color = '#ff0055';
+			}
+			;
+			use_chart_circle_border = 'border:1px solid ' + use_chart_donut_color + ';'
+			use_chart_svg_width = 165;
+			use_chart_svg_height = 165;
+			use_chart_circle_r = 80;
+			use_chart_circle_cx = 81.5;
+			use_chart_circle_cy = 81.5;
+			use_chart_circle_data_total = 503;
+			use_chart_circle_data_used = use_chart_value / 100 * use_chart_circle_data_total;
+
+
+			donut_body = '<div><a class="url_donut_system" style="text-decoration: none; color: #fff;" href="' + use_chart_url + '" title="' + use_chart_name + '"><span class="donut_title1_name">' + use_chart_title + '</span></a><svg class="svg_donut_system" width="' + use_chart_svg_width + '" height="' + use_chart_svg_height + '" style="border:1px solid ' + use_chart_donut_color + ';"><text style="font-style:normal;font-weight:bold;font-size:' + use_chart_font_size + ';fill:' + use_chart_font_color + ';" transform="matrix(0,1,-1,0,0,0)"><tspan sodipodi:role="line" x="50" y="-65">' + use_chart_value + '%</tspan></text><circle class="svg_donut_system_circle" r="' + use_chart_circle_r + '" cx="' + use_chart_circle_cx + '" cy="' + use_chart_circle_cy + '" class="pie" style="stroke: ' + use_chart_donut_color + ';stroke-dasharray: ' + use_chart_circle_data_used + ',' + use_chart_circle_data_total + ';"></circle></svg></div>';
+
+		}}else{
 			apply_arrow_d = '<i style="color:#f03" class="fa fa-arrow-down" aria-hidden="true"></i>'
 			$('.number_d').text("0%");
 			$('.number_i').text("0%");
