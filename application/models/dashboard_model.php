@@ -830,10 +830,10 @@ class Dashboard_model extends CI_Model
         $sql1 = "SELECT \"date\" FROM \"data_sources\" where \"name\" = 'Home'";
         $query1 = $this->db->query($sql1);
         $result1 = $query1->result_array();
-        $data['date'] = Array();
+        $data['result'] = Array();
         if($result1 != null){
             foreach ($result1 as $key => $val1) {
-                array_push( $data['date'],$val1['date']);
+                array_push( $data['result'],$val1['date']);
             }
         }
         $sql = "SELECT dt.\"id\", dt.\"item_id\", dt.\"name\", dt.\"date\", dt.\"value\" FROM \"data_sources\" dt join \"items\" i on dt.\"item_id\"=i.\"id\" and i.\"slug\"='dashboard' and dt.\"date\" = (SELECT distinct max(dt.\"date\")FROM \"data_sources\" dt join \"items\" i on dt.\"item_id\"=i.\"id\" and i.\"slug\"='dashboard');";
@@ -907,6 +907,10 @@ class Dashboard_model extends CI_Model
                    $data ['station'] = Array($obj->{'station'}
                    );
                }else{ $data ['station'] = Array();}
+               if(($obj->{'progress'})!= "undefined"){
+                   $data ['progress'] = Array($obj->{'progress'}
+                   );
+               }else{ $data ['progress'] = Array();}
            }
        }else{
            $data['data']= Array(

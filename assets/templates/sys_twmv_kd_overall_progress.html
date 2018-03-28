@@ -1,15 +1,18 @@
-<div class="col-md-12 portlet tw_kd_overall_progress">
+<div class="col-md-12 portlet tw_kd_overall_progress11">
 	<div class="row content">
 		<div class="col-md-12 portlet_title">
 			<i class="fa_title_icon fa fa-bar-chart" aria-hidden="true"></i>
-			<% if (typeof(data.data[0]) !=="undefined"){%>
-            <% if (typeof(data.data[0].date) !== "undefined") { %>
-                <%=data.title%> <span class="plate_asof">(As of : <%=data.data[0].date%>) </span>
-            <% } else {%>
-                <%=data.title%>
-            <% }}else {%>
-                <%=data.title%>
-            <% }%>
+			<%if (data != null )  {%>
+				<% if (typeof(data.data[0]) !=="undefined"){%>
+						<% if (typeof(data.data[0].date) !== "undefined") { %>
+							<%=data.title%> <span class="plate_asof">(As of : <%=data.data[0].date%>) </span>
+						<% } else {%>
+							<%=data.title%>
+						<% } %>
+			    <%}else {%>
+					<%=data.title%>
+				<% }%>
+			<%}%>
 		</div>
 		<div class="col-md-12 portlet_content pl0">
 			<div class="row">

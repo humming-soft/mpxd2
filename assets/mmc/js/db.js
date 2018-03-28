@@ -1,5 +1,5 @@
 enableDays = [];
-
+var result = [{date:"31-Jan-16",date:"30-Jan-16",date:"29-Jan-16"}]
 var datelist = $("#date_list").empty();
 var curr_data_date = "";
 for (var i = 0; i < result.length; i++) {
@@ -16,8 +16,6 @@ for (var i = 0; i < result.length; i++) {
         curr_data_date = date;
     }
 }
-
-
 /*
 mpxd.getDateList("api/get?date_list=" + currentSlug, function (result) {
     var datelist = $("#date_list").empty();

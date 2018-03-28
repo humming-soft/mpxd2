@@ -1,4 +1,4 @@
-<div class="col-md-12 portlet portlet_keydates">
+<div class="col-md-12 portlet portlet_keydates1">
     <div class="row content">
         <div class="col-md-12 portlet_title">
             <i class="fa_title_icon fa fa-calendar-check-o" aria-hidden="true"></i>
@@ -23,7 +23,7 @@
                     </tr>
                     </thead>
                     <tbody>
-
+                    <%if (data.data != null )  {%>
                     <% if(typeof(data.data) !== "undefined"){
                         if(data.data.length > 0){
                         var k=0;
@@ -48,7 +48,7 @@
                         <tr>
                             <td colspan="4" class="text-center">Nil</td>
                         </tr>
-                        <% }}else{%>
+                        <% }}}else{%>
                         <tr>
                             <td colspan="4" class="text-center">Nil</td>
                         </tr>
