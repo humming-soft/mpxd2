@@ -1720,6 +1720,14 @@ function overSummary($slug){
 	$summary = ns_summary($arr_slugs);
 	return $summary;
 }
+function overProgress(){
+	$query = db()->dash_overall_progress()
+		->select('prog_id', 'pagename', 'slug', 'actual_value', 'plan_value','variance_value', 
+           'trend_value', 'date', 'as_of');
+	$result = array_map('iterator_to_array', iterator_to_array($query));
+	return $result;
+}
+
 /**
  * DASHBOARD
  * @param $slug
@@ -1728,23 +1736,27 @@ function overSummary($slug){
  */
 function build_dashboard($get_asof = false){
 	$commercial = dashboard();
+	$overallProgress=overProgress();
 	$overallViaduct=overSummary('viaduct');
 	$overallDepot=overSummary('depot');
 	$overallMspr=overSummary('mspr');
 	$overallSys=overSummary('system');
 	$overallStation=overSummary('station');
+	$commercial_arr = array();
+
 	foreach($commercial as $k => $q){
 		$as_of = $q['as_of'];
 		$name = slugify($q['name']);
 		$commercial_arr[$name ] = (float) $q['value'];
 	}
 	    $finalCom=array("final" => $commercial_arr );
+		$finalProgress= array("progress" => $overallProgress);
         $finalVIADUCT= array("viaduct" => $overallViaduct);
 	    $finalDEPOT = array("depot" => $overallDepot );
 	    $finalMSPR = array("mspr" => $overallMspr);
 	    $finalSYSTEM = array("system" => $overallSys);
 		$finalSTATION = array("station" => $overallStation );
-	    $superFinall =  array_merge($finalCom,$finalVIADUCT, $finalDEPOT, $finalMSPR, $finalSYSTEM ,$finalSTATION);
+	    $superFinall =  array_merge($finalCom,$finalVIADUCT, $finalDEPOT, $finalMSPR, $finalSYSTEM ,$finalSTATION,$finalProgress);
 		return json_encode($superFinall);
 }
 /**
