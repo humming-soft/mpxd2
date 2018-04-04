@@ -1,6 +1,6 @@
 $(document).ready(function(){
 
-    console.log(viaduct);
+    console.log(progress);
 	$('#plate_vector_map').load('assets/mmc/svg/plate_vector_map.svg',function(){
 
 		var json = [ 
@@ -8,17 +8,17 @@ $(document).ready(function(){
 			{"vector_track":"legend_v_track_2","vector_status":"1","url":""},
 			{"vector_track":"legend_v_track_3","vector_status":"2","url":""},
 			{"vector_track":"legend_v_track_4","vector_status":"3","url":""},
-			{"vector_track":"v_track_201","vector_status":"0","url":""},
-			{"vector_track":"v_track_202","vector_status":"0","url":""},
-			{"vector_track":"v_track_203","vector_status":"0","url":""},
+			{"vector_track":"v_track_201","vector_status":processVariance(viaduct["v201"]),"url":""},
+			{"vector_track":"v_track_202","vector_status":processVariance(viaduct["v202"]),"url":""},
+			{"vector_track":"v_track_203","vector_status":processVariance(viaduct["v203"]),"url":""},
 			{"vector_track":"v_track_ug","vector_status":"0","url":""},
-			{"vector_track":"v_track_204","vector_status":"0","url":""},
-			{"vector_track":"v_track_205","vector_status":"0","url":""},
-			{"vector_track":"v_track_206","vector_status":"0","url":""},
-			{"vector_track":"v_track_207","vector_status":"0","url":""},
-			{"vector_track":"v_track_208","vector_status":"0","url":""},
-			{"vector_track":"v_track_209","vector_status":"0","url":""},
-			{"vector_track":"v_track_210","vector_status":"0","url":""}
+			{"vector_track":"v_track_204","vector_status":processVariance(viaduct["v204"]),"url":""},
+			{"vector_track":"v_track_205","vector_status":processVariance(viaduct["v205"]),"url":""},
+			{"vector_track":"v_track_206","vector_status":processVariance(viaduct["v206"]),"url":""},
+			{"vector_track":"v_track_207","vector_status":processVariance(viaduct["v207"]),"url":""},
+			{"vector_track":"v_track_208","vector_status":processVariance(viaduct["v208"]),"url":""},
+			{"vector_track":"v_track_209","vector_status":processVariance(viaduct["v209"]),"url":""},
+			{"vector_track":"v_track_210","vector_status":processVariance(viaduct["v210"]),"url":""}
 		];
 		for (i = 0; i < json.length; i++) {
 			var b = json[i];
@@ -60,44 +60,44 @@ $(document).ready(function(){
 			{"vector_station":"legend_v_station_2","vector_status":"0"},
 			{"vector_station":"legend_v_station_3","vector_status":"0"},
 			{"vector_station":"legend_v_station_4","vector_status":"0"},
-			{"vector_station":"v_station_1","vector_status":"0"},
-			{"vector_station":"v_station_2","vector_status":"0"},
-			{"vector_station":"v_station_3","vector_status":"0"},
-			{"vector_station":"v_station_4","vector_status":"0"},
-			{"vector_station":"v_station_5","vector_status":"0"},
-			{"vector_station":"v_station_6","vector_status":"0"},
-			{"vector_station":"v_station_7","vector_status":"0"},
-			{"vector_station":"v_station_8","vector_status":"0"},
-			{"vector_station":"v_station_9","vector_status":"0"},
-			{"vector_station":"v_station_10","vector_status":"0"},
-			{"vector_station":"v_station_11","vector_status":"0"},
-			{"vector_station":"v_station_12","vector_status":"0"},
-			{"vector_station":"v_station_13","vector_status":"0"},
-			{"vector_station":"v_station_14","vector_status":"0"},
-			{"vector_station":"v_station_15","vector_status":"0"},
-			{"vector_station":"v_station_16","vector_status":"0"},
-			{"vector_station":"v_station_17","vector_status":"0"},
-			{"vector_station":"v_station_18","vector_status":"0"},
-			{"vector_station":"v_station_19","vector_status":"0"},
-			{"vector_station":"v_station_20","vector_status":"0"},
-			{"vector_station":"v_station_21","vector_status":"0"},
-			{"vector_station":"v_station_22","vector_status":"0"},
-			{"vector_station":"v_station_23","vector_status":"0"},
-			{"vector_station":"v_station_24","vector_status":"0"},
-			{"vector_station":"v_station_25","vector_status":"0"},
-			{"vector_station":"v_station_26","vector_status":"0"},
-			{"vector_station":"v_station_27","vector_status":"0"},
-			{"vector_station":"v_station_28","vector_status":"0"},
-			{"vector_station":"v_station_29","vector_status":"0"},
-			{"vector_station":"v_station_30","vector_status":"0"},
-			{"vector_station":"v_station_31","vector_status":"0"},
-			{"vector_station":"v_station_32","vector_status":"0"},
-			{"vector_station":"v_station_33","vector_status":"0"},
-			{"vector_station":"v_station_34","vector_status":"0"},
-			{"vector_station":"v_station_35","vector_status":"0"},
-			{"vector_station":"v_station_36","vector_status":"0"},
-			{"vector_station":"v_station_37","vector_status":"0"},
-			{"vector_station":"v_station_38","vector_status":"0"}
+			{"vector_station":"v_station_1","vector_status":processVariance(station["sg-buloh"])},
+			{"vector_station":"v_station_2","vector_status":processVariance(station["dsara-damai"])},
+			{"vector_station":"v_station_3","vector_status":processVariance(station["sri-dsara-west"])},
+			{"vector_station":"v_station_4","vector_status":processVariance(station["sri-dsara-east"])},
+			{"vector_station":"v_station_5","vector_status":processVariance(station["kepong-sentral"])},
+			{"vector_station":"v_station_6","vector_status":processVariance(station["metro-prima"])},
+			{"vector_station":"v_station_7","vector_status":processVariance(station["kepong-baru"])},
+			{"vector_station":"v_station_8","vector_status":processVariance(station["jinjang"])},
+			{"vector_station":"v_station_9","vector_status":processVariance(station["sri-delima"])},
+			{"vector_station":"v_station_10","vector_status":processVariance(station["kg-batu"])},
+			{"vector_station":"v_station_11","vector_status":processVariance(station["kentonmen"])},
+			{"vector_station":"v_station_12","vector_status":processVariance(station["jln-ipoh"])},
+			{"vector_station":"v_station_13","vector_status":processVariance(station["sentul-west"])},
+			{"vector_station":"v_station_14","vector_status":processVariance(station["hkl"])},
+			{"vector_station":"v_station_15","vector_status":processVariance(station["kg-baru-north"])},
+			{"vector_station":"v_station_16","vector_status":processVariance(station["ampang-park"])},
+			{"vector_station":"v_station_17","vector_status":processVariance(station["klcc-east"])},
+			{"vector_station":"v_station_18","vector_status":processVariance(station["conlay"])},
+			{"vector_station":"v_station_19","vector_status":processVariance(station["titiwangsa"])},
+			{"vector_station":"v_station_20","vector_status":processVariance(station["trx"])},
+			{"vector_station":"v_station_21","vector_status":processVariance(station["chan-sow-lin"])},
+			{"vector_station":"v_station_22","vector_status":processVariance(station["bdr-malaysia-north"])},
+			{"vector_station":"v_station_23","vector_status":processVariance(station["bdr-malaysia-south"])},
+			{"vector_station":"v_station_24","vector_status":processVariance(station["kuchai-lama"])},
+			{"vector_station":"v_station_25","vector_status":processVariance(station["tmn-naga-emas"])},
+			{"vector_station":"v_station_26","vector_status":processVariance(station["sg-besi"])},
+			{"vector_station":"v_station_27","vector_status":processVariance(station["tech-park"])},
+			{"vector_station":"v_station_28","vector_status":processVariance(station["serdang-raya-north"])},
+			{"vector_station":"v_station_29","vector_status":processVariance(station["serdang-raya-south"])},
+			{"vector_station":"v_station_30","vector_status":processVariance(station["sri-kembangan"])},
+			{"vector_station":"v_station_31","vector_status":processVariance(station["upm"])},
+			{"vector_station":"v_station_32","vector_status":processVariance(station["tmn-universiti"])},
+			{"vector_station":"v_station_33","vector_status":processVariance(station["equine-park"])},
+			{"vector_station":"v_station_34","vector_status":processVariance(station["tmn-putra-permai"])},
+			{"vector_station":"v_station_35","vector_status":processVariance(station["16-sierra"])},
+			{"vector_station":"v_station_36","vector_status":processVariance(station["cyberjaya-north"])},
+			{"vector_station":"v_station_37","vector_status":processVariance(station["cyberjaya-city-centre"])},
+			{"vector_station":"v_station_38","vector_status":processVariance(station["putrajaya-sentral"])}
 		];
 		for (i = 0; i < json.length; i++) {
 			var b = json[i];
@@ -137,7 +137,7 @@ $(document).ready(function(){
 			{"vector_depot":"legend_v_depot_2","vector_status":"1"},
 			{"vector_depot":"legend_v_depot_3","vector_status":"2"},
 			{"vector_depot":"legend_v_depot_4","vector_status":"3"},
-			{"vector_depot":"v_depot_1","vector_status":"1"}
+			{"vector_depot":"v_depot_1","vector_status":processVariance(depot["serdang-dpt"])}
 		];
 		for (i = 0; i < json.length; i++) {
 			var b = json[i];
@@ -251,5 +251,18 @@ $(document).ready(function(){
 	var n = month[fullDate.getMonth()];
 	var currentDate = fullDate.getDate() + " " + n + " " + fullDate.getFullYear();
 	$('#current_date').text(currentDate);
+
+
+    function processVariance($v){
+        if($v <= -8){
+             return 3;
+        }else if($v < 0){
+             return 2;
+        }else if($v >= 0){
+            return 1;
+        }else{
+            return 0;
+        }
+    }
 });	
 

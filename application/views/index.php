@@ -42,7 +42,7 @@
 	baseURL = <?php echo json_encode($this->config->base_url()); ?>;
     viaduct = <?php echo json_encode($viaduct); ?>;
     depot = <?php echo json_encode($depot); ?>;
-    mspr = <?php echo json_encode($mspr); ?>;
+/*    mspr = <?php /*echo json_encode($mspr); */?>;*/
     system = <?php echo json_encode($system); ?>;
     station = <?php echo json_encode($station); ?>;
     progress = <?php echo json_encode($progress); ?>;

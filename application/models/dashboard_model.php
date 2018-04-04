@@ -888,29 +888,32 @@ class Dashboard_model extends CI_Model
                    );
                }
                if(($obj->{'viaduct'})!= "undefined"){
-                   $data ['viaduct'] = Array($obj->{'viaduct'}
-                   );
+                   foreach($obj->{'viaduct'} as $i) {
+                       $data['viaduct'][$i->pagename] = $i->var_late;
+                   };
                }else{$data ['viaduct'] = Array();}
                if(($obj->{'depot'})!= "undefined"){
-                   $data ['depot'] = Array($obj->{'depot'}
-                   );
+                   foreach($obj->{'depot'} as $i) {
+                       $data['depot'][$i->pagename] = $i->var_late;
+                   };
                }else{$data ['depot'] = Array();}
                if(($obj->{'mspr'})!= "undefined"){
-                   $data['mspr'] = Array($obj->{'mspr'}
-                   );
+                   $data['mspr'] = array_map(function($i) {
+                       return array($i->pagename => $i->var_late);
+                   }, $obj->{'mspr'});
                }else{ $data ['mspr'] = Array();}
                if(($obj->{'system'})!= "undefined"){
-                   $data ['system'] = Array($obj->{'system'}
-                   );
+                   $data ['system'] = array_map(function($i) {
+                       return array($i->pagename => $i->var_late);
+                   }, $obj->{'system'});
                }else{  $data ['system'] = Array();}
                if(($obj->{'station'})!= "undefined"){
-                   $data ['station'] = Array($obj->{'station'}
-                   );
+                   foreach($obj->{'station'} as $i) {
+                       $data['station'][$i->pagename] = $i->var_late;
+                   };
                }else{ $data ['station'] = Array();}
                if(($obj->{'progress'})!= "undefined"){
-
                    $data ['progress'] = Array($obj->{'progress'}
-
                    );
                }else{ $data ['progress'] = Array(
 
@@ -934,6 +937,7 @@ class Dashboard_model extends CI_Model
        }
         return $data;
     }
+
     public function getOverall()
     {
         $sql = "SELECT dt.\"id\", dt.\"item_id\", dt.\"name\", dt.\"date\", dt.\"value\" FROM \"data_sources\" dt join \"items\" i on dt.\"item_id\"=i.\"id\" and i.\"slug\"='dashboard' and dt.\"date\" = (SELECT distinct max(dt.\"date\")FROM \"data_sources\" dt join \"items\" i on dt.\"item_id\"=i.\"id\" and i.\"slug\"='dashboard');";
