@@ -1109,7 +1109,7 @@ $final = array();
 		 $superFinal = array($slug => $finalGIS);
 	}
 	else if($slug=="sys-twmv"){
-		$twTrend=twTranding($slug);
+	   $twTrend=twTranding($slug);
 	   $twDesign=twDesign($slug);
 	   $finalTREND=array("TREND" => $twTrend);
 	   $finalDESIGN=array("DESIGN" => $twDesign);
@@ -1225,7 +1225,8 @@ function build_ug($slug){
 	$tunnel_progress = tunnel_progress($slug);
 	$info = packageInfo($slug,2);
 	$info_tunnel = info_tunnel("tunnel");
-	$station_progress = ug_station_progress($slug);
+	$station_progress=ugSummary('ugstations');
+	//$station_progress = ug_station_progress($slug);
 	//$gallery = gallery($slug);
 	$gallery_tunnel = gallery($slug);
 	$kad = kad($slug,2);
@@ -1265,10 +1266,15 @@ function build_ug($slug){
 
 	//station progress
 	$station_progress_arr=new stdClass();
-	if(sizeof($station_progress) > 0){
+	/*if(sizeof($station_progress) > 0){
 		$station_progress_arr->date = date('d-M-y', strtotime($station_progress[0]['asof']));
 		foreach($station_progress as $q){
 		$station_progress_arr->$q['station_name'] = array("progress" => (float) $q['progress']);
+		}
+	}*/
+	if(sizeof($station_progress) > 0){
+		foreach($station_progress as $q){
+		$station_progress_arr->$q['pagename'] = array("progress" => (float) $q['actual_data']);
 		}
 	}
 	$finalPROGRESS = array("overall_tunnel_progress" => $tunnel_progress);
@@ -1505,9 +1511,10 @@ function testComm($slug){
 				 ->where("slug", $slug)
 				 ->order("kd_id");
 	$result1= array_map('iterator_to_array', iterator_to_array($query1));
-	$kadobj = (object)array('date' => date('d-M-y', strtotime($result1[0]['data_date'])));
-	$final[] = $kadobj;
-    foreach ($result1 as $q) {
+	 if($result1 != null){
+				$kadobj = (object)array('date' => date('d-M-y', strtotime($result1[0]['data_date'])));
+				$final[] = $kadobj;
+				foreach ($result1 as $q) {
 		        $temp['1'] =array("Track Survey",$q['tsp'],$q['tsa']);
 				$temp['2'] =array("Surface Preparation",$q['spp'],$q['spa']);
 				$temp['3'] =array("Long Rail Distibution",$q['lrdp'],$q['lrda']);
@@ -1528,6 +1535,8 @@ function testComm($slug){
 				$temp['total_var'] = $q['total_var'] ;
 				$temp['var_week'] = $q['var_week'] ;
 	}
+				 }
+    
 	 array_push($final,$temp);
 	 return $final;
  }
@@ -1700,6 +1709,13 @@ function build_procurement($slug){
  * @return Array
  * @Desc  Portlet specific info of Under Ground (UG)
  */
+function over_summary($slugs){
+	$query = db()->{'"scurve"'}
+		->select('pagename','var_late')
+		->where("slug", $slugs);
+	$result= array_map('iterator_to_array', iterator_to_array($query));
+	return $result;
+}
 
 function overSummary($slug){
 
@@ -1716,8 +1732,10 @@ function overSummary($slug){
 		array_push($arr_slugs, "sg-buloh","dsara-damai","sri-dsara-west","sri-dsara-east","kepong-sentral","metro-prima","kepong-baru","jinjang","sri-delima","kg-batu","kentonmen","jln-ipoh",
 		"sentul-west","hkl","kg-baru-north","ampang-park","klcc-east","conlay","titiwangsa","trx","chan-sow-lin","bdr-malaysia-north","bdr-malaysia-south","kuchai-lama","tmn-naga-emas",
 		"sg-besi","tech-park","serdang-raya-north","serdang-raya-south","sri-kembangan","upm","tmn-universiti","equine-park","tmn-putra-permai","16-sierra","cyberjaya-north","cyberjaya-city-centre","putrajaya-sentral");
+	}else if($slug==="ugstations"){
+		array_push($arr_slugs,"sentul-west", "titiwangsa","hkl","kg-baru-north","ampang-park","klcc-east","conlay","trx","chan-sow-lin","bdr-malaysia-north","bdr-malaysia-south");
 	}
-	$summary = ns_summary($arr_slugs);
+	$summary = over_summary($arr_slugs);
 	return $summary;
 }
 function overProgress(){
@@ -1727,7 +1745,16 @@ function overProgress(){
 	$result = array_map('iterator_to_array', iterator_to_array($query));
 	return $result;
 }
+//ns_summary
+function ugSummary($slug){
 
+	$arr_slugs = array();
+	if($slug==="ugstations"){
+		array_push($arr_slugs,"sentul-west", "titiwangsa","hkl","kg-baru-north","ampang-park","klcc-east","conlay","trx","chan-sow-lin","bdr-malaysia-north","bdr-malaysia-south");
+	}
+	$summary = ns_summary($arr_slugs);
+	return $summary;
+}
 /**
  * DASHBOARD
  * @param $slug
@@ -1742,6 +1769,7 @@ function build_dashboard($get_asof = false){
 	$overallMspr=overSummary('mspr');
 	$overallSys=overSummary('system');
 	$overallStation=overSummary('station');
+	
 	$commercial_arr = array();
 
 	foreach($commercial as $k => $q){
