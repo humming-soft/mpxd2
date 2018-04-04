@@ -908,9 +908,13 @@ class Dashboard_model extends CI_Model
                    );
                }else{ $data ['station'] = Array();}
                if(($obj->{'progress'})!= "undefined"){
+
                    $data ['progress'] = Array($obj->{'progress'}
+
                    );
-               }else{ $data ['progress'] = Array();}
+               }else{ $data ['progress'] = Array(
+
+               );}
            }
        }else{
            $data['data']= Array(
