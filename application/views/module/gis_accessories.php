@@ -13,10 +13,10 @@
 
 		</div>
 		<div id="pop_value">
-			<span class="set1">0%</span>
-			<span class="set2">0%</span>
-			<span class="set3">0w</span>
-			<span class="set4"><i class="fa fa-arrow-down" aria-hidden="true"></i> DOWN</span>
+			<span class="set1 actual">0</span>
+			<span class="set2 plan">0</span>
+			<span class="set3 variance">0</span>
+			<span class="set4 trend"><i class="fa fa-arrow-down" aria-hidden="true"></i> DOWN</span>
 		</div>
 	</div>
 	<div id="plate_commercial">
@@ -191,8 +191,14 @@
 </div>
 <script>
 	$(document).ready(function(){
+		viaduct = <?php echo json_encode($viaduct); ?>;
+		depot = <?php echo json_encode($depot); ?>;
+		mspr = <?php echo json_encode($mspr); ?>;
+		system = <?php echo json_encode($system); ?>;
+		station = <?php echo json_encode($station); ?>;
 		progress = <?php echo json_encode($progress); ?>;
-		console.log(progress);
+
+
 	});
 </script>
 
