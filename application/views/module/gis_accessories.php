@@ -13,9 +13,9 @@
 
 		</div>
 		<div id="pop_value">
-			<span class="set1 actual">0</span>
-			<span class="set2 plan">0</span>
-			<span class="set3 variance">0</span>
+			<span class="set1 actual"><?php echo $progress["actual_value"]; ?><span style="font-size: .5em;">%</span></span>
+            <span class="set2 plan"><?php echo $progress["plan_value"]; ?><span style="font-size: .5em;">%</span></span>
+			<span class="set3 variance"><?php echo $progress["variance_value"]; ?><span style="font-size: .5em;">%</span></span>
 			<span class="set4 trend"><i class="fa fa-arrow-down" aria-hidden="true"></i> DOWN</span>
 		</div>
 	</div>

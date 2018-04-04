@@ -129,7 +129,7 @@ float - plate_gis and stats
 #pop_value span {
 	/*display: none;*/
 	position: absolute;
-	font-size: 3.3vw;
+	font-size: 3em;
 	color: #fff;
 	text-shadow:
 			-1px -1px 0 rgba(0,0,0,1),
@@ -138,8 +138,8 @@ float - plate_gis and stats
 			1px 1px 0 rgba(0,0,0,1);
 }
 #pop_value span.set1 {top: 11.0%; left: 61.9%;}
-#pop_value span.set2 {top: 11.0%; left: 71.5%;}
-#pop_value span.set3 {top: 11.0%; left: 81.0%;}
+#pop_value span.set2 {top: 11.0%; left: 71%;}
+#pop_value span.set3 {top: 11.0%; left: 80.3%;}
 #pop_value span.set4 {top: 12.0%; left: 90.4%;}
 
 #pop_value span.set4 i {
@@ -322,7 +322,7 @@ border-radius: 3px; */
 	/*Added By Sebin*/
 	z-index: 3000;
 }
-#pl_phase a.set1 {top: 25.5%; left: 2.5%;}
+#pl_phase a.set1 {top: 55%; left: 1.7%;}
 #pl_phase a.set2 {top: 27%; left: 65%;}
 #pl_package a {
 	position: absolute;

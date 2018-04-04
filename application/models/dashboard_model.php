@@ -913,8 +913,11 @@ class Dashboard_model extends CI_Model
                    };
                }else{ $data ['station'] = Array();}
                if(($obj->{'progress'})!= "undefined"){
-                   $data ['progress'] = Array($obj->{'progress'}
-                   );
+                   foreach($obj->{'progress'} as $i) {
+                       foreach($i as $k => $v) {
+                           $data['progress'][$k] = $v;
+                       }
+                   };
                }else{ $data ['progress'] = Array(
 
                );}
