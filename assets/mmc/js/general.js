@@ -1,50 +1,6 @@
-
-
 $(document).ready(function(){
 
-
-	
-	// 
-	// directory
-	//
-	/*/!*mpxd.constructors.sys_psds_gis = function(data) {
-		var el = "#portlet_" + data.id;
-		return new mpxd.modules.sys_psds_m.sys_psds_gis({data: data, el: el});
-	}
-	mpxd.modules.sys_psds_m.sys_psds_gis = Backbone.View.extend({
-		initialize: function (options) {
-			this.data = options.data;
-			this.render();
-		}, render: function () {
-			var that = this;
-			var html = mpxd.getTemplate(that.data.type);
-			template = _.template(html, {data: that.data});
-			that.$el.html(template);
-			that.$el.find('.portlet_content').css({"height":(that.$el.find('.content').parent().parent().parent().height())-40});
-			that.$el.find('.portlet_content').mCustomScrollbar({theme:"dark-3"});
-		}$(document).ready(function(){
-
-	 mspr = <?php echo json_encode($overall[0]->mspr); ?>;
-	 station = <?php echo json_encode($overall[0]->station); ?>;
-	 viaduct = <?php echo json_encode($overall[0]->viaduct); ?>;
-	 depot = <?php echo json_encode($overall[0]->depot); ?>;
-	 systems = <?php echo json_encode($overall[0]->system); ?>;
-	 console.log(mspr);
-	 console.log(station);
-	 console.log(viaduct);
-	 console.log(depot);
-	 console.log(systems);
-
-	 });
-
-	 })*!/*/
-	//console.log("dada" + this.data);
-	$('#pl_package_V201').click(function(){
-		window.location.href = "viaduct.php";
-	})
-	$('span.iv_pierchart').click(function(){
-		window.location.href = "pier.php";
-	})
+    console.log(viaduct);
 	$('#plate_vector_map').load('assets/mmc/svg/plate_vector_map.svg',function(){
 
 		var json = [ 
@@ -176,7 +132,6 @@ $(document).ready(function(){
 				$('#'+vector_station_name).toggle('pulsate').css({'fill':'#ffffff','stroke':'#ff0055'});
 			};
 		}
-		
 		var json = [ 
 			{"vector_depot":"legend_v_depot_1","vector_status":"0"},
 			{"vector_depot":"legend_v_depot_2","vector_status":"1"},
@@ -217,21 +172,9 @@ $(document).ready(function(){
 				$('#'+vector_depot_name).toggle('pulsate').css({'fill':'#ffffff','stroke':'#ff0055'});
 			};
 		}
-		
-		
-		
-		
-		
 	});
-	
-	
-	
-	
-	
-	
 	var json = [ 
-		
-		//
+
 		//	arrage by sequence :
 		//
 		//	- S&TC & PSD/APG
@@ -242,7 +185,6 @@ $(document).ready(function(){
 		//	- COMMS&ITS
 		//	- AFC
 		//
-		
 		{"chart_id":"db_donut_1a","chart_title":"S&TC & PSD/APG","chart_name":"Signalling & Train Control System And Platform Screen Doors/ Automatic Platform Gates","chart_value":"0","set_donut":"2","url":"sys-stcpsd/index","link_enable":"no"},
 		{"chart_id":"db_donut_1b","chart_title":"<br>ICSS & CMMS","chart_name":"Integrated Control Supervisory System And Computerised Maintenance Management System","chart_value":"0","set_donut":"2","url":"sys-icsscmms/index","link_enable":"no"},
 		{"chart_id":"db_donut_2a","chart_title":"<br>ET & DE","chart_name":"Electric Trains And Depot Equipment","chart_value":"0","set_donut":"2","url":"sys-etde/index","link_enable":"yes"},
@@ -251,7 +193,6 @@ $(document).ready(function(){
 		{"chart_id":"db_donut_3b","chart_title":"<br>COMMS & ITS","chart_name":"Communications, Government Integrated Radio Network, Commercial Telecom (INFRA) And Information Technology System","chart_value":"0","set_donut":"2","url":"sys-commsits/index","link_enable":"no"},
 		{"chart_id":"db_donut_4a","chart_title":"<br>AFC","chart_name":"Automatic Fare Collection System","chart_value":"0","set_donut":"2","url":"sys-afc/index","link_enable":"no"}
 	];
-	
 	for (i = 0; i < json.length; i++) {
 		var b = json[i];
 		use_chart_title = b.chart_title;
@@ -261,7 +202,6 @@ $(document).ready(function(){
 		use_chart_name = b.chart_name;
 		use_chart_url= b.url;
 		use_chart_link_enable= b.link_enable;
-		
 		if (use_chart_set_donut==2) {
 			use_chart_font_size = '20px';
 			use_chart_font_color = '#ffffff';
@@ -274,14 +214,12 @@ $(document).ready(function(){
 			} else if (use_chart_value < 25) {
 				use_chart_donut_color = '#ff0055';
 			};
-			
 			if (use_chart_link_enable == 'yes') {
 				link_css = 'text-decoration: none;'
 			} else {
-				link_css = 'background:#000!important;color:#644!important;cursor:default;'
+				link_css = 'color:#fff !important;cursor:default;'
 				use_chart_url = '#'
 			};
-			
 			use_chart_svg_width = 62;
 			use_chart_svg_height = 62;
 			use_chart_circle_r = 30;
@@ -289,54 +227,12 @@ $(document).ready(function(){
 			use_chart_circle_cy = 30;
 			use_chart_circle_data_total = 189;
 			use_chart_circle_data_used = use_chart_value / 100 * use_chart_circle_data_total;
-			
-			
 			gauge_value = use_chart_value/100*112.225;
 			gauge_value_num = use_chart_value;
-
-			
 			donut_body = '<div class="gauge1"><div class="title"><a class="url_donut_system" style="'+link_css+'" href="'+use_chart_url+'" title="'+use_chart_name+'"><span class="donut_title_name">'+use_chart_title+'</span></a></div><svg class="meter" viewBox="-7 -18 70 110"><circle id="low" r="34.4" cx="50%" cy="50%" stroke="rgba(255,255,255,.5)" stroke-width="2" stroke-dasharray="128.75,128.5" fill="none" style="stroke:rgba(255,255,255,.5);stroke-opacity:1" /><circle id="circle4" r="30" cx="50%" cy="50%" stroke="#0f0" stroke-width="8" stroke-dasharray="'+gauge_value+',220" fill="none" /><line x1="16.359814" y1="41.187347" x2="6.3598132" y2="34.187347" id="line6" style="stroke:rgba(255,255,255,.5);stroke-width:2;stroke-opacity:1" /><line x1="58.397079" y1="53.990067" x2="70.397079" y2="53.990067" id="line8" style="stroke:rgba(255,255,255,.5);stroke-width:2;stroke-opacity:1" /><rect width="64" height="30" style="fill:#000;stroke:rgba(255,255,255,.25);stroke-width:1" transform="matrix(0.81915204,0.57357644,-0.57357644,0.81915204,8,-6)" id="rect10" x="13" y="0" /><text x="-43.319473" y="-2.332696" font-size="18" transform="matrix(-0.81915204,-0.57357644,0.57357644,-0.81915204,8,-3)" id="text12" style="text-anchor:middle;">'+gauge_value_num+'%</text></svg></div>';
-				
 			$('.dp_'+use_chart_id+'').append(donut_body);
-			
 		};
-		
-		
-		
-		
-		// if (use_chart_set_donut==2) {
-		// 	use_chart_font_size = '20px';
-		// 	use_chart_font_color = '#ffffff';
-		// 	if (use_chart_value >= 75) {
-		// 		use_chart_donut_color = '#00ff55';
-		// 	} else if (use_chart_value >= 50) {
-		// 		use_chart_donut_color = '#ffff00';
-		// 	} else if (use_chart_value >= 25) {
-		// 		use_chart_donut_color = '#ff7700';
-		// 	} else if (use_chart_value < 25) {
-		// 		use_chart_donut_color = '#ff0055';
-		// 	};
-		// 	use_chart_svg_width = 62;
-		// 	use_chart_svg_height = 62;
-		// 	use_chart_circle_r = 30;
-		// 	use_chart_circle_cx = 30;
-		// 	use_chart_circle_cy = 30;
-		// 	use_chart_circle_data_total = 189;
-		// 	use_chart_circle_data_used = use_chart_value / 100 * use_chart_circle_data_total;
-
-			
-		// 	donut_body = '<div><a class="url_donut_system" style="text-decoration: none; color: #fff;" href="'+use_chart_url+'" title="'+use_chart_name+'"><span class="donut_title_name">'+use_chart_title+'</span></a><svg class="svg_donut_system" width="'+use_chart_svg_width+'" height="'+use_chart_svg_height+'" style="border:1px solid '+use_chart_donut_color+';"><text style="font-style:normal;font-weight:bold;font-size:'+use_chart_font_size+';fill:'+use_chart_font_color+';" transform="matrix(0,1,-1,0,0,0)"><tspan sodipodi:role="line" x="11" y="-24">'+use_chart_value+'%</tspan></text><circle class="svg_donut_system_circle" r="'+use_chart_circle_r+'" cx="'+use_chart_circle_cx+'" cy="'+use_chart_circle_cy+'" class="pie" style="stroke: '+use_chart_donut_color+';stroke-dasharray: '+use_chart_circle_data_used+','+use_chart_circle_data_total+';"></circle></svg></div>';
-				
-		// 	$('.dp_'+use_chart_id+'').append(donut_body);
-			
-		// };
-		
-		
-		
-		
-		
 	}
-	
 	// current date
 	var fullDate = new Date()
 	var month = new Array();
@@ -355,9 +251,5 @@ $(document).ready(function(){
 	var n = month[fullDate.getMonth()];
 	var currentDate = fullDate.getDate() + " " + n + " " + fullDate.getFullYear();
 	$('#current_date').text(currentDate);
-	
-	
-	
-	
 });	
 

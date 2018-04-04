@@ -184,21 +184,9 @@
 			<a class="set11" href="<?php echo $this->config->base_url(); ?>v210/index">V210</a>
 		</div>
 		<div id="pl_phase">
-			<a class="set1" href="<?php echo $this->config->base_url(); ?>north/index">NORTH</a>
-			<a class="set2" href="<?php echo $this->config->base_url(); ?>south/index">SOUTH</a>
+			<a class="set1" href="<?php echo $this->config->base_url(); ?>north/index">PHASE 1</a>
+			<a class="set2" href="<?php echo $this->config->base_url(); ?>south/index">PHASE 2</a>
 		</div>
 	</div>
 </div>
-<script>
-	$(document).ready(function(){
-		viaduct = <?php echo json_encode($viaduct); ?>;
-		depot = <?php echo json_encode($depot); ?>;
-		mspr = <?php echo json_encode($mspr); ?>;
-		system = <?php echo json_encode($system); ?>;
-		station = <?php echo json_encode($station); ?>;
-		progress = <?php echo json_encode($progress); ?>;
-
-
-	});
-</script>
 

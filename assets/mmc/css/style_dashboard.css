@@ -15,7 +15,7 @@ div#infographic div img{
 
 #dashboard {
 	width: 99%;
-	padding: 5px 0;
+	padding: 20px 0;
 }
 
 
@@ -322,7 +322,7 @@ border-radius: 3px; */
 	/*Added By Sebin*/
 	z-index: 3000;
 }
-#pl_phase a.set1 {top: 16.5%; left: 2.5%;}
+#pl_phase a.set1 {top: 25.5%; left: 2.5%;}
 #pl_phase a.set2 {top: 27%; left: 65%;}
 #pl_package a {
 	position: absolute;
@@ -387,11 +387,11 @@ border-radius: 3px; */
 	position: absolute;
 	font-size: 1em;
 	color: #eef;
-	text-shadow:
+	/*text-shadow:
 			-1px -1px 0 rgba(0,0,255,.3),
 			1px -1px 0 rgba(0,0,255,.3),
 			-1px 1px 0 rgba(0,0,255,.3),
-			1px 1px 0 rgba(0,0,255,.3);
+			1px 1px 0 rgba(0,0,255,.3);*/
 }
 #pl_station span.set1 {top: 78.6%; left: 6.0%;}
 #pl_station span.set2 {top: 74.3%; left: 8.2%;}
@@ -623,4 +623,16 @@ div.the_donut {
 #plate_system div#donut_plate svg.meter text {
 	font-size: 1.7em;
 	fill:#fff;
+}
+
+#data_date {
+    /* cursor: pointer; */
+    width: 75px;
+    text-align: center;
+    height: 23px;
+    /* float: right; */
+    background-color: transparent;
+    border: none;
+    color: #fca;
+    font-size: .8em;
 }
