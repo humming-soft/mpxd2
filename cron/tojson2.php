@@ -1109,7 +1109,7 @@ $final = array();
 		 $superFinal = array($slug => $finalGIS);
 	}
 	else if($slug=="sys-twmv"){
-		$twTrend=twTranding($slug);
+	   $twTrend=twTranding($slug);
 	   $twDesign=twDesign($slug);
 	   $finalTREND=array("TREND" => $twTrend);
 	   $finalDESIGN=array("DESIGN" => $twDesign);
@@ -1225,7 +1225,7 @@ function build_ug($slug){
 	$tunnel_progress = tunnel_progress($slug);
 	$info = packageInfo($slug,2);
 	$info_tunnel = info_tunnel("tunnel");
-	$station_progress=overSummary('ugstations');
+	$station_progress=ugSummary('ugstations');
 	//$station_progress = ug_station_progress($slug);
 	//$gallery = gallery($slug);
 	$gallery_tunnel = gallery($slug);
@@ -1709,6 +1709,13 @@ function build_procurement($slug){
  * @return Array
  * @Desc  Portlet specific info of Under Ground (UG)
  */
+function over_summary($slugs){
+	$query = db()->{'"scurve"'}
+		->select('pagename','var_late')
+		->where("slug", $slugs);
+	$result= array_map('iterator_to_array', iterator_to_array($query));
+	return $result;
+}
 
 function overSummary($slug){
 
@@ -1728,7 +1735,7 @@ function overSummary($slug){
 	}else if($slug==="ugstations"){
 		array_push($arr_slugs,"sentul-west", "titiwangsa","hkl","kg-baru-north","ampang-park","klcc-east","conlay","trx","chan-sow-lin","bdr-malaysia-north","bdr-malaysia-south");
 	}
-	$summary = ns_summary($arr_slugs);
+	$summary = over_summary($arr_slugs);
 	return $summary;
 }
 function overProgress(){
@@ -1738,7 +1745,16 @@ function overProgress(){
 	$result = array_map('iterator_to_array', iterator_to_array($query));
 	return $result;
 }
+//ns_summary
+function ugSummary($slug){
 
+	$arr_slugs = array();
+	if($slug==="ugstations"){
+		array_push($arr_slugs,"sentul-west", "titiwangsa","hkl","kg-baru-north","ampang-park","klcc-east","conlay","trx","chan-sow-lin","bdr-malaysia-north","bdr-malaysia-south");
+	}
+	$summary = ns_summary($arr_slugs);
+	return $summary;
+}
 /**
  * DASHBOARD
  * @param $slug
