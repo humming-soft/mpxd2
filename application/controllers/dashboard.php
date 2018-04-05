@@ -169,7 +169,12 @@ class Dashboard extends CI_Controller {
 //                $data['data'][$kk] = $dd;
 //        }
       /*  $data['comdata'] = $this->dashboard_model->getOverall();*/
-      $data = $this->dashboard_model->getCost();
+
+        if ($this->input->get()) {
+            $data = $this->dashboard_model->getCost($this->input->get('date'));
+        }else {
+            $data = $this->dashboard_model->getCost();
+        }
       $this->load->view('index',$data);
         //$this->load->view('index');
     }
