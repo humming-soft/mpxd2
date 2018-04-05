@@ -5,7 +5,11 @@
 	</div>
 	<div id="plate_overall_progress">
 		<div id="pop_label">
-			<span class="set1">OVERALL PROGRESS <b style="font-size: .8vw; color: #fa0">(AS OF : 2017-12-20)</b></span>
+			<span class="set1">OVERALL PROGRESS <b><?php
+                    if(isset($progress["as_of"])){
+                        echo "(AS OF : ".date('d-M-Y',strtotime($progress["as_of"])).")";
+                    }
+                    ?></b></span>
 			<span class="set2">ACTUAL</span>
 			<span class="set3">PLANNED</span>
 			<span class="set4">VARIANCE</span>
