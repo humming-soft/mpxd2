@@ -1726,8 +1726,6 @@ function overSummary($slug){
 		array_push($arr_slugs, "serdang-dpt");
 	}else if($slug==="mspr"){
 		array_push($arr_slugs, "mspr1","mspr2","mspr3","mspr4","mspr5","mspr6","mspr7","mspr8","mspr9","mspr10", "mspr11","mspr12","mspr13","mspr14","mspr15");
-	}else if($slug==="system"){
-		array_push($arr_slugs, "sys-etde","sys-psds","sys-twmv");
 	}else if($slug==="station"){
 		array_push($arr_slugs, "sg-buloh","dsara-damai","sri-dsara-west","sri-dsara-east","kepong-sentral","metro-prima","kepong-baru","jinjang","sri-delima","kg-batu","kentonmen","jln-ipoh",
 		"sentul-west","hkl","kg-baru-north","ampang-park","klcc-east","conlay","titiwangsa","trx","chan-sow-lin","bdr-malaysia-north","bdr-malaysia-south","kuchai-lama","tmn-naga-emas",
@@ -1751,6 +1749,8 @@ function ugSummary($slug){
 	$arr_slugs = array();
 	if($slug==="ugstations"){
 		array_push($arr_slugs,"sentul-west", "titiwangsa","hkl","kg-baru-north","ampang-park","klcc-east","conlay","trx","chan-sow-lin","bdr-malaysia-north","bdr-malaysia-south");
+	}else if($slug==="system"){
+		array_push($arr_slugs, "sys-etde","sys-psds","sys-twmv");
 	}
 	$summary = ns_summary($arr_slugs);
 	return $summary;
@@ -1767,7 +1767,7 @@ function build_dashboard($get_asof = false){
 	$overallViaduct=overSummary('viaduct');
 	$overallDepot=overSummary('depot');
 	$overallMspr=overSummary('mspr');
-	$overallSys=overSummary('system');
+	$overallSys=ugSummary('system');
 	$overallStation=overSummary('station');
 	
 	$commercial_arr = array();
