@@ -13,10 +13,67 @@
 
 		</div>
 		<div id="pop_value">
-			<span class="set1 actual"><?php echo $progress["actual_value"]; ?><span style="font-size: .5em;">%</span></span>
-            <span class="set2 plan"><?php echo $progress["plan_value"]; ?><span style="font-size: .5em;">%</span></span>
-			<span class="set3 variance"><?php echo $progress["variance_value"]; ?><span style="font-size: .5em;">%</span></span>
-			<span class="set4 trend"><i class="fa fa-arrow-down" aria-hidden="true"></i> DOWN</span>
+			<span class="set1 actual">
+                <?php
+                    if(isset($progress["actual_value"])){
+                        echo $progress["actual_value"];
+                    }else{
+                        echo "N/A";
+                    }
+                ?>
+                <span><?php
+                    if(isset($progress["actual_value"])){ echo "%"; } ?></span>
+            </span>
+            <span class="set2 plan">
+                <?php
+                    if(isset($progress["plan_value"])){
+                        echo $progress["plan_value"];
+                    }else {
+                        echo "N/A";
+                    }
+                ?>
+                <span><?php
+                    if(isset($progress["plan_value"])){ echo "%"; } ?></span>
+            </span>
+			<span class="set3 variance">
+                <?php
+                    if(isset($progress["variance_value"])){
+                        echo $progress["variance_value"];
+                    }else {
+                        echo "N/A";
+                    }
+                ?>
+                <span><?php
+                    if(isset($progress["variance_value"])){ echo "%"; } ?></span>
+            </span>
+			<span class="set4
+			    <?php
+                if(isset($progress["variance_value"])) {
+                    if ((float)$progress["variance_value"] > 0) {
+                        echo 'trend-down';
+                    } else {
+                        echo 'trend-up';
+                    }
+                }
+                ?>">
+                <i class="fa
+                    <?php
+                    if(isset($progress["variance_value"])) {
+                        if ((float)$progress["variance_value"] > 0) {
+                            echo 'fa-arrow-down';
+                        } else {
+                            echo 'fa-arrow-up';
+                        }
+                    }?>" aria-hidden="true">
+                </i>
+                <?php
+                if(isset($progress["variance_value"])) {
+                    if ((float)$progress["variance_value"] > 0) {
+                        echo 'DOWN';
+                    } else {
+                        echo 'UP';
+                    }
+                }else{ echo 'N/A';}?></span>
 		</div>
 	</div>
 	<div id="plate_commercial">

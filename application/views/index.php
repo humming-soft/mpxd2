@@ -45,7 +45,8 @@
 /*    mspr = <?php /*echo json_encode($mspr); */?>;*/
     system = <?php echo json_encode($system); ?>;
     station = <?php echo json_encode($station); ?>;
-    progress = <?php echo json_encode($progress); ?>;
+    dates = <?php echo json_encode($dates); ?>;
+    console.log(baseURL);
 </script>
 <script type="text/javascript" src="<?php echo $this->config->base_url(); ?>assets/mmc/js/general.js"></script>
 <script type="text/javascript" src="<?php echo $this->config->base_url(); ?>assets/mmc/js/db.js"></script>

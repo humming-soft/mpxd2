@@ -1,6 +1,5 @@
 $(document).ready(function(){
 
-    console.log(progress);
 	$('#plate_vector_map').load('assets/mmc/svg/plate_vector_map.svg',function(){
 
 		var json = [ 
@@ -187,9 +186,9 @@ $(document).ready(function(){
 		//
 		{"chart_id":"db_donut_1a","chart_title":"S&TC & PSD/APG","chart_name":"Signalling & Train Control System And Platform Screen Doors/ Automatic Platform Gates","chart_value":"0","set_donut":"2","url":"sys-stcpsd/index","link_enable":"no"},
 		{"chart_id":"db_donut_1b","chart_title":"<br>ICSS & CMMS","chart_name":"Integrated Control Supervisory System And Computerised Maintenance Management System","chart_value":"0","set_donut":"2","url":"sys-icsscmms/index","link_enable":"no"},
-		{"chart_id":"db_donut_2a","chart_title":"<br>ET & DE","chart_name":"Electric Trains And Depot Equipment","chart_value":"0","set_donut":"2","url":"sys-etde/index","link_enable":"yes"},
-		{"chart_id":"db_donut_2b","chart_title":"<br>TW & MV","chart_name":"Trackworks, Maintenance Vehicles & Works Train","chart_value":"0","set_donut":"2","url":"sys-twmv/index","link_enable":"yes"},
-		{"chart_id":"db_donut_3a","chart_title":"<br>PS&DS","chart_name":"Power Supply And Distribution System","chart_value":"0","set_donut":"2","url":"sys-psds/index","link_enable":"yes"},
+		{"chart_id":"db_donut_2a","chart_title":"<br>ET & DE","chart_name":"Electric Trains And Depot Equipment","chart_value":checkDefined(system["sys-etde"]),"set_donut":"2","url":"sys-etde/index","link_enable":"yes"},
+		{"chart_id":"db_donut_2b","chart_title":"<br>TW & MV","chart_name":"Trackworks, Maintenance Vehicles & Works Train","chart_value":checkDefined(system["sys-twmv"]),"set_donut":"2","url":"sys-twmv/index","link_enable":"yes"},
+		{"chart_id":"db_donut_3a","chart_title":"<br>PS&DS","chart_name":"Power Supply And Distribution System","chart_value":checkDefined(system["sys-psds"]),"set_donut":"2","url":"sys-psds/index","link_enable":"yes"},
 		{"chart_id":"db_donut_3b","chart_title":"<br>COMMS & ITS","chart_name":"Communications, Government Integrated Radio Network, Commercial Telecom (INFRA) And Information Technology System","chart_value":"0","set_donut":"2","url":"sys-commsits/index","link_enable":"no"},
 		{"chart_id":"db_donut_4a","chart_title":"<br>AFC","chart_name":"Automatic Fare Collection System","chart_value":"0","set_donut":"2","url":"sys-afc/index","link_enable":"no"}
 	];
@@ -262,6 +261,14 @@ $(document).ready(function(){
             return 1;
         }else{
             return 0;
+        }
+    }
+
+    function checkDefined($v){
+        if(typeof($v) === "undefined"){
+              return 0;
+        }else{
+            return $v;
         }
     }
 });	
