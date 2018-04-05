@@ -46,7 +46,7 @@
     system = <?php echo json_encode($system); ?>;
     station = <?php echo json_encode($station); ?>;
     dates = <?php echo json_encode($dates); ?>;
-    console.log(baseURL);
+    progress = <?php echo json_encode($progress); ?>;
 </script>
 <script type="text/javascript" src="<?php echo $this->config->base_url(); ?>assets/mmc/js/general.js"></script>
 <script type="text/javascript" src="<?php echo $this->config->base_url(); ?>assets/mmc/js/db.js"></script>

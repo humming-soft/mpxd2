@@ -1,5 +1,6 @@
 $(document).ready(function(){
 
+    console.log(progress)
 	$('#plate_vector_map').load('assets/mmc/svg/plate_vector_map.svg',function(){
 
 		var json = [ 
@@ -29,7 +30,7 @@ $(document).ready(function(){
 			} else if (vector_track_status==1) {/!*on schedule*!/
 				$('#'+vector_track_name).css({'fill':'#00ff55','stroke':'#00ff55'});
 			} else if (vector_track_status==2) {/!*behind late*!/
-				$('#'+vector_track_name).css({'fill':'#ff0055','stroke':'#ff0055'});
+				$('#'+vector_track_name).css({'fill':'#ffe900','stroke':'#ffe900'});
 			} else if (vector_track_status==3) {/!*critical*!/
 				blink('#'+vector_track_name, -1, 500);
 				function blink(elem, times, speed) {
@@ -107,7 +108,7 @@ $(document).ready(function(){
 			} else if (vector_station_status==1) {/!*on schedule*!/
 				$('#'+vector_station_name).css({'fill':'#ffffff','stroke':'#00ff55'});
 			} else if (vector_station_status==2) {/!*behind late*!/
-				$('#'+vector_station_name).css({'fill':'#ffffff','stroke':'#ff0055'});
+				$('#'+vector_station_name).css({'fill':'#ffe900','stroke':'#ffe900'});
 			} else if (vector_station_status==3) {/!*critical*!/
 				blink('#'+vector_station_name, -1, 500);
 				function blink(elem, times, speed) {
@@ -147,7 +148,7 @@ $(document).ready(function(){
 			} else if (vector_depot_status==1) {/!*on schedule*!/
 				$('#'+vector_depot_name).css({'fill':'#ffffff','stroke':'#00ff55'});
 			} else if (vector_depot_status==2) {/!*behind late*!/
-				$('#'+vector_depot_name).css({'fill':'#ffffff','stroke':'#ff0055'});
+				$('#'+vector_depot_name).css({'fill':'#ffffff','stroke':'#ffe900'});
 			} else if (vector_depot_status==3) {/!*critical*!/
 				blink('#'+vector_depot_name, -1, 500);
 				function blink(elem, times, speed) {

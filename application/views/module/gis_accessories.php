@@ -5,11 +5,11 @@
 	</div>
 	<div id="plate_overall_progress">
 		<div id="pop_label">
-			<span class="set1">Overall Progress</span>
-			<span class="set2">Actual</span>
-			<span class="set3">Planned</span>
-			<span class="set4">Variance</span>
-			<span class="set5">Trend</span>
+			<span class="set1">OVERALL PROGRESS <b style="font-size: .8vw; color: #fa0">(AS OF : 2017-12-20)</b></span>
+			<span class="set2">ACTUAL</span>
+			<span class="set3">PLANNED</span>
+			<span class="set4">VARIANCE</span>
+			<span class="set5">TREND</span>
 
 		</div>
 		<div id="pop_value">
@@ -21,8 +21,8 @@
                         echo "N/A";
                     }
                 ?>
-                <span><?php
-                    if(isset($progress["actual_value"])){ echo "%"; } ?></span>
+                <b><?php
+                    if(isset($progress["actual_value"])){ echo "%"; } ?></b>
             </span>
             <span class="set2 plan">
                 <?php
@@ -32,8 +32,8 @@
                         echo "N/A";
                     }
                 ?>
-                <span><?php
-                    if(isset($progress["plan_value"])){ echo "%"; } ?></span>
+                <b><?php
+                    if(isset($progress["plan_value"])){ echo "%"; } ?></b>
             </span>
 			<span class="set3 variance">
                 <?php
@@ -43,8 +43,8 @@
                         echo "N/A";
                     }
                 ?>
-                <span><?php
-                    if(isset($progress["variance_value"])){ echo "%"; } ?></span>
+                <b><?php
+                    if(isset($progress["variance_value"])){ echo "%"; } ?></b>
             </span>
 			<span class="set4
 			    <?php
@@ -78,7 +78,7 @@
 	</div>
 	<div id="plate_commercial">
 		<div id="pcom_label">
-			<span class="set1">Project Cost Update</span>
+			<span class="set1">PROJECT COST UPDATE</span>
 			<span class="set2">Project Spend To Date</span>
 			<span class="set3">Awarded Package</span>
 			<span class="set4">PDP Reimbursables</span>
@@ -101,7 +101,7 @@
 	</div>
 	<div id="plate_legend">
 		<div id="pl_label_header">
-			<span class="set1">Legends</span>
+			<span class="set1">LEGENDS</span>
 		</div>
 		<div id="pl_label_content">
 			<span class="set1">Not Started</span>

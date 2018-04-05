@@ -109,17 +109,17 @@ float - plate_gis and stats
 #pop_label span {
 	/*display: none;*/
 	position: absolute;
-	font-size: 1.1vw;
+	font-size: .9vw;
 	color: #000;
 }
 #pop_label span.set1 {
 	top: 1.0%;
 	left: 71.5%;
 	color: #fff;
-	font-size: 1.3vw;
+	font-size: 1.2vw;
 }
-#pop_label span.set1 {top: 1.2%; left: 62.5%;}
-#pop_label span.set2 {top: 6.2%; left: 63.0%;}
+#pop_label span.set1 {top: 1.3%; left: 62%;}
+#pop_label span.set2 {top: 6.2%; left: 62.5%;}
 #pop_label span.set3 {top: 6.2%; left: 72.0%;}
 #pop_label span.set4 {top: 6.2%; left: 81.5%;}
 #pop_label span.set5 {top: 6.2%; left: 90.6%;}
@@ -129,7 +129,7 @@ float - plate_gis and stats
 #pop_value span {
 	/*display: none;*/
 	position: absolute;
-	font-size: 3em;
+	font-size: 2.7vw;
 	color: #fff;
 	text-shadow:
 			-1px -1px 0 rgba(0,0,0,1),
@@ -141,7 +141,13 @@ float - plate_gis and stats
 #pop_value span.set2 {top: 11.0%; left: 71%;}
 #pop_value span.set3 {top: 11.0%; left: 80.3%;}
 #pop_value span.set4 {top: 12.0%; left: 90.4%;}
-#pop_value span span {font-size: .5em;}
+#pop_value span b {
+    font-size: 1.5vw;
+    padding-right: -42%;
+    left: 98%;
+    top: 0%;
+    position: absolute;
+}
 
 #pop_value span.set4 i {
 	font-size: 3.3vw;
@@ -177,7 +183,7 @@ float - plate_gis and stats
 	width: 20%;
 	background: none;
 	text-align: left;
-	font-size: 1.3vw;
+	font-size: 1.2vw;
 }
 
 #pcom_label span.set2, #pcom_label span.set3,
@@ -206,7 +212,7 @@ float - plate_gis and stats
 	margin-left: 2px;
 	font-size: 1.7vw;
 	border-top: 2px solid #335;
-	color: #ff0;
+	color: #fa0;
 	width: 10%;
 	background: /*#205*/ #073b68;
 	text-align: center;
@@ -230,7 +236,7 @@ float - plate_gis and stats
 #pl_label_header span {
 	/*display: none;*/
 	position: absolute;
-	font-size: 1.1vw;
+	font-size: .9vw;
 	color: #fff;
 }
 #pl_label_header span.set1 {top: 2.0%; left: 3.5%;}
@@ -633,7 +639,7 @@ div.the_donut {
 
 #data_date {
     /* cursor: pointer; */
-    width: 75px;
+    width: 80px;
     text-align: center;
     height: 23px;
     /* float: right; */
@@ -641,4 +647,5 @@ div.the_donut {
     border: none;
     color: #fca;
     font-size: .8em;
+    text-transform: uppercase;
 }
