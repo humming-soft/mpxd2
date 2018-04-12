@@ -5,23 +5,84 @@
 	</div>
 	<div id="plate_overall_progress">
 		<div id="pop_label">
-			<span class="set1">Overall Progress</span>
-			<span class="set2">Actual</span>
-			<span class="set3">Planned</span>
-			<span class="set4">Variance</span>
-			<span class="set5">Trend</span>
+			<span class="set1">OVERALL PROGRESS <b><?php
+                    if(isset($progress["as_of"])){
+                        echo "(AS OF : ".date('d-M-Y',strtotime($progress["as_of"])).")";
+                    }
+                    ?></b></span>
+			<span class="set2">ACTUAL</span>
+			<span class="set3">PLANNED</span>
+			<span class="set4">VARIANCE</span>
+			<span class="set5">TREND</span>
 
 		</div>
 		<div id="pop_value">
-			<span class="set1 actual">0</span>
-			<span class="set2 plan">0</span>
-			<span class="set3 variance">0</span>
-			<span class="set4 trend"><i class="fa fa-arrow-down" aria-hidden="true"></i> DOWN</span>
+			<span class="set1 actual">
+                <?php
+                    if(isset($progress["actual_value"])){
+                        echo $progress["actual_value"];
+                    }else{
+                        echo "N/A";
+                    }
+                ?>
+                <b><?php
+                    if(isset($progress["actual_value"])){ echo "%"; } ?></b>
+            </span>
+            <span class="set2 plan">
+                <?php
+                    if(isset($progress["plan_value"])){
+                        echo $progress["plan_value"];
+                    }else {
+                        echo "N/A";
+                    }
+                ?>
+                <b><?php
+                    if(isset($progress["plan_value"])){ echo "%"; } ?></b>
+            </span>
+			<span class="set3 variance">
+                <?php
+                    if(isset($progress["variance_value"])){
+                        echo $progress["variance_value"];
+                    }else {
+                        echo "N/A";
+                    }
+                ?>
+                <b><?php
+                    if(isset($progress["variance_value"])){ echo "%"; } ?></b>
+            </span>
+			<span class="set4
+			    <?php
+                if(isset($progress["variance_value"])) {
+                    if ((float)$progress["variance_value"] > 0) {
+                        echo 'trend-down';
+                    } else {
+                        echo 'trend-up';
+                    }
+                }
+                ?>">
+                <i class="fa
+                    <?php
+                    if(isset($progress["variance_value"])) {
+                        if ((float)$progress["variance_value"] > 0) {
+                            echo 'fa-arrow-down';
+                        } else {
+                            echo 'fa-arrow-up';
+                        }
+                    }?>" aria-hidden="true">
+                </i>
+                <?php
+                if(isset($progress["variance_value"])) {
+                    if ((float)$progress["variance_value"] > 0) {
+                        echo 'DOWN';
+                    } else {
+                        echo 'UP';
+                    }
+                }else{ echo 'N/A';}?></span>
 		</div>
 	</div>
 	<div id="plate_commercial">
 		<div id="pcom_label">
-			<span class="set1">Project Cost Update</span>
+			<span class="set1">PROJECT COST UPDATE</span>
 			<span class="set2">Project Spend To Date</span>
 			<span class="set3">Awarded Package</span>
 			<span class="set4">PDP Reimbursables</span>
@@ -44,7 +105,7 @@
 	</div>
 	<div id="plate_legend">
 		<div id="pl_label_header">
-			<span class="set1">Legends</span>
+			<span class="set1">LEGENDS</span>
 		</div>
 		<div id="pl_label_content">
 			<span class="set1">Not Started</span>
@@ -184,21 +245,9 @@
 			<a class="set11" href="<?php echo $this->config->base_url(); ?>v210/index">V210</a>
 		</div>
 		<div id="pl_phase">
-			<a class="set1" href="<?php echo $this->config->base_url(); ?>north/index">NORTH</a>
-			<a class="set2" href="<?php echo $this->config->base_url(); ?>south/index">SOUTH</a>
+			<a class="set1" href="<?php echo $this->config->base_url(); ?>north/index">PHASE 1</a>
+			<a class="set2" href="<?php echo $this->config->base_url(); ?>south/index">PHASE 2</a>
 		</div>
 	</div>
 </div>
-<script>
-	$(document).ready(function(){
-		viaduct = <?php echo json_encode($viaduct); ?>;
-		depot = <?php echo json_encode($depot); ?>;
-		mspr = <?php echo json_encode($mspr); ?>;
-		system = <?php echo json_encode($system); ?>;
-		station = <?php echo json_encode($station); ?>;
-		progress = <?php echo json_encode($progress); ?>;
-
-
-	});
-</script>
 

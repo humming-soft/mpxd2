@@ -40,22 +40,14 @@
 </div>
 <script>
 	baseURL = <?php echo json_encode($this->config->base_url()); ?>;
-	/*$(window).load(function(){
-		data = <?php echo json_encode($data); ?>;
-		$('#overall_actual').text(data['overall_actual']+'%');
-		$('#overall_variance').text(data['overall_variance']["early"]+'%');
-		$('#overall_early').text(data['overall_late']+'%');
-		$trend = $('#trend'); $css='';
-		$("#trend_text").text(data['trend'].toUpperCase());
-		if(data['trend']=="up"){
-			$css = "fa fa-arrow-up";
-		}else if(data['trend']=="down"){
-			$css = "fa fa-arrow-down red";
-		}else{
-			$css = "";
-		}
-		$trend.removeClass().addClass($css);
-	});*/
+    viaduct = <?php echo json_encode($viaduct); ?>;
+    depot = <?php echo json_encode($depot); ?>;
+/*    mspr = <?php /*echo json_encode($mspr); */?>;*/
+    system = <?php echo json_encode($system); ?>;
+    station = <?php echo json_encode($station); ?>;
+    dates = <?php echo json_encode($dates); ?>;
+    progress = <?php echo json_encode($progress); ?>;
 </script>
+<script type="text/javascript" src="<?php echo $this->config->base_url(); ?>assets/mmc/js/general.js"></script>
 <script type="text/javascript" src="<?php echo $this->config->base_url(); ?>assets/mmc/js/db.js"></script>
 <?php include 'templates/default_footer.php' ?>

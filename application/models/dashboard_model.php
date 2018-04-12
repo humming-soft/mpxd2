@@ -818,7 +818,7 @@ class Dashboard_model extends CI_Model
         RETURN NUMBER_FORMAT($cash);
     }
 
-    public function getCost()
+    public function getCost($date = FALSE)
     {
         $psd = 0.00;
         $ap = 0.00;
@@ -827,17 +827,21 @@ class Dashboard_model extends CI_Model
         $retsum = 0.00;
         $vorder = 0.00;
         $consum = 0.00;
-        $sql1 = "SELECT \"date\" FROM \"data_sources\" where \"name\" = 'Home'";
+        $sql1 = "SELECT to_char(dt.\"date\",'DD-Mon-YY') as date FROM \"data_sources\" dt join \"items\" i on dt.\"item_id\"=i.\"id\" and i.\"slug\"='dashboard' order by dt.\"date\" DESC";
         $query1 = $this->db->query($sql1);
         $result1 = $query1->result_array();
-        $data['result'] = Array();
-        if($result1 != null){
-            foreach ($result1 as $key => $val1) {
-                array_push( $data['result'],$val1['date']);
-            }
+/*        $data['dates'] = Array();*/
+        if($result1 != null) {
+            $data['dates'] = $result1;
+/*            foreach ($result1 as $key => $val1) {
+                array_push( $data['dates'],$val1['date']);
+            }*/
         }
-        $sql = "SELECT dt.\"id\", dt.\"item_id\", dt.\"name\", dt.\"date\", dt.\"value\" FROM \"data_sources\" dt join \"items\" i on dt.\"item_id\"=i.\"id\" and i.\"slug\"='dashboard' and dt.\"date\" = (SELECT distinct max(dt.\"date\")FROM \"data_sources\" dt join \"items\" i on dt.\"item_id\"=i.\"id\" and i.\"slug\"='dashboard');";
-
+        if($date){
+            $sql = "SELECT dt.\"id\", dt.\"item_id\", dt.\"name\", dt.\"date\", dt.\"value\" FROM \"data_sources\" dt join \"items\" i on dt.\"item_id\"=i.\"id\" and i.\"slug\"='dashboard' and to_char(dt.\"date\",'DD-Mon-YY') = "."'".$date."'";
+        }else {
+            $sql = "SELECT dt.\"id\", dt.\"item_id\", dt.\"name\", dt.\"date\", dt.\"value\" FROM \"data_sources\" dt join \"items\" i on dt.\"item_id\"=i.\"id\" and i.\"slug\"='dashboard' and dt.\"date\" = (SELECT distinct max(dt.\"date\")FROM \"data_sources\" dt join \"items\" i on dt.\"item_id\"=i.\"id\" and i.\"slug\"='dashboard');";
+        }
         $query = $this->db->query($sql);
         $result = $query->result_array();
         $sql1 = "SELECT dt.\"id\", dt.\"item_id\", dt.\"name\", dt.\"date\", dt.\"value\" FROM \"data_sources\" dt join \"items\" i on dt.\"item_id\"=i.\"id\" and i.\"slug\"='dashboard'";
@@ -896,30 +900,60 @@ class Dashboard_model extends CI_Model
                    );
                }
                if(($obj->{'viaduct'})!= "undefined"){
-                   $data ['viaduct'] = Array($obj->{'viaduct'}
-                   );
+                   if(sizeof($obj->{'viaduct'})> 0 ) {
+                       foreach ($obj->{'viaduct'} as $i) {
+                           $data['viaduct'][$i->pagename] = $i->var_late;
+                       };
+                   }else{
+                       $data ['viaduct'] = Array();
+                   }
                }else{$data ['viaduct'] = Array();}
                if(($obj->{'depot'})!= "undefined"){
-                   $data ['depot'] = Array($obj->{'depot'}
-                   );
+                   if(sizeof($obj->{'depot'})> 0 ) {
+                       foreach ($obj->{'depot'} as $i) {
+                           $data['depot'][$i->pagename] = $i->var_late;
+                       };
+                   }else{
+                       $data ['depot'] = Array();
+                   }
                }else{$data ['depot'] = Array();}
                if(($obj->{'mspr'})!= "undefined"){
-                   $data['mspr'] = Array($obj->{'mspr'}
-                   );
+                   if(sizeof($obj->{'mspr'})> 0 ) {
+                       $data['mspr'] = array_map(function ($i) {
+                           return array($i->pagename => $i->var_late);
+                       }, $obj->{'mspr'});
+                   }else{
+                       $data ['mspr'] = Array();
+                   }
                }else{ $data ['mspr'] = Array();}
                if(($obj->{'system'})!= "undefined"){
-                   $data ['system'] = Array($obj->{'system'}
-                   );
+                   if(sizeof($obj->{'system'})> 0 ) {
+                       foreach ($obj->{'system'} as $i) {
+                           $data['system'][$i->pagename] = $i->actual_data;
+                       };
+                   }else{
+                       $data ['system'] = Array();
+                   }
                }else{  $data ['system'] = Array();}
                if(($obj->{'station'})!= "undefined"){
-                   $data ['station'] = Array($obj->{'station'}
-                   );
+                   if(sizeof($obj->{'station'})> 0 ) {
+                       foreach ($obj->{'station'} as $i) {
+                           $data['station'][$i->pagename] = $i->var_late;
+                       };
+                   }else{
+                       $data ['station'] = Array();
+                   }
                }else{ $data ['station'] = Array();}
                if(($obj->{'progress'})!= "undefined"){
-
-                   $data ['progress'] = Array($obj->{'progress'}
-
-                   );
+                   if(sizeof($obj->{'progress'})> 0 ) {
+                       foreach ($obj->{'progress'} as $i) {
+                           foreach ($i as $k => $v) {
+                               $data['progress'][$k] = $v;
+                           }
+                       };
+                   }else{
+                       $data ['progress'] = Array();
+                   }
                }else{ $data ['progress'] = Array(
 
                );}
@@ -939,9 +973,11 @@ class Dashboard_model extends CI_Model
            $data ['mspr'] = Array();
            $data ['system'] = Array();
            $data ['station'] = Array();
+           $data ['progress'] = Array();
        }
         return $data;
     }
+
     public function getOverall()
     {
         $sql = "SELECT dt.\"id\", dt.\"item_id\", dt.\"name\", dt.\"date\", dt.\"value\" FROM \"data_sources\" dt join \"items\" i on dt.\"item_id\"=i.\"id\" and i.\"slug\"='dashboard' and dt.\"date\" = (SELECT distinct max(dt.\"date\")FROM \"data_sources\" dt join \"items\" i on dt.\"item_id\"=i.\"id\" and i.\"slug\"='dashboard');";

@@ -1,0 +1,146 @@
+<div class="row ml0">
+								<% if (typeof(data.data) !== "undefined") {
+								  if(data.data != null){
+											if (typeof(data.data[1]) !== "undefined"){%>
+													<div class="col-md-12 col-lg-12 item psd_data_type1">
+														<span class="item_title">Planned</span>
+														<span class="item_value iv_early"><%=(typeof(data.data[1]['total_plan']) !=="undefined")? data.data[1]['total_plan'] : "0"%>%</span>
+													</div>
+													<div class="col-md-12 col-lg-12 item psd_data_type1">
+														<span class="item_title">Actual</span>
+														<span class="item_value iv_actual"><%=(typeof(data.data[1]['total_act']) !=="undefined")? data.data[1]['total_act'] : "0"%>%</span>
+													</div>
+													<div class="col-md-6 col-lg-6 item psd_data_type2">
+														<span class="item_title">Actual Variance(%)</span>
+														<span class="item_value">
+															<%=(typeof(data.data[1]['total_var']) !=="undefined")? data.data[1]['total_var'] : "0"%>%</span>
+														</span>
+													</div>
+													<div class="col-md-6 col-lg-6 item psd_data_type2">
+														<span class="item_title">Variance (Week)</span>
+														<span class="item_value">
+															<%=(typeof(data.data[1]['var_week']) !=="undefined")? data.data[1]['var_week'] : "0"%></span>
+														</span>
+													</div>
+													<% if(typeof(data.data[1]['total_var']) !=="undefined") {
+																	if ((data.data[1]['total_var'] >=0) || (data.data[1]['total_var']>=0.00)) { %>
+																			<div class="col-md-6 col-lg-6 item psd_data_type2">
+																				<span class="item_title">Trend</span>
+																				<span class="item_value">
+																					<i class="fa fa-chevron-up" aria-hidden="true"></i>
+																				</span>
+																			</div>
+																			<div class="col-md-6 col-lg-6 item psd_data_type2">
+																				<span class="item_title">Status</span>
+																				<span class="item_value status_1">
+																					<i class="fa fa-circle" aria-hidden="true"></i>
+																				</span>
+																			</div>
+																	<%}%>
+																	<%if ((data.data[1]['total_var'] < 0 ) || (data.data[1]['total_var']) < 0.00 ) { %>
+																			<div class="col-md-6 col-lg-6 item psd_data_type2">
+																				<span class="item_title">Trend</span>
+																				<span class="item_value">
+																					<i class="fa fa-chevron-down" aria-hidden="true"></i>
+																				</span>
+																			</div>
+																			<div class="col-md-6 col-lg-6 item psd_data_type2">
+																				<span class="item_title">Status</span>
+																				<span class="item_value status_3">
+																					<i class="fa fa-circle" aria-hidden="true"></i>
+																				</span>
+																			</div>
+																	<%} %>
+											      	 <%} %>
+								                     <% else {%>
+																	<div class="col-md-6 col-lg-6 item psd_data_type2">
+																	<span class="item_title">Trend</span>
+																	<span class="item_value"><i class="fa fa-chevron-down" aria-hidden="true"></i></span>
+																</div>
+																	<div class="col-md-6 col-lg-6 item psd_data_type2">
+																		<span class="item_title">Status</span><span class="item_value status_3"><i class="fa fa-circle" aria-hidden="true"></i></span>
+																	</div>
+													<%}%>
+											<%} else { %>
+											<div class="col-md-12 col-lg-12 item psd_data_type1">
+												<span class="item_title">Planned</span>
+												<span class="item_value iv_early">-</span>
+											</div>
+											<div class="col-md-12 col-lg-12 item psd_data_type1">
+												<span class="item_title">Actual</span>
+												<span class="item_value iv_actual">-</span>
+											</div>
+											<div class="col-md-6 col-lg-6 item psd_data_type2">
+												<span class="item_title">Actual Variance(%)</span>
+												<span class="item_value">-</span>
+												</span>
+											</div>
+											<div class="col-md-6 col-lg-6 item psd_data_type2">
+												<span class="item_title">Variance (Week)</span>
+												<span class="item_value">-</span>
+												</span>
+											</div>
+											<div class="col-md-6 col-lg-6 item psd_data_type2">
+												<span class="item_title">Trend</span>
+												<span class="item_value"><i class="fa fa-chevron-down" aria-hidden="true"></i></span>
+											</div>
+											<div class="col-md-6 col-lg-6 item psd_data_type2">
+												<span class="item_title">Status</span><span class="item_value status_3"><i class="fa fa-circle" aria-hidden="true"></i></span>
+											</div>
+											<% }%>
+									 <% } else { %>
+										<div class="col-md-12 col-lg-12 item psd_data_type1">
+											<span class="item_title">Planned</span>
+											<span class="item_value iv_early">-</span>
+										</div>
+										<div class="col-md-12 col-lg-12 item psd_data_type1">
+											<span class="item_title">Actual</span>
+											<span class="item_value iv_actual">-</span>
+										</div>
+										<div class="col-md-6 col-lg-6 item psd_data_type2">
+											<span class="item_title">Actual Variance(%)</span>
+											<span class="item_value">-</span>
+											</span>
+										</div>
+										<div class="col-md-6 col-lg-6 item psd_data_type2">
+											<span class="item_title">Variance (Week)</span>
+											<span class="item_value">-</span>
+											</span>
+										</div>
+										<div class="col-md-6 col-lg-6 item psd_data_type2">
+											<span class="item_title">Trend</span>
+											<span class="item_value"><i class="fa fa-chevron-down" aria-hidden="true"></i></span>
+										</div>
+										<div class="col-md-6 col-lg-6 item psd_data_type2">
+											<span class="item_title">Status</span><span class="item_value status_3"><i class="fa fa-circle" aria-hidden="true"></i></span>
+										</div>
+								     <% }%>
+								<%} %>
+								<% else { %>
+								<div class="col-md-12 col-lg-12 item psd_data_type1">
+									<span class="item_title">Planned</span>
+									<span class="item_value iv_early">-</span>
+								</div>
+								<div class="col-md-12 col-lg-12 item psd_data_type1">
+									<span class="item_title">Actual</span>
+									<span class="item_value iv_actual">-</span>
+								</div>
+								<div class="col-md-6 col-lg-6 item psd_data_type2">
+									<span class="item_title">Actual Variance(%)</span>
+									<span class="item_value">-</span>
+									</span>
+								</div>
+								<div class="col-md-6 col-lg-6 item psd_data_type2">
+									<span class="item_title">Variance (Week)</span>
+									<span class="item_value">-</span>
+									</span>
+								</div>
+								<div class="col-md-6 col-lg-6 item psd_data_type2">
+									<span class="item_title">Trend</span>
+									<span class="item_value"><i class="fa fa-chevron-down" aria-hidden="true"></i></span>
+								</div>
+								<div class="col-md-6 col-lg-6 item psd_data_type2">
+									<span class="item_title">Status</span><span class="item_value status_3"><i class="fa fa-circle" aria-hidden="true"></i></span>
+								</div>
+								<% }%>
+							</div>
