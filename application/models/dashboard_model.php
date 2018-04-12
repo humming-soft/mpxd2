@@ -840,8 +840,16 @@ class Dashboard_model extends CI_Model
 
         $query = $this->db->query($sql);
         $result = $query->result_array();
-
+        $sql1 = "SELECT dt.\"id\", dt.\"item_id\", dt.\"name\", dt.\"date\", dt.\"value\" FROM \"data_sources\" dt join \"items\" i on dt.\"item_id\"=i.\"id\" and i.\"slug\"='dashboard'";
+        $query1 = $this->db->query($sql1);
+        $result1 = $query1->result_array();
+        if($result1 != null) {
+            foreach ($result1 as $key1 => $val1) {
+                $data['result'] = Array($val1['date']);
+            }
+        }
        if($result != null){
+
            foreach ($result as $key => $val) {
                $json = $val['value'];
            }
