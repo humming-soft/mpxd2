@@ -786,22 +786,6 @@ class Dashboard_model extends CI_Model
         return $query->result_array();
     }
 
-    FUNCTION format_cash_mil($cash)
-    {
-
-        $cash = (0 + STR_REPLACE(',', '', $cash));
-        IF (!IS_NUMERIC($cash)) {
-            RETURN 0;
-        }
-        IF ($cash > 1000000000) {
-            RETURN ROUND(($cash / 1000000000), 2) . ' bil';
-        } ELSE {
-            RETURN ROUND($cash / 1000, 4) . ' Th';
-        }
-
-        RETURN NUMBER_FORMAT($cash);
-    }
-
     FUNCTION format_cash_bil($cash)
     {
 
@@ -809,10 +793,21 @@ class Dashboard_model extends CI_Model
         IF (!IS_NUMERIC($cash)) {
             RETURN 0;
         }
-        IF ($cash > 1000000) {
-            RETURN ROUND(($cash / 1000000), 2) . ' Mil';
-        } ELSE {
-            RETURN ROUND($cash / 1000, 3) . ' Th';
+        else {
+            RETURN ROUND(($cash / 1000000000), 2) . ' bil';
+        }
+
+        RETURN NUMBER_FORMAT($cash);
+    }
+
+    FUNCTION format_cash_mil($cash)
+    {
+        $cash = (0 + STR_REPLACE(',', '', $cash));
+        IF (!IS_NUMERIC($cash)) {
+            RETURN 0;
+        }
+         ELSE {
+            RETURN ROUND($cash / 1000000, 2) . ' Mil';
         }
 
         RETURN NUMBER_FORMAT($cash);
@@ -844,14 +839,12 @@ class Dashboard_model extends CI_Model
         }
         $query = $this->db->query($sql);
         $result = $query->result_array();
-        $sql1 = "SELECT dt.\"id\", dt.\"item_id\", dt.\"name\", dt.\"date\", dt.\"value\" FROM \"data_sources\" dt join \"items\" i on dt.\"item_id\"=i.\"id\" and i.\"slug\"='dashboard'";
-        $query1 = $this->db->query($sql1);
-        $result1 = $query1->result_array();
-        if($result1 != null) {
-            foreach ($result1 as $key1 => $val1) {
-                $data['result'] = Array($val1['date']);
-            }
+
+        foreach ($result as $key => $val) {
+            $json = $val['value'];
         }
+        $obj = json_decode($json);
+
        if($result != null){
 
            foreach ($result as $key => $val) {
@@ -867,7 +860,7 @@ class Dashboard_model extends CI_Model
                        $wpc = $this->format_cash_mil($obj->{'final'}->{'wpcs_payment'});
                        $retsum = $this->format_cash_mil($obj->{'final'}->{'retention_sum'});
                        $vorder = $this->format_cash_mil($obj->{'final'}->{'variation_orders'});
-                       $consum = $this->format_cash_mil($obj->{'final'}->{'contigency_sum'});
+                       $consum = $this->format_cash_mil($obj->{'final'}->{'contingency_sum'});
                        $data['data'] = Array(
                            'project_spend_to_date' => $psd, //Bil
                            'awarded_packages' => $ap, //Bil
