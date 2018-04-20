@@ -2,7 +2,14 @@
     <div class="row content">
         <div class="col-md-12 portlet_title">
             <i class="fa_title_icon fa fa-hourglass" aria-hidden="true"></i>
-            Progress
+            <% if (typeof(data.data) !== "undefined") { %>
+            <% if (typeof(data.data.date) !== "undefined") { %>
+            <%=data.title%> <span class="plate_asof">(As of : <%=data.data.date%>) </span>
+            <% } else {%>
+            <%=data.title%>
+            <% }}else {%>
+            <%=data.title%>
+            <% }%>
             <span class="plate_asof"><!--(As of : 3rd July 2016)--></span>
         </div>
         <div class="col-md-12 portlet_content portlet_progress pl0">

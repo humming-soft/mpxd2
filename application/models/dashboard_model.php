@@ -855,7 +855,7 @@ class Dashboard_model extends CI_Model
                if(($obj->{'final'})!= "undefined"){
                    if((sizeof($obj->{'final'})) > 0) {
                        $psd = $this->format_cash_bil($obj->{'final'}->{'project_spend_to_date'});
-                       $ap = $this->format_cash_bil($obj->{'final'}->{'awarded_package'});
+                       $ap = $this->format_cash_bil($obj->{'final'}->{'awarded_packages'});
                        $pdp = $this->format_cash_mil($obj->{'final'}->{'pdp_reimbursables'});
                        $wpc = $this->format_cash_mil($obj->{'final'}->{'wpcs_payment'});
                        $retsum = $this->format_cash_mil($obj->{'final'}->{'retention_sum'});
