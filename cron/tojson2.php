@@ -61,12 +61,16 @@ function gallery($slug){
 function kpi($slug){
 
 		$query = db()->kpi()
-			->select('name', 'baseline', 'target', 'actual')
+			->select('name', 'baseline', 'target', 'actual','date')
 			->where("slug", $slug)
 			->or("slug", strtoupper($slug))
 			->and("date", db()->kpi()->select('MAX(date)'));
 		$result = array_map('iterator_to_array', iterator_to_array($query));
 		$kpiarr = array();
+				if(sizeof($result)>0) {
+				$kpiobj = (object)array('date' => date('d-M-y', strtotime($result[0]['date'])));
+				$kpiarr[] = $kpiobj;
+				}
 		foreach($result as $q){
 			$kpiarr[] = array($q['name'], (float)$q['baseline'], (float)$q['target'], (float)$q['actual']);
 		}
@@ -278,13 +282,17 @@ function kd($slug, $type = 1){
  */
 function safety_incident($slug){
 	$query = db()->hsse()
-		->select('incident_date','incident')
+		->select('incident_date','incident','date')
 		->where("slug", $slug)
 		->or("slug", strtoupper($slug));
 	$result = array_map('iterator_to_array', iterator_to_array($query));
 	$hssearr = array();
-	foreach($result as $q){
+	if(sizeof($result)>0) {
+		$hssobj = (object)array('date' => date('d-M-y', strtotime($result[0]['date'])));
+		$hssearr[] = $hssobj;
+	 foreach($result as $q){
 		$hssearr[] = array(date('d-F-Y', strtotime($q['incident_date'])), $q['incident']);
+	 }
 	}
 	return $hssearr;
 }
@@ -639,7 +647,7 @@ function build_viaducts($slug){
 				$early[] = (float)$q['early_data'];
 		}
 		$scurvearr = array(
-			'date' => date('d-M-y', strtotime($scurve['scurve'][0]['scurve_date'])),
+			'date' => date('d-M-y', strtotime($scurve['scurve'][0]['date'])),
 			'actualData' => $actual,
 			'earlyData' => $early,
 			'delayedData' => $late,
@@ -1053,7 +1061,7 @@ $final = array();
 				$early[] = (float)$q['early_data'];
 		}
 		$scurvearr = array(
-			'date' => date('d-M-y', strtotime($scurve['scurve'][0]['scurve_date'])),
+			'date' => date('d-M-y', strtotime($scurve['scurve'][0]['date'])),
 			'actualData' => $actual,
 			'earlyData' => $early,
 			'delayedData' => $late,
@@ -1069,7 +1077,7 @@ $final = array();
 		}
 		if(sizeof($scurve['scurve'])>0 ) {
 			$progress['PROGRESS'] = array(
-				'date' => date('d-M-y', strtotime($scurve['scurve'][0]['scurve_date'])),
+				'date' => date('d-M-y', strtotime($scurve['scurve'][0]['date'])),
 				'currentEarly' => $scurve['scurve'][0]['early_data'] . '%',
 				'currentLate' => $scurve['scurve'][0]['delayed_data'] . '%',
 				'currentActual' => $scurve['scurve'][0]['actual_data'] . '%',
@@ -1181,7 +1189,7 @@ function build_twmv_detail($slug){
 				$early[] = (float)$q['early_data'];
 		}
 		$scurvearr = array(
-			'date' => date('d-M-y', strtotime($scurve['scurve'][0]['scurve_date'])),
+			'date' => date('d-M-y', strtotime($scurve['scurve'][0]['date'])),
 			'actualData' => $actual,
 			'earlyData' => $early,
 			'delayedData' => $late,
@@ -1232,7 +1240,7 @@ function build_stations($slug){
 				$early[] = (float)$q['early_data'];
 		}
 		$scurvearr = array(
-			'date' => date('d-M-y', strtotime($scurve['scurve'][0]['scurve_date'])),
+			'date' => date('d-M-y', strtotime($scurve['scurve'][0]['date'])),
 			'actualData' => $actual,
 			'earlyData' => $early,
 			'delayedData' => $late,
@@ -1290,7 +1298,7 @@ function build_ug($slug){
 				$early[] = (float)$q['early_data'];
 		}
 		$scurvearr = array(
-			'date' => date('d-M-y', strtotime($scurve['scurve'][0]['scurve_date'])),
+			'date' => date('d-M-y', strtotime($scurve['scurve'][0]['date'])),
 			'actualData' => $actual,
 			'earlyData' => $early,
 			'delayedData' => $late,
@@ -1399,7 +1407,7 @@ function build_depot($slug){
 				$early[] = (float)$q['early_data'];
 		}
 		$scurvearr = array(
-			'date' => date('d-M-y', strtotime($scurve['scurve'][0]['scurve_date'])),
+			'date' => date('d-M-y', strtotime($scurve['scurve'][0]['date'])),
 			'actualData' => $actual,
 			'earlyData' => $early,
 			'delayedData' => $late,
@@ -1438,7 +1446,7 @@ echo  "ONE ONE ";
 	$overall_elevated = scurve('elevated');
 
 	if(sizeof($overall_elevated['scurve'])>0 ) {
-		$asofdate = $overall_elevated['scurve'][0]['scurve_date'];
+		$asofdate = $overall_elevated['scurve'][0]['date'];
 	}
 	$overall_elevated = array("elevated" => build_me_an_scurve_array($overall_elevated,FALSE));
 
@@ -1610,7 +1618,7 @@ function testComm($slug){
 				$early[] = (float)$q['early_data'];
 		}
 		$scurvearr = array(
-			'date' => date('d-M-y', strtotime($scurve['scurve'][0]['scurve_date'])),
+			'date' => date('d-M-y', strtotime($scurve['scurve'][0]['date'])),
 			'actualData' => $actual,
 			'earlyData' => $early,
 			'delayedData' => $late,
@@ -1626,7 +1634,7 @@ function testComm($slug){
 	}
 	if(sizeof($scurve['scurve'])>0 ) {
 			$progress['PROGRESS'] = array(
-				'date' => date('d-M-y', strtotime($scurve['scurve'][0]['scurve_date'])),
+				'date' => date('d-M-y', strtotime($scurve['scurve'][0]['date'])),
 				'currentEarly' => $scurve['scurve'][0]['early_data'] . '%',
 				'currentLate' => $scurve['scurve'][0]['delayed_data'] . '%',
 				'currentActual' => $scurve['scurve'][0]['actual_data'] . '%',
@@ -1670,7 +1678,7 @@ function build_ring($slug){
 				$early[] = (float)$q['early_data'];
 		}
 		$scurvearr = array(
-			'date' => date('d-M-y', strtotime($scurve['scurve'][0]['scurve_date'])),
+			'date' => date('d-M-y', strtotime($scurve['scurve'][0]['date'])),
 			'actualData' => $actual,
 			'earlyData' => $early,
 			'delayedData' => $late,
@@ -1720,7 +1728,7 @@ function build_mspr($slug){
 				$early[] = (float)$q['early_data'];
 		}
 		$scurvearr = array(
-			'date' => date('d-M-y', strtotime($scurve['scurve'][0]['scurve_date'])),
+			'date' => date('d-M-y', strtotime($scurve['scurve'][0]['date'])),
 			'actualData' => $actual,
 			'earlyData' => $early,
 			'delayedData' => $late,
@@ -1891,7 +1899,7 @@ function build_me_an_scurve_array($data,$asofdate = TRUE){
 				$early[] = (float)$q['early_data'];
 		}
 		$scurvearr = array(
-			'date' => date('d-M-y', strtotime($data['scurve'][0]['scurve_date'])),
+			'date' => date('d-M-y', strtotime($data['scurve'][0]['date'])),
 			'actualData' => $actual,
 			'earlyData' => $early,
 			'delayedData' => $late,
