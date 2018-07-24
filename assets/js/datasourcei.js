@@ -438,14 +438,14 @@ mpxd.modules.scurve.GenerateScurve = function (items, componentSelector) {
         data.currentEarly = data.currentEarly.split('%')[0];
         data.currentActual = data.currentActual.split('%')[0];
         data.currentLate = data.currentLate.split('%')[0];
-        //console.log(data);
+       /* console.log(data);*/
 
         if (type == "long") {
-            data.categories = ["Jan/16", "Feb/16", "Mar/16", "Apr/16", "May/16", "Jun/16", "Jul/16", "Aug/16", "Sep/16", "Oct/16", "Nov/16", "Dec/16", "Jan/17", "Feb/17", "Mar/17", "Apr/17", "May/17", "Jun/17", "Jul/17",
+            data.categories = ["Jan/16", "Feb/16", "Mar/16", "Apr/16", "May/16", "Jun/16","Jul/16", "Aug/16", "Sep/16", "Oct/16", "Nov/16", "Dec/16", "Jan/17", "Feb/17", "Mar/17", "Apr/17", "May/17", "Jun/17", "Jul/17",
                 "Aug/17", "Sep/17", "Oct/17", "Nov/17", "Dec/17","Jan/18", "Feb/18", "Mar/18", "Apr/18", "May/18", "Jun/18", "Jul/18", "Aug/18", "Sep/18", "Oct/18", "Nov/18", "Dec/18", "Jan/19", "Feb/19", "Mar/19", "Apr/19", "May/19", "Jun/19", "Jul/19", "Aug/19", "Sep/19", "Oct/19", "Nov/19", "Dec/19", "Jan/20", "Feb/20", "Mar/20", "Apr/20", "May/20", "Jun/20", "Jul/20", "Aug/20", "Sep/20", "Oct/20", "Nov/20", "Dec/20", "Jan/21", "Feb/21", "Mar/21", "Apr/21", "May/21", "Jun/21", "Jul/21", "Aug/21", "Sep/21", "Oct/21", "Nov/21", "Dec/21",
-                "Jan/22", "Feb/22", "Mar/22", "Apr/22", "May/22", "Jun/22", "Jul/22", "Aug/22", "Sep/22", "Oct/22", "Nov/22", "Dec/22"];
+                "Jan/22", "Feb/22", "Mar/22", "Apr/22", "May/22", "Jun/22"];
         } else if (type == "short") {
-            data.categories = ["Jan/16", "Apr/16", "Jul/16", "Oct/16", "Jan/17", "Apr/17", "Jul/17", "Oct/17", "Jan/18", "Apr/18", "Jul/18", "Oct/18", "Jan/19", "Apr/19", "Jul/19", "Oct/19", "Jan/20", "Apr/20", "Jul/20", "Oct/20", "Jan/21", "Apr/21", "Jul/21", "Oct/21", "Jan/22", "Apr/22", "Jul/22", "Oct/22"];
+            data.categories = ["Jan/16", "Apr/16", "Jul/16", "Oct/16", "Jan/17", "Apr/17", "Jul/17", "Oct/17", "Jan/18", "Apr/18", "Jul/18", "Oct/18", "Jan/19", "Apr/19", "Jul/19", "Oct/19", "Jan/20", "Apr/20", "Jul/20", "Oct/20", "Jan/21", "Apr/21", "Jul/21", "Oct/21", "Jan/22", "Apr/22", "Jul/22"];
             //data.categories = ["Jan-12", "Apr-12", "Jul-12", "Oct-12", "Jan-13", "Apr-13", "Jul-13", "Oct-13", "Jan-14", "Apr-14", "Jul-14", "Oct-14", "Jan-15", "Apr-15", "Jul-15", "Oct-15", "Jan-16", "Apr-16", "Jul-16", "Oct-16", "Jan-17", "Apr-17", "Jul-17"];
         }
 
@@ -623,9 +623,8 @@ function ellipseTitle(text) {
 
 var currentSlug = "";
 var currentPageID = 0;
-//var currentPage = "";
 
-
+var currentPagedate=""
 /*From: http://stackoverflow.com/questions/13721651/javascript-get-absolute-url-from-relative-escaped-url */
 function relativeToAbsolute(url) {
     arr = url.split("/") // Cut the url up into a array
@@ -668,6 +667,7 @@ function loadPage(p, dontsavestate) {
     }else {
         currentPageID = pages_lookup_url[p].id;
     }
+
     var title = pages_lookup_url[p].name;// + (((typeof data_dates[p] == "undefined") || (data_dates[p] == "")) ? "" : " ("+data_dates[p]+")");
     //$('#data_date').text(((typeof data_dates[p] == "undefined") || (data_dates[p] == "")) ? "" : data_dates[p] );
     generateBreadcrumbs(currentPageID);
@@ -703,8 +703,13 @@ function loadPage(p, dontsavestate) {
            if (getParameterByName("date").length == 0) {
                $("#data_date").val(moment(result[0].date, "DD-MMM-YY").format("DD MMM YYYY").toUpperCase());
                curr_data_date = result[0].date;
+
            }
        }
+        //for current date
+        currentPagedate=$("#data_date").val();
+        
+       /* console.log(currentPagedate);*/
         //add If loop By ANCY MATHEW END
         //ellipseTitle(title +" ("+ moment(curr_data_date, "DD-MMM-YY").format("DD MMMM YYYY") +")");
         var titletext = title + " (" + moment(curr_data_date, "DD-MMM-YY").format("DD MMMM YYYY") + ")";

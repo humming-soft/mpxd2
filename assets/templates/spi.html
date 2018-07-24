@@ -1,0 +1,20 @@
+<div class="col-md-12 portlet portlet_scurve">
+    <div class="row content">
+        <div class="col-md-12 portlet_title">
+            <i class="fa_title_icon fa fa-area-chart" aria-hidden="true"></i>
+            <% if (typeof(data.date) !== "undefined") { %>
+            <%=data.title%> <span class="plate_asof">(As of <%=data.date%>)</span>
+            <% } else {%>
+            <%=data.title%>
+            <% } %>
+        </div>
+        <div class="col-md-12 portlet_content">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="chart chart-spi" id="chart_<%=data.id%>">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -131,6 +131,7 @@ class Dashboard_model extends CI_Model
 
     public function getSlugFromPageId($id)
     {
+
         /* Function to return full slug including item and the page slug */
         if (!is_numeric($id)) {
             die();
@@ -146,10 +147,7 @@ class Dashboard_model extends CI_Model
         }
         $page = $page_result[0]["page"];
         $slug = $page_result[0]["slug"];
-        if (($page == "") || ($slug == "")) {
-            die("No full page");
-        }
-        $fullslug = $slug . "/" . $page;
+        $fullslug = $slug;
         return $fullslug;
     }
 
@@ -806,15 +804,15 @@ class Dashboard_model extends CI_Model
         IF (!IS_NUMERIC($cash)) {
             RETURN 0;
         }
-         ELSE {
+        ELSE {
             RETURN ROUND($cash / 1000000, 2) . ' Mil';
         }
 
         RETURN NUMBER_FORMAT($cash);
     }
-
     public function getCost($date = FALSE)
     {
+       
         $psd = 0.00;
         $ap = 0.00;
         $pdp = 0.00;
@@ -825,12 +823,10 @@ class Dashboard_model extends CI_Model
         $sql1 = "SELECT to_char(dt.\"date\",'DD-Mon-YY') as date FROM \"data_sources\" dt join \"items\" i on dt.\"item_id\"=i.\"id\" and i.\"slug\"='dashboard' order by dt.\"date\" DESC";
         $query1 = $this->db->query($sql1);
         $result1 = $query1->result_array();
-/*        $data['dates'] = Array();*/
         if($result1 != null) {
             $data['dates'] = $result1;
-/*            foreach ($result1 as $key => $val1) {
-                array_push( $data['dates'],$val1['date']);
-            }*/
+        }else{
+            $data['dates']=date("d-M-Y");
         }
         if($date){
             $sql = "SELECT dt.\"id\", dt.\"item_id\", dt.\"name\", dt.\"date\", dt.\"value\" FROM \"data_sources\" dt join \"items\" i on dt.\"item_id\"=i.\"id\" and i.\"slug\"='dashboard' and to_char(dt.\"date\",'DD-Mon-YY') = "."'".$date."'";
@@ -840,27 +836,59 @@ class Dashboard_model extends CI_Model
         $query = $this->db->query($sql);
         $result = $query->result_array();
 
-        foreach ($result as $key => $val) {
-            $json = $val['value'];
-        }
-        $obj = json_decode($json);
 
-       if($result != null){
+        if($result != null){
 
-           foreach ($result as $key => $val) {
-               $json = $val['value'];
-           }
+            foreach ($result as $key => $val) {
+                $json = $val['value'];
+            }
            $obj = json_decode($json);
            if((sizeof($obj)) > 0){
+
                if(($obj->{'final'})!= "undefined"){
                    if((sizeof($obj->{'final'})) > 0) {
-                       $psd = $this->format_cash_bil($obj->{'final'}->{'project_spend_to_date'});
-                       $ap = $this->format_cash_bil($obj->{'final'}->{'awarded_packages'});
+
+                       if(isset($obj->{'final'}->{'project_spend_to_date'})){
+                           $psd = $this->format_cash_bil($obj->{'final'}->{'project_spend_to_date'});
+                       }else{
+                           $psd=0;
+                       }
+                       if(isset($obj->{'final'}->{'awarded_packages'})){
+                           $ap = $this->format_cash_bil($obj->{'final'}->{'awarded_packages'});
+                       }else{
+                           $ap=0;
+                       }
+                       if(isset($obj->{'final'}->{'pdp_reimbursables'})){
+                           $pdp = $this->format_cash_mil($obj->{'final'}->{'pdp_reimbursables'});
+                       }else{
+                           $pdp=0;
+                       }
+                       if(isset($obj->{'final'}->{'wpcs_payment'})){
+                           $wpc = $this->format_cash_mil($obj->{'final'}->{'wpcs_payment'});
+                       }else{
+                           $wpc=0;
+                       }
+                       if(isset($obj->{'final'}->{'retention_sum'})){
+                           $retsum = $this->format_cash_mil($obj->{'final'}->{'retention_sum'});
+                       }else{
+                           $retsum=0;
+                       }
+                       if(isset($obj->{'final'}->{'variation_orders'})){
+                           $vorder = $this->format_cash_mil($obj->{'final'}->{'variation_orders'});
+                       }else{
+                           $vorder=0;
+                       }
+                       if(isset($obj->{'final'}->{'contingency_sum'})){
+                           $consum = $this->format_cash_mil($obj->{'final'}->{'contingency_sum'});
+                       }else{
+                           $consum=0;
+                       }
+                    /*   $ap = $this->format_cash_bil($obj->{'final'}->{'awarded_packages'});
                        $pdp = $this->format_cash_mil($obj->{'final'}->{'pdp_reimbursables'});
                        $wpc = $this->format_cash_mil($obj->{'final'}->{'wpcs_payment'});
                        $retsum = $this->format_cash_mil($obj->{'final'}->{'retention_sum'});
                        $vorder = $this->format_cash_mil($obj->{'final'}->{'variation_orders'});
-                       $consum = $this->format_cash_mil($obj->{'final'}->{'contingency_sum'});
+                       $consum = $this->format_cash_mil($obj->{'final'}->{'contingency_sum'});*/
                        $data['data'] = Array(
                            'project_spend_to_date' => $psd, //Bil
                            'awarded_packages' => $ap, //Bil
@@ -880,7 +908,7 @@ class Dashboard_model extends CI_Model
                            'contingency_sum' => 0.00 //Bil
                        );
                    }
-                      
+
                }else{
                    $data['data']= Array(
                        'project_spend_to_date' => 0.00, //Bil
@@ -952,22 +980,22 @@ class Dashboard_model extends CI_Model
                );}
            }
        }else{
-           $data['data']= Array(
-               'project_spend_to_date' => 0.00, //Bil
-               'awarded_packages' => 0.00, //Bil
-               'pdp_reimbursables' =>0.00, //Mil
-               'wpcs_payment' => 0.00, //Bil
-               'retention_sum' => 0.00, //Mil
-               'variation_orders' => 0.00, //Mil
-               'contingency_sum' => 0.00 //Bil
-           );
-           $data ['viaduct'] = Array();
-           $data ['depot'] = Array();
-           $data ['mspr'] = Array();
-           $data ['system'] = Array();
-           $data ['station'] = Array();
-           $data ['progress'] = Array();
-       }
+            $data['data']= Array(
+                'project_spend_to_date' => 0.00, //Bil
+                'awarded_packages' => 0.00, //Bil
+                'pdp_reimbursables' =>0.00, //Mil
+                'wpcs_payment' => 0.00, //Bil
+                'retention_sum' => 0.00, //Mil
+                'variation_orders' => 0.00, //Mil
+                'contingency_sum' => 0.00 //Bil
+            );
+            $data ['viaduct'] = Array();
+            $data ['depot'] = Array();
+            $data ['mspr'] = Array();
+            $data ['system'] = Array();
+            $data ['station'] = Array();
+            $data ['progress'] = Array();
+        }
         return $data;
     }
 
@@ -980,7 +1008,7 @@ class Dashboard_model extends CI_Model
             $json = $val['value'];
         }
         $data = json_decode($json);
-      
+
         return $data;
     }
     public function setComments($data)
@@ -1650,7 +1678,7 @@ class Dashboard_model extends CI_Model
      * @param $data
      * @return mixed
      */
-    
+
     //    Author:ANCY MATHEW
     //    Usage : Summary PS&DS
     //    Created: 24/06/2016
@@ -1993,7 +2021,7 @@ class Dashboard_model extends CI_Model
                 ));
             }
 
-           $i++;
+            $i++;
         }
         $tem_array["average"]=$aver;
         $region_progress['value'] = json_encode($tem_array);
@@ -2025,10 +2053,10 @@ class Dashboard_model extends CI_Model
         $query = $this->db->query($query);
         $result = $query->result_array();
         foreach ($result as $val) {
-           /* $tem_array[$val['train_number']]=$val['train_number'];
-            $tem_array[$val['train_number']]["status"]=$val['overall_stat_perc'];
-            $tem_array[$val['train_number']]["static"]=$val['static_test_perc'];
-            $tem_array[$val['train_number']]["dynamic"]=$val['dynamic_test_perc'];*/
+            /* $tem_array[$val['train_number']]=$val['train_number'];
+             $tem_array[$val['train_number']]["status"]=$val['overall_stat_perc'];
+             $tem_array[$val['train_number']]["static"]=$val['static_test_perc'];
+             $tem_array[$val['train_number']]["dynamic"]=$val['dynamic_test_perc'];*/
             $tem_array[$val['train_number']] = array(
                 "train_number" => $val['train_number'],
                 "status" => $val['overall_stat_perc'],
@@ -2189,13 +2217,13 @@ class Dashboard_model extends CI_Model
             if($val['region_no']==1)
             {
                 array_push($tem_array["R1"],array(
-                        "region_no" => $val['region_no'],
-                        "station_no" => str_replace(' ', '', $val['station_no']),
-                        "station_progress" => $val['station_progress'],
-                        "roomside_progress" => $val['roomside_progress'],
-                        "wayside_progress" => $val['wayside_progress'],
-                        "PAT_progress" => $val['PAT_progress'],
-                        "SAT_progress" => $val['SAT_progress']
+                    "region_no" => $val['region_no'],
+                    "station_no" => str_replace(' ', '', $val['station_no']),
+                    "station_progress" => $val['station_progress'],
+                    "roomside_progress" => $val['roomside_progress'],
+                    "wayside_progress" => $val['wayside_progress'],
+                    "PAT_progress" => $val['PAT_progress'],
+                    "SAT_progress" => $val['SAT_progress']
 
                 ));
             }

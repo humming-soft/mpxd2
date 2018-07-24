@@ -48,34 +48,34 @@
                     }
                 ?>
                 <b><?php
-                    if(isset($progress["variance_value"])){ echo "%"; } ?></b>
+                    if(isset($progress["variance_value"])){ echo "w"; } ?></b>
             </span>
 			<span class="set4
 			    <?php
-                if(isset($progress["variance_value"])) {
-                    if ((float)$progress["variance_value"] > 0) {
-                        echo 'trend-down';
-                    } else {
+                if(isset($progress["trend_value"])) {
+                    if ((float)$progress["trend_value"] == 1) {
                         echo 'trend-up';
+                    } else {
+                        echo 'trend-down';
                     }
                 }
                 ?>">
                 <i class="fa
                     <?php
-                    if(isset($progress["variance_value"])) {
-                        if ((float)$progress["variance_value"] > 0) {
-                            echo 'fa-arrow-down';
-                        } else {
+                    if(isset($progress["trend_value"])) {
+                        if ((float)$progress["trend_value"] == 1) {
                             echo 'fa-arrow-up';
+                        } else {
+                            echo 'fa-arrow-down';
                         }
                     }?>" aria-hidden="true">
                 </i>
                 <?php
-                if(isset($progress["variance_value"])) {
-                    if ((float)$progress["variance_value"] > 0) {
-                        echo 'DOWN';
-                    } else {
+                if(isset($progress["trend_value"])) {
+                    if ((float)$progress["trend_value"] == 1) {
                         echo 'UP';
+                    } else {
+                        echo 'DOWN';
                     }
                 }else{ echo 'N/A';}?></span>
 		</div>
@@ -245,8 +245,8 @@
 			<a class="set11" href="<?php echo $this->config->base_url(); ?>v210/index">V210</a>
 		</div>
 		<div id="pl_phase">
-			<a class="set1" href="<?php echo $this->config->base_url(); ?>north/index">PHASE 1</a>
-			<a class="set2" href="<?php echo $this->config->base_url(); ?>south/index">PHASE 2</a>
+			<a class="set1" href="<?php echo $this->config->base_url(); ?>north/index">NORTH</a>
+			<a class="set2" href="<?php echo $this->config->base_url(); ?>south/index">SOUTH</a>
 		</div>
 	</div>
 </div>

@@ -17,6 +17,7 @@
 <script type="text/javascript" src="<?php echo $this->config->base_url(); ?>assets/mmc/js/jquery-ui.js"></script>
 <script type="text/javascript" src="<?php echo $this->config->base_url(); ?>assets/plugin/moment/moment.min.js"></script>
 <script type="text/javascript" src="<?php echo $this->config->base_url(); ?>assets/mmc/package/highcharts/highcharts.js"></script>
+<script type="text/javascript" src="<?php echo $this->config->base_url(); ?>assets/mmc/package/highcharts/highcharts-more.js"></script>
 <script type=text/javascript src=<?php echo $this->config->base_url(); ?>assets/highcharts/js/dark-highcharts.js></script>
 <script type="text/javascript" src="<?php echo $this->config->base_url(); ?>assets/mmc/package/highcharts/no-data-to-display.js"></script>
 

@@ -33,6 +33,9 @@
                             </div>
                     </div>
                     <div class="title breadcrumbs_title"></div>
+                  <!--  <div class="getreport" align="right">
+                                <a href="#" id="toPDFButton" onclick="return false;"><img src="<?php /*echo $this->config->base_url(); */?>assets/img/pdf.png"></a>
+                    </div>-->
                 </div>
 
                 <div class="col-md-12 plate_portlet plr0">
@@ -47,3 +50,4 @@
         <!-- -- -->
     </div>
 <?php include 'templates/default_footer.php' ?>
+

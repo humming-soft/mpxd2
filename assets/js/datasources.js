@@ -35,6 +35,10 @@ mpxd.constructors.viaducts_compare = function(data) {
     var el = "#portlet_" + data.id;
     return new mpxd.modules.viaducts.compare({data: data, el: el});
 }
+mpxd.constructors.spi = function(data) {
+    var el = "#portlet_" + data.id;
+    return new mpxd.modules.viaducts.spi({data: data, el: el});
+}
 //KD
 mpxd.constructors.kd = function(data) {
     var el = "#portlet_" + data.id;
@@ -154,9 +158,9 @@ mpxd.modules.piers.viaduct_pier_view = Backbone.View.extend({
                 "span_type": "s1",
 
                 "sbg": {"sbg_id": [], "sbg_lr": [], "sbg_va": []},
-                "parapet1": "0",
+               /* "parapet1": "0",
                 "parapet2": "0",
-                "parapet3": "0"
+                "parapet3": "0"*/
             },
             {
                 "pier_v": "v201",
@@ -187,7 +191,7 @@ mpxd.modules.piers.viaduct_pier_view = Backbone.View.extend({
 
                 "sbg": {
                     "sbg_id": ["sbg1", "sbg2", "sbg3", "sbg4", "sbg5", "sbg6", "sbg7", "sbg8", "sbg9", "sbg10", "sbg11", "sbg12", "sbg13", "sbg14", "sbg15", "sbg16", "sbg17", "sbg18", "sbg19", "sbg20", "sbg21", "sbg22"],
-                    "sbg_lr": ["left", "left", "left", "left", "left", "right", "right", "right", "right", "right", "right", "right", "right", "right", "right", "right", "right", "right", "right", "right", "right", "right"],
+                    "sbg_lr": ["right", "right", "right", "right", "right", "right", "right", "right", "right", "right", "right", "right", "right", "right", "right", "right", "right", "right", "right", "right", "right", "right"],
                     "sbg_va": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
                 },
                 "parapet1": "0",
@@ -207,7 +211,7 @@ mpxd.modules.piers.viaduct_pier_view = Backbone.View.extend({
 
                 "sbg": {
                     "sbg_id": ["sbg1", "sbg2", "sbg3", "sbg4", "sbg5", "sbg6", "sbg7", "sbg8", "sbg9", "sbg10", "sbg11", "sbg12", "sbg13", "sbg14", "sbg15", "sbg16", "sbg17", "sbg18", "sbg19", "sbg20", "sbg21", "sbg22", "sbg23", "sbg24", "sbg25", "sbg26", "sbg27", "sbg28", "sbg29", "sbg30", "sbg31", "sbg32", "sbg33", "sbg34"],
-                    "sbg_lr": ["left", "left", "left", "left", "left", "left", "left", "left", "left", "left", "left", "left", "left", "left", "left", "left", "left", "right", "right", "right", "right", "right", "right", "right", "right", "right", "right", "right", "right", "right", "right", "right", "right", "right"],
+                    "sbg_lr": ["right", "right", "right", "right", "right", "right", "right", "right", "right", "right", "right", "right", "right", "right", "right", "right", "right", "right", "right", "right", "right", "right", "right", "right", "right", "right", "right", "right", "right", "right", "right", "right", "right", "right"],
                     "sbg_va": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
                 },
                 "parapet1": "0",
@@ -227,7 +231,7 @@ mpxd.modules.piers.viaduct_pier_view = Backbone.View.extend({
 
                 "sbg": {
                     "sbg_id": ["sbg1", "sbg2", "sbg3", "sbg4", "sbg5", "sbg6", "sbg7", "sbg8", "sbg9", "sbg10", "sbg11", "sbg12", "sbg13", "sbg14", "sbg15", "sbg16", "sbg17", "sbg18", "sbg19", "sbg20", "sbg21", "sbg22", "sbg23", "sbg24", "sbg25", "sbg26", "sbg27", "sbg28", "sbg29", "sbg30", "sbg31", "sbg32", "sbg33", "sbg34"],
-                    "sbg_lr": ["left", "left", "left", "left", "left", "left", "left", "left", "left", "left", "left", "left", "left", "left", "left", "left", "left", "right", "right", "right", "right", "right", "right", "right", "right", "right", "right", "right", "right", "right", "right", "right", "right", "right"],
+                    "sbg_lr": ["right", "right", "right", "right", "right", "right", "right", "right", "right", "right", "right", "right", "right", "right", "right", "right", "right", "right", "right", "right", "right", "right", "right", "right", "right", "right", "right", "right", "right", "right", "right", "right", "right", "right"],
                     "sbg_va": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
                 },
                 "parapet1": "0",
@@ -247,7 +251,7 @@ mpxd.modules.piers.viaduct_pier_view = Backbone.View.extend({
 
                 "sbg": {
                     "sbg_id": ["sbg1", "sbg2", "sbg3", "sbg4", "sbg5", "sbg6", "sbg7", "sbg8", "sbg9", "sbg10", "sbg11", "sbg12", "sbg13", "sbg14", "sbg15", "sbg16", "sbg17", "sbg18", "sbg19", "sbg20", "sbg21", "sbg22", "sbg23", "sbg24", "sbg25", "sbg26", "sbg27", "sbg28", "sbg29", "sbg30", "sbg31", "sbg32", "sbg33", "sbg34"],
-                    "sbg_lr": ["left", "left", "left", "left", "left", "left", "left", "left", "left", "left", "left", "left", "left", "left", "left", "left", "left", "right", "right", "right", "right", "right", "right", "right", "right", "right", "right", "right", "right", "right", "right", "right", "right", "right"],
+                    "sbg_lr": ["right", "right", "right", "right", "right", "right", "right", "right", "right", "right", "right", "right", "right", "right", "right", "right", "right", "right", "right", "right", "right", "right", "right", "right", "right", "right", "right", "right", "right", "right", "right", "right", "right", "right"],
                     "sbg_va": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
                 },
                 "parapet1": "0",
@@ -1034,9 +1038,9 @@ mpxd.modules.piers.viaduct_pier_view = Backbone.View.extend({
                 "span_type": "sb",
 
                 "sbg": {
-                    "sbg_id": ["sbg1", "sbg2", "sbg3", "sbg4", "sbg5", "sbg6", "sbg7", "sbg8", "sbg9", "sbg10", "sbg11", "sbg12", "sbg13", "sbg14", "sbg15", "sbg16", "sbg17", "sbg18", "sbg19", "sbg20", "sbg21", "sbg22", "sbg23", "sbg24", "sbg25", "sbg26", "sbg27", "sbg28", "sbg29", "sbg30", "sbg31", "sbg32", "sbg33", "sbg34"],
-                    "sbg_lr": ["left", "left", "left", "left", "left", "left", "left", "left", "left", "left", "left", "left", "left", "left", "left", "left", "left", "right", "right", "right", "right", "right", "right", "right", "right", "right", "right", "right", "right", "right", "right", "right", "right", "right"],
-                    "sbg_va": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+                    "sbg_id": ["sbg1", "sbg2", "sbg3", "sbg4", "sbg5", "sbg6", "sbg7", "sbg8", "sbg9", "sbg10", "sbg11", "sbg12", "sbg13", "sbg14", "sbg15", "sbg16", "sbg17", "sbg18", "sbg19", "sbg20", "sbg21"],
+                    "sbg_lr": ["right", "right", "right", "right", "right", "right", "right", "right", "right", "right", "right", "right", "right", "right", "right", "right", "right", "right", "right", "right", "right", ],
+                    "sbg_va": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
                 },
                 "parapet1": "0",
                 "parapet2": "0",
@@ -1054,9 +1058,9 @@ mpxd.modules.piers.viaduct_pier_view = Backbone.View.extend({
                 "span_type": "sb",
 
                 "sbg": {
-                    "sbg_id": ["sbg1", "sbg2", "sbg3", "sbg4", "sbg5", "sbg6", "sbg7", "sbg8", "sbg9", "sbg10", "sbg11", "sbg12", "sbg13", "sbg14", "sbg15", "sbg16", "sbg17", "sbg18", "sbg19", "sbg20", "sbg21", "sbg22", "sbg23", "sbg24", "sbg25", "sbg26", "sbg27", "sbg28", "sbg29", "sbg30", "sbg31", "sbg32", "sbg33", "sbg34"],
-                    "sbg_lr": ["left", "left", "left", "left", "left", "left", "left", "left", "left", "left", "left", "left", "left", "left", "left", "left", "left", "right", "right", "right", "right", "right", "right", "right", "right", "right", "right", "right", "right", "right", "right", "right", "right", "right"],
-                    "sbg_va": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+                    "sbg_id": ["sbg1", "sbg2", "sbg3", "sbg4", "sbg5", "sbg6", "sbg7", "sbg8", "sbg9", "sbg10", "sbg11", "sbg12", "sbg13", "sbg14", "sbg15", "sbg16", "sbg17", "sbg18", "sbg19", "sbg20", "sbg21", "sbg22", "sbg23", "sbg24", "sbg25", "sbg26", "sbg27", "sbg28", "sbg29"],
+                    "sbg_lr": ["right", "right", "right", "right", "right", "right", "right", "right", "right", "right", "right", "right", "right", "right", "right", "right", "right", "right", "right", "right", "right", "right", "right", "right", "right", "right", "right", "right", "right"],
+                    "sbg_va": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
                 },
                 "parapet1": "0",
                 "parapet2": "0",
@@ -1074,9 +1078,9 @@ mpxd.modules.piers.viaduct_pier_view = Backbone.View.extend({
                 "span_type": "sb",
 
                 "sbg": {
-                    "sbg_id": ["sbg1", "sbg2", "sbg3", "sbg4", "sbg5", "sbg6", "sbg7", "sbg8", "sbg9", "sbg10", "sbg11", "sbg12", "sbg13", "sbg14", "sbg15", "sbg16", "sbg17", "sbg18", "sbg19", "sbg20", "sbg21", "sbg22", "sbg23", "sbg24", "sbg25", "sbg26", "sbg27", "sbg28", "sbg29", "sbg30", "sbg31", "sbg32", "sbg33", "sbg34"],
-                    "sbg_lr": ["left", "left", "left", "left", "left", "left", "left", "left", "left", "left", "left", "left", "left", "left", "left", "left", "left", "right", "right", "right", "right", "right", "right", "right", "right", "right", "right", "right", "right", "right", "right", "right", "right", "right"],
-                    "sbg_va": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+                    "sbg_id": ["sbg1", "sbg2", "sbg3", "sbg4", "sbg5", "sbg6", "sbg7", "sbg8", "sbg9", "sbg10", "sbg11", "sbg12", "sbg13", "sbg14", "sbg15", "sbg16", "sbg17", "sbg18", "sbg19", "sbg20", "sbg21"],
+                    "sbg_lr": ["right", "right", "right", "right", "right", "right", "right", "right", "right", "right", "right", "right", "right", "right", "right", "right", "right", "right", "right", "right", "right"],
+                    "sbg_va": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
                 },
                 "parapet1": "0",
                 "parapet2": "0",
@@ -1752,9 +1756,9 @@ mpxd.modules.piers.viaduct_pier_view = Backbone.View.extend({
                 "span_type": "sb",
 
                 "sbg": {
-                    "sbg_id": ["sbg1", "sbg2", "sbg3", "sbg4", "sbg5", "sbg6", "sbg7", "sbg8", "sbg9", "sbg10", "sbg11", "sbg12", "sbg13", "sbg14", "sbg15", "sbg16", "sbg17", "sbg18", "sbg19", "sbg20", "sbg21", "sbg22", "sbg23", "sbg24", "sbg25", "sbg26", "sbg27", "sbg28", "sbg29", "sbg30", "sbg31", "sbg32", "sbg33", "sbg34"],
-                    "sbg_lr": ["left", "left", "left", "left", "left", "left", "left", "left", "left", "left", "left", "left", "left", "left", "left", "left", "left", "right", "right", "right", "right", "right", "right", "right", "right", "right", "right", "right", "right", "right", "right", "right", "right", "right"],
-                    "sbg_va": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+                    "sbg_id": ["sbg1", "sbg2", "sbg3", "sbg4", "sbg5", "sbg6", "sbg7", "sbg8", "sbg9", "sbg10", "sbg11", "sbg12", "sbg13", "sbg14", "sbg15", "sbg16", "sbg17", "sbg18"],
+                    "sbg_lr": ["right", "right", "right", "right", "right", "right", "right", "right", "right", "right", "right", "right", "right", "right", "right", "right", "right", "right",],
+                    "sbg_va": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
                 },
                 "parapet1": "0",
                 "parapet2": "0",
@@ -1772,9 +1776,9 @@ mpxd.modules.piers.viaduct_pier_view = Backbone.View.extend({
                 "span_type": "sb",
 
                 "sbg": {
-                    "sbg_id": ["sbg1", "sbg2", "sbg3", "sbg4", "sbg5", "sbg6", "sbg7", "sbg8", "sbg9", "sbg10", "sbg11", "sbg12", "sbg13", "sbg14", "sbg15", "sbg16", "sbg17", "sbg18", "sbg19", "sbg20", "sbg21", "sbg22", "sbg23", "sbg24", "sbg25", "sbg26", "sbg27", "sbg28", "sbg29", "sbg30", "sbg31", "sbg32", "sbg33", "sbg34"],
-                    "sbg_lr": ["left", "left", "left", "left", "left", "left", "left", "left", "left", "left", "left", "left", "left", "left", "left", "left", "left", "right", "right", "right", "right", "right", "right", "right", "right", "right", "right", "right", "right", "right", "right", "right", "right", "right"],
-                    "sbg_va": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+                    "sbg_id": ["sbg1", "sbg2", "sbg3", "sbg4", "sbg5", "sbg6", "sbg7", "sbg8", "sbg9", "sbg10", "sbg11", "sbg12", "sbg13", "sbg14", "sbg15", "sbg16", "sbg17", "sbg18", "sbg19", "sbg20", "sbg21", "sbg22", "sbg23", "sbg24", "sbg25", "sbg26", "sbg27"],
+                    "sbg_lr": ["right", "right", "right", "right", "right", "right", "right", "right", "right", "right", "right", "right", "right", "right", "right", "right", "right", "right", "right", "right", "right", "right", "right", "right", "right", "right", "right"],
+                    "sbg_va": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
                 },
                 "parapet1": "0",
                 "parapet2": "0",
@@ -1792,9 +1796,9 @@ mpxd.modules.piers.viaduct_pier_view = Backbone.View.extend({
                 "span_type": "sb",
 
                 "sbg": {
-                    "sbg_id": ["sbg1", "sbg2", "sbg3", "sbg4", "sbg5", "sbg6", "sbg7", "sbg8", "sbg9", "sbg10", "sbg11", "sbg12", "sbg13", "sbg14", "sbg15", "sbg16", "sbg17", "sbg18", "sbg19", "sbg20", "sbg21", "sbg22", "sbg23", "sbg24", "sbg25", "sbg26", "sbg27", "sbg28", "sbg29", "sbg30", "sbg31", "sbg32", "sbg33", "sbg34"],
-                    "sbg_lr": ["left", "left", "left", "left", "left", "left", "left", "left", "left", "left", "left", "left", "left", "left", "left", "left", "left", "right", "right", "right", "right", "right", "right", "right", "right", "right", "right", "right", "right", "right", "right", "right", "right", "right"],
-                    "sbg_va": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+                    "sbg_id": ["sbg1", "sbg2", "sbg3", "sbg4", "sbg5", "sbg6", "sbg7", "sbg8", "sbg9", "sbg10", "sbg11", "sbg12", "sbg13", "sbg14", "sbg15", "sbg16", "sbg17", "sbg18", "sbg19", "sbg20"],
+                    "sbg_lr": ["right", "right", "right", "right", "right", "right", "right", "right", "right", "right", "right", "right", "right", "right", "right", "right", "right", "right", "right", "right"],
+                    "sbg_va": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
                 },
                 "parapet1": "0",
                 "parapet2": "0",
@@ -3759,7 +3763,7 @@ mpxd.modules.piers.viaduct_pier_view = Backbone.View.extend({
                 "pier_marker_a": "Kepong Baru Station",
                 "pier_marker_b": "1",
                 "pier_layout": "3",
-                "pier_type": "p12",
+                "pier_type": "p8211",
                 "span_type": "ss",
 
                 "sbg": {"sbg_id": [], "sbg_lr": [], "sbg_va": []},
@@ -3775,7 +3779,7 @@ mpxd.modules.piers.viaduct_pier_view = Backbone.View.extend({
                 "pier_marker_a": "0",
                 "pier_marker_b": "1",
                 "pier_layout": "3",
-                "pier_type": "p12",
+                "pier_type": "p8211",
                 "span_type": "ss",
 
                 "sbg": {"sbg_id": [], "sbg_lr": [], "sbg_va": []},
@@ -3791,7 +3795,7 @@ mpxd.modules.piers.viaduct_pier_view = Backbone.View.extend({
                 "pier_marker_a": "0",
                 "pier_marker_b": "1",
                 "pier_layout": "3",
-                "pier_type": "p12",
+                "pier_type": "p8211",
                 "span_type": "ss",
 
                 "sbg": {"sbg_id": [], "sbg_lr": [], "sbg_va": []},
@@ -3807,7 +3811,7 @@ mpxd.modules.piers.viaduct_pier_view = Backbone.View.extend({
                 "pier_marker_a": "0",
                 "pier_marker_b": "1",
                 "pier_layout": "3",
-                "pier_type": "p12",
+                "pier_type": "p8211",
                 "span_type": "ss",
 
                 "sbg": {"sbg_id": [], "sbg_lr": [], "sbg_va": []},
@@ -3823,8 +3827,8 @@ mpxd.modules.piers.viaduct_pier_view = Backbone.View.extend({
                 "pier_marker_a": "0",
                 "pier_marker_b": "1",
                 "pier_layout": "1",
-                "pier_type": "p12",
-                "span_type": "s2",
+                "pier_type": "p8211",
+                "span_type": "s3",
 
                 "sbg": {"sbg_id": [], "sbg_lr": [], "sbg_va": []},
                 "parapet1": "0",
@@ -3839,8 +3843,8 @@ mpxd.modules.piers.viaduct_pier_view = Backbone.View.extend({
                 "pier_marker_a": "0",
                 "pier_marker_b": "0",
                 "pier_layout": "1",
-                "pier_type": "p12",
-                "span_type": "s2",
+                "pier_type": "p8211",
+                "span_type": "s3",
 
                 "sbg": {"sbg_id": [], "sbg_lr": [], "sbg_va": []},
                 "parapet1": "0",
@@ -3855,8 +3859,8 @@ mpxd.modules.piers.viaduct_pier_view = Backbone.View.extend({
                 "pier_marker_a": "0",
                 "pier_marker_b": "0",
                 "pier_layout": "1",
-                "pier_type": "p12",
-                "span_type": "s2",
+                "pier_type": "p8211",
+                "span_type": "s3",
 
                 "sbg": {"sbg_id": [], "sbg_lr": [], "sbg_va": []},
                 "parapet1": "0",
@@ -3871,8 +3875,8 @@ mpxd.modules.piers.viaduct_pier_view = Backbone.View.extend({
                 "pier_marker_a": "0",
                 "pier_marker_b": "0",
                 "pier_layout": "1",
-                "pier_type": "p12",
-                "span_type": "s2",
+                "pier_type": "p8211",
+                "span_type": "s3",
 
                 "sbg": {"sbg_id": [], "sbg_lr": [], "sbg_va": []},
                 "parapet1": "0",
@@ -3887,8 +3891,8 @@ mpxd.modules.piers.viaduct_pier_view = Backbone.View.extend({
                 "pier_marker_a": "0",
                 "pier_marker_b": "0",
                 "pier_layout": "1",
-                "pier_type": "p12",
-                "span_type": "s2",
+                "pier_type": "p8211",
+                "span_type": "s3",
 
                 "sbg": {"sbg_id": [], "sbg_lr": [], "sbg_va": []},
                 "parapet1": "0",
@@ -3904,7 +3908,7 @@ mpxd.modules.piers.viaduct_pier_view = Backbone.View.extend({
                 "pier_marker_b": "0",
                 "pier_layout": "1",
                 "pier_type": "p32",
-                "span_type": "s1",
+                "span_type": "s2",
 
                 "sbg": {"sbg_id": [], "sbg_lr": [], "sbg_va": []},
                 "parapet1": "0",
@@ -4486,6 +4490,7 @@ mpxd.modules.piers.viaduct_pier_view = Backbone.View.extend({
                     p_p2 = c.parapet2;
                     p_p3 = c.parapet3;
                     p_sbg_va = c.sbg.sbg_va;
+                    break;
                 } else {
                     p_a1 = 0;
                     p_a2 = 0;
@@ -4504,8 +4509,10 @@ mpxd.modules.piers.viaduct_pier_view = Backbone.View.extend({
                     p_p3 = 0;
                     p_sbg_va = b.sbg.sbg_va;
                 }
-                console.log("-"+p_pid+"-"+ p_a1 +"-"+ p_a2 +"-"+i);
+            /*    console.log("-"+p_sbg_va+"-"+ p_a1 +"-"+ p_a2 +"-"+i);*/
+             /*   console.log("-"+p_pid+"-"+ p_a1 +"-"+ p_a2 +"-"+i);*/
             }
+           /* console.log("-"+p_sbg_va+"-"+ p_a1 +"-"+ p_a2 +"-"+i);*/
 
                 p_pp = b.p_progress;
                 color_0 = "none";
@@ -4757,13 +4764,9 @@ mpxd.modules.piers.viaduct_pier_view = Backbone.View.extend({
                     color_p_s1 = color_1;
                     p_s1_hl_trigger = 3;
                 }
-                else if (p_s1 < 100) {
-                    color_p_s1 = color_2;
-                    p_s1_hl_trigger = 2;
-                }
-                else if (p_s1 == 100) {
+                else if (p_s1 == 1.00) {
                     color_p_s1 = color_3;
-                    p_s1_hl_trigger = 1;
+                    p_s1_hl_trigger = 2;
                 }
                 else if (p_s1 == '') {
                     p_s1_hl_trigger = 0;
@@ -4781,8 +4784,8 @@ mpxd.modules.piers.viaduct_pier_view = Backbone.View.extend({
                     color_p_s2 = color_1;
                     p_s2_hl_trigger = 3;
                 }
-                else if (p_s2 < 100) {
-                    color_p_s2 = color_2;
+                else if (p_s2 == 1.00) {
+                    color_p_s2 = color_3;
                     p_s2_hl_trigger = 2;
                 }
                 else if (p_s2 == 100) {
@@ -4805,8 +4808,8 @@ mpxd.modules.piers.viaduct_pier_view = Backbone.View.extend({
                     color_p_s3 = color_1;
                     p_s3_hl_trigger = 3;
                 }
-                else if (p_s3 < 100) {
-                    color_p_s3 = color_2;
+                else if (p_s3 == 1.00) {
+                    color_p_s3 = color_3;
                     p_s3_hl_trigger = 2;
                 }
                 else if (p_s3 == 100) {
@@ -5085,13 +5088,13 @@ mpxd.modules.piers.viaduct_pier_view = Backbone.View.extend({
 
                     case "p6x":
                         // console.log('pier_a2b2c2d6.svg');
-                        $('div#pier_id_' + p_pid + ' .pier span.content').append('<svg class="widebody" viewBox="0 0 150 86" width="150" height="86"> <g transform="translate(0,-64)" style="display:inline" inkscape:label="p1" id="g4193" inkscape:groupmode="layer"> <path sodipodi:nodetypes="cccccccccccccccccc" inkscape:connector-curvature="0" class="a_pile" style="fill:' + color_p_a1 + '"  d="m 0.00254,130.31788 0,-5.53975 1.846572,0 1.84658,0 0,5.53975 0,5.53975 -1.84658,0 -1.846572,0 z m 15.285572,0 0,-5.53975 1.84658,0 1.84658,0 0,5.53975 0,5.53975 -1.84658,0 -1.84658,0 z" id="path7" /> <path sodipodi:nodetypes="cccccccccccccccccc" inkscape:connector-curvature="0" class="b_pile" style="fill:' + color_p_a2 + '"  d="m 23.174842,107.33842 0,-5.53974 1.84659,0 1.84657,0 0,5.53974 0,5.53974 -1.84657,0 -1.84659,0 z m 15.28558,0 0,-5.53974 1.84657,0 1.84658,0 0,5.53974 0,5.53974 -1.84658,0 -1.84657,0 z" id="path9" /> <path sodipodi:nodetypes="ccccccccc" inkscape:connector-curvature="0" class="a_pilecap" style="fill:' + color_p_b1 + '"  d="m 0,121.39516 0,-2.66728 9.489372,0 9.48936,0 0,2.66728 0,2.66727 -9.48936,0 -9.489372,0 z" id="path11" /> <path sodipodi:nodetypes="ccccccccc" inkscape:connector-curvature="0" class="b_pilecap" style="fill:' + color_p_b2 + '"  d="m 23.165112,98.400894 0,-2.66728 9.48937,0 9.48936,0 0,2.66728 0,2.667296 -9.48936,0 -9.48937,0 z" id="path13" /> <path sodipodi:nodetypes="ccccccccc" inkscape:connector-curvature="0" class="a_pier" style="fill:' + color_p_c1 + '"  d="m 4.705012,108.15196 0,-9.745846 4.77034,0 4.77033,0 0,9.745846 0,9.74584 -4.77033,0 -4.77034,0 z" id="path15" /> <path sodipodi:nodetypes="ccccccccc" inkscape:connector-curvature="0" class="b_pier" style="fill:' + color_p_c2 + '"  d="m 27.909222,89.976064 0,-4.950268 4.77032,-4.76951 4.77033,-4.7695 0,9.71977 0,9.719788 -4.77033,0 -4.77032,0 z" id="path17" /> <path sodipodi:nodetypes="cccccccccccccccccccccccccccccccccsscccccscccccccsccccccccccccccccccccccsscccc" inkscape:connector-curvature="0" class="c_pierhead" style="fill:' + color_p_d3 + '"  d="m 4.713562,92.820694 0,-4.9755 4.75741,0 4.75741,0 11.60533,-11.647507 11.60534,-11.64748 0,5.0564 0,5.05639 -11.56694,11.56661 -11.56694,11.566587 -4.79581,0 -4.7958,0 z m 12.05407,-16.875687 11.38688,-11.38724 4.30869,0 4.30868,0 -11.38688,11.38724 -11.3869,11.387257 -4.30869,0 -4.30868,0 z" id="path19" /> </g> </svg>');
+                        $('div#pier_id_' + p_pid + ' .pier span.content').append('<svg class="widebody" viewBox="0 0 150 86" width="150" height="86"> <g transform="translate(0,-64)" style="display:inline" inkscape:label="p1" id="g4193" inkscape:groupmode="layer"> <path sodipodi:nodetypes="cccccccccccccccccc" inkscape:connector-curvature="0" class="a_pile" style="fill:' + color_p_a1 + '"  d="m 0.00254,130.31788 0,-5.53975 1.846572,0 1.84658,0 0,5.53975 0,5.53975 -1.84658,0 -1.846572,0 z m 15.285572,0 0,-5.53975 1.84658,0 1.84658,0 0,5.53975 0,5.53975 -1.84658,0 -1.84658,0 z" id="path7" /> <path sodipodi:nodetypes="cccccccccccccccccc" inkscape:connector-curvature="0" class="b_pile" style="fill:' + color_p_a2 + '"  d="m 23.174842,107.33842 0,-5.53974 1.84659,0 1.84657,0 0,5.53974 0,5.53974 -1.84657,0 -1.84659,0 z m 15.28558,0 0,-5.53974 1.84657,0 1.84658,0 0,5.53974 0,5.53974 -1.84658,0 -1.84657,0 z" id="path9" /> <path sodipodi:nodetypes="ccccccccc" inkscape:connector-curvature="0" class="a_pilecap" style="fill:' + color_p_b1 + '"  d="m 0,121.39516 0,-2.66728 9.489372,0 9.48936,0 0,2.66728 0,2.66727 -9.48936,0 -9.489372,0 z" id="path11" /> <path sodipodi:nodetypes="ccccccccc" inkscape:connector-curvature="0" class="b_pilecap" style="fill:' + color_p_b2 + '"  d="m 23.165112,98.400894 0,-2.66728 9.48937,0 9.48936,0 0,2.66728 0,2.667296 -9.48936,0 -9.48937,0 z" id="path13" /> <path sodipodi:nodetypes="ccccccccc" inkscape:connector-curvature="0" class="a_pier" style="fill:' + color_p_c1 + '"  d="m 4.705012,108.15196 0,-9.745846 4.77034,0 4.77033,0 0,9.745846 0,9.74584 -4.77033,0 -4.77034,0 z" id="path15" /> <path sodipodi:nodetypes="ccccccccc" inkscape:connector-curvature="0" class="b_pier" style="fill:' + color_p_c2 + '"  d="m 27.909222,89.976064 0,-4.950268 4.77032,-4.76951 4.77033,-4.7695 0,9.71977 0,9.719788 -4.77033,0 -4.77032,0 z" id="path17" /> <path sodipodi:nodetypes="cccccccccccccccccccccccccccccccccsscccccscccccccsccccccccccccccccccccccsscccc" inkscape:connector-curvature="0" class="c_pierhead" style="fill:' + color_p_d1 + '"  d="m 4.713562,92.820694 0,-4.9755 4.75741,0 4.75741,0 11.60533,-11.647507 11.60534,-11.64748 0,5.0564 0,5.05639 -11.56694,11.56661 -11.56694,11.566587 -4.79581,0 -4.7958,0 z m 12.05407,-16.875687 11.38688,-11.38724 4.30869,0 4.30868,0 -11.38688,11.38724 -11.3869,11.387257 -4.30869,0 -4.30868,0 z" id="path19" /> </g> </svg>');
                         // console.log(p_pid+' | '+p_nid+' | '+p_sid);
                         break;
 
                     case "p7x":
                         // console.log('pier_a2b2c2d7.svg');
-                        $('div#pier_id_' + p_pid + ' .pier span.content').append('<svg class="widebody" viewBox="0 0 150 86" width="150" height="86"> <g transform="translate(0,-64)" style="display:inline" inkscape:label="p1" id="g4193" inkscape:groupmode="layer"> <path sodipodi:nodetypes="cccccccccccccccccc" inkscape:connector-curvature="0" class="a_pile" style="fill:' + color_p_a1 + '"  d="m 0.00254,143.56788 0,-5.53975 1.846572,0 1.84658,0 0,5.53975 0,5.53975 -1.84658,0 -1.846572,0 z m 15.285572,0 0,-5.53975 1.84658,0 1.84658,0 0,5.53975 0,5.53975 -1.84658,0 -1.84658,0 z" id="path7" /> <path sodipodi:nodetypes="cccccccccccccccccc" inkscape:connector-curvature="0" class="b_pile" style="fill:' + color_p_a2 + '"  d="m 23.174842,120.58842 0,-5.53974 1.84659,0 1.84657,0 0,5.53974 0,5.53974 -1.84657,0 -1.84659,0 z m 15.28558,0 0,-5.53974 1.84657,0 1.84658,0 0,5.53974 0,5.53974 -1.84658,0 -1.84657,0 z" id="path9" /> <path sodipodi:nodetypes="ccccccccc" inkscape:connector-curvature="0" class="a_pilecap" style="fill:' + color_p_b1 + '"  d="m 0,134.64516 0,-2.66728 9.489372,0 9.48936,0 0,2.66728 0,2.66727 -9.48936,0 -9.489372,0 z" id="path11" /> <path sodipodi:nodetypes="ccccccccc" inkscape:connector-curvature="0" class="b_pilecap" style="fill:' + color_p_b2 + '"  d="m 23.165112,111.65089 0,-2.66728 9.48937,0 9.48936,0 0,2.66728 0,2.6673 -9.48936,0 -9.48937,0 z" id="path13" /> <path sodipodi:nodetypes="ccccccccc" inkscape:connector-curvature="0" class="a_pier" style="fill:' + color_p_c1 + '"  d="m 4.705012,121.40196 0,-9.74585 4.77034,0 4.77033,0 0,9.74585 0,9.74584 -4.77033,0 -4.77034,0 z" id="path15" /> <path sodipodi:nodetypes="ccccccccc" inkscape:connector-curvature="0" class="b_pier" style="fill:' + color_p_c2 + '"  d="m 27.909222,103.22606 0,-4.950264 4.77032,-4.76951 4.77033,-4.7695 0,9.71977 0,9.719784 -4.77033,0 -4.77032,0 z" id="path17" /> <path sodipodi:nodetypes="cccccccccccccccccccccccccccccccccsscccccscccccccsccccccccccccccccccccccsscccc" inkscape:connector-curvature="0" class="c_pierhead" style="fill:' + color_p_d3 + '"  d="m 4.708962,106.07189 0,-4.97551 4.75741,0 4.75741,0 11.60533,-11.647489 11.60534,-11.6475 0,5.05641 0,5.05638 -11.56694,11.56662 -11.56694,11.566589 -4.79581,0 -4.7958,0 z m -1.19053,-10.823009 -1.23743,-5.02679 1.11139,0 1.1114,0 0,-1.33365 0,-1.33364 1.94917,0 1.94916,0 0,1.33364 0,1.33365 1.07718,0 1.07717,0 0,-1.33365 0,-1.33364 1.94917,0 1.94916,0 0,1.33364 0,1.33365 1.11652,0 1.11653,0 -0.54215,2.17998 c -0.29819,1.19899 -0.8535,3.46107 -1.23405,5.0268 l -0.69192,2.846819 -4.73192,0 -4.73193,0 z m 11.50351,4.00091 c 0.0398,-0.19746 0.52806,-2.27489 1.08496,-4.61645 0.55688,-2.34156 1.0365,-4.35894 1.06581,-4.48306 0.0494,-0.20916 0.0118,-0.22794 -0.51277,-0.25648 l -0.56605,-0.0307 6.02965,-6.02818 6.02965,-6.02815 4.28179,0.0268 4.2818,0.0268 -10.88363,10.87429 c -9.4241,9.416 -10.87392,10.82614 -10.81121,10.51523 z m 11.68132,-27.18577 -1.23743,-5.0268 1.1114,0 1.11139,0 0,-1.33365 0,-1.33363 1.94916,0 1.94917,0 0,1.33363 0,1.33365 1.07717,0 1.07717,0 0,-1.33365 0,-1.33363 1.94917,0 1.94916,0 0,1.33363 0,1.33365 1.11653,0 1.11653,0 -0.54214,2.17999 c -0.29819,1.19901 -0.85351,3.46104 -1.23406,5.0268 l -0.69191,2.84681 -4.73194,0 -4.73192,0 z" id="path19" /> </g> </svg>');
+                        $('div#pier_id_' + p_pid + ' .pier span.content').append('<svg class="widebody" viewBox="0 0 150 86" width="150" height="86"> <g transform="translate(0,-64)" style="display:inline" inkscape:label="p1" id="g4193" inkscape:groupmode="layer"> <path sodipodi:nodetypes="cccccccccccccccccc" inkscape:connector-curvature="0" class="a_pile" style="fill:' + color_p_a1 + '"  d="m 0.00254,143.56788 0,-5.53975 1.846572,0 1.84658,0 0,5.53975 0,5.53975 -1.84658,0 -1.846572,0 z m 15.285572,0 0,-5.53975 1.84658,0 1.84658,0 0,5.53975 0,5.53975 -1.84658,0 -1.84658,0 z" id="path7" /> <path sodipodi:nodetypes="cccccccccccccccccc" inkscape:connector-curvature="0" class="b_pile" style="fill:' + color_p_a2 + '"  d="m 23.174842,120.58842 0,-5.53974 1.84659,0 1.84657,0 0,5.53974 0,5.53974 -1.84657,0 -1.84659,0 z m 15.28558,0 0,-5.53974 1.84657,0 1.84658,0 0,5.53974 0,5.53974 -1.84658,0 -1.84657,0 z" id="path9" /> <path sodipodi:nodetypes="ccccccccc" inkscape:connector-curvature="0" class="a_pilecap" style="fill:' + color_p_b1 + '"  d="m 0,134.64516 0,-2.66728 9.489372,0 9.48936,0 0,2.66728 0,2.66727 -9.48936,0 -9.489372,0 z" id="path11" /> <path sodipodi:nodetypes="ccccccccc" inkscape:connector-curvature="0" class="b_pilecap" style="fill:' + color_p_b2 + '"  d="m 23.165112,111.65089 0,-2.66728 9.48937,0 9.48936,0 0,2.66728 0,2.6673 -9.48936,0 -9.48937,0 z" id="path13" /> <path sodipodi:nodetypes="ccccccccc" inkscape:connector-curvature="0" class="a_pier" style="fill:' + color_p_c1 + '"  d="m 4.705012,121.40196 0,-9.74585 4.77034,0 4.77033,0 0,9.74585 0,9.74584 -4.77033,0 -4.77034,0 z" id="path15" /> <path sodipodi:nodetypes="ccccccccc" inkscape:connector-curvature="0" class="b_pier" style="fill:' + color_p_c2 + '"  d="m 27.909222,103.22606 0,-4.950264 4.77032,-4.76951 4.77033,-4.7695 0,9.71977 0,9.719784 -4.77033,0 -4.77032,0 z" id="path17" /> <path sodipodi:nodetypes="cccccccccccccccccccccccccccccccccsscccccscccccccsccccccccccccccccccccccsscccc" inkscape:connector-curvature="0" class="c_pierhead" style="fill:' + color_p_d1 + '"  d="m 4.708962,106.07189 0,-4.97551 4.75741,0 4.75741,0 11.60533,-11.647489 11.60534,-11.6475 0,5.05641 0,5.05638 -11.56694,11.56662 -11.56694,11.566589 -4.79581,0 -4.7958,0 z m -1.19053,-10.823009 -1.23743,-5.02679 1.11139,0 1.1114,0 0,-1.33365 0,-1.33364 1.94917,0 1.94916,0 0,1.33364 0,1.33365 1.07718,0 1.07717,0 0,-1.33365 0,-1.33364 1.94917,0 1.94916,0 0,1.33364 0,1.33365 1.11652,0 1.11653,0 -0.54215,2.17998 c -0.29819,1.19899 -0.8535,3.46107 -1.23405,5.0268 l -0.69192,2.846819 -4.73192,0 -4.73193,0 z m 11.50351,4.00091 c 0.0398,-0.19746 0.52806,-2.27489 1.08496,-4.61645 0.55688,-2.34156 1.0365,-4.35894 1.06581,-4.48306 0.0494,-0.20916 0.0118,-0.22794 -0.51277,-0.25648 l -0.56605,-0.0307 6.02965,-6.02818 6.02965,-6.02815 4.28179,0.0268 4.2818,0.0268 -10.88363,10.87429 c -9.4241,9.416 -10.87392,10.82614 -10.81121,10.51523 z m 11.68132,-27.18577 -1.23743,-5.0268 1.1114,0 1.11139,0 0,-1.33365 0,-1.33363 1.94916,0 1.94917,0 0,1.33363 0,1.33365 1.07717,0 1.07717,0 0,-1.33365 0,-1.33363 1.94917,0 1.94916,0 0,1.33363 0,1.33365 1.11653,0 1.11653,0 -0.54214,2.17999 c -0.29819,1.19901 -0.85351,3.46104 -1.23406,5.0268 l -0.69191,2.84681 -4.73194,0 -4.73192,0 z" id="path19" /> </g> </svg>');
                         // console.log(p_pid+' | '+p_nid+' | '+p_sid);
                         break;
 
@@ -5162,6 +5165,8 @@ mpxd.modules.piers.viaduct_pier_view = Backbone.View.extend({
                                 } else if (a == 1) {
                                     color_sbg = color_3;
                                     return color_sbg;
+                                }else{
+                                    color_sbg = color_1;
                                 }
                             }
 
@@ -5378,7 +5383,117 @@ mpxd.modules.procurement.piechart_workpackage = Backbone.View.extend({
 
     }
 });
+mpxd.modules.viaducts.spi = Backbone.View.extend({
+    initialize: function (options) {
+        this.data = options.data;
+        this.render();
+    }, render: function () {
+        var spiprog = 0 ;
+        var that = this;
+        var html = mpxd.getTemplate(that.data.type);
+        template = _.template(html, {data: that.data});
+        that.$el.html(template);
+ /*       that.$el.find('.portlet_content').css({"height":(that.$el.find('.content').parent().parent().parent().height())-40});
+        that.$el.find('.portlet_content').mCustomScrollbar({theme:"dark-3"});*/
+        if(that.data.data[1] !=null){
+            if((Object.keys(that.data.data[1]).length) > 0) {
+              spiprog=parseInt(that.data.data[1].spi) ;
+            }
 
+            }
+        Highcharts.setOptions({
+            colors: ['#f66','#ff0','#0a5']
+        });
+        that.$el.find('#chart_' + that.data.id).highcharts({
+            title: {
+                //text:''
+                text: '<p><b>Schedule Performance Index [SPI]</b> is a ratio of the Earned Value [EV] to he Planned Value [PV].</p>',
+                style: {
+                    fontSize: 14
+                }
+            },
+            credits: false,
+            tooltip: {
+                enabled:false,
+                pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+            },
+            pane: {
+                center: ['50%', '75%'],
+                size: '100%',
+                startAngle: -90,
+                endAngle: 90,
+                background: {
+                    borderWidth: 0,
+                    backgroundColor: 'none',
+                    innerRadius: '70%',
+                    outerRadius: '100%',
+                    shape: 'arc'
+                }
+            },
+            yAxis: [{
+                lineWidth: 0,
+                min: 0,
+                max: 100,
+                minorTickLength: 0,
+                tickLength: 0,
+                tickWidth: 0,
+                labels: {
+                    enabled: false
+                },
+                title: {
+                    text: ''
+                },
+                pane: 0
+
+            }],
+            plotOptions: {
+                pie: {
+                    dataLabels: {
+                        enabled: false
+                    },
+                    startAngle: -90,
+                    endAngle: 90,
+                    center: ['50%', '75%']
+                },
+                gauge: {
+                    dataLabels: {
+                        enabled: true
+                    },
+                    dial: {
+                        radius: '100%'
+                    }
+                }
+            },
+
+            series: [{
+                type: 'pie',
+                name: '',
+                innerSize: '50%',
+                data: [
+                    [50],
+                    [25],
+                    [25],
+                ]
+            },{
+                type: 'gauge',
+                data: [spiprog],
+                dial: {
+                    rearLength: 0,
+                    backgroundColor:'#fff',
+                    borderColor:'#fff'
+                },
+                dataLabels: {
+                    y:-70,
+                    borderWidth: 0,
+                    style: {
+                        fontSize: '20px'
+                    },
+                    format:'{point.y}%'
+                }
+            }],
+        });
+    }
+});
 mpxd.modules.procurement.barchart_workpackage = Backbone.View.extend({
     initialize: function (options) {
         this.data = options.data;

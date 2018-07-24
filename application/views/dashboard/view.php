@@ -153,11 +153,11 @@
             		<p><?php echo ($this->session->userdata['fullname']); ?></p>
             	</div>
             	<div class="getreport">
-            		<p>Get this report of current page:</p>
+            		<!--<p>Get this report of current page:</p>
 					<ul>
 						<li>
-							<a href="#" id="toExcelButton" onclick="return false;"><img src="<?php echo $this->config->base_url(); ?>assets/img/excel.png"></a>
-						</li>
+							<a href="#" id="toExcelButton" onclick="return false;"><img src="<?php /*echo $this->config->base_url(); */?>assets/img/excel.png"></a>
+						</li>-->
 						<li>
 							<a href="#" id="toPDFButton" onclick="return false;"><img src="<?php echo $this->config->base_url(); ?>assets/img/pdf.png"></a>
 						</li>

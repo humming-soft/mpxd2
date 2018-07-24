@@ -7,6 +7,8 @@ class Dashboard extends CI_Controller {
     public function __construct() {
         parent::__construct();
         $this->load->model('dashboard_model');
+        $this->load->model('pdf_model');
+        $this->load->library('Pdf');
     }
 
     public function index($slug = FALSE) {
@@ -55,30 +57,38 @@ class Dashboard extends CI_Controller {
     }
 	
     public function topdf() {
+
         $post = $this->input->post();
         if ((!$post) || (!isset($post['id'])))
             die();
-			
+
 		$print = (isset($post['print']) && ($post['print'] == 1));
 		$id = $post["id"];
+        $date=$post["ddate"];
 		$fullslug = $this->dashboard_model->getSlugFromPageId($id);
-		
-		$protocol = (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off' || $_SERVER['SERVER_PORT'] == 443) ? "https://" : "http://";
-		$port = $_SERVER['SERVER_PORT'];
-		$tempfile = tempnam(sys_get_temp_dir(), "pdftemp");
-		$phantomdir = getcwd()."\\application\\binary\\";
-		$phantomexec = $phantomdir."phantomjs.exe";
-		$phantomscript = $phantomdir."topdf.js";
-		
-		$cmd = $phantomexec . " " . $phantomscript . " " .  $protocol . "localhost:" . $port . "/mpxd2/" . $fullslug . ($print ? "?print=1" : "") . " " . $tempfile;
-		//echo $cmd;
-		shell_exec($cmd);
-		if (file_exists($tempfile)) {
-		/* CURRENT WILL NOT UNLINK THE TEMP FILE, PLEASE DO SO IN THE FUTURE */
-			$this->load->view('dashboard/topdf', array("file" => $tempfile));
-		} else {
-		die();
-		}
+        if($fullslug != "") {
+            $slug=strtoupper($fullslug);
+            $kpi=$this->pdf_model->getStructure($fullslug,$date);
+
+            $pdf = new Pdf(PDF_PAGE_ORIENTATION, PDF_UNIT, PDF_PAGE_FORMAT, true, 'UTF-8', false);
+            $pdf->SetCreator(PDF_CREATOR);
+            $pdf->SetAuthor($this->session->userdata('username'));
+            $pdf->SetTitle($slug . " PROGRESS");
+          /*  $pdf->SetHeaderData(PDF_HEADER_LOGO, PDF_HEADER_LOGO_WIDTH, $slug . " PROGRESS", "MRT Corp", array(0,64,255), array(0,64,128));*/
+            //$pdf->setHeaderFont(Array(PDF_FONT_NAME_MAIN, '', PDF_FONT_SIZE_MAIN));
+            $pdf->setFooterFont(Array(PDF_FONT_NAME_DATA, '', PDF_FONT_SIZE_DATA));
+            $pdf->SetDefaultMonospacedFont(PDF_FONT_MONOSPACED);
+            $pdf->SetHeaderMargin(PDF_MARGIN_HEADER);
+            $pdf->SetFooterMargin(PDF_MARGIN_FOOTER);/*
+            $pdf->SetAutoPageBreak(TRUE, PDF_MARGIN_BOTTOM);*/
+            $pdf->setImageScale(PDF_IMAGE_SCALE_RATIO);
+            $pdf->setFontSubsetting(false);
+            $pdf->SetFont('helvetica', '', 8, '', false);
+            $pdf->AddPage('L', 'A3');
+            $pdf->writeHTML($kpi);
+            $pdf->Output($fullslug.'_progress".pdf', 'D');
+            die();
+        }
     }
 
     public function logout() {

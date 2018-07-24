@@ -300,13 +300,14 @@ function scurve($slug){
 		->select('pagename','slug','early_data','delayed_data','actual_data','scurve_date','date')
 		->where("slug", $slug)
 	    ->or("slug", strtoupper($slug));
+	
 	$query2 = db()->{'"scurve"'}
 		->select('pagename','slug','early_data','delayed_data','actual_data','var_early','var_late','trend','chart_type','view_type','scurve_date','date')
 		->where("slug", $slug)
 	    ->or("slug", strtoupper($slug));
+		
 	$result = array_map('iterator_to_array', iterator_to_array($query));
 	$result2 = array_map('iterator_to_array', iterator_to_array($query2));
-
 	$output = array("scurve" => $result2, "scurve_main" => $result);
 
 	return $output;
@@ -1109,12 +1110,50 @@ $final = array();
 		 $superFinal = array($slug => $finalGIS);
 	}
 	else if($slug=="sys-twmv"){
-	   $twTrend=twTranding($slug);
-	   $twDesign=twDesign($slug);
-	   $finalTREND=array("TREND" => $twTrend);
-	   $finalDESIGN=array("DESIGN" => $twDesign);
-	   $finalGIS =array('sys_twmv_gis' =>array_merge($finalTREND,$finalDESIGN));
-	   $superFinal = array($slug => $finalGIS);
+	
+	$info = packageInfo($slug,1);
+	$gallery = gallery($slug);
+	$kad = kad($slug,3);
+	$scurve = scurve($slug);
+	$twTrend=twTranding($slug);
+	$twDesign=twDesign($slug);
+	//SCURVE
+	if(sizeof($scurve['scurve'])>0 ) {
+		$actual = array();
+		$late = array();
+		$early = array();
+		foreach ($scurve['scurve_main'] as $q) {
+			if ($q['actual_data'] != '-')
+				$actual[] = (float)$q['actual_data'];
+			if ($q['delayed_data'] != '-')
+				$late[] = (float)$q['delayed_data'];
+			if ($q['early_data'] != '-')
+				$early[] = (float)$q['early_data'];
+		}
+		$scurvearr = array(
+			'date' => date('d-M-y', strtotime($scurve['scurve'][0]['scurve_date'])),
+			'actualData' => $actual,
+			'earlyData' => $early,
+			'delayedData' => $late,
+			'currentEarly' => $scurve['scurve'][0]['early_data'] . '%',
+			'currentLate' => $scurve['scurve'][0]['delayed_data'] . '%',
+			'currentActual' => $scurve['scurve'][0]['actual_data'] . '%',
+			'varEarly' => $scurve['scurve'][0]['var_early'] . 'w',
+			'varLate' => $scurve['scurve'][0]['var_late'] . 'w',
+			'trend' => $scurve['scurve'][0]['trend'],
+			'chartType' => "long",
+			'viewType' => "2",
+		);
+	}
+		$galleryFormatter = array("title"=> strtoupper($slug).' Image Gallery',"items" => $gallery);
+		$finalGALLERY = array("gallery" => $galleryFormatter);
+		$finalKAD = array("KAD" => $kad);
+		$finalINFO = array("INFO" =>$info);
+	    $finalSCURVE = array("scurve" => (sizeof($scurve['scurve'])>0 ? $scurvearr : []));
+	    $finalTREND=array("TREND" => $twTrend);
+	    $finalDESIGN=array("DESIGN" => $twDesign);
+	    $finalGIS =array('sys_twmv_gis' =>array_merge($finalTREND,$finalDESIGN,$finalKAD,$finalINFO,$finalGALLERY,$finalSCURVE));
+	    $superFinal = array($slug => $finalGIS);
 	}
 	else{
 		$superFinal = array();
@@ -1123,6 +1162,7 @@ $final = array();
 }
 
 function build_twmv_detail($slug){
+	
 	$info = packageInfo($slug,1);
 	$gallery = gallery($slug);
 	$kad = kad($slug,3);
@@ -1161,6 +1201,7 @@ function build_twmv_detail($slug){
 	$finalINFO = array("INFO" =>$info);
 	$finalSCURVE = array("scurve" => (sizeof($scurve['scurve'])>0 ? $scurvearr : []));
 	$superFinal = array($slug => array_merge($finalKAD,$finalINFO,$finalGALLERY,$finalSCURVE));
+	
 	return json_encode($superFinal);
 }
 /**
@@ -1391,29 +1432,36 @@ function build_depot($slug){
  * @return Array
  * @Desc
  */
-function build_scurves($slug){
 
-	$overall_elevated = scurve('overall_elevated');
+function build_scurves($slug){
+echo  "ONE ONE ";
+	$overall_elevated = scurve('elevated');
 
 	if(sizeof($overall_elevated['scurve'])>0 ) {
 		$asofdate = $overall_elevated['scurve'][0]['scurve_date'];
 	}
-	$overall_elevated = array("overall_elevated" => build_me_an_scurve_array($overall_elevated,FALSE));
+	$overall_elevated = array("elevated" => build_me_an_scurve_array($overall_elevated,FALSE));
 
 	$underground = scurve('ug');
 	$underground = array("underground" => build_me_an_scurve_array($underground,FALSE));
 
-	$elevated_north = scurve('elevated_north');
-	$elevated_north = array("elevated_north" => build_me_an_scurve_array($elevated_north,FALSE));
+	$system = scurve('system');
+	$system = array("systems" => build_me_an_scurve_array($system,FALSE));
 
-	$overall_elevated_underground = scurve('overall_elevated_underground');
-	$overall_elevated_underground = array("overall_elevated_underground" => build_me_an_scurve_array($overall_elevated_underground,FALSE));
+	$overall_elevated_pdp = scurve('overall_pdp');
+	$overall_elevated_pdp = array("overall_elevated_pdp" => build_me_an_scurve_array($overall_elevated_pdp,FALSE));
+	
+	$phase2_ug_ele_sys = scurve('phase2_ug_ele_sys');
+	$phase2_ug_ele_sys = array("phase2_ug_ele_sys" => build_me_an_scurve_array($phase2_ug_ele_sys,FALSE));
+	
+	$pjt_overall = scurve('pjt_overall');
+	$pjt_overall = array("project_overall" => build_me_an_scurve_array($pjt_overall,FALSE));
 
-	$elevated_south = scurve('elevated_south');
-	$elevated_south = array("elevated_south" => build_me_an_scurve_array($elevated_south,FALSE));
+	$phase2_elevated_system = scurve('phase2_ele_sys');
+	$phase2_elevated_system = array("phase2_elevated_system" => build_me_an_scurve_array($phase2_elevated_system,FALSE));
 
-	$elevated_south_underground = scurve('elevated_south_underground');
-	$elevated_south_underground = array("elevated_south_underground" => build_me_an_scurve_array($elevated_south_underground,FALSE));
+	$phase1_elevated_system = scurve('phase1_ele_sys');
+	$phase1_elevated_system = array("phase1_elevated_system" => build_me_an_scurve_array($phase1_elevated_system,FALSE));
 	//COMMENTED BY ANCY MATHEW 11-10-2017
 	/**
 	$superFinal = array('programme' => array_merge($overall_elevated,$underground,$elevated_north,$overall_elevated_underground,$elevated_south,$elevated_south_underground));
@@ -1424,11 +1472,13 @@ function build_scurves($slug){
 	}*/
 	//CODED BY ANCY MATHEW
 	if(isset($asofdate)) {
-		$superFinal = array('programme' => array_merge($overall_elevated,$underground,$elevated_north,$overall_elevated_underground,$elevated_south,$elevated_south_underground),'asofdate'=>$asofdate);
+		$superFinal = array('programme' => array_merge($overall_elevated,$underground,$system,$overall_elevated_pdp,$phase2_ug_ele_sys,$pjt_overall,$phase2_elevated_system,$phase1_elevated_system),'asofdate'=>$asofdate);
 	}
 	else{
-		$superFinal = array('programme' => array_merge($overall_elevated,$underground,$elevated_north,$overall_elevated_underground,$elevated_south,$elevated_south_underground));
+		$superFinal = array('programme' => array_merge($overall_elevated,$underground,$system,$overall_elevated_pdp,$phase2_ug_ele_sys,$pjt_overall,$phase2_elevated_system,$phase1_elevated_system));
 	}
+	echo $superFinal;
+	exit;
 	return  json_encode($superFinal);
 	//END 
 }
@@ -1640,7 +1690,6 @@ function build_ring($slug){
 	$finalGALLERY = array("gallery" => $galleryFormatter);
 	$finalSCURVE = array("scurve" => (sizeof($scurve['scurve'])>0 ? $scurvearr : []));
 	$finalTrip = array("sys_psds_trip_cable" =>$trip);
-	$finalGALLERY = array("sys_psds_installation" => $testing);
 	$superFinal = array($slug => array_merge($finalINFO,  $finalKAD, $finalGALLERY, $finalSCURVE,$finalTrip));
 	return json_encode($superFinal);
 }
@@ -1928,7 +1977,7 @@ function run(){
 	$date = date("Y-m-d");
 	foreach($slug_ref as $q) {
 		switch ($q['category']) {
-			case 1:
+		   /*case 1:
 				$viaduct = build_viaducts($q['slug']);
 				updateDB($q['slug'], $viaduct, $date);
 				break;
@@ -1951,12 +2000,12 @@ function run(){
 			case 6:
 				$systems = build_systems($q['slug']);
 				updateDB($q['slug'], $systems, $date);
-				break;
+				break;*/
 			case 7:
 				$scurves = build_scurves($q['slug']);
 				updateDB($q['slug'], $scurves, $date);
 				break;
-			case 8:
+			/*case 8:
 				$mspr = build_mspr($q['slug']);
 				updateDB($q['slug'], $mspr, $date);
 				break;
@@ -1980,16 +2029,16 @@ function run(){
 				$ring = build_ring($q['slug']);
 				updateDB($q['slug'], $ring, $date);
 				break;
-			case 16:
+            case 16:
 				$twdetail = build_twmv_detail($q['slug']);
 				updateDB($q['slug'], $twdetail, $date);
 				break;
 			case 17:
 				$kddetail = build_kd($q['slug']);
 				updateDB($q['slug'], $kddetail, $date);
-				break;
+				break;*/
 			default:
-				echo "---- ".$q['slug']. "--------";
+				echo "------------";
 		}
 	}
 }

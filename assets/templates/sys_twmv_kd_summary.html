@@ -44,7 +44,7 @@
 													</span>
 												</div>
 												<% if(typeof(data.data[1]['total_var']) !=="undefined") {
-												if ((data.data[1]['total_var'] >=0) || (data.data[1]['total_var']>=0.00)) { %>
+												if ((data.data[1]['var_week'] >=0) || (data.data[1]['var_week']>=0.00)) { %>
 												<div class="col-md-6 col-lg-6 item psd_data_type2">
 													<span class="item_title">Trend</span>
 													<span class="item_value">
@@ -57,7 +57,7 @@
 														<i class="fa fa-circle" aria-hidden="true"></i>
 													</span>
 												</div>
-												<%}if ((data.data[1]['total_var'] < 0 ) || (data.data[1]['total_var']) < 0.00 ) { %>
+												<%}if ((data.data[1]['var_week'] < 0 ) || (data.data[1]['var_week']) < 0.00 ) { %>
 												<div class="col-md-6 col-lg-6 item psd_data_type2">
 													<span class="item_title">Trend</span>
 													<span class="item_value">

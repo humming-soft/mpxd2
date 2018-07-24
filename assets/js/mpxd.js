@@ -16,13 +16,18 @@ $(function(){
 		$('#page_title').appendTo('#alternatetitle');
 		$(window).trigger('resize');
 	}
-	
+
 	/* Buttons for excel & pdf exports */
-	
+
 	$('#toExcelButton').on('click', function(){toExcel()});
-	$('#toPDFButton').on('click', function(){toPDF(currentPageID);});
+	$('#toPDFButton').on('click', function(){
+		var selected = $('#data_date_selected').val();
+		toPDF(currentPageID,currentPagedate);
+
+	});
 
 });
+
 mpxd.templateURLs = {
 	
 	/*
@@ -37,6 +42,7 @@ mpxd.templateURLs = {
 	"hsse": {"templateURL": "assets/templates/hsse.html"},
     "progress": {"templateURL": "assets/templates/progress.html"},
     "kpi": {"templateURL": "assets/templates/kpi.html"},
+	"spi": {"templateURL": "assets/templates/spi.html"},
     "kad": {"templateURL": "assets/templates/kad.html"},
 	"kd": {"templateURL": "assets/templates/kd.html"},
     "slider": {"templateURL": "assets/templates/slider.html"},
@@ -275,6 +281,7 @@ mpxd.getData = function(data, callback) {
 	query += "&item_id=" + itemID;
 
 	var date = getParameterByName('date');
+	currentPagedate=getParameterByName('date');
 	if(date.length>0)
 		query += "&date=" + date;
 	//console.log(query);
@@ -874,12 +881,14 @@ function toExcel() {
 	$form.appendTo('body').append($input).submit();//.submit();
 }
 
-function toPDF(id) {
-	//console.log("PDFING "+id);
+function toPDF(id,cdate) {
+
 	var $form = $('<form action="/mpxd2/topdf" method="POST" enctype="multipart/form-data" style="display:none"></form>');
 	var $input = $('<input type="hidden" name="id">');
 	var $input2 = $('<input type="hidden" name="print">');
+	var $input3 = $('<input type="hidden" name="ddate">');
 	$input.attr('value',id);
 	$input2.attr('value',1);
-	$form.appendTo('body').append($input).append($input2).submit();
+	$input3.attr('value',cdate);
+	$form.appendTo('body').append($input).append($input2).append($input3).submit();
 }

@@ -43,15 +43,15 @@
 					<%if (data.data != null )  {%>
 					<% if (typeof(data.data[0].data.summary.scorecard) !== "undefined") { %>
 							<%_.each(data.data[0].data.summary.scorecard, function(row) {
-							var numColor = "num-green";
+							var numColor = "mrt_colorcode_ball_1";
 							var blinker = "";
 							if(row.var_late < 0  && row.var_late >= -4) {
-								numColor = "num-yellow";
+								numColor = "mrt_colorcode_ball_2";
 							}else if(row.var_late < -4  && row.var_late > -8) {
-								numColor = "num-red";
+								numColor = "mrt_colorcode_ball_3";
 							}else if(row.var_late <= -8) {
 								blinker = "blink";
-							numColor = "num-red";
+							numColor = "mrt_colorcode_ball_3";
 							}
 							%>
 							<tr>
@@ -61,7 +61,8 @@
 							<td class="val_actual"><%=row.actual_data%></td>
 							<td class="val_varearly"><%=row.var_early%></td>
 							<td class="val_varlate"><%=row.var_late%></td>
-							<td class="ball_indicator mrt_colorcode_ball_1"><i class="fa fa-circle" aria-hidden="true"></i></td>
+						   <td class="ball_indicator <%=blinker%> <%=numColor%>"><i class="fa fa-circle" aria-hidden="true"></i></td>
+
 						</tr>
 						<%});%>
 					<% }} else { %>

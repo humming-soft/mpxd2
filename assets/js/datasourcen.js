@@ -319,11 +319,10 @@ mpxd.modules.sys_etde.sys_etde_progress = Backbone.View.extend({
 							var open = parseInt(c.open_job);
 							var closed = parseInt(c.closed_job);
 							if (open == 0 && closed != 0 && train_number == train_no) {
-								console.log("train-> " + train_no);
 								train.push(train_no);
-								openJ.push(open); // values
-								closedJ.push(closed); // values
-								trainData.push(train_number);// all data
+								openJ.push(open);
+								closedJ.push(closed);
+								trainData.push(train_number);
 							}
 						}
 
@@ -362,9 +361,6 @@ mpxd.modules.sys_etde.sys_etde_progress = Backbone.View.extend({
 				perc = ((closedJ.length / 58) * 100);
 			}
 		}
-
-
-
 		$('.complete_train').text(completed);
 		$('#complete_per').text(perc+"%");
 		$('#start_id').attr('offset',perc+"%");
@@ -718,17 +714,18 @@ mpxd.modules.sys_etde.sys_etde_manufacturing_progress = Backbone.View.extend({
 				var use_comment = y.comment;
 				if (use_site_name == "site3" || use_site_name == "Site3" || use_site_name == "SITE3") {
 					train_no_kjd.push(parseInt(y.train_no));
-					if (use_date_deliver === "") {
-						var use_car_1_percentage = y.car_1_percentage;
-						var use_car_2_percentage = y.car_2_percentage;
-						var use_car_3_percentage = y.car_3_percentage;
-						var use_car_4_percentage = y.car_4_percentage;
-
-					} else {
+					if (use_date_deliver) {
 						var use_car_1_percentage = "100";
 						var use_car_2_percentage = "100";
 						var use_car_3_percentage = "100";
 						var use_car_4_percentage = "100";
+
+					} else {
+
+						var use_car_1_percentage = y.car_1_percentage;
+						var use_car_2_percentage = y.car_2_percentage;
+						var use_car_3_percentage = y.car_3_percentage;
+						var use_car_4_percentage = y.car_4_percentage;
 
 					}
 				} else if (use_site_name == "site4" || use_site_name == "Site4" || use_site_name == "SITE4") {
@@ -741,17 +738,18 @@ mpxd.modules.sys_etde.sys_etde_manufacturing_progress = Backbone.View.extend({
 					var use_car_3_smh = y.car_3_smh;
 					var use_car_4_puzhen = y.car_4_puzhen;
 					var use_car_4_smh = y.car_4_smh;
-					if (use_date_deliver === "") {
+					if (use_date_deliver) {
+						var use_car_1_percentage = "100";
+						var use_car_2_percentage = "100";
+						var use_car_3_percentage = "100";
+						var use_car_4_percentage = "100";
+
+					} else {
 						var use_car_1_percentage = y.car_1_percentage;
 						var use_car_2_percentage = y.car_2_percentage;
 						var use_car_3_percentage = y.car_3_percentage;
 						var use_car_4_percentage = y.car_4_percentage;
 
-					} else {
-						var use_car_1_percentage = "100";
-						var use_car_2_percentage = "100";
-						var use_car_3_percentage = "100";
-						var use_car_4_percentage = "100";
 					}
 				} else if (use_site_name == "site2" || use_site_name == "Site2" || use_site_name == "SITE2") {
 					train_no_smh.push(parseInt(y.train_no));
@@ -1230,6 +1228,7 @@ mpxd.modules.sys_twmv_m.sys_twmv_gis = Backbone.View.extend({
 
 			use_chart_font_size = '25px';
 			use_chart_font_color = '#ffffff';
+			use_chart_donut_color = '#ffffff';
 
 			use_chart_title = "Overall Progress <br> <span style='font-size:16px;'>(As of )</span>";
 			use_chart_circle_border = 'border:1px solid #ff0055;'
@@ -1545,7 +1544,7 @@ mpxd.modules.sys_twmv_m.sys_twmv_gis = Backbone.View.extend({
 			//
 
 			$('.goto_sys-twmv-detail').click(function(){
-				window.location.href = "detail";
+				window.location.href = "/mpxd2/sys-twmv-d/detail";
 			})
 
 
@@ -2365,8 +2364,6 @@ mpxd.modules.sys_psds_m.sys_psds_gis = Backbone.View.extend({
 				{"vector_track":"psds_track_38","vector_status":"0","url":""},
 				{"vector_track":"psds_track_38","vector_status":"2","url":""},
 				{"vector_track":"psds_track_39","vector_status":"2","url":""}
-
-
 			];
 			for (i = 0; i < json.length; i++) {
 				var b = json[i];
@@ -2984,8 +2981,8 @@ mpxd.modules.sys_psds.sys_psds_installation = Backbone.View.extend({
 					var td_data4d="-";
 				}
 
-				if(a.pscada_actual){
-					var td_data4e = a.pscada_actual;
+				if(a.psca_actual){
+					var td_data4e = a.psca_actual;
 				}else{
 					var td_data4e="-";
 				}
