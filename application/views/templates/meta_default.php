@@ -1,12 +1,10 @@
 <link rel="shortcut icon" href="<?php echo $this->config->base_url(); ?>assets/mmc/images/logo/icon.png">
 
-<!-- basic -->
 <link rel="stylesheet" type="text/css" href="<?php echo $this->config->base_url(); ?>assets/mmc/css/bootstrap.css">
 <link rel="stylesheet" type="text/css" href="<?php echo $this->config->base_url(); ?>assets/mmc/css/bootstrap-theme.css">
 <link rel="stylesheet" type="text/css" href="<?php echo $this->config->base_url(); ?>assets/mmc/css/bootstrap_override.css">
 <link rel="stylesheet" type="text/css" href="<?php echo $this->config->base_url(); ?>assets/mmc/css/font.css" media="screen">
 <link rel="stylesheet" type="text/css" href="<?php echo $this->config->base_url(); ?>assets/mmc/css/font-awesome.css">
-<!--<link rel="stylesheet" type="text/css" href="--><?php //echo $this->config->base_url(); ?><!--assets/mmc/css/chartist.min.css">-->
 <link rel="stylesheet" type="text/css" href="<?php echo $this->config->base_url(); ?>assets/mmc/css/jquery-ui.min.css">
 <link media="screen, print" rel="stylesheet" type="text/css" href="<?php echo $this->config->base_url(); ?>assets/mmc/package/jquery-ui-1.11.4.custom/jquery-ui.theme-flick.css">
 <!-- jquery -->
@@ -25,7 +23,7 @@
 
 <!-- font -->
 <link href='https://fonts.googleapis.com/css?family=Exo+2:400,800,600' rel='stylesheet' type='text/css'>
-<link href='https://fonts.googleapis.com/css?family=Play:400,700' rel='stylesheet' type='text/css'>
+<!--<link href='https://fonts.googleapis.com/css?family=Play:400,700' rel='stylesheet' type='text/css'>-->
 
 <!-- malihu - custom scroll -->
 <link rel="stylesheet" href="<?php echo $this->config->base_url(); ?>assets/mmc/package/malihu-custom-scrollbar-plugin-master/jquery.mCustomScrollbar.css">

@@ -1,13 +1,4 @@
 </body>
-
-<!-- 	--------------------------
-
-		package
-
-		-------------------------- -->
-		
-
-<!-- -- malihu-custom-scrollbar-plugin-master -->
 <script>
 	(function($){
 		$(window).load(function(){
@@ -19,8 +10,4 @@
 		});
 	})(jQuery);
 </script>
-<!-- -- -->
-
-
-
 </html>

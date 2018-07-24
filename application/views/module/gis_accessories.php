@@ -1,7 +1,7 @@
 
 <div id="float_plate" class="row">
 	<div id="plate_vector_map" class="plate_vector_map">
-		missing plate_vector_map.svg
+		<!--missing plate_vector_map.svg-->
 	</div>
 	<div id="plate_overall_progress">
 		<div id="pop_label">
@@ -114,31 +114,6 @@
 			<span class="set4">Critical</span>
 		</div>
 	</div>
-	<!-- <div id="plate_issue">
-		<div id="pi_title">
-			<span class="set1"><i class="fa fa-exclamation-triangle" aria-hidden="true"></i></span>
-			<span class="set2">Issues</span>
-		</div>
-		<div id="pi_subtitle">
-			<span class="set1">Click to view</span>
-		</div>
-	</div> -->
-			
-			
-			
-	<!-- <div id="plate_system">
-		<div id="donut_plate">
-			<div id="dp_db_donut_0" class="dp_top"></div>
-			<div id="dp_db_donut_1" class="dp_bottom"></div>
-			<div id="dp_db_donut_2" class="dp_bottom"></div>
-			<div id="dp_db_donut_3" class="dp_bottom"></div>
-			<div id="dp_db_donut_4" class="dp_bottom"></div>
-			<div id="dp_db_donut_5" class="dp_bottom"></div>
-			<div id="dp_db_donut_6" class="dp_bottom"></div>
-			<div id="dp_db_donut_7" class="dp_bottom"></div>
-		</div>
-	</div> -->
-	
 	<div id="plate_system">
 		<div id="donut_plate">
 			<div class="donut_box_small">
