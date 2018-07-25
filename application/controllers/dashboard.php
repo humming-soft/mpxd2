@@ -51,11 +51,20 @@ class Dashboard extends CI_Controller {
 
     public function toexcel() {
         $post = $this->input->post();
-        if ((!$post) || (!isset($post['jsondata'])))
+        if ((!$post) || (!isset($post['id'])))
             die();
-        $this->load->view('dashboard/toexcel', array("post" => $post['jsondata']));
-    }
-	
+
+        $print = (isset($post['print']) && ($post['print'] == 1));
+        $id = $post["id"];
+        $date=$post["ddate"];
+        $fullslug = $this->dashboard_model->getSlugFromPageId($id);
+        if($fullslug != "") {
+            $slug = strtoupper($fullslug);
+            $kpi = $this->pdf_model->getStructureExcel($fullslug, $date);
+            print_r($kpi);
+            $this->load->view('dashboard/toexcel', array("post" => $kpi));
+        }
+        }
     public function topdf() {
 
         $post = $this->input->post();

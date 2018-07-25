@@ -2,8 +2,8 @@
     <div class="row content">
         <div class="col-md-12 portlet_title">
             <i class="fa_title_icon fa fa-area-chart" aria-hidden="true"></i>
-            <% if (typeof(data.date) !== "undefined") { %>
-            <%=data.title%> <span class="plate_asof">(As of <%=data.date%>)</span>
+            <% if (typeof(data.data[0].date) !== "undefined") { %>
+            <%=data.title%> <span class="plate_asof">(As of <%=data.data[0].date%>)</span>
             <% } else {%>
             <%=data.title%>
             <% } %>

@@ -929,7 +929,7 @@ EOD;
                         }
 
 
-                        $width=900;
+                        $width=1200;
                         $height=300;
                         $graph = new Graph($width,$height);
                         $graph->SetScale('intlin');
@@ -940,7 +940,7 @@ EOD;
                         $graph->img->SetAntiAliasing(false);
                         $graph->yaxis->SetFont( FF_ARIAL,FS_BOLD,10);
                         $graph->xaxis->SetFont( FF_ARIAL,FS_BOLD,10);
-                        $data3y=array('Jul/16', 'Aug/16', 'Sep/16', "Oct/16", "Nov/16", "Dec/16", "Jan/17", "Feb/17", "Mar/17", "Apr/17", "May/17", "Jun/17", "Jul/17",
+                        $data3y=array("Jan/16", "Feb/16", "Mar/16", "Apr/16", "May/16", "Jun/16", "Jul/16", 'Aug/16', 'Sep/16', "Oct/16", "Nov/16", "Dec/16", "Jan/17", "Feb/17", "Mar/17", "Apr/17", "May/17", "Jun/17", "Jul/17",
                             "Aug/17", "Sep/17", "Oct/17", "Nov/17", "Dec/17","Jan/18", "Feb/18", "Mar/18", "Apr/18", "May/18", "Jun/18", "Jul/18", "Aug/18", "Sep/18", "Oct/18", "Nov/18", "Dec/18", "Jan/19", "Feb/19", "Mar/19", "Apr/19", "May/19", "Jun/19", "Jul/19", "Aug/19", "Sep/19", "Oct/19", "Nov/19", "Dec/19", "Jan/20", "Feb/20", "Mar/20", "Apr/20", "May/20", "Jun/20", "Jul/20", "Aug/20", "Sep/20", "Oct/20", "Nov/20", "Dec/20", "Jan/21", "Feb/21", "Mar/21", "Apr/21", "May/21", "Jun/21", "Jul/21", "Aug/21", "Sep/21", "Oct/21", "Nov/21", "Dec/21",
                             "Jan/22", "Feb/22", "Mar/22", "Apr/22", "May/22", "Jun/22", "Jul/22", "Aug/22", "Sep/22", "Oct/22", "Nov/22", "Dec/22");
                         $graph->xaxis->SetTickLabels($data3y);
@@ -7928,4 +7928,170 @@ EOD;
 
         return $value;
     }
+    public function kpiExcel($details,$slug,$category){
+
+        if ($details != null) {
+            foreach ($details as $key => $val) {
+                $json = $val['value'];
+            }
+            $obj = json_decode($json);
+
+            if (sizeof($obj->{$slug}->{'QRM'}) > 0) {
+                if (isset($obj->{$slug}->{'QRM'}[0]->{'date'})) {
+                    if ($obj->{$slug}->{'QRM'}[0]->{'date'} != "") {
+                        $date = $obj->{$slug}->{'QRM'}[0]->{'date'};
+                    } else {
+                        $date = date('d-M-y');
+                    }
+                } else {
+                    $date = date('d-M-y');
+                }
+
+
+                $kpi = <<<EOD
+            
+               
+                  <table>
+                            <tbody>
+                             <tr>
+                              <td style="text-align: center;  font-size:13px;" colspan="7"><strong>KPI DATA</strong></td>
+                            </tr>
+                            <tr>
+                              <td style="text-align: center;  font-size:13px;" colspan="2"><strong>Item</strong></td>
+                              <td style="text-align: center;  font-size:13px;" ><strong>Progress</strong> </td>
+                              <td style="text-align: center;  font-size:13px;" ><strong>Base Line</strong></td>
+                              <td style="text-align: center;  font-size:13px;"  ><strong>Target</strong></td>
+                              <td style="text-align: center;  font-size:13px;"  ><strong>Actual</strong></td>
+                              <td style="text-align: center;  font-size:13px;"  ><strong>Shortfall</strong></td>
+                            
+                           
+                            </tr>
+                           
+EOD;
+                for ($i = 1; $i < sizeof($obj->{$slug}->{'QRM'}); $i++) {
+                    $item = $obj->{$slug}->{'QRM'}[$i][0];
+
+                    $baseline = $obj->{$slug}->{'QRM'}[$i][1];
+                    $target = $obj->{$slug}->{'QRM'}[$i][2];
+                    $actual = $obj->{$slug}->{'QRM'}[$i][3];
+
+                    if (is_numeric($baseline) && is_numeric($actual)) {
+                        if ($baseline > 0 && $actual > 0) {
+                            $overProgree = round((($actual / $baseline) * 100), 1) . "%";
+                        } else {
+                            $overProgree = "N/A";
+                        }
+
+                    } else {
+                        $overProgree = "N/A";
+                    }
+
+                    if (is_numeric($target) && is_numeric($actual)) {
+                        $shortfall = $actual - $target;
+                    } else {
+                        $shortfall = $target;
+                    }
+                    $kpi .= <<<EOD
+                       <tr>
+                   
+                             <td style="text-align: left;  font-size:13px;" colspan="2">$item</td>
+                             <td style="text-align: center;  font-size:13px;">$overProgree</td>
+                             <td  style="text-align: center;  font-size:13px;"  >$baseline</td>
+                             <td style="text-align: center;  font-size:13px;" >$target</td>
+                             <td style="text-align: center;  font-size:13px;"  >$actual</td>
+                              <td style="text-align: center;  font-size:13px;" ><strong>$shortfall</font></strong></td>
+                            </tr>
+EOD;
+                }
+            }
+        }
+        return $kpi;
+
+    }
+    public function ScurveExcel($details,$slug,$category){
+        if ($details != null) {
+            foreach ($details as $key => $val) {
+                $json = $val['value'];
+            }
+            $obj = json_decode($json);
+
+            if (sizeof($obj->{$slug}->{'scurve'}) > 0) {
+
+                if (sizeof($obj->{$slug}->{'scurve'}->{'delayedData'}) > 0) {
+                    $ydata = $obj->{$slug}->{'scurve'}->{'delayedData'};
+                } else {
+                    $ydata = array(0);
+                }
+                if (sizeof($obj->{$slug}->{'scurve'}->{'earlyData'}) > 0) {
+                    $ydata2 = $obj->{$slug}->{'scurve'}->{'earlyData'};
+                } else {
+                    $ydata2 = array(0);
+                }
+                if (sizeof($obj->{$slug}->{'scurve'}->{'actualData'}) > 0) {
+                    $ydata3 = $obj->{$slug}->{'scurve'}->{'actualData'};
+                } else {
+                    $ydata3 = array(0);
+                }
+                $data3y = array("Jan/16", "Feb/16", "Mar/16", "Apr/16", "May/16", "Jun/16", "Jul/16", 'Aug/16', 'Sep/16', "Oct/16", "Nov/16", "Dec/16", "Jan/17", "Feb/17", "Mar/17", "Apr/17", "May/17", "Jun/17", "Jul/17",
+                    "Aug/17", "Sep/17", "Oct/17", "Nov/17", "Dec/17", "Jan/18", "Feb/18", "Mar/18", "Apr/18", "May/18", "Jun/18", "Jul/18", "Aug/18", "Sep/18", "Oct/18", "Nov/18", "Dec/18", "Jan/19", "Feb/19", "Mar/19", "Apr/19", "May/19", "Jun/19", "Jul/19", "Aug/19", "Sep/19", "Oct/19", "Nov/19", "Dec/19", "Jan/20", "Feb/20", "Mar/20", "Apr/20", "May/20", "Jun/20", "Jul/20", "Aug/20", "Sep/20", "Oct/20", "Nov/20", "Dec/20", "Jan/21", "Feb/21", "Mar/21", "Apr/21", "May/21", "Jun/21", "Jul/21", "Aug/21", "Sep/21", "Oct/21", "Nov/21", "Dec/21",
+                    "Jan/22", "Feb/22", "Mar/22", "Apr/22", "May/22", "Jun/22", "Jul/22", "Aug/22", "Sep/22", "Oct/22", "Nov/22", "Dec/22");
+                $scurve = <<<EOD
+                         <table >
+                           <tbody>
+                             <tr>
+                                 <td ></td>
+                              </tr>
+                              <tr>
+                                 <td style="text-align: center;  font-size:13px;" > <strong>S-CURVE </strong></td>
+                              </tr>
+                               <tr>
+                                <td  style="text-align: center;  font-size:13px;"> <strong>S_Curve Date</strong></td>
+                                <td  style="text-align: center;  font-size:13px;"> <strong>Early (%)</strong></td>
+                                <td style="text-align: center;  font-size:13px;"> <strong>Late (%)</strong></td>
+                                 <td  style="text-align: center;  font-size:13px;"> <strong>Actual (%)</strong></td>
+                              </tr>
+EOD;
+                for ($i = 0; $i < sizeof($ydata2); $i++) {
+                    $dateValue = $data3y[$i];
+                    $Early = $ydata2[$i];
+                    $delay = $ydata[$i];
+                    if(isset($ydata3[$i])){
+                        $actual = $ydata3[$i] ;
+                    }else{
+                        $actual="";
+                    }
+                    $scurve .= <<<EOD
+                       <tr>
+                                            <td style=" font-size:13px; text-align:center;">$dateValue</td>
+                                            <td style=" font-size:13px; text-align:center;">$Early</td>
+                                            <td style=" font-size:13px; text-align:center;">$delay</td>
+                                            <td style=" font-size:13px; text-align:center;">$actual</td>
+                                             </tr>
+EOD;
+                }
+                $scurve .= <<<EOD
+                            </tbody>
+                       </table>
+EOD;
+            }
+        }
+        return $scurve;
+    }
+    public function getStructureExcel($slug,$date)
+    {
+        $details = $this->getFullDetailsSlug($slug,$date);
+        $category= $this->getCategory($slug);
+        $value="";
+        switch ($category) {
+            case 1:
+                if(sizeof($details )> 0){
+                    $value .= $this->kpiExcel($details,$slug,$category);
+                    $value .= $this->ScurveExcel($details,$slug,$category);
+                }
+                break;
+            default:
+        }
+        return $value;
+    }
+
 }

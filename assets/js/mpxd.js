@@ -19,11 +19,12 @@ $(function(){
 
 	/* Buttons for excel & pdf exports */
 
-	$('#toExcelButton').on('click', function(){toExcel()});
+	$('#toExcelButton').on('click', function(){
+		toExcel(currentPageID,currentPagedate)
+	});
 	$('#toPDFButton').on('click', function(){
 		var selected = $('#data_date_selected').val();
 		toPDF(currentPageID,currentPagedate);
-
 	});
 
 });
@@ -685,7 +686,7 @@ function getUrlParameter(sParam)
     }
 }  
 
-function toExcel() {
+function toExcel(id,cdate) {
 	var nodeArray = document.getElementsByClassName("table");
 	var arrayLength = nodeArray.length;
 	var qqq = [];
@@ -871,14 +872,17 @@ function toExcel() {
 	
 	
 	var jsonString = JSON.stringify(qqq);
+	console.log(qqq+'22222');
 	// console.log(qqq+'22222');
 	// console.log(jsonString+'33333');
 	var $form = $('<form action="/mpxd2/toexcel" method="POST" enctype="multipart/form-data" style="display:none"></form>');
-	var $input = $('<input type="hidden" name="jsondata">');
-
-	$input.attr('value',jsonString);
-	// console.log(jsonString+'44444');
-	$form.appendTo('body').append($input).submit();//.submit();
+	var $input = $('<input type="hidden" name="id">');
+	var $input2 = $('<input type="hidden" name="print">');
+	var $input3 = $('<input type="hidden" name="ddate">');
+	$input.attr('value',id);
+	$input2.attr('value',1);
+	$input3.attr('value',cdate);
+	$form.appendTo('body').append($input).append($input3).submit();
 }
 
 function toPDF(id,cdate) {

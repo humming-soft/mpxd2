@@ -206,7 +206,7 @@ mpxd.modules.piers.viaduct_pier_view = Backbone.View.extend({
                 "pier_marker_a": "Special Crossing No. 1",
                 "pier_marker_b": "2",
                 "pier_layout": "2",
-                "pier_type": "p14",
+                "pier_type": "p12",
                 "span_type": "sb",
 
                 "sbg": {
@@ -226,7 +226,7 @@ mpxd.modules.piers.viaduct_pier_view = Backbone.View.extend({
                 "pier_marker_a": "0",
                 "pier_marker_b": "2",
                 "pier_layout": "2",
-                "pier_type": "p14",
+                "pier_type": "p12",
                 "span_type": "sb",
 
                 "sbg": {
@@ -570,7 +570,7 @@ mpxd.modules.piers.viaduct_pier_view = Backbone.View.extend({
                 "pier_marker_a": "0",
                 "pier_marker_b": "0",
                 "pier_layout": "1",
-                "pier_type": "p33",
+                "pier_type": "p32",
                 "span_type": "s2",
 
                 "sbg": {"sbg_id": [], "sbg_lr": [], "sbg_va": []},
@@ -586,7 +586,7 @@ mpxd.modules.piers.viaduct_pier_view = Backbone.View.extend({
                 "pier_marker_a": "0",
                 "pier_marker_b": "0",
                 "pier_layout": "1",
-                "pier_type": "p24",
+                "pier_type": "p22",
                 "span_type": "s2",
 
                 "sbg": {"sbg_id": [], "sbg_lr": [], "sbg_va": []},
@@ -1110,7 +1110,7 @@ mpxd.modules.piers.viaduct_pier_view = Backbone.View.extend({
                 "pier_marker_a": "0",
                 "pier_marker_b": "0",
                 "pier_layout": "1",
-                "pier_type": "p33",
+                "pier_type": "p32",
                 "span_type": "s1",
 
                 "sbg": {"sbg_id": [], "sbg_lr": [], "sbg_va": []},
@@ -1158,7 +1158,7 @@ mpxd.modules.piers.viaduct_pier_view = Backbone.View.extend({
                 "pier_marker_a": "0",
                 "pier_marker_b": "0",
                 "pier_layout": "1",
-                "pier_type": "p33",
+                "pier_type": "p32",
                 "span_type": "s1",
 
                 "sbg": {"sbg_id": [], "sbg_lr": [], "sbg_va": []},
@@ -1174,7 +1174,7 @@ mpxd.modules.piers.viaduct_pier_view = Backbone.View.extend({
                 "pier_marker_a": "0",
                 "pier_marker_b": "0",
                 "pier_layout": "1",
-                "pier_type": "p33",
+                "pier_type": "p32",
                 "span_type": "s1",
 
                 "sbg": {"sbg_id": [], "sbg_lr": [], "sbg_va": []},
@@ -1190,7 +1190,7 @@ mpxd.modules.piers.viaduct_pier_view = Backbone.View.extend({
                 "pier_marker_a": "0",
                 "pier_marker_b": "0",
                 "pier_layout": "1",
-                "pier_type": "p33",
+                "pier_type": "p32",
                 "span_type": "s1",
 
                 "sbg": {"sbg_id": [], "sbg_lr": [], "sbg_va": []},
@@ -1302,7 +1302,7 @@ mpxd.modules.piers.viaduct_pier_view = Backbone.View.extend({
                 "pier_marker_a": "0",
                 "pier_marker_b": "0",
                 "pier_layout": "1",
-                "pier_type": "p33",
+                "pier_type": "p32",
                 "span_type": "s1",
 
                 "sbg": {"sbg_id": [], "sbg_lr": [], "sbg_va": []},
@@ -1318,7 +1318,7 @@ mpxd.modules.piers.viaduct_pier_view = Backbone.View.extend({
                 "pier_marker_a": "0",
                 "pier_marker_b": "0",
                 "pier_layout": "1",
-                "pier_type": "p33",
+                "pier_type": "p32",
                 "span_type": "s1",
 
                 "sbg": {"sbg_id": [], "sbg_lr": [], "sbg_va": []},

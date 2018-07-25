@@ -41,7 +41,8 @@
 					<i class="fa fa-cube" aria-hidden="true"></i>
 					Procurement
 				</a>
-					<a class="btn goto_generate_report"  id="toPDFButton" onclick="return false;" type="button"   href="#">
+				<a class="btn goto_generate_report"  id="toExcelButton" onclick="return false;" type="button"   href="#">
+				<!--<a class="btn goto_generate_report"  id="toPDFButton" onclick="return false;" type="button"   href="#">-->
 					<i class="fa fa-file-text" aria-hidden="true"></i>
 					 Report
 				</a>
