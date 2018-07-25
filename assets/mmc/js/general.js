@@ -1,6 +1,4 @@
 $(document).ready(function(){
-
-    console.log(progress)
 	$('#plate_vector_map').load('assets/mmc/svg/plate_vector_map.svg',function(){
 
 		var json = [ 

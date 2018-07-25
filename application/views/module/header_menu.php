@@ -41,9 +41,7 @@
 					<i class="fa fa-cube" aria-hidden="true"></i>
 					Procurement
 				</a>
-				<!--<a class="btn goto_generate_report" type="button"  href="<?php /*echo $this->config->base_url(); */?>report/index">-->
 					<a class="btn goto_generate_report"  id="toPDFButton" onclick="return false;" type="button"   href="#">
-					<!--<a href="#" id="toPDFButton" onclick="return false;"><img src="<?php /*echo $this->config->base_url(); */?>assets/img/pdf.png"></a>-->
 					<i class="fa fa-file-text" aria-hidden="true"></i>
 					 Report
 				</a>
@@ -52,8 +50,6 @@
 					<span class="caret"></span>
 				</a>
 				<ul class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenu1">
-<!--					<li><a href="temp_nav.php">Temp. Sitemap (will be remove)</a></li>-->
-<!--					<li role="separator" class="divider"></li>-->
 					<li><a href="<?php echo $this->config->base_url(); ?>logout">Logout</a></li>
 				</ul>
 			</div>

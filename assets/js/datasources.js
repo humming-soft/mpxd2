@@ -8672,7 +8672,7 @@ mpxd.modules.viaducts.spi = Backbone.View.extend({
         that.$el.find('#chart_' + that.data.id).highcharts({
             title: {
                 //text:''
-                text: '<p><b>Schedule Performance Index [SPI]</b> is a ratio of the Earned Value [EV] to he Planned Value [PV].</p>',
+                text: '<p><b>Schedule Performance Index [SPI]</b> is a ratio of the Earned Value [EV] to the Planned Value [PV].</p>',
                 style: {
                     fontSize: 14
                 }
