@@ -258,7 +258,7 @@ EOD;
                               <td style="text-align: center;  font-size:13px;" ><strong>Base Line</strong></td>
                               <td style="text-align: center;  font-size:13px;"  ><strong>Target</strong></td>
                               <td style="text-align: center;  font-size:13px;"  ><strong>Actual</strong></td>
-                              <td style="text-align: center;  font-size:13px;"  ><strong>Sortfall</strong></td>
+                              <td style="text-align: center;  font-size:13px;"  ><strong>Shortfall</strong></td>
                             
                            
                             </tr>
@@ -309,7 +309,7 @@ EOD;
                               <td style="text-align: center;  font-size:13px;" ><strong>Base Line</strong></td>
                               <td style="text-align: center;  font-size:13px;"  ><strong>Target</strong></td>
                               <td style="text-align: center;  font-size:13px;"  ><strong>Actual</strong></td>
-                              <td style="text-align: center;  font-size:13px;"  ><strong>Sortfall</strong></td>
+                              <td style="text-align: center;  font-size:13px;"  ><strong>Shortfall</strong></td>
                             
                            
                             </tr>
@@ -334,7 +334,7 @@ EOD;
                         }
 
                         if (is_numeric($target) && is_numeric($actual)) {
-                            $shortfall = $target - $actual;
+                            $shortfall = $actual - $target;
                         } else {
                             $shortfall = $target;
                         }
@@ -386,7 +386,7 @@ EOD;
                               <td style="text-align: center;  font-size:13px;" ><strong>Base Line</strong></td>
                               <td style="text-align: center;  font-size:13px;"  ><strong>Target</strong></td>
                               <td style="text-align: center;  font-size:13px;"  ><strong>Actual</strong></td>
-                              <td style="text-align: center;  font-size:13px;"  ><strong>Sortfall</strong></td>
+                              <td style="text-align: center;  font-size:13px;"  ><strong>Shortfall</strong></td>
                             
                            
                             </tr>
@@ -416,7 +416,7 @@ EOD;
                               <td style="text-align: center;  font-size:13px;" ><strong>Base Line</strong></td>
                               <td style="text-align: center;  font-size:13px;"  ><strong>Target</strong></td>
                               <td style="text-align: center;  font-size:13px;"  ><strong>Actual</strong></td>
-                              <td style="text-align: center;  font-size:13px;"  ><strong>Sortfall</strong></td>
+                              <td style="text-align: center;  font-size:13px;"  ><strong>Shortfall</strong></td>
                             
                            
                             </tr>
@@ -7795,7 +7795,9 @@ EOD;
         $imgPath = base_url()."assets/img/pdf/mrt_md.png";
         $projName = "PROJEK MASS RAPID TRANSIT LALUAN 2: SUNGAI BULOH - SERDANG - PUTRAJAYA [SSP]";
         $packageName = "[PACKAGE ".strtoupper($slug).": PROJECT PROGRESS]";
-       /* $dataDate=$this->getDataDate($slug);*/
+        if($date == null){
+            $date = $this->getDataDate($slug);
+        }
         $value="";
         switch ($category) {
             case 1:
