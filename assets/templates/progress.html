@@ -22,11 +22,11 @@
                         </div>
                         <div class="col-md-12 item psd_data_type1">
                             <span class="item_title">Actual</span>
-                            <span class="item_value iv_late"><%=(typeof data.data.currentActual == 'undefined')?'0%':data.data.currentActual%></span>
+                            <span class="item_value iv_actual"><%=(typeof data.data.currentActual == 'undefined')?'0%':data.data.currentActual%></span>
                         </div>
                         <div class="col-md-12 item psd_data_type1">
                             <span class="item_title">Late</span>
-                            <span class="item_value iv_actual"><%=(typeof data.data.currentLate == 'undefined')?'0%':data.data.currentLate%></span>
+                            <span class="item_value iv_late"><%=(typeof data.data.currentLate == 'undefined')?'0%':data.data.currentLate%></span>
                         </div>
                         <div class="col-md-12 item psd_data_type2">
                             <span class="item_title">Variance</span>
@@ -37,7 +37,7 @@
                                 </div>
                                 <div class="col-md-6 item">
                                     <span class="item_title_variance">Late</span>
-                                    <span class="item_value_variance iv_actual"><%=(typeof data.data.varLate == 'undefined')?'-':data.data.varLate%></span>
+                                    <span class="item_value_variance iv_late"><%=(typeof data.data.varLate == 'undefined')?'-':data.data.varLate%></span>
                                 </div>
                             </div>
                             <br><br><br>

@@ -8466,7 +8466,7 @@ mpxd.modules.viaducts.kpi = Backbone.View.extend({
         template = _.template(html, {data: that.data});
         that.$el.html(template);
         that.$el.find('.portlet_content').css({"height":(that.$el.find('.content').parent().parent().parent().height())-40});
-        that.$el.find('.portlet_content').mCustomScrollbar({theme:"dark-3"});
+        that.$el.find('.portlet_content .table tbody').mCustomScrollbar({theme:"dark-3"});
     }
 });
 
@@ -8671,8 +8671,7 @@ mpxd.modules.viaducts.spi = Backbone.View.extend({
         });
         that.$el.find('#chart_' + that.data.id).highcharts({
             title: {
-                //text:''
-                text: '<p><b>Schedule Performance Index [SPI]</b> is a ratio of the Earned Value [EV] to the Planned Value [PV].</p>',
+                text: '<b>Schedule Performance Index [SPI]</b>',
                 style: {
                     fontSize: 14
                 }
@@ -8683,7 +8682,7 @@ mpxd.modules.viaducts.spi = Backbone.View.extend({
                 pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
             },
             pane: {
-                center: ['50%', '75%'],
+                center: ['50%', '62%'],
                 size: '100%',
                 startAngle: -90,
                 endAngle: 90,
@@ -8718,7 +8717,7 @@ mpxd.modules.viaducts.spi = Backbone.View.extend({
                     },
                     startAngle: -90,
                     endAngle: 90,
-                    center: ['50%', '75%']
+                    center: ['50%', '62%']
                 },
                 gauge: {
                     dataLabels: {

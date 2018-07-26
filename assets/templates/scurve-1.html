@@ -19,11 +19,11 @@
                         </div>
                         <div class="col-md-12 item psd_data_type1">
                             <span class="item_title">Actual</span>
-                            <span class="item_value iv_late"><%=data.currentActual%>%</span>
+                            <span class="item_value iv_actual"><%=data.currentActual%>%</span>
                         </div>
                         <div class="col-md-12 item psd_data_type1">
                             <span class="item_title">Late</span>
-                            <span class="item_value iv_actual"><%=data.currentLate%>%</span>
+                            <span class="item_value iv_late"><%=data.currentLate%>%</span>
                         </div>
                         <div class="col-md-12 item psd_data_type2">
                             <span class="item_title">Variance</span>
@@ -34,13 +34,13 @@
                                 </div>
                                 <div class="col-md-6 item">
                                     <span class="item_title_variance">Late</span>
-                                    <span class="item_value_variance iv_actual"><%=data.varLate%></span>
+                                    <span class="item_value_variance iv_late"><%=data.varLate%></span>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-                <div class="col-md-9 portlet_scurve_graph pl0">
+                <div class="col-md-9 portlet_scurve_graph pl0 m-t-25">
                     <!--<div class="col-xs-12">-->
                         <div class="chart chart-scurve" id="chart_<%=data.id%>">
                         </div>

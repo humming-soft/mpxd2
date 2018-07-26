@@ -185,20 +185,19 @@ mpxd.modules.scurve.ScurveView1 = Backbone.View.extend({
             },
             tooltip: {
                 enabled: true,
-                //formatter: function() { return this.series.name; },
-                //valueSuffix: '%'
-                formatter: function (evt) {
+                shared: true
+/*                formatter: function (evt) {
                     var current = this.series.data;
-                    //console.log(current[current.length - 1].category);
                     var tooltip;
                     if (current[current.length - 1].series.name === 'Actual' && current[current.length - 1].y === this.y) {
                         tooltip = '<span style="color:#EBFF00">Current ' + this.series.name + ' (' + current[current.length - 1].category + ')</span>: <b>' + current[current.length - 1].y + '%</b><br/>';
                         return tooltip;
                     }
                     else {
-                        return false
+                        tooltip = '<span style="color:#EBFF00">' + this.series.name + ' (' + this.key + ')</span>: <b>' + this.y + '%</b><br/>';
+                        return tooltip;
                     }
-                }
+                }*/
             },
             legend: {
                 enabled: false,
@@ -211,28 +210,23 @@ mpxd.modules.scurve.ScurveView1 = Backbone.View.extend({
                 name: 'Early',
                 data: that.data.earlyData,
                 color: '#04B152',
-                enableMouseTracking: false
             }, {
                 name: 'Late',
                 data: that.data.delayedData,
-                color: '#FF0000',
-                enableMouseTracking: false
+                color: '#0070C0',
             }, {
                 name: 'Actual',
                 data: that.data.actualData,
-                color: '#0070C0'
-                //enableMouseTracking: false,
-                /*events : {
-                 mouseOver: function() {
-                 console.log(this.yData[this.yData.length - 1]);
-                 }
-                 },*/
+                color: '#FF0000'
             }],
             plotOptions: {
                 series: {
                     marker: {
                         enabled: false
                     }
+                },
+                spline:{
+                    lineWidth:1.5
                 }
             },
             credits: {
@@ -324,8 +318,8 @@ mpxd.modules.scurve.ScurveView2 = Backbone.View.extend({
             },
             tooltip: {
                 enabled: true,
-                //formatter: function() { return this.series.name; }
-                formatter: function (evt) {
+                shared: true
+/*                formatter: function (evt) {
                     var current = this.series.data;
                     //console.log(current[current.length - 1].category);
                     var tooltip;
@@ -336,7 +330,7 @@ mpxd.modules.scurve.ScurveView2 = Backbone.View.extend({
                     else {
                         return false
                     }
-                }
+                }*/
             },
             legend: {
                 enabled: false,
@@ -348,17 +342,15 @@ mpxd.modules.scurve.ScurveView2 = Backbone.View.extend({
             series: [{
                 name: 'Early',
                 data: that.data.earlyData,
-                color: '#04B152',
-                enableMouseTracking: false
+                color: '#04B152'
             }, {
                 name: 'Late',
                 data: that.data.delayedData,
-                color: '#FF0000',
-                enableMouseTracking: false
+                color: '#0070C0'
             }, {
                 name: 'Actual',
                 data: that.data.actualData,
-                color: '#0070C0'
+                color: '#FF0000'
             }],
             lang: {
                 noData: "Data not available!"
@@ -375,6 +367,9 @@ mpxd.modules.scurve.ScurveView2 = Backbone.View.extend({
                     marker: {
                         enabled: false
                     }
+                },
+                spline:{
+                    lineWidth:1.5
                 }
             },
             credits: {

@@ -586,23 +586,23 @@ div.psd_data_type2 {
 
 span.iv_early {
 	padding: 0 0 0 5px;
-	border-left: 3px solid #9f3;
+	border-left: 3px solid #04B152;
 }
 span.iv_actual {
 	padding: 0 0 0 5px;
-	border-left: 3px solid #f59;
+	border-left: 3px solid #FF0000;
 }
 span.iv_late {
 	padding: 0 0 0 5px;
-	border-left: 3px solid #0cf;
+	border-left: 3px solid #0070C0;
 }
 span.iv_early_variance {
 	padding: 0 0 0 10px;
-	border-left: 3px solid #9f3;
+	border-left: 3px solid #04B152;
 }
 span.iv_late_variance {
 	padding: 0 0 0 10px;
-	border-left: 3px solid #0ff;
+	border-left: 3px solid #0070C0;
 }
 
 span.iv_baseline {

@@ -135,7 +135,7 @@ float - plate_gis and stats
 #pop_value span {
 	/*display: none;*/
 	position: absolute;
-	font-size: 2.7vw;
+	font-size: 2.3em;
 	color: #fff;
 	text-shadow:
 			-1px -1px 0 rgba(0,0,0,1),
@@ -143,9 +143,9 @@ float - plate_gis and stats
 			-1px 1px 0 rgba(0,0,0,1),
 			1px 1px 0 rgba(0,0,0,1);
 }
-#pop_value span.set1 {top: 11.0%; left: 61.9%;}
-#pop_value span.set2 {top: 11.0%; left: 70.7%;}
-#pop_value span.set3 {top: 11.0%; left: 82.4%;}
+#pop_value span.set1 {top: 11.0%; left: 62.2%;}
+#pop_value span.set2 {top: 11.0%; left: 71.2%;}
+#pop_value span.set3 {top: 11.0%; left: 82.7%;}
 #pop_value span.set4 {top: 12.0%; left: 90.4%;}
 #pop_value span b {
     font-size: 1.5vw;
@@ -334,7 +334,7 @@ border-radius: 3px; */
 
 #pl_phase a {
 	position: absolute;
-	font-size: 1.8em;
+	font-size: 1.6em;
 	color: rgba(255,255,255,.5);
 	outline: 0;
 	/*Added By Sebin*/
@@ -344,7 +344,7 @@ border-radius: 3px; */
 #pl_phase a.set2 {top: 27%; left: 65%;}
 #pl_package a {
 	position: absolute;
-	font-size: 1.3em;
+	font-size: 1em;
 	font-weight: bold;
 	padding: 2px 5px;
 	border-radius: 3px;
@@ -397,7 +397,7 @@ border-radius: 3px; */
 #pl_mspr span.set10 {top: 37.8%; left: 58.4%;}
 #pl_mspr span.set11 {top: 44.5%; left: 62.2%;}
 #pl_mspr span.set12 {top: 47.5%; left: 65.9%;}
-#pl_mspr span.set13 {top: 70.0%; left: 68%;}
+#pl_mspr span.set13 {top: 70.0%; left: 70.6%;}
 #pl_mspr span.set14 {top: 91.0%; left: 78.2%;}
 #pl_mspr span.set15 {top: 85.8%; left: 85.5%;}
 
@@ -406,7 +406,7 @@ border-radius: 3px; */
 #pl_station span {
 	/*display: none;*/
 	position: absolute;
-	font-size: 1em;
+	font-size: .8em;
 	color: #eef;
 	/*text-shadow:
 			-1px -1px 0 rgba(0,0,255,.3),
@@ -446,7 +446,7 @@ border-radius: 3px; */
 #pl_station span.set30 {top: 38.2%; left: 64.5%;}
 #pl_station span.set31 {top: 47.3%; left: 68.5%;}
 #pl_station span.set32 {top: 57.0%; right: 32.0%;}
-#pl_station span.set33 {top: 70%; right: 23.8%;}
+#pl_station span.set33 {top: 73%; right: 30.3%;}
 #pl_station span.set34 {top: 78.0%; right: 30.4%;}
 #pl_station span.set35 {top: 86.3%; right: 26.2%;}
 #pl_station span.set36 {top: 80.2%; right: 18.2%;}
@@ -458,7 +458,7 @@ border-radius: 3px; */
 #pl_depot span {
 	/*display: none;*/
 	position: absolute;
-	font-size: 1em;
+	font-size: .8em;
 	color: #eef;
 /*	text-shadow:
 			-1px -1px 0 rgba(0,0,255,.3),
