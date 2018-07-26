@@ -161,6 +161,14 @@ div#header_datetime {
 	background: #444;
 }
 
+#header_menu .nav > li {
+	margin-right: 5px;
+}
+
+#header_menu .navbar-nav > li > a {
+	padding-top: 6px;
+	padding-bottom: 6px;
+}
 /*____________________________________________
 Error 404
 --------------------------------------------*/
