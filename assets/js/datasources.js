@@ -8466,10 +8466,9 @@ mpxd.modules.viaducts.kpi = Backbone.View.extend({
         template = _.template(html, {data: that.data});
         that.$el.html(template);
         that.$el.find('.portlet_content').css({"height":(that.$el.find('.content').parent().parent().parent().height())-40});
-        that.$el.find('.portlet_content .table tbody').mCustomScrollbar({theme:"dark-3"});
+        that.$el.find('.portlet_content').mCustomScrollbar({theme:"dark-3"});
     }
 });
-
 mpxd.modules.viaducts.kd = Backbone.View.extend({
     initialize: function (options) {
         this.data = options.data;
