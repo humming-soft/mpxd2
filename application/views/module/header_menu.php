@@ -74,15 +74,14 @@
                     </li>
                     <li class="dropdown">
                         <a class="btn dropdown-toggle goto_generate_report" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            <!--<a class="btn goto_generate_report"  id="toPDFButton" onclick="return false;" type="button"   href="#">-->
                             <i class="fa fa-file-text" aria-hidden="true"></i>
                             Report
                             <span class="caret"></span>
                         </a>
                         <ul class="dropdown-menu dropdown-persist dropdown-menu-right" aria-labelledby="dropdownMenu2">
                             <li><a href="#" class="goto_generate_report" id="toPDFButton" onclick="return false;"><i class="fa fa-file-pdf-o" aria-hidden="true"></i> PDF Report</a></li>
-                            <li class="divider"></li>
-                            <li><a href="#" class="goto_generate_report" id="toExcelButton" onclick="return false;"><i class="fa fa-file-excel-o" aria-hidden="true"></i> Excel Report</a></li>
+                            <!--<li class="divider"></li>
+                            <li><a href="#" class="goto_generate_report" id="toExcelButton" onclick="return false;"><i class="fa fa-file-excel-o" aria-hidden="true"></i> Excel Report</a></li>-->
                         </ul>
                     </li>
                     <li class="dropdown">
