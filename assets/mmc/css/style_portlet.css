@@ -472,6 +472,10 @@ div.portlet_kpi table .col_separation {
 /*tbody border*/
 div.portlet_kpi table tbody td {
 	border-bottom: 1px solid #669 !important;
+    padding: 8px;
+    line-height: 1.42857143;
+    vertical-align: top;
+    border-top: 1px solid #ddd;
 }
 
 

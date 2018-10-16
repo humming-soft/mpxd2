@@ -8466,7 +8466,16 @@ mpxd.modules.viaducts.kpi = Backbone.View.extend({
         template = _.template(html, {data: that.data});
         that.$el.html(template);
         that.$el.find('.portlet_content').css({"height":(that.$el.find('.content').parent().parent().parent().height())-40});
-        that.$el.find('.portlet_content').mCustomScrollbar({theme:"dark-3"});
+        that.$el.find('.portlet_content').mCustomScrollbar({
+            theme:"dark-3"
+ /*           scrollButtons:{
+                enable:false
+            },
+            mouseWheel:{ preventDefault: true },
+            scrollbarPosition: 'inside',
+            autoExpandScrollbar:true,
+            theme: 'dark'*/
+        });
     }
 });
 mpxd.modules.viaducts.kd = Backbone.View.extend({
@@ -8479,7 +8488,9 @@ mpxd.modules.viaducts.kd = Backbone.View.extend({
         template = _.template(html, {data: that.data});
         that.$el.html(template);
         that.$el.find('.portlet_content').css({"height":(that.$el.find('.content').parent().parent().parent().height())-40});
-        that.$el.find('.portlet_content').mCustomScrollbar({theme:"dark-3"});
+        that.$el.find('.portlet_content').mCustomScrollbar({
+            theme:"dark-3"
+        });
     }
 });
 
